@@ -18,4 +18,4 @@ if (!isset($_SESSION['user'])) {
 <body>
 	<div class="message">🎉 Registration Successful! Redirecting to Dashboard...</div>
 </body>
-</html>
+</html
