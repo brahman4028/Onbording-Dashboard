@@ -14,7 +14,7 @@ include 'middleware.php';
 		<!--page-wrapper-->
 		<div class="page-wrapper">
 			
-			<!--page-content-wrapper-->
+			<!-- page-content-wrapper -->
 			<div class="page-content-wrapper">
 				<div class="page-content">
 					<div class="row">

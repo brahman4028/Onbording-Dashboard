@@ -1,4 +1,4 @@
-<?php include 'middleware.php';?>
+  <!-- <?php include 'middleware.php';?>  -->
 <?php include 'template/header.php'; ?>
 <!--wrapper-->
 <div class="wrapper">

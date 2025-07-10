@@ -29,7 +29,7 @@
 
             <div class="card" style="height: 100%;">
                 <div class="card-body" style="padding: 0px;">
-                    <div id="stepper3" class="bs-stepper gap-4 vertical" style="height: 100%;">
+                    <div id="stepper3" class="bs-stepper gap-4 vertical" style="height: 100%; ">
                         <div class="bs-stepper-header" role="tablist">
                             <div class="step" data-target="#test-vl-1">
                                 <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
@@ -53,7 +53,7 @@
                                 <div class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-vl-3">
                                     <div class="bs-stepper-circle"><i class='bx bxs-graduation fs-4'></i></div>
                                     <div>
-                                        <h5 class="mb-0 steper-title">Education</h5>
+                                        <h5 class="mb-0 steper-title">Documents Upload</h5>
                                         <p class="mb-0 steper-sub-title">Education Details</p>
                                     </div>
                                 </div>
@@ -62,16 +62,37 @@
                                 <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
                                     <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                     <div>
-                                        <h5 class="mb-0 steper-title">Work Experience</h5>
+                                        <h5 class="mb-0 steper-title">Declarations</h5>
                                         <p class="mb-0 steper-sub-title">Experience Details</p>
                                     </div>
                                 </div>
                             </div>
+                            <div class="step" data-target="#test-vl-5">
+                                <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
+                                    <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+                                    <div>
+                                        <h5 class="mb-0 steper-title">Final Submission</h5>
+                                        <p class="mb-0 steper-sub-title">Experience Details</p>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="help " style="margin-top: 85px;">
+                            <div class="bs-stepper text-primary"><i class='bx  bx-info-circle fs-3 '></i> </div>
+                            <h5>Having Trouble?</h5>
+                            <p class="text-muted">It is a long established fact that a reader<br> will be distracted by the readable content <br>of a page when looking at its layout.</p>
+                            <button class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6">Get in Touch <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i></button>
                         </div>
-                        <div class="bs-stepper-content px-5 py-4 " style="height: 750px; overflow-y: auto !important;">
+                        </div>
+                       
+                        <div class="bs-stepper-content px-5 py-4 " style="height: 650px; overflow-y: auto !important;">
                             <form onsubmit="return false">
                                 <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
-                                <h5>Business Details</h5>
+                                <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
+                                <div class="" style="margin-right: 300px;">
+                                     <p class="mb-4 text-muted ">Please fill in your business information to help us verify your identity and activate features like vendor payouts, salary disbursements, and invoice management. Accurate details ensure faster onboarding and secure transactions..</p>
+                                </div>
+                                <hr class="my-4">
+                               
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Type of Entity</label>
@@ -129,36 +150,30 @@
                                         <input type="text" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Support Email ID</label>
-                                        <input type="email" class="form-control">
+                                        <label class="form-label">Alternate Contact Number</label>
+                                        <input type="text" class="form-control">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Support Email ID</label>
                                         <input type="email" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Support Email ID</label>
+                                        <label class="form-label">Alternate Email ID</label>
                                         <input type="email" class="form-control">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Support Email ID</label>
-                                        <input type="email" class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Support Email ID</label>
-                                        <input type="email" class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Support Email ID</label>
-                                        <input type="email" class="form-control">
-                                    </div>
+                                    
                                     <div class="col-12">
                                         <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
                                     </div>
                                 </div>
                             </div>
                           <div id="test-vl-2" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger2">
-                                <h5>Authorized Signatory Details</h5>
+                                
+                                 <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Authorized Signatory Details</h2>
+                                <div class="" style="margin-right: 300px;">
+                                     <p class="mb-4 text-muted ">PPlease provide the details of the person authorized to sign documents and make decisions on behalf of the business. This is required for verification and legal compliance.</p>
+                                </div>
+                                <hr class="my-4">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Full Name</label>
@@ -191,8 +206,13 @@
                                 </div>
                             </div>
                                 <div id="test-vl-3" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger3">
-                                    <h5 class="mb-1">Education Details</h5>
-                                    <p class="mb-4">Enter your education details.</p>
+                                    
+                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Required Documents</h2>
+                                <div class="" style="margin-right: 300px;">
+                                     <p class="mb-4 text-muted ">PSubmit valid business and identity documents to proceed. We keep your data safe and use it only for verification purposes.</p>
+                                </div>
+                                <hr class="my-4">
+                                    
                                     <div class="row g-3">
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">School Name</label>
@@ -211,11 +231,43 @@
                                     </div>
                                 </div>
                                 <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger4">
-                                    <h5 class="mb-1">Work Experience</h5>
-                                    <p class="mb-4">Describe your past experiences.</p>
+                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Authorized Declarations & Consent</h2>
+                                <div class="" style="margin-right: 300px;">
+                                     <p class="mb-4 text-muted ">Read the following declarations carefully. These include your consent to data usage, identity verification, and acceptance of platform terms and conditions.</p>
+                                </div>
+                                <hr class="my-4">
                                     <div class="row g-3">
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Company</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <label class="form-label">Role</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex gap-3">
+                                                <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
+                                                <button type="submit" class="btn btn-success px-4">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger5">
+                                    
+                                    <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Your Application</h2>
+                                <div class="" style="margin-right: 300px;">
+                                     <p class="mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
+                                </div>
+                                <hr class="my-4">
+                                 
+                                    <div class="row g-3">
+                                        <div class="col-12 col-lg-6">
+                                            <label class="form-label">Company</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <label class="form-label">Role</label>
                                             <input type="text" class="form-control">
                                         </div>
                                         <div class="col-12 col-lg-6">
