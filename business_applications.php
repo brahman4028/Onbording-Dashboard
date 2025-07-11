@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -26,28 +25,29 @@
 <body>
     <div class="wrapper" style="display: flex; flex-direction:column; height:100vh; ">
         <header class="login-header shadow">
-			<nav class="navbar navbar-expand-lg navbar-light rounded-0 bg-white  rounded-0 shadow-none border-bottom">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">
-						<img src="assets/images/logo-img.png" width="140" alt="" />
-					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent1">
-						<ul class="navbar-nav ms-auto mb- mb-lg-0">
-							<li class="nav-item"> <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-user me-1'></i>About</a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-category-alt me-1'></i>Features</a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-microphone me-1'></i>Contact</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</header>        <div style=" margin-bottom:0px !important; flex:1; height:100%;">
+            <nav class="navbar navbar-expand-lg navbar-light rounded-0 bg-white  rounded-0 shadow-none border-bottom">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/logo-img.png" width="140" alt="" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                        <ul class="navbar-nav ms-auto mb- mb-lg-0">
+                            <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-user me-1'></i>About</a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-category-alt me-1'></i>Features</a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-microphone me-1'></i>Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div style=" margin-bottom:0px !important; flex:1; height:100%;">
 
             <div class="card" style="height: 100%;">
                 <div class="card-body" style="padding: 0px;">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="bs-stepper-content px-5 py-4 " style="height: 750px; overflow-y: auto !important;">
-                            <form onsubmit="return false">
+                            <form>
                                 <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
                                     <div class="" style="margin-right: 300px;">
@@ -284,28 +284,31 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">1. Aadhaar Card :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                                <input type="file" onchange="validateFile(this, 'AadhaarMsg')" class="form-control" id="inputGroupFile01" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
+
                                             </div>
+                                            <span id="AadhaarMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 2 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">2. Pan Card :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02">
+                                                <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'AadhaarMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                             </div>
-
+                                            <span id="PanMsg">Not Allowed</span>
                                         </div>
                                         <!-- 3 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">3. Photograph :</label>
 
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile03">
+                                                <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'AadhaarMsg')" accept=".jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile03">Upload</label>
                                             </div>
+                                            <span id="PhotoMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 4 -->
@@ -313,11 +316,11 @@
 
                                             <label class="form-label fw-semibold">4. Address :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile04">
+                                                <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AadhaarMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile04">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
-
+                                            <span id="AddressMsg">Not Allowed</span>
                                         </div>
 
                                         <h6 class="mt-4 mb-2 text-primary">Business identity</h6>
@@ -327,63 +330,70 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold ">5. Certificate of Incorporation (COI) / Business Registration Certificate :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile05">
+                                                <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg')"accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile05">Upload</label>
                                             </div>
+                                            <span id="CoiMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 2 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">6. Memorandum of Association (MOA) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile06">
+                                                <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile06">Upload</label>
                                             </div>
+                                            <span id="MoaMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 3 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">7. Articles of Association (AOA) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile07">
+                                                <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile07">Upload</label>
                                             </div>
+                                            <span id="AoaMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 4 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">8. Board Resolution (BR) / Letter of Authorization for Signatory :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile08">
+                                                <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile08">Upload</label>
                                             </div>
+                                            <span id="BrMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 5 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">9. UDYAM Registration Certificate (If Available) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile09">
+                                                <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile09">Upload</label>
                                             </div>
+                                            <span id="UdyamMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 6 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">10. GSTIN Certificate :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile010">
+                                                <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile010">Upload</label>
                                             </div>
+                                            <span id="GstinMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 7 -->
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">11. List of Directors/Partners/Beneficial Ownership (BO) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile011">
+                                                <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile011">Upload</label>
                                             </div>
+                                            <span id="BoMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 8 -->
@@ -391,10 +401,11 @@
                                             <label class="form-label fw-semibold">12. Rent Agreement / Lease Agreement / Property Tax Receipt :</label>
 
                                             <div class="input-group mb-3 mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile012">
+                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'RentMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Mandatory if there is a change in address of Principal Place Of Business )</p>
+                                            <span id="RentMsg">Not Allowed</span>
 
                                         </div>
                                         <!-- 9 -->
@@ -524,10 +535,11 @@
                                             <label class="form-label fw-semibold">7. Download the form, add your signature and stamp, and upload it back here :</label>
 
                                             <div class="input-group mb-3 mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile012">
+                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'UploadtMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="text-secondary">Download the form, add your signature and stamp, and upload it back here.</p>
+                                             <span id="UploadtMsg">Not Allowed</span>
 
                                         </div>
 
@@ -592,6 +604,39 @@
                 animation: true
             });
         });
+
+
+        function validateFile(fileInput, spanId) {
+            const messageSpan = document.getElementById(spanId);
+            const file = fileInput.files[0];
+
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg","image/png"];
+            const maxSize = 2 * 1024 * 1024; // 2 MB
+
+            if (!file) {
+                messageSpan.innerText = "❌ No file selected.";
+                messageSpan.style.color = "red";
+                return false;
+            }
+
+            if (!allowedTypes.includes(file.type)) {
+                messageSpan.innerText = "❌ Invalid file type.";
+                messageSpan.style.color = "red";
+                fileInput.value = "";
+                return false;
+            }
+
+            if (file.size > maxSize) {
+                messageSpan.innerText = "❌ File size exceeds 2MB.";
+                messageSpan.style.color = "red";
+                fileInput.value = "";
+                return false;
+            }
+
+            messageSpan.innerText = "✅ File is valid.";
+            messageSpan.style.color = "green";
+            return true;
+        }
     </script>
 </body>
 
