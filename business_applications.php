@@ -610,7 +610,7 @@
             const messageSpan = document.getElementById(spanId);
             const file = fileInput.files[0];
 
-            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg","image/png"];
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg","image/png" ,"image/webp"];
             const maxSize = 2 * 1024 * 1024; // 2 MB
 
             if (!file) {
