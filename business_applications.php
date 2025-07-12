@@ -1,3 +1,5 @@
+<?php include 'db.php'; ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -114,7 +116,7 @@
                             </div>
                             <div class="bs-stepper-content position-relative px-5 py-5 " style="height: 750px; overflow-y: auto !important;">
 
-                            <!-- welcome screen page  -->
+                                <!-- welcome screen page  -->
                                 <div class="position-absolute top-0 start-0 w-100 vh-100 z-3 ps-5 pt-5 d-flex justify-content-between "
                                     style="background-image: url('./assets/images/welcomescreen.png'); 
                                             background-size: cover; 
@@ -122,20 +124,20 @@
                                             background-attachment: scroll;
                                             background-color:white; flex-direction:column;" id="startonboardingpage">
 
-                                            <div>
-                                                <h1 class="fw-light">Welcome to ItStarPay</h1>
+                                    <div>
+                                        <h1 class="fw-light">Welcome to ItStarPay</h1>
                                         <p class="text-muted">It is a long established fact that a reader will be distracted by the readable content <br>of a page when looking at its layout.</p>
                                         <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
-                                            </div>
-                                            <div style="width: 900px; "  class="ms-auto	">
-                                                <img src="./assets/images/dashb.png" alt="User Avatar" class="img-fluid rounded shadow" width="100%">
+                                    </div>
+                                    <div style="width: 900px; " class="ms-auto	">
+                                        <img src="./assets/images/dashb.png" alt="User Avatar" class="img-fluid rounded shadow" width="100%">
 
-                                            </div>
+                                    </div>
                                 </div>
-                            <!-- ///////////// -->
+                                <!-- ///////////// -->
 
-                            <!-- business details -->
-                             
+                                <!-- business details -->
+
                                 <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
                                     <div class="" style="margin-right: 300px;">
@@ -172,13 +174,35 @@
                                             <label class="form-label">Business Sub-Category</label>
                                             <input type="text" class="form-control" name="businesssubcategory">
                                         </div>
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <label class="form-label">GSTIN</label>
                                             <input type="text" class="form-control" name="gstin">
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <label for="gstin" class="form-label">GSTIN</label>
+                                            <input type="text" class="form-control" id="gstin" name="gstin" onblur="validateGSTIN()">
+                                            <div id="gstin-error" class="text-danger mt-1 d-none">❌ Enter a valid 15-character GSTIN</div>
+                                            <div class=" d-none" id="gstin-info">
+                                                <label class="form-label">Company Info</label>
+                                                <div class="p-2 border rounded bg-light">
+                                                    <p class="mb-1"><strong>Company Name:</strong> <span id="companyName">—</span></p>
+                                                    <p class="mb-0"><strong>Status:</strong> <span id="gstinStatus">—</span></p>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <div class="col-md-6 d-none" id="gstin-info">
+                                            <label class="form-label">Company Info</label>
+                                            <div class="p-2 border rounded bg-light">
+                                                <p class="mb-1"><strong>Company Name:</strong> <span id="companyName">—</span></p>
+                                                <p class="mb-0"><strong>Status:</strong> <span id="gstinStatus">—</span></p>
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-6">
                                             <label class="form-label">Business PAN Number</label>
-                                            <input type="text" class="form-control" name="pan">
+                                            <input type="text" class="form-control " name="pan" id="businesspan" onblur="validatePAN(this, 'error-businesspan')" placeholder="ABCDE1234F">
+                                            <div class="text-danger mt-1 d-none" id="error-businesspan">Invalid PAN format (e.g., AAAAA9999A)</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Registered Business Address</label>
@@ -198,16 +222,21 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Contact Number</label>
-                                            <input type="text" class="form-control" name="businessnumber">
+                                            <input type="text" class="form-control" name="businessnumber" id="businessnumber" onblur="validatePhone('businessnumber')" placeholder="9876543210">
+                                            <div id="businessnumber-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Alternate Contact Number</label>
-                                            <input type="text" class="form-control" name="alternnumber">
+                                            <input type="text" class="form-control" name="alternnumber" id="alternnumber" onblur="validatePhone('alternnumber')" placeholder="9876543210">
+                                            <div id="alternnumber-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="supportemail" class="form-label">Support Email ID</label>
-                                            <input type="email" class="form-control" id="supportemail" name="supportemail">
+                                            <input type="email" class="form-control" id="supportemail" name="supportemail" onblur="validateEmail(this)" placeholder="name@example.com">
+                                            <div id="supportemail-error" class="text-danger mt-1 d-none">
+                                                ❌ Please enter a valid email address
+                                            </div>
                                         </div>
 
 
@@ -240,24 +269,31 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control" name="number">
+                                            <input type="text" class="form-control" name="number" id="number" onblur="validatePhone('number')" placeholder="9876543210">
+                                            <div id="number-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Email ID</label>
-                                            <input type="email" class="form-control" name="personalemail">
+                                            <input type="email" class="form-control" id="personalemail" name="personalemail" onblur="validateEmail(this)" placeholder="name@example.com">
+                                            <div id="personalemail-error" class="text-danger mt-1 d-none">
+                                                ❌ Please enter a valid email address
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Aadhaar Number</label>
-                                            <input type="text" class="form-control" name="aadhaarnumber">
+                                            <input type="text" class="form-control" name="aadhaarnumber" id="aadhaarnumber" placeholder="Enter 12-digit Aadhaar number" maxlength="12"
+                                                onblur="validateAadhaar('aadhaarnumber')">
+                                            <div id="aadhaarnumber-error" class="text-danger d-none">Please enter a valid 12-digit Aadhaar number.</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">PAN Number</label>
-                                            <input type="text" class="form-control" name="pannumber">
+                                            <input type="text" class="form-control" name="pannumber" id="pannumber" onblur="validatePAN(this, 'error-pannumber')" placeholder="ABCDE1234F">
+                                            <div class="text-danger mt-1 d-none" id="error-pannumber">Invalid PAN format (e.g., AAAAA9999A)</div>
                                         </div>
 
                                         <h6 class="mt-4 text-primary">Authorized Director 2 (If any)</h6><br>
 
-                                        <div class="col-md-6 mt-3">
+                                        <div class="col-md-6">
                                             <label class="form-label">Full Name</label>
                                             <input type="text" class="form-control" name="fullnameadn">
                                         </div>
@@ -267,19 +303,26 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control" name="numberadn">
+                                            <input type="text" class="form-control" name="numberadn" id="numberadn" onblur="validatePhone('numberadn')" placeholder="9876543210">
+                                            <div id="numberadn-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Email ID</label>
-                                            <input type="email" class="form-control" name="personalemailadn">
+                                            <input type="email" class="form-control" id="personalemailadn" name="personalemailadn" onblur="validateEmail(this)" placeholder="name@example.com">
+                                            <div id="personalemailadn-error" class="text-danger mt-1 d-none">
+                                                ❌ Please enter a valid email address
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Aadhaar Number</label>
-                                            <input type="text" class="form-control" name="aadhaarnumberadn">
+                                            <input type="text" class="form-control" name="aadhaarnumberadn" id="aadhaarnumberadn" placeholder="Enter 12-digit Aadhaar number" maxlength="12"
+                                                onblur="validateAadhaar('aadhaarnumberadn')">
+                                            <div id="aadhaarnumberadn-error" class="text-danger d-none">Please enter a valid 12-digit Aadhaar number.</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">PAN Number</label>
-                                            <input type="text" class="form-control" name="pannumberadn">
+                                            <input type="text" class="form-control" name="pannumberadn" id="pannumberadn" onblur="validatePAN(this, 'error-pannumberadn')" placeholder="ABCDE1234F">
+                                            <div class="text-danger mt-1 d-none" id="error-pannumberadn">Invalid PAN format (e.g., AAAAA9999A)</div>
                                         </div>
 
                                         <div class="d-flex gap-3">
@@ -313,7 +356,7 @@
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
 
                                             </div>
-                                            <span id="AadhaarMsg">Not Allowed</span>
+                                            <span id="AadhaarMsg"></span>
 
                                         </div>
                                         <!-- 2 -->
@@ -323,7 +366,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'PanMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanfile">
                                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                             </div>
-                                            <span id="PanMsg">Not Allowed</span>
+                                            <span id="PanMsg"></span>
                                         </div>
                                         <!-- 3 -->
                                         <div class="col-12 col-lg-6 mb-3">
@@ -333,7 +376,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
                                                 <label class="input-group-text" for="inputGroupFile03">Upload</label>
                                             </div>
-                                            <span id="PhotoMsg">Not Allowed</span>
+                                            <span id="PhotoMsg"></span>
 
                                         </div>
                                         <!-- 4 -->
@@ -345,7 +388,7 @@
                                                 <label class="input-group-text" for="inputGroupFile04">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
-                                            <span id="AddressMsg">Not Allowed</span>
+                                            <span id="AddressMsg"></span>
                                         </div>
 
                                         <h6 class="mt-4 mb-2 text-primary">Business identity</h6>
@@ -358,7 +401,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="coifile">
                                                 <label class="input-group-text" for="inputGroupFile05">Upload</label>
                                             </div>
-                                            <span id="CoiMsg">Not Allowed</span>
+                                            <span id="CoiMsg"></span>
 
                                         </div>
                                         <!-- 2 -->
@@ -368,7 +411,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="moafile">
                                                 <label class="input-group-text" for="inputGroupFile06">Upload</label>
                                             </div>
-                                            <span id="MoaMsg">Not Allowed</span>
+                                            <span id="MoaMsg"></span>
 
                                         </div>
                                         <!-- 3 -->
@@ -378,7 +421,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aoafile">
                                                 <label class="input-group-text" for="inputGroupFile07">Upload</label>
                                             </div>
-                                            <span id="AoaMsg">Not Allowed</span>
+                                            <span id="AoaMsg"></span>
 
                                         </div>
                                         <!-- 4 -->
@@ -388,7 +431,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="brfile">
                                                 <label class="input-group-text" for="inputGroupFile08">Upload</label>
                                             </div>
-                                            <span id="BrMsg">Not Allowed</span>
+                                            <span id="BrMsg"></span>
 
                                         </div>
                                         <!-- 5 -->
@@ -398,7 +441,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="udyamfile">
                                                 <label class="input-group-text" for="inputGroupFile09">Upload</label>
                                             </div>
-                                            <span id="UdyamMsg">Not Allowed</span>
+                                            <span id="UdyamMsg"></span>
 
                                         </div>
                                         <!-- 6 -->
@@ -408,7 +451,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="gstinfile">
                                                 <label class="input-group-text" for="inputGroupFile010">Upload</label>
                                             </div>
-                                            <span id="GstinMsg">Not Allowed</span>
+                                            <span id="GstinMsg"></span>
 
                                         </div>
                                         <!-- 7 -->
@@ -418,7 +461,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="bofile">
                                                 <label class="input-group-text" for="inputGroupFile011">Upload</label>
                                             </div>
-                                            <span id="BoMsg">Not Allowed</span>
+                                            <span id="BoMsg"></span>
 
                                         </div>
                                         <!-- 8 -->
@@ -430,7 +473,7 @@
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Mandatory if there is a change in address of Principal Place Of Business )</p>
-                                            <span id="RentMsg">Not Allowed</span>
+                                            <span id="RentMsg"></span>
 
                                         </div>
                                         <!-- 9 -->
@@ -558,14 +601,14 @@
                                         <!-- //////////////////////////////////////// -->
 
                                         <div class="col-12 col-lg-6 mb-3">
-                                            <label class="form-label fw-semibold">7. Download the form, add your signature and stamp, and upload it back here :</label>
+                                            <label class="form-label fw-semibold">7. Download the form, add your signature and stamp, and upload it back here</label>
 
                                             <div class="input-group mb-3 mb-3">
                                                 <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'UploadtMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="annexurebfile">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="text-secondary">Download the form, add your signature and stamp, and upload it back here.</p>
-                                            <span id="UploadtMsg">Not Allowed</span>
+                                            <span id="UploadtMsg"></span>
 
                                         </div>
 
@@ -588,19 +631,32 @@
                                         <p class="mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
                                     </div>
                                     <hr class="my-4">
-
+                                    <div>
+                                        <p>preview box will be here</p>
+                                    </div>
                                     <div class="row g-3">
-                                        <div class="col-12 col-lg-6">
-                                            <label class="form-label">Company</label>
-                                            <input type="text" class="form-control" name="companyname">
+                                        <p class=" text-muted">
+                                            Kindly confirm your acceptance of the terms outlined below before continuing.
+                                        </p>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" required>
+                                            <label class="form-check-label" for="termsCheckbox">
+                                                I/We confirm that the information provided is true and accurate.
+                                            </label>
                                         </div>
-                                        <div class="col-12 col-lg-6">
-                                            <label class="form-label">Role</label>
-                                            <input type="text" class="form-control" name="companyrole">
+
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" value="" id="privacyCheckbox" required>
+                                            <label class="form-check-label" for="privacyCheckbox">
+                                                I/We authorize ITSTARPAY to verify the submitted information and documents.
+                                            </label>
                                         </div>
-                                        <div class="col-12 col-lg-6">
-                                            <label class="form-label">Role</label>
-                                            <input type="text" class="form-control" name="companyrole2">
+
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value="" id="marketingCheckbox" required>
+                                            <label class="form-check-label" for="marketingCheckbox">
+                                                I/We agree to comply with all applicable RBI, AML, and KYC guidelines.
+                                            </label>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-flex gap-3">
@@ -610,7 +666,7 @@
                                         </div>
                                     </div>
                                 </div>
-                             
+
                             </div>
                         </div>
                     </div>
@@ -638,15 +694,165 @@
     </script>
 
     <script>
-function startOnboardingProcess() {
-  // Hide the target div
-  
-  document.getElementById('startonboardingpage').classList.add('d-none'); 
+        function startOnboardingProcess() {
+            // Hide the target div
 
-  // Trigger the click on startonboarding button
-  document.getElementById('stepper3trigger1').click();
-}
-</script>
+            document.getElementById('startonboardingpage').classList.add('d-none');
+
+            // Trigger the click on startonboarding button
+            document.getElementById('stepper3trigger1').click();
+        }
+    </script>
+
+    <!-- gsti validation message -->
+    <!-- <script>
+        async function validateGSTIN() {
+            const gstinEl = document.getElementById('gstin');
+            const errorEl = document.getElementById('gstin-error');
+            const infoDiv = document.getElementById('gstin-info');
+            const companyNameEl = document.getElementById('companyName');
+            const gstinStatusEl = document.getElementById('gstinStatus');
+
+            const gstin = gstinEl.value.trim().toUpperCase();
+            if (gstin.length !== 15) {
+                errorEl.textContent = '⚠️ GSTIN must be 15 characters';
+                errorEl.classList.remove('d-none');
+                infoDiv.classList.add('d-none');
+                return;
+            }
+            errorEl.classList.add('d-none');
+
+            try {
+                const response = await fetch('https://api.cleartax.in/gst/api/v0.2/returns/gstin/gstin-verification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Cleartax-Auth-Token': 'YOUR_CLEARTAX_TOKEN'
+                    },
+                    body: JSON.stringify({
+                        gstin
+                    })
+                });
+
+                if (!response.ok) throw new Error('API error');
+
+                const data = await response.json();
+
+                companyNameEl.textContent = data.lgnm || data.legal_name || 'Not available';
+                gstinStatusEl.textContent = data.sts || data.status || 'Unknown';
+                infoDiv.classList.remove('d-none');
+            } catch (err) {
+                console.error('GST fetch error:', err);
+                errorEl.textContent = '⚠️ Error verifying GST details';
+                errorEl.classList.remove('d-none');
+                infoDiv.classList.add('d-none');
+            }
+        }
+    </script> -->
+
+    <!-- ////////////////// -->
+
+
+    <!-- pan validation  -->
+
+    <script>
+        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+
+        function validatePAN(input, errorId) {
+            const value = input.value.trim().toUpperCase();
+            input.value = value;
+
+            const errorEl = document.getElementById(errorId);
+
+            if (value === '' || !panRegex.test(value)) {
+                input.classList.add('is-invalid');
+                errorEl.classList.remove('d-none');
+            } else {
+                input.classList.remove('is-invalid');
+                errorEl.classList.add('d-none');
+            }
+        }
+
+        // Prevent submission if any input is invalid
+        document.getElementById('panForm').addEventListener('submit', function(e) {
+            const inputs = this.querySelectorAll('input');
+            let hasError = false;
+
+            inputs.forEach(input => {
+                const id = input.id;
+                const errorId = 'error-' + id;
+                validatePAN(input, errorId);
+
+                if (input.classList.contains('is-invalid')) {
+                    hasError = true;
+                }
+            });
+
+            if (hasError) {
+                e.preventDefault();
+                alert('❌ Please fix the errors before submitting.');
+            }
+        });
+    </script>
+
+    <!-- ///////////////// -->
+
+    <!-- phone validation -->
+
+    <script>
+        function validatePhone(fieldId) {
+            const input = document.getElementById(fieldId);
+            const error = document.getElementById(`${fieldId}-error`);
+            const value = input.value.trim();
+
+            if (/^[6-9]\d{9}$/.test(value)) {
+                error.classList.add('d-none');
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            } else {
+                error.classList.remove('d-none');
+                input.classList.remove('is-valid');
+                input.classList.add('is-invalid');
+            }
+        }
+    </script>
+
+
+    <!-- //////// -->
+
+    <!-- aadhaar number validation -->
+    <script>
+        function validateAadhaar(fieldId) {
+            const input = document.getElementById(fieldId);
+            const error = document.getElementById(`${fieldId}-error`);
+            const value = input.value.trim();
+
+            if (/^\d{12}$/.test(value)) {
+                error.classList.add('d-none');
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            } else {
+                error.classList.remove('d-none');
+                input.classList.remove('is-valid');
+                input.classList.add('is-invalid');
+            }
+        }
+    </script>
+    <!-- //////////////////// -->
+
+    <script>
+        function validateEmail(inputEl) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const id = inputEl.id;
+            const errorEl = document.getElementById(id + '-error');
+
+            if (inputEl.value.trim() === '' || !emailRegex.test(inputEl.value.trim())) {
+                errorEl.classList.remove('d-none');
+            } else {
+                errorEl.classList.add('d-none');
+            }
+        }
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -692,3 +898,4 @@ function startOnboardingProcess() {
 </body>
 
 </html>
+
