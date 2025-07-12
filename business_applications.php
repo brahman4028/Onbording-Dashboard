@@ -22,6 +22,54 @@
     <link rel="stylesheet" href="assets/css/semi-dark.css" />
     <link rel="stylesheet" href="assets/css/header-colors.css" />
     <title>Stepper Form</title>
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid rgb(90, 90, 90) !important;
+            /* solid black border */
+            border-collapse: collapse;
+            page-break-inside: avoid !important;
+        }
+
+        tr,
+        td {
+            break-inside: avoid;
+            padding: 6px 8px;
+            vertical-align: top;
+            border: 1px solid rgb(90, 90, 90) !important;
+            font-size: 14px;
+        }
+
+        .declaration-section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+            padding-bottom: 10px;
+        }
+
+        .declaration-section ul li {
+            padding: 6px 0;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .pdfdisplay canvas {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            page-break-after: always;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 
 <body>
@@ -352,7 +400,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">1. Aadhaar Card :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" onchange="validateFile(this, 'AadhaarMsg')" class="form-control" id="inputGroupFile01" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aadhaarfile">
+                                                <input type="file" onchange="validateFile(this, 'AadhaarMsg','aadhaarpreview')" class="form-control" id="inputGroupFile01" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aadhaarfile">
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
 
                                             </div>
@@ -363,7 +411,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">2. Pan Card :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'PanMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanfile">
+                                                <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'PanMsg','panpreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanfile">
                                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                             </div>
                                             <span id="PanMsg"></span>
@@ -373,7 +421,7 @@
                                             <label class="form-label fw-semibold">3. Photograph :</label>
 
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
+                                                <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg','photographpreview')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
                                                 <label class="input-group-text" for="inputGroupFile03">Upload</label>
                                             </div>
                                             <span id="PhotoMsg"></span>
@@ -384,7 +432,7 @@
 
                                             <label class="form-label fw-semibold">4. Address :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressfile">
+                                                <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressMsg','addressfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressfile">
                                                 <label class="input-group-text" for="inputGroupFile04">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
@@ -398,7 +446,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold ">5. Certificate of Incorporation (COI) / Business Registration Certificate :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="coifile">
+                                                <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg','coifilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="coifile">
                                                 <label class="input-group-text" for="inputGroupFile05">Upload</label>
                                             </div>
                                             <span id="CoiMsg"></span>
@@ -408,7 +456,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">6. Memorandum of Association (MOA) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="moafile">
+                                                <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg','moafilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="moafile">
                                                 <label class="input-group-text" for="inputGroupFile06">Upload</label>
                                             </div>
                                             <span id="MoaMsg"></span>
@@ -418,7 +466,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">7. Articles of Association (AOA) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aoafile">
+                                                <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg','aoafilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aoafile">
                                                 <label class="input-group-text" for="inputGroupFile07">Upload</label>
                                             </div>
                                             <span id="AoaMsg"></span>
@@ -428,7 +476,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">8. Board Resolution (BR) / Letter of Authorization for Signatory :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="brfile">
+                                                <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg','brfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="brfile">
                                                 <label class="input-group-text" for="inputGroupFile08">Upload</label>
                                             </div>
                                             <span id="BrMsg"></span>
@@ -438,7 +486,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">9. UDYAM Registration Certificate (If Available) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="udyamfile">
+                                                <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg','udyamfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="udyamfile">
                                                 <label class="input-group-text" for="inputGroupFile09">Upload</label>
                                             </div>
                                             <span id="UdyamMsg"></span>
@@ -448,7 +496,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">10. GSTIN Certificate :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="gstinfile">
+                                                <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg','gstinfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="gstinfile">
                                                 <label class="input-group-text" for="inputGroupFile010">Upload</label>
                                             </div>
                                             <span id="GstinMsg"></span>
@@ -458,7 +506,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">11. List of Directors/Partners/Beneficial Ownership (BO) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="bofile">
+                                                <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg','bofilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="bofile">
                                                 <label class="input-group-text" for="inputGroupFile011">Upload</label>
                                             </div>
                                             <span id="BoMsg"></span>
@@ -469,7 +517,7 @@
                                             <label class="form-label fw-semibold">12. Rent Agreement / Lease Agreement / Property Tax Receipt :</label>
 
                                             <div class="input-group mb-3 mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'RentMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="rentfile">
+                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'RentMsg','rentfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="rentfile">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Mandatory if there is a change in address of Principal Place Of Business )</p>
@@ -631,67 +679,345 @@
                                         <p class="mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
                                     </div>
                                     <hr class="my-4">
-                                    <div>
-                                        <p>preview box will be here</p>
+                                    <!-- pdf html template -->
+                                    <div class="container border p-4 bg-white" id="kycPreview" style="
+                                            width: 210mm;
+                                            height: auto;
+                                            overflow-y: scroll;
+                                            padding: 15mm 10mm;
+                                            background: white;
+                                            
+                                            font-size: 12px; h4,
+                                            h5 {
+                                               page-break-after: avoid;
+                                               margin-top: 24px;
+                                               font-weight: bold;
+                                               color:rgb(1, 60, 123);
+                                            }">
+                                        <div class="text-center mb-4">
+                                            <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 70px;">
+                                            <h4 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h4>
+                                        </div>
+
+                                        <!-- 1. Business Details -->
+                                        <h5 class="fw-bold " style="color:rgb(3, 106, 216);">1. Business Details</h5>
+                                        <table class="table table-bordered align-middle">
+                                            <tr>
+                                                <td style="width: 40%;">Business Name</td>
+                                                <td style="width: 60%;"><span id="val_businessname"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Type of Entity</td>
+                                                <td><span id="val_entity"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date of Incorporation</td>
+                                                <td><span id="val_doi"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nature of Business</td>
+                                                <td><span id="val_nob"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business Category</td>
+                                                <td><span id="val_businesscategory"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business Sub-Category</td>
+                                                <td><span id="val_businesssubcategory"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>GSTIN</td>
+                                                <td><span id="val_gstin"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business PAN Number</td>
+                                                <td><span id="val_pan"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Registered Business Address</td>
+                                                <td><span id="val_registeredbsuiness"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Operating Address (if different)</td>
+                                                <td><span id="val_operatingaddress"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Website URL</td>
+                                                <td><span id="val_url"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Application Name</td>
+                                                <td><span id="val_applicationname"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business Contact Number</td>
+                                                <td><span id="val_businessnumber"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Support Email ID</td>
+                                                <td><span id="val_supportemail"></span></td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- 2. Authorized Signatory -->
+                                        <div>
+                                            <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">2. Authorized Signatory Details</h5>
+                                            <table class="table table-bordered align-middle">
+                                                <tr>
+                                                    <td>Full Name</td>
+                                                    <td><span id="val_fullname"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Designation</td>
+                                                    <td><span id="val_designation"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Mobile Number</td>
+                                                    <td><span id="val_number"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email ID</td>
+                                                    <td><span id="val_personalemail"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Aadhaar Number</td>
+                                                    <td><span id="val_aadhaarnumber"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PAN Number</td>
+                                                    <td><span id="val_pannumber"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Passport-size Photograph</td>
+                                                    <td>TO BE ATTACHED SEPARATELY</td>
+                                                </tr>
+                                            </table>
+                                        </div><br>
+
+                                        <!-- 3. Authorized Signatory 2 -->
+                                        <div style="page-break-before: always;">
+                                            <h5 class="fw-bold mt-4" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
+                                            <table class="table table-bordered align-middle">
+                                                <tr>
+                                                    <td>Full Name</td>
+                                                    <td><span id="val_fullnameadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Designation</td>
+                                                    <td><span id="val_designationadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Mobile Number</td>
+                                                    <td><span id="val_numberadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email ID</td>
+                                                    <td><span id="val_personalemailadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Aadhaar Number</td>
+                                                    <td><span id="val_aadhaarnumberadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PAN Number</td>
+                                                    <td><span id="val_pannumberadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Passport-size Photograph</td>
+                                                    <td>TO BE ATTACHED SEPARATELY</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <!-- 4. Bank Account Details -->
+                                        <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">4. Bank Account Details</h5>
+                                        <table class="table table-bordered align-middle">
+                                            <tr>
+                                                <td>Account Holder Name</td>
+                                                <td><span id="val_accountholder"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bank Name</td>
+                                                <td><span id="val_bankname"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Branch Name</td>
+                                                <td><span id="val_branchname"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Account Number</td>
+                                                <td><span id="val_accountnumber"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>IFSC Code</td>
+                                                <td><span id="val_ifsc"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Account Type</td>
+                                                <td><span id="val_accounttype"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cancelled Cheque</td>
+                                                <td>TO BE ATTACHED SEPARATELY</td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- document -->
+
+                                        <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">5. Documents uploaded</h5>
+                                        <table class="table table-bordered mt-4">
+                                            <thead>
+                                                <tr>
+                                                    <th>Document</th>
+                                                    <th>Uploaded File</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Aadhaar Card</td>
+                                                    <td>
+                                                        <div id="aadhaarpreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PAN Card</td>
+                                                    <td>
+                                                        <div id="panpreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Photograph</td>
+                                                    <td>
+                                                        <div id="photographpreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
+                                                    <td>
+                                                        <div id="addressfilepreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
+                                                    <td>
+                                                        <div id="coipreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Memorandum of Association (MOA)</td>
+                                                    <td>
+                                                        <div id="moapreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CArticles of Association (AOA) </td>
+                                                    <td>
+                                                        <div id="aoapreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
+                                                    <td>
+                                                        <div id="brpreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>UDYAM Registration Certificate (If Available)</td>
+                                                    <td>
+                                                        <div id="udyampreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>GSTIN Certificate</td>
+                                                    <td>
+                                                        <div id="gstinpreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
+                                                    <td>
+                                                        <div id="bopreview"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
+                                                    <td>
+                                                        <div id="rentfilepreview"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <!-- documents preview -->
+
+                                        <!-- <h5 class="mt-5 text-primary"> Attched Documents</h5>
+                                        <div id="documentsPreviewSection" style="border:1px solid #ddd; padding:15px; margin-top:15px;">
+                                            <div class="mb-3">
+                                                <strong>Aadhaar Card:</strong><br>
+                                                <div class="pdfpreview" id="aadhaardisplay" class="mt-2"></div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <strong>PAN Card:</strong><br>
+                                                <div id="pandisplay" class="mt-2"></div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <strong>Photograph:</strong><br>
+                                                <div id="photodisplay" class="mt-2"></div>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- 5. Declaration -->
+                                        <div>
+                                            <h5 class="fw-bold  mt-4 declaration-section" style="color:rgb(3, 106, 216); list-style:none;      page-break-inside: avoid;">5. Declarations</h5>
+                                            <ul style="list-style: none;">
+                                                <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" class='bx  bx-checkbox fs-2'></i> I/We confirm that the information provided is true and accurate.</li>
+                                                <li class="d-flex align-items-center" style="margin-top: -15px;"><i id="check2" class='bx  bx-checkbox fs-2'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
+                                                <li class="d-flex align-items-center" style="margin-top: -15px;"><i id="check3" class='bx  bx-checkbox fs-2'></i> I/We agree to comply with all applicable RBI, AML, and KYC guidelines.</li>
+                                                <li class="d-flex align-items-center" style="margin-top: 35px;"></li>
+
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="row g-3">
+                                     <button class="btn text-center btn-primary mb-4 mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+
+                                    <!--  -->
+                                    <!-- declaration points -->
+                                    <div class="row g-3 mt-4" > 
                                         <p class=" text-muted">
                                             Kindly confirm your acceptance of the terms outlined below before continuing.
                                         </p>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" required>
+                                        <div class="form-check ">
+                                            <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" onchange="updateIcon(this, 'check1')" required>
                                             <label class="form-check-label" for="termsCheckbox">
                                                 I/We confirm that the information provided is true and accurate.
                                             </label>
                                         </div>
 
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="privacyCheckbox" required>
+                                        <div class="form-check ">
+                                            <input class="form-check-input" type="checkbox" value="" id="privacyCheckbox" onchange="updateIcon(this, 'check2')" required>
                                             <label class="form-check-label" for="privacyCheckbox">
                                                 I/We authorize ITSTARPAY to verify the submitted information and documents.
                                             </label>
                                         </div>
 
+                                        <!-- ////// -->
+
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" value="" id="marketingCheckbox" required>
+                                            <input class="form-check-input" type="checkbox" value="" id="marketingCheckbox" onchange="updateIcon(this, 'check3')" required>
                                             <label class="form-check-label" for="marketingCheckbox">
                                                 I/We agree to comply with all applicable RBI, AML, and KYC guidelines.
                                             </label>
                                         </div>
 
-                                        <!-- pdf html template -->
-                                        <div id="kyc-pdf-preview" style="display:none; padding: 30px; font-family: Arial;">
-                                            <h2>Merchant Onboarding Form</h2>
 
-                                            <h4>Business Details</h4>
-                                            <p><strong>Business Name:</strong> <span id="pdf-business-name"></span></p>
-                                            <p><strong>Entity Type:</strong> <span id="pdf-entity"></span></p>
-                                            <p><strong>Date of Incorporation:</strong> <span id="pdf-doi"></span></p>
-                                            <p><strong>Nature of Business:</strong> <span id="pdf-nature"></span></p>
-                                            <p><strong>GSTIN:</strong> <span id="pdf-gstin"></span></p>
-                                            <p><strong>PAN:</strong> <span id="pdf-pan"></span></p>
-
-                                            <h4>Authorized Signatory</h4>
-                                            <p><strong>Full Name:</strong> <span id="pdf-name"></span></p>
-                                            <p><strong>Mobile:</strong> <span id="pdf-mobile"></span></p>
-                                            <p><strong>Email:</strong> <span id="pdf-email"></span></p>
-
-                                            <h4>Bank Account Details</h4>
-                                            <p><strong>Account Holder:</strong> <span id="pdf-holder"></span></p>
-                                            <p><strong>Account Number:</strong> <span id="pdf-acno"></span></p>
-                                            <p><strong>IFSC:</strong> <span id="pdf-ifsc"></span></p>
-
-                                            <h5 style="margin-top:30px;">Declaration:</h5>
-                                            <p>I/We confirm that the information provided is true and accurate.</p>
-                                        </div>
-
-                                        <!--  -->
 
 
 
                                         <div class="col-12">
                                             <div class="d-flex gap-3">
-                                                <button type="button" onclick="generateKYCPreview()" class="btn btn-primary mt-3">Preview KYC PDF</button>
 
                                                 <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
                                                 <button type="submit" class="btn btn-success px-4">Submit</button>
@@ -714,35 +1040,20 @@
     <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
     <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
     <script src="assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
 
     <!-- pdf generator -->
 
     <script>
-        function generateKYCPreview() {
-            // Fill values from form
-            document.getElementById('pdf-business-name').textContent = document.querySelector('[name="businessname"]').value;
-            document.getElementById('pdf-entity').textContent = document.querySelector('[name="entity"]').value;
-            document.getElementById('pdf-doi').textContent = document.querySelector('[name="doi"]').value;
-            document.getElementById('pdf-nature').textContent = document.querySelector('[name="nob"]').value;
-            document.getElementById('pdf-gstin').textContent = document.querySelector('[name="gstin"]').value;
-            document.getElementById('pdf-pan').textContent = document.querySelector('[name="pan"]').value;
-
-            document.getElementById('pdf-name').textContent = document.querySelector('[name="fullname"]').value;
-            document.getElementById('pdf-mobile').textContent = document.querySelector('[name="number"]').value;
-            document.getElementById('pdf-email').textContent = document.querySelector('[name="personalemail"]').value;
-
-            document.getElementById('pdf-holder').textContent = document.querySelector('[name="accountholder"]').value;
-            document.getElementById('pdf-acno').textContent = document.querySelector('[name="accountnumber"]').value;
-            document.getElementById('pdf-ifsc').textContent = document.querySelector('[name="ifsc"]').value;
-
-            // Generate PDF
-            const element = document.getElementById('kyc-pdf-preview');
-            element.style.display = 'block';
+        function downloadKYC() {
+            const element = document.getElementById('kycPreview'); // Or use a specific ID if needed
 
             const opt = {
-                margin: 0.5,
-                filename: 'KYC-Preview.pdf',
+                margin: .8,
+                filename: 'KYC-Onboarding.pdf',
                 image: {
                     type: 'jpeg',
                     quality: 0.98
@@ -751,24 +1062,40 @@
                     scale: 2
                 },
                 jsPDF: {
-                    unit: 'in',
+                    unit: 'mm',
                     format: 'a4',
                     orientation: 'portrait'
                 }
+
+
             };
 
             html2pdf().set(opt).from(element).save();
-
-            setTimeout(() => {
-                element.style.display = 'none';
-            }, 1000);
         }
     </script>
 
 
     <!-- //////////// -->
 
+    <!-- check box code -->
 
+   <script>
+  function updateIcon(el, iconId) {
+    const icon = document.getElementById(iconId);
+    if (!icon) return;
+
+    if (el.checked) {
+      icon.classList.remove('bx-checkbox');
+      icon.classList.add('bx-check-square');
+    } else {
+      icon.classList.remove('bx-check-square');
+      icon.classList.add('bx-checkbox');
+    }
+  }
+</script>
+
+
+    <!--  -->
 
 
     <script>
@@ -952,9 +1279,14 @@
         });
 
 
-        function validateFile(fileInput, spanId) {
+        function validateFile(fileInput, spanId, previewId) {
             const messageSpan = document.getElementById(spanId);
+            const previewDiv = document.getElementById(previewId);
             const file = fileInput.files[0];
+
+            messageSpan.innerText = '';
+            previewDiv.innerHTML = '';
+
 
             const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
             const maxSize = 2 * 1024 * 1024; // 2 MB
@@ -981,7 +1313,43 @@
 
             messageSpan.innerText = "✅ File is valid.";
             messageSpan.style.color = "green";
+
+
+
+            const fileURL = URL.createObjectURL(file);
+
+            // Show Preview
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '60%';
+                    img.style.border = '1px solid #ccc';
+                    img.style.marginTop = '8px';
+                    previewDiv.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            } else if (file.type === "application/pdf") {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(file);
+                link.target = "_blank";
+                link.innerHTML = `📄 ${file.name}`;
+                link.style.display = "inline-block";
+                link.style.marginTop = "8px";
+                previewDiv.appendChild(link);
+
+            }
+
+
+
+
+
             return true;
+
+
+
+
         }
     </script>
 </body>
