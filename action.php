@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (mysqli_query($mysqli, $query)) {
         echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Application submitted successfully.</div>";
-        header("Location: thankyou.php");
+        header("Location: thankyou.html");
     } else {
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";
     }

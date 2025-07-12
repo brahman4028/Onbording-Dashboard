@@ -658,8 +658,41 @@
                                                 I/We agree to comply with all applicable RBI, AML, and KYC guidelines.
                                             </label>
                                         </div>
+
+                                        <!-- pdf html template -->
+                                        <div id="kyc-pdf-preview" style="display:none; padding: 30px; font-family: Arial;">
+                                            <h2>Merchant Onboarding Form</h2>
+
+                                            <h4>Business Details</h4>
+                                            <p><strong>Business Name:</strong> <span id="pdf-business-name"></span></p>
+                                            <p><strong>Entity Type:</strong> <span id="pdf-entity"></span></p>
+                                            <p><strong>Date of Incorporation:</strong> <span id="pdf-doi"></span></p>
+                                            <p><strong>Nature of Business:</strong> <span id="pdf-nature"></span></p>
+                                            <p><strong>GSTIN:</strong> <span id="pdf-gstin"></span></p>
+                                            <p><strong>PAN:</strong> <span id="pdf-pan"></span></p>
+
+                                            <h4>Authorized Signatory</h4>
+                                            <p><strong>Full Name:</strong> <span id="pdf-name"></span></p>
+                                            <p><strong>Mobile:</strong> <span id="pdf-mobile"></span></p>
+                                            <p><strong>Email:</strong> <span id="pdf-email"></span></p>
+
+                                            <h4>Bank Account Details</h4>
+                                            <p><strong>Account Holder:</strong> <span id="pdf-holder"></span></p>
+                                            <p><strong>Account Number:</strong> <span id="pdf-acno"></span></p>
+                                            <p><strong>IFSC:</strong> <span id="pdf-ifsc"></span></p>
+
+                                            <h5 style="margin-top:30px;">Declaration:</h5>
+                                            <p>I/We confirm that the information provided is true and accurate.</p>
+                                        </div>
+
+                                        <!--  -->
+
+
+
                                         <div class="col-12">
                                             <div class="d-flex gap-3">
+                                                <button type="button" onclick="generateKYCPreview()" class="btn btn-primary mt-3">Preview KYC PDF</button>
+
                                                 <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
                                                 <button type="submit" class="btn btn-success px-4">Submit</button>
                                             </div>
@@ -681,6 +714,62 @@
     <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
     <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
     <script src="assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- pdf generator -->
+
+    <script>
+        function generateKYCPreview() {
+            // Fill values from form
+            document.getElementById('pdf-business-name').textContent = document.querySelector('[name="businessname"]').value;
+            document.getElementById('pdf-entity').textContent = document.querySelector('[name="entity"]').value;
+            document.getElementById('pdf-doi').textContent = document.querySelector('[name="doi"]').value;
+            document.getElementById('pdf-nature').textContent = document.querySelector('[name="nob"]').value;
+            document.getElementById('pdf-gstin').textContent = document.querySelector('[name="gstin"]').value;
+            document.getElementById('pdf-pan').textContent = document.querySelector('[name="pan"]').value;
+
+            document.getElementById('pdf-name').textContent = document.querySelector('[name="fullname"]').value;
+            document.getElementById('pdf-mobile').textContent = document.querySelector('[name="number"]').value;
+            document.getElementById('pdf-email').textContent = document.querySelector('[name="personalemail"]').value;
+
+            document.getElementById('pdf-holder').textContent = document.querySelector('[name="accountholder"]').value;
+            document.getElementById('pdf-acno').textContent = document.querySelector('[name="accountnumber"]').value;
+            document.getElementById('pdf-ifsc').textContent = document.querySelector('[name="ifsc"]').value;
+
+            // Generate PDF
+            const element = document.getElementById('kyc-pdf-preview');
+            element.style.display = 'block';
+
+            const opt = {
+                margin: 0.5,
+                filename: 'KYC-Preview.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf().set(opt).from(element).save();
+
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 1000);
+        }
+    </script>
+
+
+    <!-- //////////// -->
+
+
+
 
     <script>
         form.addEventListener('submit', function(e) {
@@ -898,4 +987,3 @@
 </body>
 
 </html>
-
