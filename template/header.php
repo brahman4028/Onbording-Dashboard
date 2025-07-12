@@ -25,5 +25,25 @@
 	<link rel="stylesheet" href="assets/css/semi-dark.css"/>
 	<link rel="stylesheet" href="assets/css/header-colors.css"/>
 	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+
+	<style>
+    /* 👇 Fade-out animation */
+    .fade-out {
+      animation: fadeOut 0.5s forwards !important;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+      }
+    }
+  </style>
 </head>
+
+
 <body>

@@ -47,73 +47,95 @@
                 </div>
             </nav>
         </header>
-        <div style=" margin-bottom:0px !important; flex:1; height:100%;">
+        <form action="action.php" method="POST" enctype="multipart/form-data">
+            <div style=" margin-bottom:0px !important; flex:1; height:100%;">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div id="stepper3" class="bs-stepper gap-0 vertical" style="height: 100%; ">
+                            <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;">
+                                <!-- route line -->
+                                <div class="bs-stepper-header" role="tablist">
+                                    <div class="step" data-target="#test-vl-1">
+                                        <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
+                                            <div class="bs-stepper-circle"><i class='bx bx-user fs-4'></i></div>
+                                            <div>
+                                                <h5 class="mb-0 steper-title">Business Details</h5>
+                                                <p class="mb-0 steper-sub-title">Enter Your Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-target="#test-vl-2">
+                                        <div class="step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-vl-2">
+                                            <div class="bs-stepper-circle"><i class='bx bx-file fs-4'></i></div>
+                                            <div>
+                                                <h5 class="mb-0 steper-title">Authorized Signatory Details</h5>
+                                                <p class="mb-0 steper-sub-title">Setup Account Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-target="#test-vl-3">
+                                        <div class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-vl-3">
+                                            <div class="bs-stepper-circle"><i class='bx bxs-graduation fs-4'></i></div>
+                                            <div>
+                                                <h5 class="mb-0 steper-title">Documents Upload</h5>
+                                                <p class="mb-0 steper-sub-title">Education Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-target="#test-vl-4">
+                                        <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
+                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+                                            <div>
+                                                <h5 class="mb-0 steper-title">Declarations</h5>
+                                                <p class="mb-0 steper-sub-title">Experience Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-target="#test-vl-5">
+                                        <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
+                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+                                            <div>
+                                                <h5 class="mb-0 steper-title">Final Submission</h5>
+                                                <p class="mb-0 steper-sub-title">Experience Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div class="card" style="height: 100%;">
-                <div class="card-body" style="padding: 0px;">
-                    <div id="stepper3" class="bs-stepper gap-4 vertical" style="height: 100%; ">
-                        <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;">
-                            <!-- route line -->
-                            <div class="bs-stepper-header" role="tablist">
-                                <div class="step" data-target="#test-vl-1">
-                                    <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
-                                        <div class="bs-stepper-circle"><i class='bx bx-user fs-4'></i></div>
-                                        <div>
-                                            <h5 class="mb-0 steper-title">Business Details</h5>
-                                            <p class="mb-0 steper-sub-title">Enter Your Details</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="step" data-target="#test-vl-2">
-                                    <div class="step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-vl-2">
-                                        <div class="bs-stepper-circle"><i class='bx bx-file fs-4'></i></div>
-                                        <div>
-                                            <h5 class="mb-0 steper-title">Authorized Signatory Details</h5>
-                                            <p class="mb-0 steper-sub-title">Setup Account Details</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="step" data-target="#test-vl-3">
-                                    <div class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-vl-3">
-                                        <div class="bs-stepper-circle"><i class='bx bxs-graduation fs-4'></i></div>
-                                        <div>
-                                            <h5 class="mb-0 steper-title">Documents Upload</h5>
-                                            <p class="mb-0 steper-sub-title">Education Details</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="step" data-target="#test-vl-4">
-                                    <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
-                                        <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
-                                        <div>
-                                            <h5 class="mb-0 steper-title">Declarations</h5>
-                                            <p class="mb-0 steper-sub-title">Experience Details</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="step" data-target="#test-vl-5">
-                                    <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
-                                        <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
-                                        <div>
-                                            <h5 class="mb-0 steper-title">Final Submission</h5>
-                                            <p class="mb-0 steper-sub-title">Experience Details</p>
-                                        </div>
+                                <!-- help -->
+                                <div class="bs-stepper-header">
+                                    <div class="help " style="margin-top: 85px;">
+                                        <div class="bs-stepper text-primary"><i class='bx  bx-info-circle fs-3 '></i> </div>
+                                        <h5>Having Trouble?</h5>
+                                        <p class="text-muted">It is a long established fact that a reader<br> will be distracted by the readable content <br>of a page when looking at its layout.</p>
+                                        <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Get in Touch <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i></button>
                                     </div>
                                 </div>
                             </div>
+                            <div class="bs-stepper-content position-relative px-5 py-5 " style="height: 750px; overflow-y: auto !important;">
 
-                            <!-- help -->
-                            <div class="bs-stepper-header">
-                                <div class="help " style="margin-top: 85px;">
-                                    <div class="bs-stepper text-primary"><i class='bx  bx-info-circle fs-3 '></i> </div>
-                                    <h5>Having Trouble?</h5>
-                                    <p class="text-muted">It is a long established fact that a reader<br> will be distracted by the readable content <br>of a page when looking at its layout.</p>
-                                    <button class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6">Get in Touch <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i></button>
+                            <!-- welcome screen page  -->
+                                <div class="position-absolute top-0 start-0 w-100 vh-100 z-3 ps-5 pt-5 d-flex justify-content-between "
+                                    style="background-image: url('./assets/images/welcomescreen.png'); 
+                                            background-size: cover; 
+                                            background-position: center center; 
+                                            background-attachment: scroll;
+                                            background-color:white; flex-direction:column;" id="startonboardingpage">
+
+                                            <div>
+                                                <h1 class="fw-light">Welcome to ItStarPay</h1>
+                                        <p class="text-muted">It is a long established fact that a reader will be distracted by the readable content <br>of a page when looking at its layout.</p>
+                                        <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
+                                            </div>
+                                            <div style="width: 900px; "  class="ms-auto	">
+                                                <img src="./assets/images/dashb.png" alt="User Avatar" class="img-fluid rounded shadow" width="100%">
+
+                                            </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="bs-stepper-content px-5 py-4 " style="height: 750px; overflow-y: auto !important;">
-                            <form>
+                            <!-- ///////////// -->
+
+                            <!-- business details -->
+                             
                                 <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
                                     <div class="" style="margin-right: 300px;">
@@ -124,50 +146,51 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Type of Entity</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="entity">
                                                 <option selected disabled>--Select--</option>
-                                                <option>Proprietorship</option>
-                                                <option>Partnership</option>
-                                                <option>Pvt. Ltd.</option>
-                                                <option>LLP</option>
-                                                <option>Public Ltd.</option>
+                                                <option value="Proprietorship">Proprietorship</option>
+                                                <option value="Partnership">Partnership</option>
+                                                <option value="Pvt. Ltd.">Pvt. Ltd.</option>
+                                                <option value="LLP">LLP</option>
+                                                <option value="Public Ltd.">Public Ltd.</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Date of Incorporation</label>
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" name="doi" placeholder="Enter Date in DD/MM/YYYY format"><br>
+                                            <small class="text-muted">Enter date in DD/MM/YYYY format</small>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Nature of Business</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="nob">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Category</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="businesscategory">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Sub-Category</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="businesssubcategory">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">GSTIN</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="gstin">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business PAN Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="pan">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Registered Business Address</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="registeredbsuiness">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Operating Address</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="operatingaddress">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Website URL</label>
-                                            <input type="url" class="form-control">
+                                            <input type="text" class="form-control" name="url">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Application Name</label>
@@ -175,16 +198,16 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Contact Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="businessnumber">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Alternate Contact Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="alternnumber">
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="SupportEmail" class="form-label">Support Email ID</label>
-                                            <input type="email" class="form-control" id="SupportEmail" name="SupportEmail">
+                                            <label for="supportemail" class="form-label">Support Email ID</label>
+                                            <input type="email" class="form-control" id="supportemail" name="supportemail">
                                         </div>
 
 
@@ -192,10 +215,11 @@
 
 
                                         <div class="col-12">
-                                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                                            <button type="button" class="btn btn-primary" onclick="stepper3.next()">Next</button>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- authorization details -->
                                 <div id="test-vl-2" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger2">
 
                                     <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Authorized Signatory Details</h2>
@@ -208,59 +232,59 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="fullname">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Designation</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="designation">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="number">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Email ID</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" class="form-control" name="personalemail">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Aadhaar Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="aadhaarnumber">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">PAN Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="pannumber">
                                         </div>
 
                                         <h6 class="mt-4 text-primary">Authorized Director 2 (If any)</h6><br>
 
                                         <div class="col-md-6 mt-3">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="fullnameadn">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Designation</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="designationadn">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="numberadn">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Email ID</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" class="form-control" name="personalemailadn">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Aadhaar Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="aadhaarnumberadn">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">PAN Number</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="pannumberadn">
                                         </div>
 
                                         <div class="d-flex gap-3">
                                             <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                                            <button type="button" class="btn btn-primary" onclick="stepper3.next()">Next</button>
                                         </div>
                                     </div>
 
@@ -270,6 +294,7 @@
 
 
                                 </div>
+                                <!-- document submission -->
                                 <div id="test-vl-3" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger3">
 
                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Required Documents</h2>
@@ -284,7 +309,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">1. Aadhaar Card :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" onchange="validateFile(this, 'AadhaarMsg')" class="form-control" id="inputGroupFile01" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" onchange="validateFile(this, 'AadhaarMsg')" class="form-control" id="inputGroupFile01" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aadhaarfile">
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
 
                                             </div>
@@ -295,7 +320,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">2. Pan Card :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'AadhaarMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'PanMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanfile">
                                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                             </div>
                                             <span id="PanMsg">Not Allowed</span>
@@ -305,7 +330,7 @@
                                             <label class="form-label fw-semibold">3. Photograph :</label>
 
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'AadhaarMsg')" accept=".jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
                                                 <label class="input-group-text" for="inputGroupFile03">Upload</label>
                                             </div>
                                             <span id="PhotoMsg">Not Allowed</span>
@@ -316,7 +341,7 @@
 
                                             <label class="form-label fw-semibold">4. Address :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AadhaarMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressfile">
                                                 <label class="input-group-text" for="inputGroupFile04">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
@@ -330,7 +355,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold ">5. Certificate of Incorporation (COI) / Business Registration Certificate :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg')"accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="coifile">
                                                 <label class="input-group-text" for="inputGroupFile05">Upload</label>
                                             </div>
                                             <span id="CoiMsg">Not Allowed</span>
@@ -340,7 +365,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">6. Memorandum of Association (MOA) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="moafile">
                                                 <label class="input-group-text" for="inputGroupFile06">Upload</label>
                                             </div>
                                             <span id="MoaMsg">Not Allowed</span>
@@ -350,7 +375,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">7. Articles of Association (AOA) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aoafile">
                                                 <label class="input-group-text" for="inputGroupFile07">Upload</label>
                                             </div>
                                             <span id="AoaMsg">Not Allowed</span>
@@ -360,7 +385,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">8. Board Resolution (BR) / Letter of Authorization for Signatory :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="brfile">
                                                 <label class="input-group-text" for="inputGroupFile08">Upload</label>
                                             </div>
                                             <span id="BrMsg">Not Allowed</span>
@@ -370,7 +395,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">9. UDYAM Registration Certificate (If Available) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="udyamfile">
                                                 <label class="input-group-text" for="inputGroupFile09">Upload</label>
                                             </div>
                                             <span id="UdyamMsg">Not Allowed</span>
@@ -380,7 +405,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">10. GSTIN Certificate :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="gstinfile">
                                                 <label class="input-group-text" for="inputGroupFile010">Upload</label>
                                             </div>
                                             <span id="GstinMsg">Not Allowed</span>
@@ -390,7 +415,7 @@
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">11. List of Directors/Partners/Beneficial Ownership (BO) :</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="bofile">
                                                 <label class="input-group-text" for="inputGroupFile011">Upload</label>
                                             </div>
                                             <span id="BoMsg">Not Allowed</span>
@@ -401,7 +426,7 @@
                                             <label class="form-label fw-semibold">12. Rent Agreement / Lease Agreement / Property Tax Receipt :</label>
 
                                             <div class="input-group mb-3 mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'RentMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'RentMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="rentfile">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="" style="color:red">(Mandatory if there is a change in address of Principal Place Of Business )</p>
@@ -420,6 +445,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- declarations -->
                                 <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger4">
                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Authorized Declarations & Consent</h2>
                                     <div class="" style="margin-right: 300px;">
@@ -435,11 +461,11 @@
                                             <div class="d-flex gap-2 mt-1">
                                                 <div>
                                                     <p>a. Volumes in amount</p>
-                                                    <input type="text" class="form-control mt-1">
+                                                    <input type="text" class="form-control mt-1" name="totalvolume">
                                                 </div>
                                                 <div>
                                                     <p>b. Number of users</p>
-                                                    <input type="text" class="form-control mt-1">
+                                                    <input type="text" class="form-control mt-1" name="numberofusers">
                                                 </div>
                                             </div>
                                             <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -451,11 +477,11 @@
                                             <div class="d-flex gap-2 mt-1">
                                                 <div>
                                                     <p>a. Amount</p>
-                                                    <input type="text" class="form-control mt-1">
+                                                    <input type="text" class="form-control mt-1" name="sixmonthprojectionamount">
                                                 </div>
                                                 <div>
                                                     <p>b. Number of Users</p>
-                                                    <input type="text" class="form-control mt-1">
+                                                    <input type="text" class="form-control mt-1" name="sixmonthprojectionuser">
                                                 </div>
                                             </div>
                                             <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -465,14 +491,14 @@
 
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">3. Number of transactions /frequencies in a day</label>
-                                            <input type="text" class="form-control" placeholder="No. of transactions">
+                                            <input type="text" class="form-control" placeholder="No. of transactions" name="numoftransactions">
                                         </div>
 
                                         <!-- 4 -->
 
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">4. Volume of total amount disbursed /distributed in a day</label>
-                                            <input type="text" class="form-control" placeholder="Amount">
+                                            <input type="text" class="form-control" placeholder="Amount" name="disbursedamount">
                                         </div>
 
                                         <!-- 5 -->
@@ -482,11 +508,11 @@
                                             <div class="d-flex gap-2 mt-1">
                                                 <div>
                                                     <p>a. Minimum Amount</p>
-                                                    <input type="text" class="form-control mt-1">
+                                                    <input type="text" class="form-control mt-1" name="mintransaction">
                                                 </div>
                                                 <div>
                                                     <p>b. Maximum Amount</p>
-                                                    <input type="text" class="form-control mt-1">
+                                                    <input type="text" class="form-control mt-1" name="maxtransaction">
                                                 </div>
                                             </div>
                                             <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -496,7 +522,7 @@
 
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label fw-semibold">6. Threshold limit and/or daily payout that can be fixed</label>
-                                            <input type="text" class="form-control" placeholder="">
+                                            <input type="text" class="form-control" placeholder="" name="thresholdlimit">
                                         </div>
 
 
@@ -535,24 +561,26 @@
                                             <label class="form-label fw-semibold">7. Download the form, add your signature and stamp, and upload it back here :</label>
 
                                             <div class="input-group mb-3 mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'UploadtMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp">
+                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'UploadtMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="annexurebfile">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="text-secondary">Download the form, add your signature and stamp, and upload it back here.</p>
-                                             <span id="UploadtMsg">Not Allowed</span>
+                                            <span id="UploadtMsg">Not Allowed</span>
 
                                         </div>
-
 
 
                                         <div class="col-12">
                                             <div class="d-flex gap-3">
                                                 <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                <button type="submit" class="btn btn-success px-4">Submit</button>
+                                                <button type="button" class="btn btn-primary px-4" onclick="stepper3.next()">Next</button>
                                             </div>
                                         </div>
+
+
                                     </div>
                                 </div>
+                                <!-- submission form -->
                                 <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger5">
 
                                     <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Your Application</h2>
@@ -564,15 +592,15 @@
                                     <div class="row g-3">
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Company</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="companyname">
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Role</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="companyrole">
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Role</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="companyrole2">
                                         </div>
                                         <div class="col-12">
                                             <div class="d-flex gap-3">
@@ -582,12 +610,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                             
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -596,6 +625,28 @@
     <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
     <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
     <script src="assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+
+    <script>
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // ❌ This blocks it always!
+            if (!form.checkValidity()) {
+                pos3_warning_noti();
+                return;
+            }
+            form.submit(); // ✅ Add this if using preventDefault
+        });
+    </script>
+
+    <script>
+function startOnboardingProcess() {
+  // Hide the target div
+  
+  document.getElementById('startonboardingpage').classList.add('d-none'); 
+
+  // Trigger the click on startonboarding button
+  document.getElementById('stepper3trigger1').click();
+}
+</script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -610,7 +661,7 @@
             const messageSpan = document.getElementById(spanId);
             const file = fileInput.files[0];
 
-            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg","image/png" ,"image/webp"];
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
             const maxSize = 2 * 1024 * 1024; // 2 MB
 
             if (!file) {
