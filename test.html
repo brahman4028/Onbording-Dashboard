@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <label>Aadhaar PDF:</label>
+<input type="file" id="aadhaarfile" accept="application/pdf" onchange="storePDF(this)">
+<br>
+<label>PAN PDF:</label>
+<input type="file" id="panfile" accept="application/pdf" onchange="storePDF(this)">
+<br><br>
+
+<button onclick="mergeHTMLwithPDFs()">📄 Download Final Merged KYC PDF</button>
+
+
+
+  <div id="kycPreview" style="padding: 20px; font-family: Arial;">
+    <h2>KYC Summary</h2>
+    <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <td>Business Name</td>
+            <td id="val_businessname">Suraj Enterprises</td>
+        </tr>
+        <tr>
+            <td>Applicant</td>
+            <td id="val_applicantname">Suraj Kumar</td>
+        </tr>
+        <!-- More rows as needed -->
+    </table>
+</div>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<script>
+const uploadedPDFs = {};
+
+function storePDF(input) {
+  if (input.files.length === 0) return;
+  const file = input.files[0];
+  if (file.type === "application/pdf") {
+    uploadedPDFs[input.id] = file;
+  } else {
+    alert("❌ Please upload only PDF files.");
+  }
+}
+
+async function mergeHTMLwithPDFs() {
+  const htmlElement = document.getElementById('kycPreview');
+  const businessName = document.getElementById('val_businessname')?.textContent || 'KYC';
+  const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+
+  // Convert HTML to PDF (blob)
+  const htmlBlob = await html2pdf().set({
+    margin: 0.5,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).from(htmlElement).outputPdf('blob');
+
+  const htmlBytes = await htmlBlob.arrayBuffer();
+  const mergedPdf = await PDFLib.PDFDocument.create();
+
+  // Add HTML pages
+  const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+  const htmlPages = await mergedPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+  htmlPages.forEach(page => mergedPdf.addPage(page));
+
+  // Add uploaded PDFs
+  for (const key in uploadedPDFs) {
+    const file = uploadedPDFs[key];
+    const bytes = await file.arrayBuffer();
+    const extDoc = await PDFLib.PDFDocument.load(bytes);
+    const pages = await mergedPdf.copyPages(extDoc, extDoc.getPageIndices());
+    pages.forEach(p => mergedPdf.addPage(p));
+  }
+
+  // Final download
+  const finalPdfBytes = await mergedPdf.save();
+  const finalBlob = new Blob([finalPdfBytes], { type: 'application/pdf' });
+  const finalUrl = URL.createObjectURL(finalBlob);
+
+  const link = document.createElement('a');
+  link.href = finalUrl;
+  link.download = `${cleanName}_Merged_KYC.pdf`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+
+
+
+
+</body>
+</html>

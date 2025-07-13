@@ -83,15 +83,16 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-                        <ul class="navbar-nav ms-auto mb- mb-lg-0">
+                        <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
                             <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-user me-1'></i>About</a>
+                            <li class="nav-item"> <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-category-alt me-1'></i>Features</a>
+                            <li class="nav-item"> <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-microphone me-1'></i>Contact</a>
+                            <li class="nav-item me-2"> <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
                             </li>
+                            <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx bx-user me-1'></i>Admin Login <div class="text-light ms-1"></button>
                         </ul>
                     </div>
                 </div>
@@ -158,31 +159,33 @@
                                         <div class="bs-stepper text-primary"><i class='bx  bx-info-circle fs-3 '></i> </div>
                                         <h5>Having Trouble?</h5>
                                         <p class="text-muted">It is a long established fact that a reader<br> will be distracted by the readable content <br>of a page when looking at its layout.</p>
-                                        <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Get in Touch <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i></button>
+                                        <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center fs-6 b" style="text-decoration:none; color:white; box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><a href="https://itstarpay.com/contact-us" style="text-decoration: none; color: white;">Get in Touch </a>
+                                            <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="position-relative" style="width: 100% ; height:100%;">
 
                                 <!-- welcome -->
-                                    <!-- welcome screen page  -->
-                                    <div class="position-absolute top-0 start-0  z-3 ps-5 pt-5 d-flex justify-content-between "
-                                        style="width : 100%; height:100%; background-image: url('./assets/images/welcomescreen.png'); 
+                                <!-- welcome screen page  -->
+                                <div class="position-absolute top-0 start-0  z-3 ps-5 pt-5 d-flex justify-content-between "
+                                    style="width : 100%; height:100%; background-image: url('./assets/images/welcomescreen.png'); 
                                             background-size: cover; 
                                             background-position: center center; 
                                             background-attachment: scroll;
                                             background-color:white; flex-direction:column;" id="startonboardingpage">
 
-                                        <div>
-                                            <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
-                                            <h1 class="fw-light">Welcome to ItStarPay</h1>
-                                            <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
-                                            <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
-                                        </div>
-                                        <div style="width: 900px; " class="ms-auto	">
-                                            <img src="./assets/images/dashb2.png" alt="User Avatar" class="img-fluid rounded " width="100%">
+                                    <div>
+                                        <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
+                                        <h1 class="fw-light">Welcome to ItStarPay</h1>
+                                        <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
+                                        <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
+                                    </div>
+                                    <div style="width: 900px; " class="ms-auto	">
+                                        <img src="./assets/images/dashb2.png" alt="User Avatar" class="img-fluid rounded " width="100%">
 
-                                        </div>
+                                    </div>
                                     <!-- ///////////// -->
                                 </div>
 
@@ -560,11 +563,11 @@
                                                 <div class="d-flex gap-2 mt-1">
                                                     <div>
                                                         <p>a. Volumes in amount</p>
-                                                        <input type="text" class="form-control mt-1" name="totalvolume" onblur="setPreviewValue(this, 'totalvolumenvalue')">
+                                                        <input type="text" class="form-control mt-1" name="totalvolume" onblur="setPreviewValue(this, 'totalvolumevalue')">
                                                     </div>
                                                     <div>
                                                         <p>b. Number of users</p>
-                                                        <input type="text" class="form-control mt-1" name="numberofusers" onblur="setPreviewValue(this, 'numberofusersnvalue')">
+                                                        <input type="text" class="form-control mt-1" name="numberofusers" onblur="setPreviewValue(this, 'numberofusersvalue')">
                                                     </div>
                                                 </div>
                                                 <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -636,7 +639,7 @@
                                                         <!-- File Preview (PDF in iframe) -->
                                                         <div class="mb-3">
                                                             <iframe
-                                                                src="http://localhost//dashboard_marchant/Onbording-Dashboard/assets/pdf/ANNEXUREB.pdf"
+                                                                src="http://localhost/Onbording-Dashboard/assets/pdf/ANNEXUREB.pdf"
                                                                 width="100%"
                                                                 height="400px"
                                                                 style="border: 1px solid #ccc;"
@@ -983,25 +986,69 @@
                                                 </tbody>
                                             </table>
 
+                                            <!-- aanexure a -->
+
+                                            <div style="page-break-before: always;"></div>
+
+                                            <h5 class="fw-bold text-primary mb-3">Annexure A</h5>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="fw-semibold">1. Total Volumes in amount and number of users</td>
+                                                        <td>
+                                                            a. Volumes in amount: <span id="totalvolumevalue"></span><br>
+                                                            b. Number of users: <span id="numberofusersvalue"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-semibold">2. Projections for the next six months</td>
+                                                        <td>
+                                                            a. Amount: <span id="sixmonthprojectionamountvalue"></span><br>
+                                                            b. Number of users: <span id="sixmonthprojectionuservalue"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-semibold">3. Number of transactions / frequencies in a day</td>
+                                                        <td><span id="numoftransactionsvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-semibold">4. Volume of total amount disbursed / distributed in a day</td>
+                                                        <td><span id="disbursedamountvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-semibold">5. Minimum and Maximum transaction amount</td>
+                                                        <td>
+                                                            a. Minimum Amount: <span id="mintransactionvalue"></span><br>
+                                                            b. Maximum Amount: <span id="maxtransactionvalue"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-semibold">6. Threshold limit and/or daily payout that can be fixed</td>
+                                                        <td><span id="thresholdlimitvalue"></span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
                                             <!-- documents preview -->
 
                                             <!-- <h5 class="mt-5 text-primary"> Attched Documents</h5>
-                                        <div id="documentsPreviewSection" style="border:1px solid #ddd; padding:15px; margin-top:15px;">
-                                            <div class="mb-3">
-                                                <strong>Aadhaar Card:</strong><br>
-                                                <div class="pdfpreview" id="aadhaardisplay" class="mt-2"></div>
-                                            </div>
+                                            <div id="documentsPreviewSection" style="border:1px solid #ddd; padding:15px; margin-top:15px;">
+                                                <div class="mb-3">
+                                                    <strong>Aadhaar Card:</strong><br>
+                                                    <div class="pdfpreview" id="aadhaardisplay" class="mt-2"></div>
+                                                </div>
 
-                                            <div class="mb-3">
-                                                <strong>PAN Card:</strong><br>
-                                                <div id="pandisplay" class="mt-2"></div>
-                                            </div>
+                                                <div class="mb-3">
+                                                    <strong>PAN Card:</strong><br>
+                                                    <div id="pandisplay" class="mt-2"></div>
+                                                </div>
 
-                                            <div class="mb-3">
-                                                <strong>Photograph:</strong><br>
-                                                <div id="photodisplay" class="mt-2"></div>
-                                            </div>
-                                        </div> -->
+                                                <div class="mb-3">
+                                                    <strong>Photograph:</strong><br>
+                                                    <div id="photodisplay" class="mt-2"></div>
+                                                </div>
+                                            </div> -->
 
                                             <!-- 5. Declaration -->
                                             <div>
@@ -1010,13 +1057,14 @@
                                                     <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" style="font-size:16px;" class='bx bx-checkbox'></i> I/We confirm that the information provided is true and accurate.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check2" style="font-size:16px;" class='bx bx-checkbox'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check3" style="font-size:16px;" class='bx bx-checkbox'></i> I/We agree to comply with all applicable RBI, AML, and KYC guidelines.</li>
-                                                    <li class="d-flex align-items-center" style="margin-top: 35px;"></li>
+                                                    <li class="d-flex align-items-center" style="margin-top: 95px;"></li>
 
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <button type="button" class="btn text-center btn-primary mb-4 mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
+                                            <p class="mb-2 mt-3"> File will be downloaded with your attached Documents * </p>
+                                            <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
                                         </div>
 
 
@@ -1070,7 +1118,7 @@
             </div>
         </form>
         <footer class="bg- text-center text-muted py-2 border-top" style="background-color: white;">
-            © 2025 OnboardPortal. All rights reserved.
+            © 2025 Staar Payout Private Limited. All rights reserved.
         </footer>
 
     </div>
@@ -1087,37 +1135,145 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 
+    <!-- html2pdf for converting HTML to PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <!-- pdf generator -->
+    <!-- pdf-lib for merging PDFs/images -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+
+
     <script>
-        function downloadKYC() {
-            const element = document.getElementById('kycPreview');
-            const businessName = document.getElementById('nob').value.trim() || 'KYC';
+        const uploadedFiles = {}; // Globally track files by 'name'
 
-            // Sanitize filename (remove spaces/special chars)
-            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+        function validateFile(input, msgId, previewId) {
+            const file = input.files[0];
+            const msg = document.getElementById(msgId);
+            const preview = document.getElementById(previewId);
+            const inputKey = input.name;
 
+            msg.innerText = '';
+            preview.innerHTML = '';
 
-            const opt = {
-                margin: 0.8,
-                filename: `${cleanName}-KYC-Onboarding.pdf`,
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 2
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a4',
-                    orientation: 'portrait'
-                }
-            };
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
+            const maxSize = 2 * 1024 * 1024;
 
-            html2pdf().set(opt).from(element).save();
+            if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
+                msg.innerText = "❌ Invalid or too large file.";
+                msg.style.color = "red";
+                input.value = '';
+                return;
+            }
+
+            uploadedFiles[inputKey] = file;
+
+            msg.innerText = "✅ File is valid.";
+            msg.style.color = "green";
+            preview.innerHTML = `<strong>${file.name}</strong><br>`;
+
+            if (file.type === "application/pdf") {
+                const iframe = document.createElement("iframe");
+                iframe.src = URL.createObjectURL(file);
+                iframe.style.width = "100%";
+                iframe.style.height = "400px";
+                iframe.style.border = "1px solid #ccc";
+                preview.appendChild(iframe);
+            } else if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.style.maxWidth = "100%";
+                    img.style.border = "1px solid #ccc";
+                    img.style.marginTop = "10px";
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
         }
+
+         async function downloadKYC() {
+        const element = document.getElementById('kycPreview');
+        const businessName = document.getElementById('nob')?.value.trim() || 'KYC';
+        const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+
+        const previewIds = [
+            'aadhaarpreview', 'panpreview', 'photographpreview',
+            'addressfilepreview', 'coifilepreview', 'moafilepreview',
+            'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+            'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+            'annexurebfilepreview'
+        ];
+
+        // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
+        previewIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                [...el.children].forEach(child => {
+                    if (child.tagName === "IFRAME" || child.tagName === "IMG") {
+                        el.removeChild(child);
+                    }
+                });
+            }
+        });
+
+        // 📄 Step 2: Generate PDF from HTML
+        const htmlBlob = await html2pdf()
+            .set({
+                margin: 0.8,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            })
+            .from(element)
+            .outputPdf('blob');
+
+        const htmlBytes = await htmlBlob.arrayBuffer();
+        const finalPdf = await PDFLib.PDFDocument.create();
+        const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+        const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+        pages.forEach(p => finalPdf.addPage(p));
+
+        // ➕ Step 3: Add uploaded files
+        for (const key in uploadedFiles) {
+            const file = uploadedFiles[key];
+            const bytes = await file.arrayBuffer();
+
+            if (file.type === 'application/pdf') {
+                const extDoc = await PDFLib.PDFDocument.load(bytes);
+                const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
+                extPages.forEach(p => finalPdf.addPage(p));
+            } else if (file.type.startsWith('image/')) {
+                const imgBytes = new Uint8Array(bytes);
+                const embedded = file.type.includes('png')
+                    ? await finalPdf.embedPng(imgBytes)
+                    : await finalPdf.embedJpg(imgBytes);
+
+                const page = finalPdf.addPage();
+                const { width, height } = embedded.scale(0.5);
+                page.drawImage(embedded, {
+                    x: 50,
+                    y: page.getHeight() - height - 50,
+                    width,
+                    height
+                });
+            }
+        }
+
+        // 🔽 Step 4: Download
+        const finalBytes = await finalPdf.save();
+        const blob = new Blob([finalBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${cleanName}-KYC-Onboarding.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
     </script>
+
+
 
 
     <!-- timestamp for pdf -->
@@ -1392,80 +1548,80 @@
         });
 
 
-        function validateFile(fileInput, spanId, previewId) {
-            const messageSpan = document.getElementById(spanId);
-            const previewDiv = document.getElementById(previewId);
-            const file = fileInput.files[0];
+        // function validateFile(fileInput, spanId, previewId) {
+        //     const messageSpan = document.getElementById(spanId);
+        //     const previewDiv = document.getElementById(previewId);
+        //     const file = fileInput.files[0];
 
-            messageSpan.innerText = '';
-            previewDiv.innerHTML = '';
-
-
-            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-            const maxSize = 2 * 1024 * 1024; // 2 MB
-
-            if (!file) {
-                messageSpan.innerText = "❌ No file selected.";
-                messageSpan.style.color = "red";
-                return false;
-            }
-
-            if (!allowedTypes.includes(file.type)) {
-                messageSpan.innerText = "❌ Invalid file type.";
-                messageSpan.style.color = "red";
-                fileInput.value = "";
-                return false;
-            }
-
-            if (file.size > maxSize) {
-                messageSpan.innerText = "❌ File size exceeds 2MB.";
-                messageSpan.style.color = "red";
-                fileInput.value = "";
-                return false;
-            }
-
-            messageSpan.innerText = "✅ File is valid.";
-            messageSpan.style.color = "green";
+        //     messageSpan.innerText = '';
+        //     previewDiv.innerHTML = '';
 
 
+        //     const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
+        //     const maxSize = 2 * 1024 * 1024; // 2 MB
 
-            const fileURL = URL.createObjectURL(file);
+        //     if (!file) {
+        //         messageSpan.innerText = "❌ No file selected.";
+        //         messageSpan.style.color = "red";
+        //         return false;
+        //     }
 
-            // Show Preview
-            if (file.type.startsWith("image/")) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.style.maxWidth = '60%';
-                    img.style.border = '1px solid #ccc';
-                    img.style.marginTop = '8px';
-                    previewDiv.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            } else if (file.type === "application/pdf") {
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(file);
-                link.target = "_blank";
-                link.innerHTML = `📄 ${file.name}`;
-                link.style.display = "inline-block";
-                link.style.marginTop = "8px";
-                previewDiv.appendChild(link);
+        //     if (!allowedTypes.includes(file.type)) {
+        //         messageSpan.innerText = "❌ Invalid file type.";
+        //         messageSpan.style.color = "red";
+        //         fileInput.value = "";
+        //         return false;
+        //     }
 
-            }
+        //     if (file.size > maxSize) {
+        //         messageSpan.innerText = "❌ File size exceeds 2MB.";
+        //         messageSpan.style.color = "red";
+        //         fileInput.value = "";
+        //         return false;
+        //     }
+
+        //     messageSpan.innerText = "✅ File is valid.";
+        //     messageSpan.style.color = "green";
 
 
 
+        //     const fileURL = URL.createObjectURL(file);
 
+        //     // Show Preview
+        //     if (file.type.startsWith("image/")) {
+        //         const reader = new FileReader();
+        //         reader.onload = function(e) {
+        //             const img = document.createElement('img');
+        //             img.src = e.target.result;
+        //             img.style.maxWidth = '60%';
+        //             img.style.border = '1px solid #ccc';
+        //             img.style.marginTop = '8px';
+        //             previewDiv.appendChild(img);
+        //         };
+        //         reader.readAsDataURL(file);
+        //     } else if (file.type === "application/pdf") {
+        //         const link = document.createElement('a');
+        //         link.href = URL.createObjectURL(file);
+        //         link.target = "_blank";
+        //         link.innerHTML = `📄 ${file.name}`;
+        //         link.style.display = "inline-block";
+        //         link.style.marginTop = "8px";
+        //         previewDiv.appendChild(link);
 
-            return true;
+        //     }
 
 
 
 
-        }
+
+        //     return true;
+
+
+
+
+        // }
     </script>
-</body>
 
+</body>
 
 </html>

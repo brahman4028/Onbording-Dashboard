@@ -3,6 +3,7 @@
 include 'db.php';
 
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Helper function to sanitize input
     function clean($data)
@@ -174,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (mysqli_query($mysqli, $query)) {
         echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Application submitted successfully.</div>";
-        header("Location: thankyou.html");
+        // header("Location: thankyou.php?");
     } else {
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";
     }
@@ -206,6 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result) {
         echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
+        header("Location: thankyou.php?id=$application_id");
     } else {
         // echo "❌ Error: " . mysqli_error($mysqli);
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";

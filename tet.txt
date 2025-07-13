@@ -121,3 +121,96 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <input type="text" oninput="document.getElementById('val_gstin').innerText = this.value" placeholder="Enter GSTIN">
+
+
+<div class="d-flex justify-content-center align-items-center">
+                                            <button type="button" class="btn text-center btn-primary mb-4 mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+                                        </div>
+
+
+   <!-- pdf generator -->
+    <!-- <script>
+        function downloadKYC() {
+            const element = document.getElementById('kycPreview');
+            const businessName = document.getElementById('nob').value.trim() || 'KYC';
+
+            // Sanitize filename (remove spaces/special chars)
+            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+
+
+            const opt = {
+                margin: 0.8,
+                filename: `${cleanName}-KYC-Onboarding.pdf`,
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script> -->
+    <!-- validateFile -->
+
+    <!-- <script>
+        const uploadedFiles = {}; // Global object to track files
+
+        function validateFile(input, msgId, previewId) {
+            const file = input.files[0];
+            const msg = document.getElementById(msgId);
+            const preview = document.getElementById(previewId);
+            const inputId = input.id;
+
+            msg.innerText = '';
+            preview.innerHTML = '';
+
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
+            const maxSize = 2 * 1024 * 1024;
+
+            // Validation
+            if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
+                msg.innerText = "❌ Invalid or too large file.";
+                msg.style.color = "red";
+                input.value = '';
+                return;
+            }
+
+            // Save file reference
+            uploadedFiles[inputId] = file;
+
+            // Show file name
+            msg.innerText = "✅ File is valid.";
+            msg.style.color = "green";
+            preview.innerHTML = `<strong>${file.name}</strong><br>`;
+
+            // Preview logic
+            if (file.type === "application/pdf") {
+                const iframe = document.createElement("iframe");
+                iframe.src = URL.createObjectURL(file);
+                iframe.style.width = "100%";
+                iframe.style.height = "400px";
+                iframe.style.border = "1px solid #ccc";
+                preview.appendChild(iframe);
+            } else if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.style.maxWidth = "100%";
+                    img.style.border = "1px solid #ccc";
+                    img.style.marginTop = "10px";
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script> -->
+
