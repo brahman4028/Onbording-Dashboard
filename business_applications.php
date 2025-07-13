@@ -107,7 +107,7 @@
                                 <div class="bs-stepper-header" role="tablist">
                                     <div class="step" data-target="#test-vl-1">
                                         <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
-                                            <div class="bs-stepper-circle"><i class='bx bx-user fs-4'></i></div>
+                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Business Details</h5>
                                                 <p class="mb-0 steper-sub-title">Enter Your Details</p>
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="step" data-target="#test-vl-2">
                                         <div class="step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-vl-2">
-                                            <div class="bs-stepper-circle"><i class='bx bx-file fs-4'></i></div>
+                                            <div class="bs-stepper-circle"><i class='bx bx-user fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Authorized Signatory Details</h5>
                                                 <p class="mb-0 steper-sub-title">Setup Account Details</p>
@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="step" data-target="#test-vl-3">
                                         <div class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-vl-3">
-                                            <div class="bs-stepper-circle"><i class='bx bxs-graduation fs-4'></i></div>
+                                            <div class="bs-stepper-circle"><i class='bx bx-file fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Documents Upload</h5>
                                                 <p class="mb-0 steper-sub-title">Education Details</p>
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="step" data-target="#test-vl-4">
                                         <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
-                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+                                            <div class="bs-stepper-circle"><i class='bx  bx-user-check fs-4'  ></i>  </div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Declarations</h5>
                                                 <p class="mb-0 steper-sub-title">Experience Details</p>
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="step" data-target="#test-vl-5">
                                         <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
-                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+                                            <div class="bs-stepper-circle"><i class='bx  bx-badge-check fs-4'  ></i> </div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Final Submission</h5>
                                                 <p class="mb-0 steper-sub-title">Experience Details</p>
@@ -195,8 +195,13 @@
 
                                     <div class="row g-3">
                                         <div class="col-md-6">
+                                            <label class="form-label">Business Name</label>
+                                            <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')">
+                                        </div>
+
+                                        <div class="col-md-6">
                                             <label class="form-label">Type of Entity</label>
-                                            <select class="form-select" name="entity">
+                                            <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')">
                                                 <option selected disabled>--Select--</option>
                                                 <option value="Proprietorship">Proprietorship</option>
                                                 <option value="Partnership">Partnership</option>
@@ -207,20 +212,20 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Date of Incorporation</label>
-                                            <input type="date" class="form-control" name="doi" placeholder="Enter Date in DD/MM/YYYY format"><br>
+                                            <input type="date" class="form-control" name="doi" placeholder="Enter Date in DD/MM/YYYY format" onblur="setPreviewValue(this, 'doivalue')"><br>
                                             <small class="text-muted">Enter date in DD/MM/YYYY format</small>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Nature of Business</label>
-                                            <input type="text" class="form-control" name="nob">
+                                            <input type="text" class="form-control" name="nob" onblur="setPreviewValue(this, 'nobvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Category</label>
-                                            <input type="text" class="form-control" name="businesscategory">
+                                            <input type="text" class="form-control" name="businesscategory" onblur="setPreviewValue(this, 'businesscategoryvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Sub-Category</label>
-                                            <input type="text" class="form-control" name="businesssubcategory">
+                                            <input type="text" class="form-control" name="businesssubcategory" onblur="setPreviewValue(this, 'businesssubcategoryvalue')">
                                         </div>
                                         <!-- <div class="col-md-6">
                                             <label class="form-label">GSTIN</label>
@@ -228,7 +233,7 @@
                                         </div> -->
                                         <div class="col-md-6">
                                             <label for="gstin" class="form-label">GSTIN</label>
-                                            <input type="text" class="form-control" id="gstin" name="gstin" onblur="validateGSTIN()">
+                                            <input type="text" class="form-control" id="gstin" name="gstin" onblur="setPreviewValue(this, 'gstinvalue')">
                                             <div id="gstin-error" class="text-danger mt-1 d-none">❌ Enter a valid 15-character GSTIN</div>
                                             <div class=" d-none" id="gstin-info">
                                                 <label class="form-label">Company Info</label>
@@ -249,39 +254,39 @@
 
                                         <div class="col-md-6">
                                             <label class="form-label">Business PAN Number</label>
-                                            <input type="text" class="form-control " name="pan" id="businesspan" onblur="validatePAN(this, 'error-businesspan')" placeholder="ABCDE1234F">
+                                            <input type="text" class="form-control " name="pan" id="businesspan" onblur="validatePAN(this, 'error-businesspan','businesspanvalue')" placeholder="ABCDE1234F">
                                             <div class="text-danger mt-1 d-none" id="error-businesspan">Invalid PAN format (e.g., AAAAA9999A)</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Registered Business Address</label>
-                                            <input type="text" class="form-control" name="registeredbsuiness">
+                                            <input type="text" class="form-control" name="registeredbsuiness" onblur="setPreviewValue(this, 'registeredbsuinessvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Operating Address</label>
-                                            <input type="text" class="form-control" name="operatingaddress">
+                                            <input type="text" class="form-control" name="operatingaddress" onblur="setPreviewValue(this, 'operatingaddressvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Website URL</label>
-                                            <input type="text" class="form-control" name="url">
+                                            <input type="text" class="form-control" name="url" onblur="setPreviewValue(this, 'urlvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Application Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="applicantname" onblur="setPreviewValue(this, 'applicantnamevalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Business Contact Number</label>
-                                            <input type="text" class="form-control" name="businessnumber" id="businessnumber" onblur="validatePhone('businessnumber')" placeholder="9876543210">
+                                            <input type="text" class="form-control" name="businessnumber" id="businessnumber" onblur="validatePhone(this, 'businessnumber-error', 'businessnumbervalue')" placeholder="9876543210">
                                             <div id="businessnumber-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Alternate Contact Number</label>
-                                            <input type="text" class="form-control" name="alternnumber" id="alternnumber" onblur="validatePhone('alternnumber')" placeholder="9876543210">
+                                            <input type="text" class="form-control" name="alternnumber" id="alternnumber" onblur="validatePhone(this, 'alternnumber-error', 'alternnumbervalue')" placeholder="9876543210">
                                             <div id="alternnumber-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="supportemail" class="form-label">Support Email ID</label>
-                                            <input type="email" class="form-control" id="supportemail" name="supportemail" onblur="validateEmail(this)" placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="supportemail" name="supportemail" onblur="validateEmail(this, 'supportemail-error', 'supportemailvalue')" placeholder="name@example.com">
                                             <div id="supportemail-error" class="text-danger mt-1 d-none">
                                                 ❌ Please enter a valid email address
                                             </div>
@@ -309,20 +314,20 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" name="fullname">
+                                            <input type="text" class="form-control" name="fullname" onblur="setPreviewValue(this, 'fullnamevalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Designation</label>
-                                            <input type="text" class="form-control" name="designation">
+                                            <input type="text" class="form-control" name="designation" onblur="setPreviewValue(this, 'designationvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control" name="number" id="number" onblur="validatePhone('number')" placeholder="9876543210">
+                                            <input type="text" class="form-control" name="number" id="number" onblur="validatePhone(this, 'number-error', 'numbervalue')" placeholder="9876543210">
                                             <div id="number-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Email ID</label>
-                                            <input type="email" class="form-control" id="personalemail" name="personalemail" onblur="validateEmail(this)" placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="personalemail" name="personalemail" onblur="validateEmail(this, 'personalemail-error', 'personalemailvalue')" placeholder="name@example.com">
                                             <div id="personalemail-error" class="text-danger mt-1 d-none">
                                                 ❌ Please enter a valid email address
                                             </div>
@@ -330,12 +335,12 @@
                                         <div class="col-md-6">
                                             <label class="form-label">Aadhaar Number</label>
                                             <input type="text" class="form-control" name="aadhaarnumber" id="aadhaarnumber" placeholder="Enter 12-digit Aadhaar number" maxlength="12"
-                                                onblur="validateAadhaar('aadhaarnumber')">
+                                                onblur="validateAadhaar(this, 'aadhaarnumber-error', 'aadhaarnumbervalue')">
                                             <div id="aadhaarnumber-error" class="text-danger d-none">Please enter a valid 12-digit Aadhaar number.</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">PAN Number</label>
-                                            <input type="text" class="form-control" name="pannumber" id="pannumber" onblur="validatePAN(this, 'error-pannumber')" placeholder="ABCDE1234F">
+                                            <input type="text" class="form-control" name="pannumber" id="pannumber" onblur="validatePAN(this, 'error-pannumber','pannumbervalue')" placeholder="ABCDE1234F">
                                             <div class="text-danger mt-1 d-none" id="error-pannumber">Invalid PAN format (e.g., AAAAA9999A)</div>
                                         </div>
 
@@ -343,20 +348,20 @@
 
                                         <div class="col-md-6">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" name="fullnameadn">
+                                            <input type="text" class="form-control" name="fullnameadn" onblur="setPreviewValue(this, 'fullnameadnvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Designation</label>
-                                            <input type="text" class="form-control" name="designationadn">
+                                            <input type="text" class="form-control" name="designationadn" onblur="setPreviewValue(this, 'designationadnvalue')">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control" name="numberadn" id="numberadn" onblur="validatePhone('numberadn')" placeholder="9876543210">
+                                            <input type="text" class="form-control" name="numberadn" id="numberadn" onblur="validatePhone(this, 'numberadn-error', 'numberadnvalue')" placeholder="9876543210">
                                             <div id="numberadn-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Email ID</label>
-                                            <input type="email" class="form-control" id="personalemailadn" name="personalemailadn" onblur="validateEmail(this)" placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="personalemailadn" name="personalemailadn" onblur="validateEmail(this, 'personalemailadn-error', 'personalemailadnvalue')" placeholder="name@example.com">
                                             <div id="personalemailadn-error" class="text-danger mt-1 d-none">
                                                 ❌ Please enter a valid email address
                                             </div>
@@ -364,12 +369,12 @@
                                         <div class="col-md-6">
                                             <label class="form-label">Aadhaar Number</label>
                                             <input type="text" class="form-control" name="aadhaarnumberadn" id="aadhaarnumberadn" placeholder="Enter 12-digit Aadhaar number" maxlength="12"
-                                                onblur="validateAadhaar('aadhaarnumberadn')">
+                                                onblur="validateAadhaar(this, 'aadhaarnumberadn-error', 'aadhaarnumberadnvalue')">
                                             <div id="aadhaarnumberadn-error" class="text-danger d-none">Please enter a valid 12-digit Aadhaar number.</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">PAN Number</label>
-                                            <input type="text" class="form-control" name="pannumberadn" id="pannumberadn" onblur="validatePAN(this, 'error-pannumberadn')" placeholder="ABCDE1234F">
+                                            <input type="text" class="form-control" name="pannumberadn" id="pannumberadn" onblur="validatePAN(this, 'error-pannumberadn','pannumberadnvalue')" placeholder="ABCDE1234F">
                                             <div class="text-danger mt-1 d-none" id="error-pannumberadn">Invalid PAN format (e.g., AAAAA9999A)</div>
                                         </div>
 
@@ -552,11 +557,11 @@
                                             <div class="d-flex gap-2 mt-1">
                                                 <div>
                                                     <p>a. Volumes in amount</p>
-                                                    <input type="text" class="form-control mt-1" name="totalvolume">
+                                                    <input type="text" class="form-control mt-1" name="totalvolume" onblur="setPreviewValue(this, 'totalvolumenvalue')">
                                                 </div>
                                                 <div>
                                                     <p>b. Number of users</p>
-                                                    <input type="text" class="form-control mt-1" name="numberofusers">
+                                                    <input type="text" class="form-control mt-1" name="numberofusers" onblur="setPreviewValue(this, 'numberofusersnvalue')">
                                                 </div>
                                             </div>
                                             <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -568,11 +573,11 @@
                                             <div class="d-flex gap-2 mt-1">
                                                 <div>
                                                     <p>a. Amount</p>
-                                                    <input type="text" class="form-control mt-1" name="sixmonthprojectionamount">
+                                                    <input type="text" class="form-control mt-1" name="sixmonthprojectionamount" onblur="setPreviewValue(this, 'sixmonthprojectionamountvalue')">
                                                 </div>
                                                 <div>
                                                     <p>b. Number of Users</p>
-                                                    <input type="text" class="form-control mt-1" name="sixmonthprojectionuser">
+                                                    <input type="text" class="form-control mt-1" name="sixmonthprojectionuser" onblur="setPreviewValue(this, 'sixmonthprojectionuservalue')">
                                                 </div>
                                             </div>
                                             <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -582,14 +587,14 @@
 
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">3. Number of transactions /frequencies in a day</label>
-                                            <input type="text" class="form-control" placeholder="No. of transactions" name="numoftransactions">
+                                            <input type="text" class="form-control" placeholder="No. of transactions" name="numoftransactions" onblur="setPreviewValue(this, 'numoftransactionsvalue')">
                                         </div>
 
                                         <!-- 4 -->
 
                                         <div class="col-12 col-lg-6 mb-3">
                                             <label class="form-label fw-semibold">4. Volume of total amount disbursed /distributed in a day</label>
-                                            <input type="text" class="form-control" placeholder="Amount" name="disbursedamount">
+                                            <input type="text" class="form-control" placeholder="Amount" name="disbursedamount" onblur="setPreviewValue(this, 'disbursedamountvalue')">
                                         </div>
 
                                         <!-- 5 -->
@@ -599,11 +604,11 @@
                                             <div class="d-flex gap-2 mt-1">
                                                 <div>
                                                     <p>a. Minimum Amount</p>
-                                                    <input type="text" class="form-control mt-1" name="mintransaction">
+                                                    <input type="text" class="form-control mt-1" name="mintransaction" onblur="setPreviewValue(this, 'mintransactionvalue')">
                                                 </div>
                                                 <div>
                                                     <p>b. Maximum Amount</p>
-                                                    <input type="text" class="form-control mt-1" name="maxtransaction">
+                                                    <input type="text" class="form-control mt-1" name="maxtransaction" onblur="setPreviewValue(this, 'maxtransactionvalue')">
                                                 </div>
                                             </div>
                                             <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -613,7 +618,7 @@
 
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label fw-semibold">6. Threshold limit and/or daily payout that can be fixed</label>
-                                            <input type="text" class="form-control" placeholder="" name="thresholdlimit">
+                                            <input type="text" class="form-control" placeholder="" name="thresholdlimit" onblur="setPreviewValue(this, 'thresholdlimitvalue')">
                                         </div>
 
 
@@ -694,7 +699,7 @@
                                                font-weight: bold;
                                                color:rgb(1, 60, 123);
                                             }">
-                                        <div class="text-center mb-4">
+                                        <div class="text-center mb-4" style="margin-top:-15px">
                                             <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 70px;">
                                             <h4 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h4>
                                         </div>
@@ -704,59 +709,59 @@
                                         <table class="table table-bordered align-middle">
                                             <tr>
                                                 <td style="width: 40%;">Business Name</td>
-                                                <td style="width: 60%;"><span id="val_businessname"></span></td>
+                                                <td style="width: 60%;"><span id="businessnamevalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Type of Entity</td>
-                                                <td><span id="val_entity"></span></td>
+                                                <td><span id="entityvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Date of Incorporation</td>
-                                                <td><span id="val_doi"></span></td>
+                                                <td><span id="doivalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Nature of Business</td>
-                                                <td><span id="val_nob"></span></td>
+                                                <td><span id="nobvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Business Category</td>
-                                                <td><span id="val_businesscategory"></span></td>
+                                                <td><span id="businesscategoryvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Business Sub-Category</td>
-                                                <td><span id="val_businesssubcategory"></span></td>
+                                                <td><span id="businesssubcategoryvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>GSTIN</td>
-                                                <td><span id="val_gstin"></span></td>
+                                                <td><span id="gstinvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Business PAN Number</td>
-                                                <td><span id="val_pan"></span></td>
+                                                <td><span id="businesspanvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Registered Business Address</td>
-                                                <td><span id="val_registeredbsuiness"></span></td>
+                                                <td><span id="registeredbsuinessvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Operating Address (if different)</td>
-                                                <td><span id="val_operatingaddress"></span></td>
+                                                <td><span id="operatingaddressvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Website URL</td>
-                                                <td><span id="val_url"></span></td>
+                                                <td><span id="urlvalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Application Name</td>
-                                                <td><span id="val_applicationname"></span></td>
+                                                <td><span id="applicantnamevalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Business Contact Number</td>
-                                                <td><span id="val_businessnumber"></span></td>
+                                                <td><span id="businessnumbervalue"></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Support Email ID</td>
-                                                <td><span id="val_supportemail"></span></td>
+                                                <td><span id="supportemailvalue"></span></td>
                                             </tr>
                                         </table>
 
@@ -766,27 +771,27 @@
                                             <table class="table table-bordered align-middle">
                                                 <tr>
                                                     <td>Full Name</td>
-                                                    <td><span id="val_fullname"></span></td>
+                                                    <td><span id="fullnamevalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Designation</td>
-                                                    <td><span id="val_designation"></span></td>
+                                                    <td><span id="designationvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Mobile Number</td>
-                                                    <td><span id="val_number"></span></td>
+                                                    <td><span id="numbervalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Email ID</td>
-                                                    <td><span id="val_personalemail"></span></td>
+                                                    <td><span id="personalemailvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Aadhaar Number</td>
-                                                    <td><span id="val_aadhaarnumber"></span></td>
+                                                    <td><span id="aadhaarnumbervalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>PAN Number</td>
-                                                    <td><span id="val_pannumber"></span></td>
+                                                    <td><span id="pannumbervalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Passport-size Photograph</td>
@@ -801,27 +806,27 @@
                                             <table class="table table-bordered align-middle">
                                                 <tr>
                                                     <td>Full Name</td>
-                                                    <td><span id="val_fullnameadn"></span></td>
+                                                    <td><span id="fullnameadnvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Designation</td>
-                                                    <td><span id="val_designationadn"></span></td>
+                                                    <td><span id="designationadnvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Mobile Number</td>
-                                                    <td><span id="val_numberadn"></span></td>
+                                                    <td><span id="numberadnvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Email ID</td>
-                                                    <td><span id="val_personalemailadn"></span></td>
+                                                    <td><span id="personalemailadnvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Aadhaar Number</td>
-                                                    <td><span id="val_aadhaarnumberadn"></span></td>
+                                                    <td><span id="aadhaarnumberadnvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>PAN Number</td>
-                                                    <td><span id="val_pannumberadn"></span></td>
+                                                    <td><span id="pannumberadnvalue"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Passport-size Photograph</td>
@@ -835,27 +840,27 @@
                                         <table class="table table-bordered align-middle">
                                             <tr>
                                                 <td>Account Holder Name</td>
-                                                <td><span id="val_accountholder"></span></td>
+                                                <td><span id="val_accountholder">TO BE FILLED MANUALLY</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Bank Name</td>
-                                                <td><span id="val_bankname"></span></td>
+                                                <td><span id="val_bankname">TO BE FILLED MANUALLY</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Branch Name</td>
-                                                <td><span id="val_branchname"></span></td>
+                                                <td><span id="val_branchname">TO BE FILLED MANUALLY</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Account Number</td>
-                                                <td><span id="val_accountnumber"></span></td>
+                                                <td><span id="val_accountnumber">TO BE FILLED MANUALLY</span></td>
                                             </tr>
                                             <tr>
                                                 <td>IFSC Code</td>
-                                                <td><span id="val_ifsc"></span></td>
+                                                <td><span id="val_ifsc">TO BE FILLED MANUALLY</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Account Type</td>
-                                                <td><span id="val_accounttype"></span></td>
+                                                <td><span id="val_accounttype">TO BE FILLED MANUALLY</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Cancelled Cheque</td>
@@ -865,7 +870,7 @@
 
                                         <!-- document -->
 
-                                        <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">5. Documents uploaded</h5>
+                                        <h5 class="fw-bold  " style="color:rgb(3, 106, 216); page-break-before: always; margin-top:-15px">5. Documents uploaded</h5>
                                         <table class="table table-bordered mt-4">
                                             <thead>
                                                 <tr>
@@ -981,11 +986,14 @@
                                             </ul>
                                         </div>
                                     </div>
-                                     <button class="btn text-center btn-primary mb-4 mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <button type="button" class="btn text-center btn-primary mb-4 mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+                                    </div>
+
 
                                     <!--  -->
                                     <!-- declaration points -->
-                                    <div class="row g-3 mt-4" > 
+                                    <div class="row g-3 mt-4">
                                         <p class=" text-muted">
                                             Kindly confirm your acceptance of the terms outlined below before continuing.
                                         </p>
@@ -1046,14 +1054,17 @@
 
 
     <!-- pdf generator -->
-
     <script>
         function downloadKYC() {
-            const element = document.getElementById('kycPreview'); // Or use a specific ID if needed
+            const element = document.getElementById('kycPreview');
+            const businessName = document.getElementById('nob').value.trim() || 'KYC';
+
+            // Sanitize filename (remove spaces/special chars)
+            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
             const opt = {
-                margin: .8,
-                filename: 'KYC-Onboarding.pdf',
+                margin: 0.8,
+                filename: `${cleanName}-KYC-Onboarding.pdf`,
                 image: {
                     type: 'jpeg',
                     quality: 0.98
@@ -1066,8 +1077,6 @@
                     format: 'a4',
                     orientation: 'portrait'
                 }
-
-
             };
 
             html2pdf().set(opt).from(element).save();
@@ -1077,22 +1086,47 @@
 
     <!-- //////////// -->
 
+    <!-- value transfer to pdf elements -->
+    <script>
+        function setPreviewValue(el, targetId) {
+            const target = document.getElementById(targetId);
+            let value = el.value?.trim(); // remove extra spaces
+
+            // Check if value exists
+            if (!value) return;
+
+            // Optional: Format date if type="date"
+            if (el.type === "date" && value.includes("-")) {
+                const parts = value.split("-");
+                if (parts.length === 3) {
+                    value = `${parts[2]}/${parts[1]}/${parts[0]}`; // DD/MM/YYYY
+                }
+            }
+
+            if (target) {
+                target.textContent = value;
+            }
+        }
+    </script>
+
+
+
     <!-- check box code -->
 
-   <script>
-  function updateIcon(el, iconId) {
-    const icon = document.getElementById(iconId);
-    if (!icon) return;
+    <script>
+        function updateIcon(el, iconId) {
+            const icon = document.getElementById(iconId);
+            if (!icon) return;
 
-    if (el.checked) {
-      icon.classList.remove('bx-checkbox');
-      icon.classList.add('bx-check-square');
-    } else {
-      icon.classList.remove('bx-check-square');
-      icon.classList.add('bx-checkbox');
-    }
-  }
-</script>
+            if (el.checked) {
+                icon.classList.remove('bx-checkbox');
+                icon.classList.add('bx-check-square');
+            } else {
+                icon.classList.remove('bx-check-square');
+                icon.classList.add('bx-checkbox');
+            }
+        }
+    </script>
 
 
     <!--  -->
@@ -1174,101 +1208,125 @@
     <script>
         const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
 
-        function validatePAN(input, errorId) {
+        function validatePAN(input, errorId, targetId) {
             const value = input.value.trim().toUpperCase();
             input.value = value;
 
             const errorEl = document.getElementById(errorId);
+            const targetEl = document.getElementById(targetId);
 
-            if (value === '' || !panRegex.test(value)) {
+            // Preview always shows the entered value
+            if (targetEl) {
+                targetEl.textContent = value || '—';
+            }
+
+            // Validation
+            if (!value || !panRegex.test(value)) {
                 input.classList.add('is-invalid');
-                errorEl.classList.remove('d-none');
+                input.classList.remove('is-valid');
+                if (errorEl) errorEl.classList.remove('d-none');
             } else {
                 input.classList.remove('is-invalid');
-                errorEl.classList.add('d-none');
+                input.classList.add('is-valid');
+                if (errorEl) errorEl.classList.add('d-none');
             }
         }
-
-        // Prevent submission if any input is invalid
-        document.getElementById('panForm').addEventListener('submit', function(e) {
-            const inputs = this.querySelectorAll('input');
-            let hasError = false;
-
-            inputs.forEach(input => {
-                const id = input.id;
-                const errorId = 'error-' + id;
-                validatePAN(input, errorId);
-
-                if (input.classList.contains('is-invalid')) {
-                    hasError = true;
-                }
-            });
-
-            if (hasError) {
-                e.preventDefault();
-                alert('❌ Please fix the errors before submitting.');
-            }
-        });
     </script>
+
 
     <!-- ///////////////// -->
 
     <!-- phone validation -->
 
     <script>
-        function validatePhone(fieldId) {
-            const input = document.getElementById(fieldId);
-            const error = document.getElementById(`${fieldId}-error`);
+        function validatePhone(input, errorId, targetId) {
             const value = input.value.trim();
+            const errorEl = document.getElementById(errorId);
+            const targetEl = document.getElementById(targetId);
 
-            if (/^[6-9]\d{9}$/.test(value)) {
-                error.classList.add('d-none');
+            // Always update preview
+            if (targetEl) {
+                targetEl.textContent = value || '—';
+            }
+
+            // Indian mobile validation: starts with 6-9 and 10 digits
+            const phoneRegex = /^[6-9]\d{9}$/;
+
+            if (!value || !phoneRegex.test(value)) {
+                input.classList.add('is-invalid');
+                input.classList.remove('is-valid');
+                if (errorEl) errorEl.classList.remove('d-none');
+            } else {
                 input.classList.remove('is-invalid');
                 input.classList.add('is-valid');
-            } else {
-                error.classList.remove('d-none');
-                input.classList.remove('is-valid');
-                input.classList.add('is-invalid');
+                if (errorEl) errorEl.classList.add('d-none');
             }
         }
     </script>
+
 
 
     <!-- //////// -->
 
     <!-- aadhaar number validation -->
     <script>
-        function validateAadhaar(fieldId) {
-            const input = document.getElementById(fieldId);
-            const error = document.getElementById(`${fieldId}-error`);
+        function validateAadhaar(input, errorId, targetId) {
             const value = input.value.trim();
+            const errorEl = document.getElementById(errorId);
+            const targetEl = document.getElementById(targetId);
 
-            if (/^\d{12}$/.test(value)) {
-                error.classList.add('d-none');
+            // ✅ Always update preview span — even if invalid
+            if (targetEl) {
+                targetEl.textContent = value || '—';
+            }
+
+            // ✅ Aadhaar validation: 12 digits, starts with 2-9
+            const aadhaarRegex = /^[2-9][0-9]{11}$/;
+
+            if (!aadhaarRegex.test(value)) {
+                input.classList.add('is-invalid');
+                input.classList.remove('is-valid');
+                if (errorEl) errorEl.classList.remove('d-none');
+            } else {
                 input.classList.remove('is-invalid');
                 input.classList.add('is-valid');
-            } else {
-                error.classList.remove('d-none');
-                input.classList.remove('is-valid');
-                input.classList.add('is-invalid');
+                if (errorEl) errorEl.classList.add('d-none');
             }
         }
     </script>
+
     <!-- //////////////////// -->
 
-    <script>
-        function validateEmail(inputEl) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const id = inputEl.id;
-            const errorEl = document.getElementById(id + '-error');
+    <!-- validate email -->
 
-            if (inputEl.value.trim() === '' || !emailRegex.test(inputEl.value.trim())) {
-                errorEl.classList.remove('d-none');
+    <script>
+        function validateEmail(input, errorId, targetId) {
+            const value = input.value.trim();
+            const errorEl = document.getElementById(errorId);
+            const targetEl = document.getElementById(targetId);
+
+            // ✅ Always update preview
+            if (targetEl) {
+                targetEl.textContent = value || '—';
+            }
+
+            // ✅ Basic email regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(value)) {
+                input.classList.add('is-invalid');
+                input.classList.remove('is-valid');
+                if (errorEl) errorEl.classList.remove('d-none');
             } else {
-                errorEl.classList.add('d-none');
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+                if (errorEl) errorEl.classList.add('d-none');
             }
         }
     </script>
+
+
+    <!-- ////////////// -->
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Text fields
+    $businessname = clean($_POST['businessname']);
+    $applicantname = clean($_POST['applicantname']);
     $entity = clean($_POST['entity']);
     $doi = clean($_POST['doi']);
     $nob = clean($_POST['nob']);
@@ -95,6 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Example output (you can replace this with DB insert logic)
     echo "<h3>Form Submitted Successfully</h3><pre>";
     print_r([
+        'businessname' => $businessname,
+        'applicantname' => $applicantname,
         'entity' => $entity,
         'doi' => $doi,
         'nob' => $nob,
@@ -153,14 +157,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $query = "INSERT INTO business_applications (
-        entity, doi, nob, businesscategory, businesssubcategory, gstin, pan,
+        businessname, applicantname, entity, doi, nob, businesscategory, businesssubcategory, gstin, pan,
         registeredbsuiness, operatingaddress, url, businessnumber, alternnumber, supportemail,
         fullname, designation, number, personalemail, aadhaarnumber, pannumber,
         fullnameadn, designationadn, numberadn, personalemailadn, aadhaarnumberadn, pannumberadn,
         totalvolume, numberofusers, sixmonthprojectionamount, sixmonthprojectionuser,
         numoftransactions, disbursedamount, mintransaction, maxtransaction, thresholdlimit
     ) VALUES (
-        '$entity', '$doi', '$nob', '$businesscategory', '$businesssubcategory', '$gstin', '$pan',
+        '$businessname','$applicantname', '$entity', '$doi', '$nob', '$businesscategory', '$businesssubcategory', '$gstin', '$pan',
         '$registeredbsuiness', '$operatingaddress', '$url', '$businessnumber', '$alternnumber', '$supportemail',
         '$fullname', '$designation', '$number', '$personalemail', '$aadhaarnumber', '$pannumber',
         '$fullnameadn', '$designationadn', '$numberadn', '$personalemailadn', '$aadhaarnumberadn', '$pannumberadn',
