@@ -210,13 +210,13 @@ a {
 
 	background: #fff;
 
-	left: 250px;
+	/* left: 250px; */
 
-	right: 0;
+	/* right: 0; */
 
-	bottom: 0;
+	/* bottom: 0; */
 
-	position: fixed;
+	/* position: fixed; */
 
 	text-align: center;
 
@@ -228,6 +228,9 @@ a {
 
 	z-index: 3
 
+}
+.page-footer1{
+	background-color: black;
 }
 
 
