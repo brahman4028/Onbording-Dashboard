@@ -303,7 +303,7 @@
 
 
                                             <div class="col-12">
-                                                <button type="button" class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                                                <button type="button" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);" class="btn btn-primary" onclick="stepper3.next()">Next</button>
                                             </div>
                                         </div>
                                     </div>
@@ -386,7 +386,7 @@
 
                                             <div class="d-flex gap-3">
                                                 <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                <button type="button" class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                                                <button type="button" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);" class="btn btn-primary" onclick="stepper3.next()">Next</button>
                                             </div>
                                         </div>
 
@@ -542,7 +542,7 @@
                                             <div class="col-12">
                                                 <div class="d-flex gap-3">
                                                     <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                    <button type="button" class="btn btn-primary px-4" onclick="stepper3.next()">Next</button>
+                                                    <button type="button" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);" class="btn btn-primary px-4" onclick="stepper3.next()">Next</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -650,8 +650,8 @@
                                                         <a
                                                             href="/Onbording-Dashboard/assets/pdf/ANNEXUREB.pdf"
                                                             download
-                                                            class="btn btn-primary">
-                                                            <i class="bi bi-download me-2"></i>Download File
+                                                            class="btn btn-primary " style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px; font-size:15px;">
+                                                            <i class="bx bx-download me-2"></i>Download File
                                                         </a>
                                                     </div>
                                                 </div>
@@ -675,7 +675,7 @@
                                             <div class="col-12">
                                                 <div class="d-flex gap-3">
                                                     <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                    <button type="button" class="btn btn-primary px-4" onclick="stepper3.next()">Next</button>
+                                                    <button type="button" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);" class="btn btn-primary px-4" onclick="stepper3.next()">Next</button>
                                                 </div>
                                             </div>
 
@@ -725,9 +725,9 @@
 
 
                                             <div class="text-center mb-4" style="margin-top:-75px">
-                                                <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 70px;">
+                                                <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 65px;">
                                                 <h4 class="text-medium">Staar Payout Private Limited</h4>
-                                                <h5 class="mt-3 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h5>
+                                                <h5 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h5>
                                             </div>
 
                                             <!-- 1. Business Details -->
@@ -793,7 +793,7 @@
 
                                             <!-- 2. Authorized Signatory -->
                                             <div>
-                                                <h5 class="fw-bold  mt-1" style="color:rgb(3, 106, 216);">2. Authorized Signatory Details</h5>
+                                                <h5 class="fw-bold  mt-1" style="color:rgb(3, 106, 216); page-break-before: always;">2. Authorized Signatory Details</h5>
                                                 <table class="table table-bordered align-middle">
                                                     <tr>
                                                         <td>Full Name</td>
@@ -827,8 +827,8 @@
                                             </div><br>
 
                                             <!-- 3. Authorized Signatory 2 -->
-                                            <div style="page-break-before: always;">
-                                                <h5 class="fw-bold mt-4" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
+                                            <div style="">
+                                                <h5 class="fw-bold mt-2" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
                                                 <table class="table table-bordered align-middle">
                                                     <tr>
                                                         <td>Full Name</td>
@@ -1105,7 +1105,7 @@
                                                 <div class="d-flex gap-3">
 
                                                     <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                    <button type="submit" class="btn btn-success px-4">Submit</button>
+                                                    <button type="submit" class="btn btn-success px-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 253, 137, 0.62);">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
