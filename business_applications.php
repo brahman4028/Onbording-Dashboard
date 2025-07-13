@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="step" data-target="#test-vl-4">
                                         <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
-                                            <div class="bs-stepper-circle"><i class='bx  bx-user-check fs-4'  ></i>  </div>
+                                            <div class="bs-stepper-circle"><i class='bx  bx-user-check fs-4'></i> </div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Declarations</h5>
                                                 <p class="mb-0 steper-sub-title">Experience Details</p>
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="step" data-target="#test-vl-5">
                                         <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
-                                            <div class="bs-stepper-circle"><i class='bx  bx-badge-check fs-4'  ></i> </div>
+                                            <div class="bs-stepper-circle"><i class='bx  bx-badge-check fs-4'></i> </div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Final Submission</h5>
                                                 <p class="mb-0 steper-sub-title">Experience Details</p>
@@ -657,7 +657,7 @@
                                             <label class="form-label fw-semibold">7. Download the form, add your signature and stamp, and upload it back here</label>
 
                                             <div class="input-group mb-3 mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'UploadtMsg')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="annexurebfile">
+                                                <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'UploadtMsg','annexurebfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="annexurebfile">
                                                 <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                             </div>
                                             <p class="text-secondary">Download the form, add your signature and stamp, and upload it back here.</p>
@@ -699,13 +699,33 @@
                                                font-weight: bold;
                                                color:rgb(1, 60, 123);
                                             }">
-                                        <div class="text-center mb-4" style="margin-top:-15px">
+
+                                        <!-- timestamp -->
+                                        <table class="table" id="kycPreview" style="border: none !important;">
+                                            <thead style="border: none !important;">
+                                                <tr style="border: none !important;">
+                                                    <td colspan="2" class="text-end" style="border: none !important;">
+                                                        <strong>Date & Time:</strong> <span id="currentDateTime"></span>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <!-- rest of your table rows go here... -->
+                                        </table>
+
+
+
+
+                                        <!--  -->
+
+
+                                        <div class="text-center mb-4" style="margin-top:-75px">
                                             <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 70px;">
-                                            <h4 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h4>
+                                            <h4 class="text-medium">Staar Payout Private Limited</h4>
+                                            <h5 class="mt-3 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h5>
                                         </div>
 
                                         <!-- 1. Business Details -->
-                                        <h5 class="fw-bold " style="color:rgb(3, 106, 216);">1. Business Details</h5>
+                                        <h5 class="fw-bold " style="color:rgb(3, 106, 216); margin-top:-15px">1. Business Details</h5>
                                         <table class="table table-bordered align-middle">
                                             <tr>
                                                 <td style="width: 40%;">Business Name</td>
@@ -767,7 +787,7 @@
 
                                         <!-- 2. Authorized Signatory -->
                                         <div>
-                                            <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">2. Authorized Signatory Details</h5>
+                                            <h5 class="fw-bold  mt-1" style="color:rgb(3, 106, 216);">2. Authorized Signatory Details</h5>
                                             <table class="table table-bordered align-middle">
                                                 <tr>
                                                     <td>Full Name</td>
@@ -906,49 +926,55 @@
                                                 <tr>
                                                     <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
                                                     <td>
-                                                        <div id="coipreview"></div>
+                                                        <div id="coifilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Memorandum of Association (MOA)</td>
                                                     <td>
-                                                        <div id="moapreview"></div>
+                                                        <div id="moafilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>CArticles of Association (AOA) </td>
                                                     <td>
-                                                        <div id="aoapreview"></div>
+                                                        <div id="aoafilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
                                                     <td>
-                                                        <div id="brpreview"></div>
+                                                        <div id="brfilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>UDYAM Registration Certificate (If Available)</td>
                                                     <td>
-                                                        <div id="udyampreview"></div>
+                                                        <div id="udyamfilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>GSTIN Certificate</td>
                                                     <td>
-                                                        <div id="gstinpreview"></div>
+                                                        <div id="gstinfilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
                                                     <td>
-                                                        <div id="bopreview"></div>
+                                                        <div id="bofilepreview"></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
                                                     <td>
                                                         <div id="rentfilepreview"></div>
+                                                    </td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>ANNEXURE B Form with Signature and Stamp</td>
+                                                    <td>
+                                                        <div id="annexurebfilepreview"></div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -976,7 +1002,7 @@
 
                                         <!-- 5. Declaration -->
                                         <div>
-                                            <h5 class="fw-bold  mt-4 declaration-section" style="color:rgb(3, 106, 216); list-style:none;      page-break-inside: avoid;">5. Declarations</h5>
+                                            <h5 class="fw-bold  mt-5 declaration-section" style="color:rgb(3, 106, 216); list-style:none;      page-break-inside: avoid;">5. Declarations</h5>
                                             <ul style="list-style: none;">
                                                 <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" class='bx  bx-checkbox fs-2'></i> I/We confirm that the information provided is true and accurate.</li>
                                                 <li class="d-flex align-items-center" style="margin-top: -15px;"><i id="check2" class='bx  bx-checkbox fs-2'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
@@ -1062,6 +1088,7 @@
             // Sanitize filename (remove spaces/special chars)
             const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
+
             const opt = {
                 margin: 0.8,
                 filename: `${cleanName}-KYC-Onboarding.pdf`,
@@ -1084,6 +1111,23 @@
     </script>
 
 
+    <!-- timestamp for pdf -->
+    <script>
+        window.onload = function() {
+            const now = new Date();
+            const formatted = now.toLocaleString('en-IN', {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
+
+            document.getElementById('currentDateTime').textContent = formatted;
+        };
+    </script>
+
+
+
+    <!--  -->
+
     <!-- //////////// -->
 
     <!-- value transfer to pdf elements -->
@@ -1091,6 +1135,8 @@
         function setPreviewValue(el, targetId) {
             const target = document.getElementById(targetId);
             let value = el.value?.trim(); // remove extra spaces
+
+
 
             // Check if value exists
             if (!value) return;
