@@ -1,4 +1,27 @@
-<?php include 'db.php'; ?>
+<?php include 'db.php';
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("Invalid or missing ID.");
+}
+
+$application_id = intval($_GET['id']);
+
+// Fetch business_application data
+$appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
+$appResult = mysqli_query($mysqli, $appQuery);
+
+if (!$appResult || mysqli_num_rows($appResult) === 0) {
+    die("No record found with ID: $application_id");
+}
+
+$appData = mysqli_fetch_assoc($appResult);
+
+// Fetch business_documents data
+$docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
+$docResult = mysqli_query($mysqli, $docQuery);
+$docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -84,16 +107,12 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                         <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
-                            <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
-                            </li>
-                            <li class="nav-item me-2"> <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
+                            <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="https://itstarpay.com/contact-us"><i class='stepper-circle bx bx-user-plus me-1 fs-3'></i>Add new Merchant</a>
                             </li>
 
-                            <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx bx-user me-1'></i>Admin Login <div class="text-light ms-1"></button>
+                            <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span>Go to Dashboard </span>
+                                <div class="text-light ms-1">
+                            </button>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +131,7 @@
                                             <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Business Details</h5>
-                                                <p class="mb-0 steper-sub-title">Enter business info</p>
+                                                <p class="mb-0 steper-sub-title">Edit business info</p>
                                             </div>
                                         </div>
                                     </div>
@@ -121,7 +140,7 @@
                                             <div class="bs-stepper-circle"><i class='bx bx-user fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Authorized Signatory Details</h5>
-                                                <p class="mb-0 steper-sub-title">Add signatory details</p>
+                                                <p class="mb-0 steper-sub-title">Edit signatory details</p>
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +149,7 @@
                                             <div class="bs-stepper-circle"><i class='bx bxs-bank fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Bank Account Details</h5>
-                                                <p class="mb-0 steper-sub-title">Enter Account Info</p>
+                                                <p class="mb-0 steper-sub-title">Edit Account Info</p>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +158,7 @@
                                             <div class="bs-stepper-circle"><i class='bx bx-file fs-4'></i></div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Documents Upload</h5>
-                                                <p class="mb-0 steper-sub-title">Upload required docs</p>
+                                                <p class="mb-0 steper-sub-title">Edit required docs</p>
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +167,7 @@
                                             <div class="bs-stepper-circle"><i class='bx  bx-user-check fs-4'></i> </div>
                                             <div>
                                                 <h5 class="mb-0 steper-title">Declarations</h5>
-                                                <p class="mb-0 steper-sub-title">Confirm declarations</p>
+                                                <p class="mb-0 steper-sub-title">Edit declarations</p>
                                             </div>
                                         </div>
                                     </div>
@@ -156,22 +175,10 @@
                                         <div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
                                             <div class="bs-stepper-circle"><i class='bx  bx-badge-check fs-4'></i> </div>
                                             <div>
-                                                <h5 class="mb-0 steper-title">Final Submission</h5>
-                                                <p class="mb-0 steper-sub-title">Submit your application</p>
+                                                <h5 class="mb-0 steper-title">Update Merchant Info</h5>
+                                                <p class="mb-0 steper-sub-title">Update Merchant application</p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <!-- help -->
-                                <div class="bs-stepper-header">
-                                    <div class="help " style="margin-top: 85px;">
-                                        <div class="bs-stepper text-primary"><i class='bx  bx-info-circle fs-3 '></i> </div>
-                                        <h5>Having Trouble?</h5>
-                                        <p class="text-muted">We're here to help—feel free to reach out<br> to our support team for quick assistance anytime.</p>
-                                        <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center fs-6 b" style="text-decoration:none; color:white; box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><a href="https://itstarpay.com/contact-us" style="text-decoration: none; color: white;">Get in Touch </a>
-                                            <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -179,31 +186,12 @@
 
                                 <!-- welcome -->
                                 <!-- welcome screen page  -->
-                                <div class="position-absolute top-0 start-0  z-3 ps-5 pt-5 d-flex justify-content-between "
-                                    style="width : 100%; height:100%; background-image: url('./assets/images/welcomescreen.png'); 
-                                            background-size: cover; 
-                                            background-position: center center; 
-                                            background-attachment: scroll;
-                                            background-color:white; flex-direction:column;" id="startonboardingpage">
-
-                                    <div>
-                                        <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
-                                        <h1 class="fw-light">Welcome to ItStarPay</h1>
-                                        <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
-                                        <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
-                                    </div>
-                                    <div style="width: 900px; " class="ms-auto	">
-                                        <img src="./assets/images/dashb2.png" alt="User Avatar" class="img-fluid rounded " width="100%">
-
-                                    </div>
-                                    <!-- ///////////// -->
-                                </div>
 
 
                                 <div class="bs-stepper-content px-5 py-5 " style="height: 750px; overflow-y: scroll !important;">
                                     <!-- business details -->
                                     <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
-                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
+                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Edit Business Profile</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Please fill in your business information to help us verify your identity and activate features like vendor payouts, salary disbursements, and invoice management & so more.</p>
                                         </div>
@@ -212,12 +200,12 @@
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label class="form-label">Business Name</label>
-                                                <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')">
+                                                <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')" value="<?= htmlspecialchars($appData['businessname']) ?>">
                                             </div>
 
                                             <div class="col-md-6">
                                                 <label class="form-label">Type of Entity</label>
-                                                <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')">
+                                                <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')" value="<?= htmlspecialchars($appData['entity']) ?>">
                                                     <option selected disabled>--Select--</option>
                                                     <option value="Proprietorship">Proprietorship</option>
                                                     <option value="Partnership">Partnership</option>
@@ -228,20 +216,20 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Date of Incorporation</label>
-                                                <input type="date" class="form-control" name="doi" placeholder="Enter Date in DD/MM/YYYY format" onblur="setPreviewValue(this, 'doivalue')"><br>
+                                                <input type="date" class="form-control" name="doi" placeholder="Enter Date in DD/MM/YYYY format" onblur="setPreviewValue(this, 'doivalue')" value="<?= htmlspecialchars($appData['doi']) ?>"><br>
                                                 <small class="text-muted">Enter date in DD/MM/YYYY format</small>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Nature of Business</label>
-                                                <input type="text" class="form-control" name="nob" onblur="setPreviewValue(this, 'nobvalue')">
+                                                <input type="text" class="form-control" name="nob" onblur="setPreviewValue(this, 'nobvalue')" value="<?= htmlspecialchars($appData['nob']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Business Category</label>
-                                                <input type="text" class="form-control" name="businesscategory" onblur="setPreviewValue(this, 'businesscategoryvalue')">
+                                                <input type="text" class="form-control" name="businesscategory" onblur="setPreviewValue(this, 'businesscategoryvalue')" value="<?= htmlspecialchars($appData['businesscategory']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Business Sub-Category</label>
-                                                <input type="text" class="form-control" name="businesssubcategory" onblur="setPreviewValue(this, 'businesssubcategoryvalue')">
+                                                <input type="text" class="form-control" name="businesssubcategory" onblur="setPreviewValue(this, 'businesssubcategoryvalue')" value="<?= htmlspecialchars($appData['businesssubcategory']) ?>">
                                             </div>
                                             <!-- <div class="col-md-6">
                                             <label class="form-label">GSTIN</label>
@@ -249,7 +237,7 @@
                                         </div> -->
                                             <div class="col-md-6">
                                                 <label for="gstin" class="form-label">GSTIN</label>
-                                                <input type="text" class="form-control" id="gstin" name="gstin" onblur="setPreviewValue(this, 'gstinvalue')">
+                                                <input type="text" class="form-control" id="gstin" name="gstin" onblur="setPreviewValue(this, 'gstinvalue')" value="<?= htmlspecialchars($appData['gstin']) ?>">
                                                 <div id="gstin-error" class="text-danger mt-1 d-none">❌ Enter a valid 15-character GSTIN</div>
                                                 <div class=" d-none" id="gstin-info">
                                                     <label class="form-label">Company Info</label>
@@ -270,39 +258,39 @@
 
                                             <div class="col-md-6">
                                                 <label class="form-label">Business PAN Number</label>
-                                                <input type="text" class="form-control " name="pan" id="businesspan" onblur="validatePAN(this, 'error-businesspan','businesspanvalue')" placeholder="ABCDE1234F">
+                                                <input type="text" class="form-control " name="pan" id="businesspan" onblur="validatePAN(this, 'error-businesspan','businesspanvalue')" placeholder="ABCDE1234F" value="<?= htmlspecialchars($appData['pan']) ?>">
                                                 <div class="text-danger mt-1 d-none" id="error-businesspan">Invalid PAN format (e.g., AAAAA9999A)</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Registered Business Address</label>
-                                                <input type="text" class="form-control" name="registeredbsuiness" onblur="setPreviewValue(this, 'registeredbsuinessvalue')">
+                                                <input type="text" class="form-control" name="registeredbsuiness" onblur="setPreviewValue(this, 'registeredbsuinessvalue')" value="<?= htmlspecialchars($appData['registeredbsuiness']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Operating Address</label>
-                                                <input type="text" class="form-control" name="operatingaddress" onblur="setPreviewValue(this, 'operatingaddressvalue')">
+                                                <input type="text" class="form-control" name="operatingaddress" onblur="setPreviewValue(this, 'operatingaddressvalue')" value="<?= htmlspecialchars($appData['operatingaddress']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Website URL</label>
-                                                <input type="text" class="form-control" name="url" onblur="setPreviewValue(this, 'urlvalue')">
+                                                <input type="text" class="form-control" name="url" onblur="setPreviewValue(this, 'urlvalue')" value="<?= htmlspecialchars($appData['url']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Application Name</label>
-                                                <input type="text" class="form-control" name="applicantname" onblur="setPreviewValue(this, 'applicantnamevalue')">
+                                                <input type="text" class="form-control" name="applicantname" onblur="setPreviewValue(this, 'applicantnamevalue')" value="<?= htmlspecialchars($appData['applicantname']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Business Contact Number</label>
-                                                <input type="text" class="form-control" name="businessnumber" id="businessnumber" onblur="validatePhone(this, 'businessnumber-error', 'businessnumbervalue')" placeholder="9876543210">
+                                                <input type="text" class="form-control" name="businessnumber" id="businessnumber" onblur="validatePhone(this, 'businessnumber-error', 'businessnumbervalue')" placeholder="9876543210" value="<?= htmlspecialchars($appData['businessnumber']) ?>">
                                                 <div id="businessnumber-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Alternate Contact Number</label>
-                                                <input type="text" class="form-control" name="alternnumber" id="alternnumber" onblur="validatePhone(this, 'alternnumber-error', 'alternnumbervalue')" placeholder="9876543210">
+                                                <input type="text" class="form-control" name="alternnumber" id="alternnumber" onblur="validatePhone(this, 'alternnumber-error', 'alternnumbervalue')" placeholder="9876543210" value="<?= htmlspecialchars($appData['alternnumber']) ?>">
                                                 <div id="alternnumber-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <label for="supportemail" class="form-label">Support Email ID</label>
-                                                <input type="email" class="form-control" id="supportemail" name="supportemail" onblur="validateEmail(this, 'supportemail-error', 'supportemailvalue')" placeholder="name@example.com">
+                                                <input type="email" class="form-control" id="supportemail" name="supportemail" onblur="validateEmail(this, 'supportemail-error', 'supportemailvalue')" placeholder="name@example.com" value="<?= htmlspecialchars($appData['supportemail']) ?>">
                                                 <div id="supportemail-error" class="text-danger mt-1 d-none">
                                                     ❌ Please enter a valid email address
                                                 </div>
@@ -320,30 +308,30 @@
                                     <!-- authorization details -->
                                     <div id="test-vl-2" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger2">
 
-                                        <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Authorized Signatory Details</h2>
+                                        <h2 class=" fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Authorized Signatory Details</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Please provide the details of the person authorized to sign documents and make decisions on behalf of the business. This is required for verification and legal compliance.</p>
                                         </div>
                                         <hr class="my-4">
 
-                                        <h6 class="mt-2 text-primary">Authorized Director 1</h6><br>
+                                        <h6 class="mt-2 text-primary"><i class='bx  bx-edit-alt'></i> Authorized Director 1</h6><br>
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label class="form-label">Full Name</label>
-                                                <input type="text" class="form-control" name="fullname" onblur="setPreviewValue(this, 'fullnamevalue')">
+                                                <input type="text" class="form-control" name="fullname" onblur="setPreviewValue(this, 'fullnamevalue')" value="<?= htmlspecialchars($appData['fullname']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Designation</label>
-                                                <input type="text" class="form-control" name="designation" onblur="setPreviewValue(this, 'designationvalue')">
+                                                <input type="text" class="form-control" name="designation" onblur="setPreviewValue(this, 'designationvalue')" value="<?= htmlspecialchars($appData['designation']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Mobile Number</label>
-                                                <input type="text" class="form-control" name="number" id="number" onblur="validatePhone(this, 'number-error', 'numbervalue')" placeholder="9876543210">
+                                                <input type="text" class="form-control" name="number" id="number" onblur="validatePhone(this, 'number-error', 'numbervalue')" placeholder="9876543210" value="<?= htmlspecialchars($appData['number']) ?>">
                                                 <div id="number-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Email ID</label>
-                                                <input type="email" class="form-control" id="personalemail" name="personalemail" onblur="validateEmail(this, 'personalemail-error', 'personalemailvalue')" placeholder="name@example.com">
+                                                <input type="email" class="form-control" id="personalemail" name="personalemail" onblur="validateEmail(this, 'personalemail-error', 'personalemailvalue')" placeholder="name@example.com" value="<?= htmlspecialchars($appData['personalemail']) ?>">
                                                 <div id="personalemail-error" class="text-danger mt-1 d-none">
                                                     ❌ Please enter a valid email address
                                                 </div>
@@ -351,33 +339,33 @@
                                             <div class="col-md-6">
                                                 <label class="form-label">Aadhaar Number</label>
                                                 <input type="text" class="form-control" name="aadhaarnumber" id="aadhaarnumber" placeholder="Enter 12-digit Aadhaar number" maxlength="12"
-                                                    onblur="validateAadhaar(this, 'aadhaarnumber-error', 'aadhaarnumbervalue')">
+                                                    onblur="validateAadhaar(this, 'aadhaarnumber-error', 'aadhaarnumbervalue')" value="<?= htmlspecialchars($appData['aadhaarnumber']) ?>">
                                                 <div id="aadhaarnumber-error" class="text-danger d-none">Please enter a valid 12-digit Aadhaar number.</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">PAN Number</label>
-                                                <input type="text" class="form-control" name="pannumber" id="pannumber" onblur="validatePAN(this, 'error-pannumber','pannumbervalue')" placeholder="ABCDE1234F">
+                                                <input type="text" class="form-control" name="pannumber" id="pannumber" onblur="validatePAN(this, 'error-pannumber','pannumbervalue')" placeholder="ABCDE1234F" value="<?= htmlspecialchars($appData['pannumber']) ?>">
                                                 <div class="text-danger mt-1 d-none" id="error-pannumber">Invalid PAN format (e.g., AAAAA9999A)</div>
                                             </div>
 
-                                            <h6 class="mt-4 text-primary">Authorized Director 2 (If any)</h6><br>
+                                            <h6 class="mt-4 text-primary"><i class='bx  bx-edit-alt'></i> Authorized Director 2 (If any)</h6><br>
 
                                             <div class="col-md-6">
                                                 <label class="form-label">Full Name</label>
-                                                <input type="text" class="form-control" name="fullnameadn" onblur="setPreviewValue(this, 'fullnameadnvalue')">
+                                                <input type="text" class="form-control" name="fullnameadn" onblur="setPreviewValue(this, 'fullnameadnvalue')" value="<?= htmlspecialchars($appData['fullnameadn']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Designation</label>
-                                                <input type="text" class="form-control" name="designationadn" onblur="setPreviewValue(this, 'designationadnvalue')">
+                                                <input type="text" class="form-control" name="designationadn" onblur="setPreviewValue(this, 'designationadnvalue')" value="<?= htmlspecialchars($appData['designationadn']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Mobile Number</label>
-                                                <input type="text" class="form-control" name="numberadn" id="numberadn" onblur="validatePhone(this, 'numberadn-error', 'numberadnvalue')" placeholder="9876543210">
+                                                <input type="text" class="form-control" name="numberadn" id="numberadn" onblur="validatePhone(this, 'numberadn-error', 'numberadnvalue')" placeholder="9876543210" value="<?= htmlspecialchars($appData['numberadn']) ?>">
                                                 <div id="numberadn-error" class="text-danger small d-none">❌ Enter valid 10-digit mobile number</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Email ID</label>
-                                                <input type="email" class="form-control" id="personalemailadn" name="personalemailadn" onblur="validateEmail(this, 'personalemailadn-error', 'personalemailadnvalue')" placeholder="name@example.com">
+                                                <input type="email" class="form-control" id="personalemailadn" name="personalemailadn" onblur="validateEmail(this, 'personalemailadn-error', 'personalemailadnvalue')" placeholder="name@example.com" value="<?= htmlspecialchars($appData['personalemailadn']) ?>">
                                                 <div id="personalemailadn-error" class="text-danger mt-1 d-none">
                                                     ❌ Please enter a valid email address
                                                 </div>
@@ -385,12 +373,12 @@
                                             <div class="col-md-6">
                                                 <label class="form-label">Aadhaar Number</label>
                                                 <input type="text" class="form-control" name="aadhaarnumberadn" id="aadhaarnumberadn" placeholder="Enter 12-digit Aadhaar number" maxlength="12"
-                                                    onblur="validateAadhaar(this, 'aadhaarnumberadn-error', 'aadhaarnumberadnvalue')">
+                                                    onblur="validateAadhaar(this, 'aadhaarnumberadn-error', 'aadhaarnumberadnvalue')" value="<?= htmlspecialchars($appData['aadhaarnumberadn']) ?>">
                                                 <div id="aadhaarnumberadn-error" class="text-danger d-none">Please enter a valid 12-digit Aadhaar number.</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">PAN Number</label>
-                                                <input type="text" class="form-control" name="pannumberadn" id="pannumberadn" onblur="validatePAN(this, 'error-pannumberadn','pannumberadnvalue')" placeholder="ABCDE1234F">
+                                                <input type="text" class="form-control" name="pannumberadn" id="pannumberadn" onblur="validatePAN(this, 'error-pannumberadn','pannumberadnvalue')" placeholder="ABCDE1234F" value="<?= htmlspecialchars($appData['pannumberadn']) ?>">
                                                 <div class="text-danger mt-1 d-none" id="error-pannumberadn">Invalid PAN format (e.g., AAAAA9999A)</div>
                                             </div>
 
@@ -409,7 +397,7 @@
                                     <!-- Bank Account details -->
                                     <div id="test-vl-3" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger3">
 
-                                        <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Bank Account Details</h2>
+                                        <h2 class=" fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Bank Account Details</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Provide your complete bank details—including account number, IFSC, and branch info—to ensure smooth payouts, secure transactions, and successful verification.</p>
                                         </div>
@@ -418,31 +406,31 @@
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label class="form-label">Account Holder Name</label>
-                                                <input type="text" class="form-control" name="accountname" onblur="setPreviewValue(this, 'accountnamevalue')" placeholder="Amit John">
+                                                <input type="text" class="form-control" name="accountname" onblur="setPreviewValue(this, 'accountnamevalue')" placeholder="Amit John" value="<?= htmlspecialchars($appData['accountname']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Bank Name</label>
-                                                <input type="text" class="form-control" name="bankname" onblur="setPreviewValue(this, 'banknamevalue')" placeholder="ABC Bank">
+                                                <input type="text" class="form-control" name="bankname" onblur="setPreviewValue(this, 'banknamevalue')" placeholder="ABC Bank" value="<?= htmlspecialchars($appData['bankname']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Branch Name</label>
-                                                <input type="text" class="form-control" name="branchname" id="branchname" onblur="setPreviewValue(this, 'branchnamevalue')" >
-                                                
+                                                <input type="text" class="form-control" name="branchname" id="branchname" onblur="setPreviewValue(this, 'branchnamevalue')" value="<?= htmlspecialchars($appData['branchname']) ?>">
+
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Account Number</label>
-                                                <input type="text" class="form-control" id="accountnumber" name="accountnumber" onblur="setPreviewValue(this, 'accountnumbervalue')" placeholder="2300 0000 0049">
-                                        
+                                                <input type="text" class="form-control" id="accountnumber" name="accountnumber" onblur="setPreviewValue(this, 'accountnumbervalue')" placeholder="2300 0000 0049" value="<?= htmlspecialchars($appData['accountnumber']) ?>">
+
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">IFSC Code</label>
-                                                <input type="text" class="form-control" name="ifsccode" id="ifsccode" placeholder="Enter IFSC Code" 
-                                                    onblur="setPreviewValue(this, 'ifsccodevalue')">
-                                                
+                                                <input type="text" class="form-control" name="ifsccode" id="ifsccode" placeholder="Enter IFSC Code"
+                                                    onblur="setPreviewValue(this, 'ifsccodevalue')" value="<?= htmlspecialchars($appData['ifsccode']) ?>">
+
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Account Type</label>
-                                                <select class="form-select" name="accounttype" onblur="setPreviewValue(this, 'accounttypevalue')">
+                                                <select class="form-select" name="accounttype" onblur="setPreviewValue(this, 'accounttypevalue')" value="<?= htmlspecialchars($appData['accounttype']) ?>">
                                                     <option selected disabled>--Select--</option>
                                                     <option value="Saving Account">Saving Account</option>
                                                     <option value="Current Account">Current Account</option>
@@ -450,10 +438,19 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Cancelled Cheque</label>
-                                                 <div class="input-group mb-3 mb-3">
-                                                    <input type="file" class="form-control" id="inputGroupFile017" onchange="validateFile(this, 'ChequeMsg','cancelledchequefile')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="cancelledchequefile">
+                                                <div class="input-group mb-3 mb-3">
+                                                    <input type="file" class="form-control" id="inputGroupFile017" onchange="validateFile(this, 'ChequeMsg','cancelledchequefile')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="cancelledchequefile" value="<?= htmlspecialchars($docData['cancelledchequefile']) ?>">
                                                     <label class="input-group-text" for="inputGroupFile017">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="ChequeMsg"></span>
                                             </div>
 
@@ -474,12 +471,12 @@
                                     <!-- document submission -->
                                     <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger4">
 
-                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Required Documents</h2>
+                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Submit Required Documents</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Submit valid business and identity documents to proceed. We keep your data safe and use it only for verification purposes.</p>
                                         </div>
                                         <hr class="my-4">
-                                        <h6 class="mt-4 text-primary">Personal identity</h6>
+                                        <h6 class="mt-4 text-primary"><i class='bx  bx-edit-alt'></i> Personal identity</h6>
 
                                         <div class="row g-3">
                                             <!-- 1 -->
@@ -490,6 +487,15 @@
                                                     <label class="input-group-text" for="inputGroupFile01">Upload</label>
 
                                                 </div>
+                                                <?php if (!empty($docData['aadhaarfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="AadhaarMsg"></span>
 
                                             </div>
@@ -500,6 +506,16 @@
                                                     <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'PanMsg','panpreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanfile">
                                                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['personalpanfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="PanMsg"></span>
                                             </div>
                                             <!-- 3 -->
@@ -510,6 +526,16 @@
                                                     <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg','photographpreview')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
                                                     <label class="input-group-text" for="inputGroupFile03">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['photograph'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
+
                                                 <span id="PhotoMsg"></span>
 
                                             </div>
@@ -520,12 +546,20 @@
                                                 <div class="input-group mb-3">
                                                     <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressMsg','addressfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressfile">
                                                     <label class="input-group-text" for="inputGroupFile04">Upload</label>
-                                                </div>
+                                                </div> <?php if (!empty($docData['addressfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['addressfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
                                                 <span id="AddressMsg"></span>
                                             </div>
 
-                                            <h6 class="mt-4 mb-2 text-primary">Business identity</h6>
+                                            <h6 class="mt-4 mb-2 text-primary"><i class='bx  bx-edit-alt'></i> Business identity</h6>
                                             <!-- 1 -->
 
 
@@ -535,6 +569,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile05" onchange="validateFile(this, 'CoiMsg','coifilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="coifile">
                                                     <label class="input-group-text" for="inputGroupFile05">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['coifile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['coifile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="CoiMsg"></span>
 
                                             </div>
@@ -545,6 +588,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile06" onchange="validateFile(this, 'MoaMsg','moafilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="moafile">
                                                     <label class="input-group-text" for="inputGroupFile06">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['moafile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['moafile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="MoaMsg"></span>
 
                                             </div>
@@ -555,6 +607,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile07" onchange="validateFile(this, 'AoaMsg','aoafilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aoafile">
                                                     <label class="input-group-text" for="inputGroupFile07">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['aoafile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['aoafile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="AoaMsg"></span>
 
                                             </div>
@@ -565,6 +626,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile08" onchange="validateFile(this, 'BrMsg','brfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="brfile">
                                                     <label class="input-group-text" for="inputGroupFile08">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['brfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['brfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="BrMsg"></span>
 
                                             </div>
@@ -575,6 +645,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile09" onchange="validateFile(this, 'UdyamMsg','udyamfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="udyamfile">
                                                     <label class="input-group-text" for="inputGroupFile09">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['udyamfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['udyamfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="UdyamMsg"></span>
 
                                             </div>
@@ -585,6 +664,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile010" onchange="validateFile(this, 'GstinMsg','gstinfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="gstinfile">
                                                     <label class="input-group-text" for="inputGroupFile010">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['gstinfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['gstinfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="GstinMsg"></span>
 
                                             </div>
@@ -595,6 +683,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile011" onchange="validateFile(this, 'BoMsg','bofilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="bofile">
                                                     <label class="input-group-text" for="inputGroupFile011">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['bofile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['bofile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <span id="BoMsg"></span>
 
                                             </div>
@@ -606,6 +703,15 @@
                                                     <input type="file" class="form-control" id="inputGroupFile012" onchange="validateFile(this, 'RentMsg','rentfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="rentfile">
                                                     <label class="input-group-text" for="inputGroupFile012">Upload</label>
                                                 </div>
+                                                <?php if (!empty($docData['rentfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['rentfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
                                                 <p class="" style="color:red">(Mandatory if there is a change in address of Principal Place Of Business )</p>
                                                 <span id="RentMsg"></span>
 
@@ -624,7 +730,7 @@
                                     </div>
                                     <!-- declarations -->
                                     <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger5">
-                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Authorized Declarations & Consent</h2>
+                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Authorized Declarations & Consent</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Read the following declarations carefully. These include your consent to data usage, identity verification, and acceptance of platform terms and conditions.</p>
                                         </div>
@@ -638,11 +744,11 @@
                                                 <div class="d-flex gap-2 mt-1">
                                                     <div>
                                                         <p>a. Volumes in amount</p>
-                                                        <input type="text" class="form-control mt-1" name="totalvolume" onblur="setPreviewValue(this, 'totalvolumevalue')">
+                                                        <input type="text" class="form-control mt-1" name="totalvolume" onblur="setPreviewValue(this, 'totalvolumevalue')" value="<?= htmlspecialchars($appData['totalvolume']) ?>">
                                                     </div>
                                                     <div>
                                                         <p>b. Number of users</p>
-                                                        <input type="text" class="form-control mt-1" name="numberofusers" onblur="setPreviewValue(this, 'numberofusersvalue')">
+                                                        <input type="text" class="form-control mt-1" name="numberofusers" onblur="setPreviewValue(this, 'numberofusersvalue')" value="<?= htmlspecialchars($appData['numberofusers']) ?>">
                                                     </div>
                                                 </div>
                                                 <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -654,11 +760,11 @@
                                                 <div class="d-flex gap-2 mt-1">
                                                     <div>
                                                         <p>a. Amount</p>
-                                                        <input type="text" class="form-control mt-1" name="sixmonthprojectionamount" onblur="setPreviewValue(this, 'sixmonthprojectionamountvalue')">
+                                                        <input type="text" class="form-control mt-1" name="sixmonthprojectionamount" onblur="setPreviewValue(this, 'sixmonthprojectionamountvalue')" value="<?= htmlspecialchars($appData['sixmonthprojectionamount']) ?>">
                                                     </div>
                                                     <div>
                                                         <p>b. Number of Users</p>
-                                                        <input type="text" class="form-control mt-1" name="sixmonthprojectionuser" onblur="setPreviewValue(this, 'sixmonthprojectionuservalue')">
+                                                        <input type="text" class="form-control mt-1" name="sixmonthprojectionuser" onblur="setPreviewValue(this, 'sixmonthprojectionuservalue')" value="<?= htmlspecialchars($appData['sixmonthprojectionuser']) ?>">
                                                     </div>
                                                 </div>
                                                 <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -668,14 +774,14 @@
 
                                             <div class="col-12 col-lg-6 mb-3">
                                                 <label class="form-label fw-semibold">3. Number of transactions /frequencies in a day</label>
-                                                <input type="text" class="form-control" placeholder="No. of transactions" name="numoftransactions" onblur="setPreviewValue(this, 'numoftransactionsvalue')">
+                                                <input type="text" class="form-control" placeholder="No. of transactions" name="numoftransactions" onblur="setPreviewValue(this, 'numoftransactionsvalue')" value="<?= htmlspecialchars($appData['numoftransactions']) ?>">
                                             </div>
 
                                             <!-- 4 -->
 
                                             <div class="col-12 col-lg-6 mb-3">
                                                 <label class="form-label fw-semibold">4. Volume of total amount disbursed /distributed in a day</label>
-                                                <input type="text" class="form-control" placeholder="Amount" name="disbursedamount" onblur="setPreviewValue(this, 'disbursedamountvalue')">
+                                                <input type="text" class="form-control" placeholder="Amount" name="disbursedamount" onblur="setPreviewValue(this, 'disbursedamountvalue')" value="<?= htmlspecialchars($appData['disbursedamount']) ?>">
                                             </div>
 
                                             <!-- 5 -->
@@ -685,11 +791,11 @@
                                                 <div class="d-flex gap-2 mt-1">
                                                     <div>
                                                         <p>a. Minimum Amount</p>
-                                                        <input type="text" class="form-control mt-1" name="mintransaction" onblur="setPreviewValue(this, 'mintransactionvalue')">
+                                                        <input type="text" class="form-control mt-1" name="maxtransaction" onblur="setPreviewValue(this, 'mintransactionvalue')" value="<?= htmlspecialchars($appData['maxtransaction']) ?>">
                                                     </div>
                                                     <div>
                                                         <p>b. Maximum Amount</p>
-                                                        <input type="text" class="form-control mt-1" name="maxtransaction" onblur="setPreviewValue(this, 'maxtransactionvalue')">
+                                                        <input type="text" class="form-control mt-1" name="maxtransaction" onblur="setPreviewValue(this, 'maxtransactionvalue')" value="<?= htmlspecialchars($appData['maxtransaction']) ?>">
                                                     </div>
                                                 </div>
                                                 <p class="" style="color:red">(rough/ballpark numbers for reference)</p>
@@ -699,7 +805,7 @@
 
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label fw-semibold">6. Threshold limit and/or daily payout that can be fixed</label>
-                                                <input type="text" class="form-control" placeholder="" name="thresholdlimit" onblur="setPreviewValue(this, 'thresholdlimitvalue')">
+                                                <input type="text" class="form-control" placeholder="" name="thresholdlimit" onblur="setPreviewValue(this, 'thresholdlimitvalue')" value="<?= htmlspecialchars($appData['thresholdlimit']) ?>">
                                             </div>
 
 
@@ -708,26 +814,24 @@
                                             <div class="col-12 col-lg-12 mb-3">
                                                 <div class="card shadow-sm" style="max-width: 500px;">
                                                     <div class="card-body">
-                                                        <h5 class="card-title fw-bold">Download Your File</h5>
-                                                        <p class="card-text text-muted mb-3">Click the button below to preview and download the file.</p>
+
 
                                                         <!-- File Preview (PDF in iframe) -->
                                                         <div class="mb-3">
-                                                            <iframe
-                                                                src="http://localhost/Onbording-Dashboard/assets/pdf/ANNEXUREB.pdf"
-                                                                width="100%"
-                                                                height="400px"
-                                                                style="border: 1px solid #ccc;"
-                                                                title="File Preview"></iframe>
+                                                            <?php if (!empty($docData['annexurebfile']) && file_exists($docData['annexurebfile'])): ?>
+                                                                <iframe
+                                                                    src="<?= htmlspecialchars($docData['annexurebfile']) ?>"
+                                                                    width="100%"
+                                                                    height="400px"
+                                                                    style="border: 1px solid #ccc;"
+                                                                    title="Annexure B Preview">
+                                                                </iframe>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No Annexure B file uploaded</p>
+                                                            <?php endif; ?>
                                                         </div>
 
-                                                        <!-- Download Button -->
-                                                        <a
-                                                            href="/Onbording-Dashboard/assets/pdf/ANNEXUREB.pdf"
-                                                            download
-                                                            class="btn btn-primary " style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px; font-size:15px;">
-                                                            <i class="bx bx-download me-2"></i>Download File
-                                                        </a>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -760,7 +864,7 @@
                                     <!-- submission form -->
                                     <div id="test-vl-6" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger6">
 
-                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Your Application</h2>
+                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Submit Your Application</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
                                         </div>
@@ -1136,9 +1240,9 @@
                                             <div>
                                                 <h5 class="fw-bold  mt-5 declaration-section" style="color:rgb(3, 106, 216); list-style:none;      page-break-inside: avoid;">5. Declarations</h5>
                                                 <ul style="list-style: none;">
-                                                    <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" style="font-size:16px;" class='bx bx-checkbox'></i> I/We confirm that the information provided is true and accurate.</li>
-                                                    <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check2" style="font-size:16px;" class='bx bx-checkbox'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
-                                                    <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check3" style="font-size:16px;" class='bx bx-checkbox'></i> I/We agree to comply with all applicable RBI, AML, and KYC guidelines.</li>
+                                                    <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" style="font-size:16px;" class='bx bx-check-square'></i> I/We confirm that the information provided is true and accurate.</li>
+                                                    <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check2" style="font-size:16px;" class='bx bx-check-square'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
+                                                    <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check3" style="font-size:16px;" class='bx bx-check-square'></i> I/We agree to comply with all applicable RBI, AML, and KYC guidelines.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 95px;"></li>
 
                                                 </ul>
@@ -1154,41 +1258,30 @@
                                         <!-- declaration points -->
                                         <div class="row g-3 mt-4">
                                             <p class=" text-muted">
-                                                Kindly confirm your acceptance of the terms outlined below before continuing.
+                                                Kindly update merchant's application status.*
                                             </p>
-                                            <div class="form-check ">
-                                                <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" onchange="updateIcon(this, 'check1')" required>
-                                                <label class="form-check-label" for="termsCheckbox">
-                                                    I/We confirm that the information provided is true and accurate.
-                                                </label>
+                                            <div class="col-md-6 ">
+                                                <label class="form-label">Appplication Status</label>
+                                                <select class="form-select" name="status" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <option value="In Review" default>In Review</option>
+                                                    <option value="PVerified">Verified</option>
+                                                    <option value="Cancelled">Cancelled</option>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Documents not completed<">Documents not completed</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <label class="form-label">Comment</label>
+                                                <input type="text" class="form-control" name="comment" id="comment" onblur="setPreviewValue(this, 'commentvalue')" placeholder="Reason of Pending or Cancellation">
                                             </div>
 
-                                            <div class="form-check ">
-                                                <input class="form-check-input" type="checkbox" value="" id="privacyCheckbox" onchange="updateIcon(this, 'check2')" required>
-                                                <label class="form-check-label" for="privacyCheckbox">
-                                                    I/We authorize ITSTARPAY to verify the submitted information and documents.
-                                                </label>
-                                            </div>
+                                        </div>
 
-                                            <!-- ////// -->
+                                        <div class="col-12">
+                                            <div class="d-flex gap-3">
 
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="checkbox" value="" id="marketingCheckbox" onchange="updateIcon(this, 'check3')" required>
-                                                <label class="form-check-label" for="marketingCheckbox">
-                                                    I/We agree to comply with all applicable RBI, AML, and KYC guidelines.
-                                                </label>
-                                            </div>
-
-
-
-
-
-                                            <div class="col-12">
-                                                <div class="d-flex gap-3">
-
-                                                    <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                    <button type="submit" class="btn btn-success px-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 253, 137, 0.62);">Submit</button>
-                                                </div>
+                                                <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
+                                                <button type="submit" class="btn btn-success px-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 253, 137, 0.62);">Update Application</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1198,13 +1291,14 @@
                     </div>
                 </div>
             </div>
-        </form>
+    </div>
+    </form>
 
-        <!-- footer -->
+    <!-- footer -->
 
-        <footer class="bg- text-center text-muted py-2 border-top" style="background-color: white;">
-            © 2025 Staar Payout Private Limited. All rights reserved.
-        </footer>
+    <footer class="bg- text-center text-muted py-2 border-top" style="background-color: white;">
+        © 2025 Staar Payout Private Limited. All rights reserved.
+    </footer>
 
     </div>
 
@@ -1263,137 +1357,171 @@
 
 
     <script>
-    const uploadedFiles = {}; // Globally track files by 'name'
+        const uploadedFiles = {}; // Globally track files by 'name'
 
-    function validateFile(input, msgId, previewId) {
-        const file = input.files[0];
-        const msg = document.getElementById(msgId);
-        const preview = document.getElementById(previewId);
-        const inputKey = input.name;
+        function validateFile(input, msgId, previewId) {
+            const file = input.files[0];
+            const msg = document.getElementById(msgId);
+            const preview = document.getElementById(previewId);
+            const inputKey = input.name;
 
-        msg.innerText = '';
-        preview.innerHTML = '';
+            msg.innerText = '';
+            preview.innerHTML = '';
 
-        const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-        const maxSize = 2 * 1024 * 1024;
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
+            const maxSize = 2 * 1024 * 1024;
 
-        if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
-            msg.innerText = "❌ Invalid or too large file.";
-            msg.style.color = "red";
-            input.value = '';
-            return;
+            if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
+                msg.innerText = "❌ Invalid or too large file.";
+                msg.style.color = "red";
+                input.value = '';
+                return;
+            }
+
+            // ✅ Sanitize file name
+            const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+            const sanitizedFile = new File([file], sanitizedFileName, {
+                type: file.type
+            });
+            uploadedFiles[inputKey] = sanitizedFile;
+
+            msg.innerText = "✅ File is valid.";
+            msg.style.color = "green";
+            preview.innerHTML = `<strong>${sanitizedFileName}</strong><br>`;
+
+            if (file.type === "application/pdf") {
+                const iframe = document.createElement("iframe");
+                iframe.src = URL.createObjectURL(sanitizedFile);
+                iframe.style.width = "100%";
+                iframe.style.height = "400px";
+                iframe.style.border = "1px solid #ccc";
+                preview.appendChild(iframe);
+            } else if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.style.maxWidth = "100%";
+                    img.style.border = "1px solid #ccc";
+                    img.style.marginTop = "10px";
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
-        // ✅ Sanitize file name
-        const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-        const sanitizedFile = new File([file], sanitizedFileName, { type: file.type });
-        uploadedFiles[inputKey] = sanitizedFile;
+        async function downloadKYC() {
+            const element = document.getElementById('kycPreview');
+            const businessName = document.getElementById('nob')?.value.trim() || 'KYC';
+            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
-        msg.innerText = "✅ File is valid.";
-        msg.style.color = "green";
-        preview.innerHTML = `<strong>${sanitizedFileName}</strong><br>`;
+            const previewIds = [
+                'aadhaarpreview', 'panpreview', 'photographpreview',
+                'addressfilepreview', 'coifilepreview', 'moafilepreview',
+                'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+                'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+                'annexurebfilepreview', 'cancelledchequefile'
+            ];
 
-        if (file.type === "application/pdf") {
-            const iframe = document.createElement("iframe");
-            iframe.src = URL.createObjectURL(sanitizedFile);
-            iframe.style.width = "100%";
-            iframe.style.height = "400px";
-            iframe.style.border = "1px solid #ccc";
-            preview.appendChild(iframe);
-        } else if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.style.maxWidth = "100%";
-                img.style.border = "1px solid #ccc";
-                img.style.marginTop = "10px";
-                preview.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
+            // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
+            previewIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    [...el.children].forEach(child => {
+                        if (child.tagName === "IFRAME" || child.tagName === "IMG") {
+                            el.removeChild(child);
+                        }
+                    });
+                }
+            });
 
-    async function downloadKYC() {
-        const element = document.getElementById('kycPreview');
-        const businessName = document.getElementById('nob')?.value.trim() || 'KYC';
-        const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
-
-        const previewIds = [
-            'aadhaarpreview', 'panpreview', 'photographpreview',
-            'addressfilepreview', 'coifilepreview', 'moafilepreview',
-            'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
-            'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-            'annexurebfilepreview', 'cancelledchequefile'
-        ];
-
-        // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
-        previewIds.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                [...el.children].forEach(child => {
-                    if (child.tagName === "IFRAME" || child.tagName === "IMG") {
-                        el.removeChild(child);
+            // 📄 Step 2: Generate PDF from HTML
+            const htmlBlob = await html2pdf()
+                .set({
+                    margin: 0.8,
+                    image: {
+                        type: 'jpeg',
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
                     }
-                });
+                })
+                .from(element)
+                .outputPdf('blob');
+
+            const htmlBytes = await htmlBlob.arrayBuffer();
+            const finalPdf = await PDFLib.PDFDocument.create();
+            const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+            const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+            pages.forEach(p => finalPdf.addPage(p));
+
+            // ➕ Step 3: Add uploaded files
+            for (const key in uploadedFiles) {
+                const file = uploadedFiles[key];
+                const bytes = await file.arrayBuffer();
+
+                if (file.type === 'application/pdf') {
+                    const extDoc = await PDFLib.PDFDocument.load(bytes);
+                    const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
+                    extPages.forEach(p => finalPdf.addPage(p));
+                } else if (file.type.startsWith('image/')) {
+                    const imgBytes = new Uint8Array(bytes);
+                    const embedded = file.type.includes('png') ?
+                        await finalPdf.embedPng(imgBytes) :
+                        await finalPdf.embedJpg(imgBytes);
+
+                    const page = finalPdf.addPage();
+                    const {
+                        width,
+                        height
+                    } = embedded.scale(0.5);
+                    page.drawImage(embedded, {
+                        x: 50,
+                        y: page.getHeight() - height - 50,
+                        width,
+                        height
+                    });
+                }
             }
-        });
 
-        // 📄 Step 2: Generate PDF from HTML
-        const htmlBlob = await html2pdf()
-            .set({
-                margin: 0.8,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            })
-            .from(element)
-            .outputPdf('blob');
-
-        const htmlBytes = await htmlBlob.arrayBuffer();
-        const finalPdf = await PDFLib.PDFDocument.create();
-        const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
-        const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
-        pages.forEach(p => finalPdf.addPage(p));
-
-        // ➕ Step 3: Add uploaded files
-        for (const key in uploadedFiles) {
-            const file = uploadedFiles[key];
-            const bytes = await file.arrayBuffer();
-
-            if (file.type === 'application/pdf') {
-                const extDoc = await PDFLib.PDFDocument.load(bytes);
-                const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
-                extPages.forEach(p => finalPdf.addPage(p));
-            } else if (file.type.startsWith('image/')) {
-                const imgBytes = new Uint8Array(bytes);
-                const embedded = file.type.includes('png') ?
-                    await finalPdf.embedPng(imgBytes) :
-                    await finalPdf.embedJpg(imgBytes);
-
-                const page = finalPdf.addPage();
-                const { width, height } = embedded.scale(0.5);
-                page.drawImage(embedded, {
-                    x: 50,
-                    y: page.getHeight() - height - 50,
-                    width,
-                    height
-                });
-            }
+            // 🔽 Step 4: Download
+            const finalBytes = await finalPdf.save();
+            const blob = new Blob([finalBytes], {
+                type: 'application/pdf'
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${cleanName}-KYC-Onboarding.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        // 🔽 Step 4: Download
-        const finalBytes = await finalPdf.save();
-        const blob = new Blob([finalBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${cleanName}-KYC-Onboarding.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-</script>
+        // ✅ Auto-trigger validateFile() on page load and bind blur
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                const msgId = input.getAttribute('data-msg-id');
+                const previewId = input.getAttribute('data-preview-id');
+
+                // Run on page load if file is already selected (browser may retain)
+                if (input.files.length > 0) {
+                    validateFile(input, msgId, previewId);
+                }
+
+                // Also trigger on blur
+                input.addEventListener('blur', function() {
+                    validateFile(this, msgId, previewId);
+                });
+            });
+        });
+    </script>
 
 
 

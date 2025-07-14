@@ -104,10 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
             $uploadedFiles[$field] = $targetPath;
         } else {
-            $uploadedFiles[$field] = '';
+            $uploadedFiles[$field] = 'Upload failed';
         }
     } else {
-        $uploadedFiles[$field] = '';
+        $uploadedFiles[$field] = 'No file or error';
     }
 }
 

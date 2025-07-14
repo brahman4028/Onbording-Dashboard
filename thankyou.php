@@ -57,11 +57,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     
     <!-- Left Text Section -->
     <div class="col-md-6 d-flex p-6 flex-column justify-content-center align-items-center text-center px-5">
-      <p class="text-muted mb-1" >Thankyou, <span class="text-primary"><?php echo htmlspecialchars($fullname); ?></span></p>
+      <div>
+        <img src="assets/images/itstarlogo.png" alt="" width="200px" class="mb-5">
+      </div>
+      <p class="text-muted mb-1" >Thankyo, <span class="text-primary"><?php echo htmlspecialchars($fullname); ?></span></p>
       <h1 class="mb-3" style="font-size: 60px;">We’ve Got Your Application</h1>
       <p class="mb-2">We've received your details and will review your application within 24 hours.</p>
       <p class="mb-4">You'll get a confirmation and next steps by email at <span class="text-primary"><?php echo htmlspecialchars($supportemail); ?></span> shortly.</p>
-      <a href="https://itstarpay.com/" class="btn btn-primary btn-back" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
+      <a href="https://itstarpay.com/" class="btn btn-primary btn-back mt-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
         Back to Home <i class="bx bx-send ms-1"></i>
       </a>
     </div>
