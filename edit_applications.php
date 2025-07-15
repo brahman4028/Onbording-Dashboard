@@ -206,7 +206,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             <div class="col-md-6">
                                                 <?php $selectedEntity = $appData['entity'] ?? ''; ?>
                                                 <label class="form-label">Type of Entity</label>
-                                                <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')" >
+                                                <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')">
                                                     <option selected disabled <?= $selectedEntity === '' ? 'selected' : '' ?>>--Select--</option>
                                                     <option value="Proprietorship" <?= $selectedEntity === 'Proprietorship' ? 'selected' : '' ?>>Proprietorship</option>
                                                     <option value="Partnership" <?= $selectedEntity === 'Partnership' ? 'selected' : '' ?>>Partnership</option>
@@ -793,7 +793,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 <div class="d-flex gap-2 mt-1">
                                                     <div>
                                                         <p>a. Minimum Amount</p>
-                                                        <input type="text" class="form-control mt-1" name="maxtransaction" onblur="setPreviewValue(this, 'mintransactionvalue')" value="<?= htmlspecialchars($appData['maxtransaction']) ?>">
+                                                        <input type="text" class="form-control mt-1" name="mintransaction" onblur="setPreviewValue(this, 'mintransactionvalue')" value="<?= htmlspecialchars($appData['mintransaction']) ?>">
                                                     </div>
                                                     <div>
                                                         <p>b. Maximum Amount</p>
@@ -1089,86 +1089,199 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaarpreview"></div>
+                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="panpreview"></div>
+                                                            <div id="panpreview"><?php if (!empty($docData['pan'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['panfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Photograph</td>
                                                         <td>
-                                                            <div id="photographpreview"></div>
+                                                            <div id="photographpreview"><?php if (!empty($docData['photograph'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
-                                                            <div id="addressfilepreview"></div>
+                                                            <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['addressfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
                                                         <td>
-                                                            <div id="coifilepreview"></div>
+                                                            <div id="coifilepreview"><?php if (!empty($docData['coifile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['coifile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Memorandum of Association (MOA)</td>
                                                         <td>
-                                                            <div id="moafilepreview"></div>
+                                                            <div id="moafilepreview"><?php if (!empty($docData['moafile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['moafile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Articles of Association (AOA) </td>
                                                         <td>
-                                                            <div id="aoafilepreview"></div>
+                                                            <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['aoafile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
                                                         <td>
-                                                            <div id="brfilepreview"></div>
+                                                            <div id="brfilepreview"><?php if (!empty($docData['brfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['brfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>UDYAM Registration Certificate (If Available)</td>
                                                         <td>
-                                                            <div id="udyamfilepreview"></div>
+                                                            <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['udyamfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>GSTIN Certificate</td>
                                                         <td>
-                                                            <div id="gstinfilepreview"></div>
+                                                            <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['gstinfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
                                                         <td>
-                                                            <div id="bofilepreview"></div>
+                                                            <div id="bofilepreview"><?php if (!empty($docData['bofile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['bofile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     </tr>
                                                     <tr>
                                                         <td>Cancelled Cheque</td>
                                                         <td>
-                                                            <div id="cancelledchequefile"></div>
+                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
                                                         <td>
-                                                            <div id="rentfilepreview"></div>
+                                                            <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['aadhaarrentfilefile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>ANNEXURE B Form with Signature and Stamp</td>
                                                         <td>
-                                                            <div id="annexurebfilepreview"></div>
+                                                            <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?></div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -1267,7 +1380,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 <label class="form-label">Appplication Status</label>
                                                 <select class="form-select" name="status" onblur="setPreviewValue(this, 'statusvalue')">
                                                     <option value="" disabled>-- please select -- </option>
-                                                    <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?> >In Review</option>
+                                                    <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
                                                     <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
                                                     <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                                     <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
@@ -1341,31 +1454,67 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     </script>
 
 
-<!-- select dropdowndown script -->
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-  const entity = "<?= $appData['entity'] ?? '' ?>";
-  const select = document.getElementById('entity');
-  if (select && entity) {
-    select.value = entity;
-    setPreviewValue(select, 'entityvalue');
-  }
-});
-</script>
+    <!-- select dropdowndown script -->
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const entity = "<?= $appData['entity'] ?? '' ?>";
+            const select = document.getElementById('entity');
+            if (select && entity) {
+                select.value = entity;
+                setPreviewValue(select, 'entityvalue');
+            }
+        });
+    </script>
 
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-  const entity = "<?= $appData['accounttype'] ?? '' ?>";
-  const select = document.getElementById('accounttype');
-  if (select && entity) {
-    select.value = entity;
-    setPreviewValue(select, 'accounttypevalue');
-  }
-});
-</script>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const entity = "<?= $appData['accounttype'] ?? '' ?>";
+            const select = document.getElementById('accounttype');
+            if (select && entity) {
+                select.value = entity;
+                setPreviewValue(select, 'accounttypevalue');
+            }
+        });
+    </script>
 
 
-<!--  -->
+    <!-- preview files -->
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const fileFields = [
+                'aadhaarfile', 'panfile', 'photograph', 'addressfile', 'coifile',
+                'moafile', 'aoafile', 'brfile', 'udyamfile', 'gstinfile',
+                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile'
+            ];
+
+            fileFields.forEach(field => {
+                const previewId = field + 'preview';
+                const previewEl = document.getElementById(previewId);
+
+                if (!previewEl) return;
+
+                // Look for anchor tag (already added by PHP)
+                const linkEl = document.querySelector(`a[href*="${field}"]`);
+                if (!linkEl) return;
+
+                const fileUrl = linkEl.getAttribute('href');
+                const fileName = fileUrl.split('/').pop();
+
+                // Show file name and working preview link
+                previewEl.innerHTML = `
+            <strong>${fileName}</strong><br>
+            <a href="${fileUrl}" target="_blank">📄 View File</a>
+        `;
+            });
+        });
+    </script>
+
+
+    <!-- ///////////////////// -->
+
+
+    <!--  -->
 
     <script>
         $(function() {
@@ -1555,115 +1704,117 @@ window.addEventListener("DOMContentLoaded", () => {
     </script>
 
 
- <!-- reflecting value on onload function -->
+    <!-- reflecting value on onload function -->
 
-     <script>
-window.addEventListener('DOMContentLoaded', () => {
-    // 👉 1. For normal inputs (text/date/email etc.)
-    document.querySelectorAll('input[name]:not([type="file"]), select[name], textarea[name]').forEach(el => {
-        const name = el.name;
-        const targetId = name + 'value';
-        const target = document.getElementById(targetId);
-        let value = el.value?.trim() || '—';
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // 👉 1. For normal inputs (text/date/email etc.)
+            document.querySelectorAll('input[name]:not([type="file"]), select[name], textarea[name]').forEach(el => {
+                const name = el.name;
+                const targetId = name + 'value';
+                const target = document.getElementById(targetId);
+                let value = el.value?.trim() || '—';
 
-        // Format date as DD/MM/YYYY if applicable
-        if (el.type === 'date' && value.includes('-')) {
-            const parts = value.split("-");
-            if (parts.length === 3) {
-                value = `${parts[2]}/${parts[1]}/${parts[0]}`;
-            }
-        }
-
-        if (target) target.textContent = value;
-    });
-
-    // 👉 2. For file inputs — we show just the filename in preview
-    document.querySelectorAll('input[type="file"][name]').forEach(input => {
-        const name = input.name; // e.g., 'aadhaarfile'
-        const previewId = name.replace('file', '') + 'preview'; // e.g., 'aadhaarpreview'
-        const preview = document.getElementById(previewId);
-
-        // Extract filename if already filled (from server-rendered value)
-        const fileName = input.defaultValue || input.getAttribute('value') || ''; // fallback
-        if (preview && fileName) {
-            const base = fileName.split(/[\\/]/).pop(); // clean up path if present
-            preview.innerHTML = `<strong>${base}</strong>`;
-        }
-    });
-});
-</script>
-
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('input[onblur]').forEach(el => {
-        const attr = el.getAttribute('onblur');
-
-        // Look for validatePAN(this, 'error-id', 'target-id')
-        const match = attr.match(/validatePAN\(this,\s*'[^']+',\s*'([^']+)'\)/);
-        if (match && match[1]) {
-            const targetId = match[1];
-            const target = document.getElementById(targetId);
-            const value = el.value?.trim() || '—';
-
-            if (target) target.textContent = value;
-        }
-    });
-});
-</script>
-
-<!-- Step 1: Pass PHP array to JavaScript -->
-<script>
-    const uploadedFileData = <?= json_encode($appData ?? []); ?>; // From PHP e.g. ['aadhaarfile' => 'aadhaar.pdf']
-</script>
-
-<!-- Step 2: Show all uploaded files in their respective preview divs -->
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        if (!uploadedFileData || typeof uploadedFileData !== 'object') return;
-
-        Object.entries(uploadedFileData).forEach(([key, fileName]) => {
-            if (!fileName || typeof fileName !== 'string') return;
-
-            // Transform 'aadhaarfile' => 'aadhaarpreview', 'panfile' => 'panpreview'
-            const previewId = key.replace('file', 'preview');
-            const previewDiv = document.getElementById(previewId);
-            const fileUrl = `uploads/${fileName}`; // Adjust if your upload path is different
-
-            if (previewDiv) {
-                previewDiv.innerHTML = ''; // Clear any old content
-
-                const ext = fileName.split('.').pop().toLowerCase();
-                const isImage = ['jpg', 'jpeg', 'png', 'webp'].includes(ext);
-
-                if (ext === 'pdf') {
-                    const link = document.createElement('a');
-                    link.href = fileUrl;
-                    link.textContent = `📄 ${fileName}`;
-                    link.target = '_blank';
-                    link.style.display = 'inline-block';
-                    link.style.marginTop = '6px';
-                    link.style.color = '#0d6efd';
-                    previewDiv.appendChild(link);
-                } else if (isImage) {
-                    const img = document.createElement('img');
-                    img.src = fileUrl;
-                    img.alt = fileName;
-                    img.style.maxWidth = '150px';
-                    img.style.border = '1px solid #ccc';
-                    img.style.marginTop = '6px';
-                    previewDiv.appendChild(img);
-                } else {
-                    previewDiv.textContent = fileName; // fallback plain name
+                // Format date as DD/MM/YYYY if applicable
+                if (el.type === 'date' && value.includes('-')) {
+                    const parts = value.split("-");
+                    if (parts.length === 3) {
+                        value = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                    }
                 }
-            }
+
+                if (target) target.textContent = value;
+            });
+
+            // 👉 2. For file inputs — we show just the filename in preview
+            document.querySelectorAll('input[type="file"][name]').forEach(input => {
+                const name = input.name; // e.g., 'aadhaarfile'
+                const previewId = name + 'preview'; // e.g., 'aadhaarpreview'
+                const preview = document.getElementById(previewId);
+
+                consol.log("ds")
+
+                // Extract filename if already filled (from server-rendered value)
+                const fileName = input.defaultValue || input.getAttribute('value') || ''; // fallback
+                if (preview && fileName) {
+                    const base = fileName.split(/[\\/]/).pop(); // clean up path if present
+                    preview.innerHTML = `<strong>${base}</strong>`;
+                }
+            });
         });
-    });
-</script>
+    </script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('input[onblur]').forEach(el => {
+                const attr = el.getAttribute('onblur');
+
+                // Look for validatePAN(this, 'error-id', 'target-id')
+                const match = attr.match(/validatePAN\(this,\s*'[^']+',\s*'([^']+)'\)/);
+                if (match && match[1]) {
+                    const targetId = match[1];
+                    const target = document.getElementById(targetId);
+                    const value = el.value?.trim() || '—';
+
+                    if (target) target.textContent = value;
+                }
+            });
+        });
+    </script>
+
+    <!-- Step 1: Pass PHP array to JavaScript -->
+    <script>
+        const uploadedFileData = <?= json_encode($appData ?? []); ?>; // From PHP e.g. ['aadhaarfile' => 'aadhaar.pdf']
+    </script>
+
+    <!-- Step 2: Show all uploaded files in their respective preview divs -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!uploadedFileData || typeof uploadedFileData !== 'object') return;
+
+            Object.entries(uploadedFileData).forEach(([key, fileName]) => {
+                if (!fileName || typeof fileName !== 'string') return;
+
+                // Transform 'aadhaarfile' => 'aadhaarpreview', 'panfile' => 'panpreview'
+                const previewId = key.replace('file', 'preview');
+                const previewDiv = document.getElementById(previewId);
+                const fileUrl = `uploads/${fileName}`; // Adjust if your upload path is different
+
+                if (previewDiv) {
+                    previewDiv.innerHTML = ''; // Clear any old content
+
+                    const ext = fileName.split('.').pop().toLowerCase();
+                    const isImage = ['jpg', 'jpeg', 'png', 'webp'].includes(ext);
+
+                    if (ext === 'pdf') {
+                        const link = document.createElement('a');
+                        link.href = fileUrl;
+                        link.textContent = `📄 ${fileName}`;
+                        link.target = '_blank';
+                        link.style.display = 'inline-block';
+                        link.style.marginTop = '6px';
+                        link.style.color = '#0d6efd';
+                        previewDiv.appendChild(link);
+                    } else if (isImage) {
+                        const img = document.createElement('img');
+                        img.src = fileUrl;
+                        img.alt = fileName;
+                        img.style.maxWidth = '150px';
+                        img.style.border = '1px solid #ccc';
+                        img.style.marginTop = '6px';
+                        previewDiv.appendChild(img);
+                    } else {
+                        previewDiv.textContent = fileName; // fallback plain name
+                    }
+                }
+            });
+        });
+    </script>
 
 
 
 
- <!-- //////////////// -->
+    <!-- //////////////// -->
 
 
     <!-- timestamp for pdf -->
