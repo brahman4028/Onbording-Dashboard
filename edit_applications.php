@@ -1524,6 +1524,116 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     </script>
 
 
+ <!-- reflecting value on onload function -->
+
+     <script>
+window.addEventListener('DOMContentLoaded', () => {
+    // 👉 1. For normal inputs (text/date/email etc.)
+    document.querySelectorAll('input[name]:not([type="file"]), select[name], textarea[name]').forEach(el => {
+        const name = el.name;
+        const targetId = name + 'value';
+        const target = document.getElementById(targetId);
+        let value = el.value?.trim() || '—';
+
+        // Format date as DD/MM/YYYY if applicable
+        if (el.type === 'date' && value.includes('-')) {
+            const parts = value.split("-");
+            if (parts.length === 3) {
+                value = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+        }
+
+        if (target) target.textContent = value;
+    });
+
+    // 👉 2. For file inputs — we show just the filename in preview
+    document.querySelectorAll('input[type="file"][name]').forEach(input => {
+        const name = input.name; // e.g., 'aadhaarfile'
+        const previewId = name.replace('file', '') + 'preview'; // e.g., 'aadhaarpreview'
+        const preview = document.getElementById(previewId);
+
+        // Extract filename if already filled (from server-rendered value)
+        const fileName = input.defaultValue || input.getAttribute('value') || ''; // fallback
+        if (preview && fileName) {
+            const base = fileName.split(/[\\/]/).pop(); // clean up path if present
+            preview.innerHTML = `<strong>${base}</strong>`;
+        }
+    });
+});
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('input[onblur]').forEach(el => {
+        const attr = el.getAttribute('onblur');
+
+        // Look for validatePAN(this, 'error-id', 'target-id')
+        const match = attr.match(/validatePAN\(this,\s*'[^']+',\s*'([^']+)'\)/);
+        if (match && match[1]) {
+            const targetId = match[1];
+            const target = document.getElementById(targetId);
+            const value = el.value?.trim() || '—';
+
+            if (target) target.textContent = value;
+        }
+    });
+});
+</script>
+
+<!-- Step 1: Pass PHP array to JavaScript -->
+<script>
+    const uploadedFileData = <?= json_encode($appData ?? []); ?>; // From PHP e.g. ['aadhaarfile' => 'aadhaar.pdf']
+</script>
+
+<!-- Step 2: Show all uploaded files in their respective preview divs -->
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (!uploadedFileData || typeof uploadedFileData !== 'object') return;
+
+        Object.entries(uploadedFileData).forEach(([key, fileName]) => {
+            if (!fileName || typeof fileName !== 'string') return;
+
+            // Transform 'aadhaarfile' => 'aadhaarpreview', 'panfile' => 'panpreview'
+            const previewId = key.replace('file', 'preview');
+            const previewDiv = document.getElementById(previewId);
+            const fileUrl = `uploads/${fileName}`; // Adjust if your upload path is different
+
+            if (previewDiv) {
+                previewDiv.innerHTML = ''; // Clear any old content
+
+                const ext = fileName.split('.').pop().toLowerCase();
+                const isImage = ['jpg', 'jpeg', 'png', 'webp'].includes(ext);
+
+                if (ext === 'pdf') {
+                    const link = document.createElement('a');
+                    link.href = fileUrl;
+                    link.textContent = `📄 ${fileName}`;
+                    link.target = '_blank';
+                    link.style.display = 'inline-block';
+                    link.style.marginTop = '6px';
+                    link.style.color = '#0d6efd';
+                    previewDiv.appendChild(link);
+                } else if (isImage) {
+                    const img = document.createElement('img');
+                    img.src = fileUrl;
+                    img.alt = fileName;
+                    img.style.maxWidth = '150px';
+                    img.style.border = '1px solid #ccc';
+                    img.style.marginTop = '6px';
+                    previewDiv.appendChild(img);
+                } else {
+                    previewDiv.textContent = fileName; // fallback plain name
+                }
+            }
+        });
+    });
+</script>
+
+
+
+
+ <!-- //////////////// -->
+
 
     <!-- timestamp for pdf -->
     <script>
