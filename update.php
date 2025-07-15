@@ -66,8 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_query($mysqli, $updateFilesQuery);
     }
 
+//     echo "<pre>";
+// print_r($_FILES);
+// echo "</pre>";
+
     // Redirect or display message
-    header("Location: thankyou.php?id=$application_id");
+    header("Location: update_confirm.php?id=$application_id");
     exit;
 } else {
     echo "❌ Invalid request method.";
