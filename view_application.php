@@ -92,6 +92,25 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             page-break-after: always;
             border: 1px solid #ddd;
         }
+        .autth-img-cover-login {
+    background-image: url('./assets/images/loginpage.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 100%;
+     height: 100%;/* or set a fixed height like 400px if needed */
+}
+
+.blr{
+	background-color:rgba(254, 254, 254, 0.8) !important;
+	backdrop-filter: blur(20px) !important;
+
+}
+
+.previewstruct td{
+    background-color:rgba(254, 254, 254, 0.8) !important;
+	backdrop-filter: blur(20px) !important;
+}
     </style>
 </head>
 
@@ -124,25 +143,25 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             <!-- ///////// -->
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
-                    <div class="card-body" style="padding: 0px;">
-                        <div id="stepper3" class="bs-stepper gap-0 vertical" style="height: 100%; ">
-                            <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div class="card-body blr" style="padding: 0px;">
+                        <div id="stepper3" class="bs-stepper gap-0 vertical blr" style="height: 100%; ">
+                            <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;" class="blr">
                                 <!-- route line -->
                                 <div class="bs-stepper-header" role="tablist">
                                     <div class="step" data-target="#test-vl-1">
                                         <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
                                             <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                             <div>
-                                                <h4 class=" mt-4 text-center" style="color:rgba(15, 15, 15, 1)">
+                                                <h5 class=" mt-4 text-center" style="color:rgba(15, 15, 15, 1)">
                                                     <?= htmlspecialchars($appData['businessname']) ?>'s Application
-                                                </h4>
+                                                </h5>
                                                 <p class="mb-0 steper-sub-title">Just a file Preview</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-relative" style="width: 100% ; height:100%;">
+                            <div class="position-relative autth-img-cover-login" style="width: 100% ; height:100%;">
 
                                 <!-- welcome -->
                                 <!-- welcome screen page  -->
@@ -160,15 +179,16 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                     <!-- declarations -->
 
                                     <!-- submission form -->
-                                    <div id="test-vl-1" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger1">
+                                    <div id="test-vl-1" role="tabpanel" class="bs-stepper-pane content fade wrapper " aria-labelledby="stepper3trigger1" >
 
                                         <!-- pdf html template -->
-                                        <div class="container border p-4 bg-white" id="kycPreview" style="
+                                        <div class="container border p-4 bg-white blr" id="kycPreview" style="
                                             width: 210mm;
                                             height: auto;
                                             overflow-y: scroll;
                                             padding: 15mm 10mm;
                                             background: white;
+                                            border-radius:10px;
                                             
                                             font-size: 12px; h4,
                                             h5 {
@@ -176,13 +196,14 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                margin-top: 24px;
                                                font-weight: bold;
                                                color:rgb(1, 60, 123);
-                                            }">
+                                            } "
+                                            >
 
                                             <!-- timestamp -->
                                             <table class="table" id="kycPreview" style="border: none !important;">
                                                 <thead style="border: none !important;">
                                                     <tr style="border: none !important;">
-                                                        <td colspan="2" class="text-end" style="border: none !important;">
+                                                        <td colspan="2" class="text-end" style="border: none !important; background:none;">
                                                             <strong>Date & Time:</strong> <span id="currentDateTime"></span>
                                                         </td>
                                                     </tr>
@@ -671,12 +692,12 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         <!-- preview file -->
 
 
-                                        <div style="width: 780px; margin:auto;">
+                                        <div style="width: 780px; margin:auto;" class="previewstruct">
 
-                                            <table class="table table-bordered mt-4 text-center">
+                                            <table class="table table-bordered mt-4 text-center" class="blr">
 
-                                                <tr>
-                                                    <td>
+                                                <tr class="">
+                                                    <td class="blr">
                                                         <strong>Aadhaar Card</strong><br>
 
                                                         <?php if (!empty($docData['aadhaarfile'])): ?>
@@ -874,17 +895,17 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         </div>
 
                                         <!-- /////////////// -->
-                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
-                                            <p class="mb-2 mt-3"> File will be downloaded with your attached Documents * </p>
+                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column; color:white;">
+                                            <p class="mb-2 mt-3" > File will be downloaded with your attached Documents * </p>
                                             <button type="button" class="btn text-center btn-success mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 253, 137, 0.62); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
                                         </div>
 
 
                                         <!--  -->
                                         <!-- declaration points -->
-                                        <div class="row g-3 mt-4">
+                                        <div class="row g-3 mt-4 blr p-4 m-auto" style="max-width: 780px; border-radius:10px">
                                             <p class=" text-muted">
-                                                Kindly update merchant's application status.*
+                                                 Merchant's application status.*
                                             </p>
                                             <div class="col-md-6 ">
                                                 <?php $selectedEntity3 = $appData['status'] ?? ''; ?>

@@ -69,6 +69,32 @@
             page-break-after: always;
             border: 1px solid #ddd;
         }
+
+        .autth-img-cover-login {
+    background-image: url('./assets/images/loginpage.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 100%;
+     height: 100%;/* or set a fixed height like 400px if needed */
+}
+
+.blr{
+	background-color:rgba(254, 254, 254, 0.8) !important;
+	backdrop-filter: blur(20px) !important;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="url"]  {
+    background-color:rgba(255, 255, 255, 0.62) !important; /* Replace with any color you want */
+}
+
+
     </style>
 </head>
 
@@ -93,7 +119,7 @@
                             <li class="nav-item me-2"> <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
                             </li>
 
-                            <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx bx-user me-1'></i>Admin Login <div class="text-light ms-1"></button>
+                            <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx bx-user me-1'></i><a href="merchants-dashboard.php" style="color: white;" target="_blank">Admin Login </a><div class="text-light ms-1"></button>
                         </ul>
                     </div>
                 </div>
@@ -175,7 +201,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-relative" style="width: 100% ; height:100%;">
+                            <div class="position-relative autth-img-cover-login" style="width: 100% ; height:100%;">
 
                                 <!-- welcome -->
                                 <!-- welcome screen page  -->
@@ -200,16 +226,16 @@
                                 </div>
 
 
-                                <div class="bs-stepper-content px-5 py-5 " style="height: 750px; overflow-y: scroll !important;">
+                                <div class="bs-stepper-content px-5 py-5 " style="height: 750px; overflow-y: scroll !important; ">
                                     <!-- business details -->
-                                    <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
+                                    <div id="test-vl-1" class="bs-stepper-pane fade blr p-5 " style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger1">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Please fill in your business information to help us verify your identity and activate features like vendor payouts, salary disbursements, and invoice management & so more.</p>
                                         </div>
                                         <hr class="my-4">
 
-                                        <div class="row g-3">
+                                        <div class="row g-3 " style="border-radius: ;">
                                             <div class="col-md-6">
                                                 <label class="form-label">Business Name</label>
                                                 <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')">
@@ -318,7 +344,7 @@
                                         </div>
                                     </div>
                                     <!-- authorization details -->
-                                    <div id="test-vl-2" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger2">
+                                    <div id="test-vl-2" class="bs-stepper-pane fade blr p-5" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger2">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Authorized Signatory Details</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -407,7 +433,7 @@
 
                                     </div>
                                     <!-- Bank Account details -->
-                                    <div id="test-vl-3" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger3">
+                                    <div id="test-vl-3" class="bs-stepper-pane fade blr p-5" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger3">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Bank Account Details</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -472,7 +498,7 @@
 
                                     </div>
                                     <!-- document submission -->
-                                    <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger4">
+                                    <div id="test-vl-4" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade" aria-labelledby="stepper3trigger4">
 
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Required Documents</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -623,7 +649,7 @@
                                         </div>
                                     </div>
                                     <!-- declarations -->
-                                    <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger5">
+                                    <div id="test-vl-5" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade" aria-labelledby="stepper3trigger5">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Authorized Declarations & Consent</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Read the following declarations carefully. These include your consent to data usage, identity verification, and acceptance of platform terms and conditions.</p>
@@ -758,7 +784,7 @@
                                         </div>
                                     </div>
                                     <!-- submission form -->
-                                    <div id="test-vl-6" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger6">
+                                    <div id="test-vl-6" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade" aria-labelledby="stepper3trigger6">
 
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Your Application</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -766,7 +792,7 @@
                                         </div>
                                         <hr class="my-4">
                                         <!-- pdf html template -->
-                                        <div class="container border p-4 bg-white" id="kycPreview" style="
+                                        <div class="container border p-4 bg-white blr" id="kycPreview" style="
                                             width: 210mm;
                                             height: auto;
                                             overflow-y: scroll;

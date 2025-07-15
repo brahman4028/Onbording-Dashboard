@@ -92,6 +92,33 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             page-break-after: always;
             border: 1px solid #ddd;
         }
+
+               .autth-img-cover-login {
+    background-image: url('./assets/images/loginpage.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 100%;
+     height: 100%;/* or set a fixed height like 400px if needed */
+}
+
+.blr{
+	background-color:rgba(254, 254, 254, 0.8) !important;
+	backdrop-filter: blur(20px) !important;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="url"]  {
+    background-color:rgba(255, 255, 255, 0.62) !important; /* Replace with any color you want */
+}
+
+
+
     </style>
 </head>
 
@@ -185,7 +212,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-relative" style="width: 100% ; height:100%;">
+                            <div class="position-relative autth-img-cover-login" style="width: 100% ; height:100%;">
 
                                 <!-- welcome -->
                                 <!-- welcome screen page  -->
@@ -193,7 +220,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                 <div class="bs-stepper-content px-5 py-5 " style="height: 750px; overflow-y: scroll !important;">
                                     <!-- business details -->
-                                    <div id="test-vl-1" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger1">
+                                    <div id="test-vl-1" class="bs-stepper-pane fade blr p-4" style="border-radius:10px" role="tabpanel" aria-labelledby="stepper3trigger1">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Edit Business Profile</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Please fill in your business information to help us verify your identity and activate features like vendor payouts, salary disbursements, and invoice management & so more.</p>
@@ -305,7 +332,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         </div>
                                     </div>
                                     <!-- authorization details -->
-                                    <div id="test-vl-2" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger2">
+                                    <div id="test-vl-2" class="bs-stepper-pane fade blr p-4" style="border-radius:10px"  role="tabpanel" aria-labelledby="stepper3trigger2">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Authorized Signatory Details</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -394,7 +421,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                     </div>
                                     <!-- Bank Account details -->
-                                    <div id="test-vl-3" class="bs-stepper-pane fade" role="tabpanel" aria-labelledby="stepper3trigger3">
+                                    <div id="test-vl-3" class="bs-stepper-pane fade blr p-4" style="border-radius:10px"  role="tabpanel" aria-labelledby="stepper3trigger3">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Bank Account Details</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -469,7 +496,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                     </div>
                                     <!-- document submission -->
-                                    <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger4">
+                                    <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px"  aria-labelledby="stepper3trigger4">
 
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Submit Required Documents</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -729,7 +756,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         </div>
                                     </div>
                                     <!-- declarations -->
-                                    <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger5">
+                                    <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px"  aria-labelledby="stepper3trigger5">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Authorized Declarations & Consent</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Read the following declarations carefully. These include your consent to data usage, identity verification, and acceptance of platform terms and conditions.</p>
@@ -862,7 +889,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         </div>
                                     </div>
                                     <!-- submission form -->
-                                    <div id="test-vl-6" role="tabpanel" class="bs-stepper-pane content fade" aria-labelledby="stepper3trigger6">
+                                    <div id="test-vl-6" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px"  aria-labelledby="stepper3trigger6">
 
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Submit Your Application</h2>
                                         <div class="" style="margin-right: 300px;">

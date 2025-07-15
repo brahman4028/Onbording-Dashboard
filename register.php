@@ -2,10 +2,10 @@
 session_start();
 
 // Redirect if user is not logged in
-if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
-    header("Location: login.php");
-    exit();
-}
+// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 // Redirect if user is not admin
 if ($_SESSION['user']['role'] !== 'admin') {
@@ -18,23 +18,42 @@ require_once './db.php';
 ?>
 <?php include 'middleware.php'; ?>
 <?php include 'template/header.php'; ?>
+
+<style> 
+.autth-img-cover-login {
+    background-image: url('./assets/images/loginpage.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 100%;
+     height: 100%;/* or set a fixed height like 400px if needed */
+}
+
+.blr{
+	background-color:rgba(254, 254, 254, 0.8) !important;
+	backdrop-filter: blur(20px) !important;
+
+}
+
+</style>
+
 <!--wrapper-->
-<div class="wrapper">
+<div class="wrapper autth-img-cover-login">
 	<div class="section-authentication-cover">
 		<div class="">
 			<div class="row g-0">
 
 				<div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex">
 
-					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0">
+					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0 autth-img-cover-login">
 						<div class="card-body">
-							<img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" />
+							<!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
 						</div>
 					</div>
 
 				</div>
 
-				<div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+				<div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center blr">
 					<div class="card rounded-0 m-3 shadow-none bg-transparent mb-0">
 						<div class="card-body p-sm-5">
 							<div class="">

@@ -1,216 +1,85 @@
-<?php
+<?php include 'template/header.php'; ?>
+<!--wrapper-->
 
-include 'db.php';
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Helper function to sanitize input
-    function clean($data) {
-        return htmlspecialchars(strip_tags(trim($data)));
-    }
-
-    // Text fields
-    $entity = clean($_POST['entity']);
-    $doi = clean($_POST['oi']);
-    $nob = clean($_POST['nob']);
-    $businesscategory = clean($_POST['businesscategory']);
-    $businesssubcategory = clean($_POST['businesssubcategory']);
-    $gstin = clean($_POST['gstin']);
-    $pan = clean($_POST['pan']);
-    $registeredbsuiness = clean($_POST['registeredbsuiness']);
-    $operatingaddress = clean($_POST['operatingaddress']);
-    $url = clean($_POST['url']);
-    $businessnumber = clean($_POST['businessnumber']);
-    $alternnumber = clean($_POST['alternnumber']);
-    $supportemail = clean($_POST['supportemail']);
-
-    $fullname = clean($_POST['fullname']);
-    $designation = clean($_POST['designation']);
-    $number = clean($_POST['number']);
-    $personalemail = clean($_POST['personalemail']);
-    $aadhaarnumber = clean($_POST['aadhaarnumber']);
-    $pannumber = clean($_POST['pannumber']);
-
-    $fullnameadn = clean($_POST['fullnameadn']);
-    $designationadn = clean($_POST['designationadn']);
-    $numberadn = clean($_POST['numberadn']);
-    $personalemailadn = clean($_POST['personalemailadn']);
-    $aadhaarnumberadn = clean($_POST['aadhaarnumberadn']);
-    $pannumberadn = clean($_POST['pannumberadn']);
-
-    $totalvolume = clean($_POST['totalvolume']);
-    $numberofusers = clean($_POST['numberofusers']);
-    $sixmonthprojectionamount = clean($_POST['sixmonthprojectionamount']);
-    $sixmonthprojectionuser = clean($_POST['sixmonthprojectionuser']);
-    $numoftransactions = clean($_POST['numoftransactions']);
-    $disbursedamount = clean($_POST['disbursedamount']);
-    $mintransaction = clean($_POST['mintransaction']);
-    $maxtransaction = clean($_POST['maxtransaction']);
-    $thresholdlimit = clean($_POST['thresholdlimit']);
-
-    // File Uploads
-    $uploadDir = 'uploads/';
-    $uploadedFiles = [];
-    $fileFields = [
-        'aadhaarfile', 'personalpanfile', 'photograph', 'addressfile', 'coifile', 'moafile',
-        'aoafile', 'brfile', 'udyamfile', 'gstinfile', 'bofile', 'rentfile', 'annexurebfile'
-    ];
-
-    foreach ($fileFields as $field) {
-        if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
-            $filename = basename($_FILES[$field]['name']);
-            $targetPath = $uploadDir . uniqid() . "_" . $filename;
-            if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-                $uploadedFiles[$field] = $targetPath;
-            } else {
-                $uploadedFiles[$field] = 'Upload failed';
-            }
-        } else {
-            $uploadedFiles[$field] = 'No file or error';
-        }
-    }
-
-    // Example output (you can replace this with DB insert logic)
-    echo "<h3>Form Submitted Successfully</h3><pre>";
-    print_r([
-        'entity' => $entity,
-        'doi' => $doi,
-        'nob' => $nob,
-        'businesscategory' => $businesscategory,
-        'businesssubcategory' => $businesssubcategory,
-        'gstin' => $gstin,
-        'pan' => $pan,
-        'registeredbsuiness' => $registeredbsuiness,
-        'operatingaddress' => $operatingaddress,
-        'url' => $url,
-        'businessnumber' => $businessnumber,
-        'alternnumber' => $alternnumber,
-        'supportemail' => $supportemail,
-        'fullname' => $fullname,
-        'designation' => $designation,
-        'number' => $number,
-        'personalemail' => $personalemail,
-        'aadhaarnumber' => $aadhaarnumber,
-        'pannumber' => $pannumber,
-        'fullnameadn' => $fullnameadn,
-        'designationadn' => $designationadn,
-        'numberadn' => $numberadn,
-        'personalemailadn' => $personalemailadn,
-        'aadhaarnumberadn' => $aadhaarnumberadn,
-        'pannumberadn' => $pannumberadn,
-        'totalvolume' => $totalvolume,
-        'numberofusers' => $numberofusers,
-        'sixmonthprojectionamount' => $sixmonthprojectionamount,
-        'sixmonthprojectionuser' => $sixmonthprojectionuser,
-        'numoftransactions' => $numoftransactions,
-        'disbursedamount' => $disbursedamount,
-        'mintransaction' => $mintransaction,
-        'maxtransaction' => $maxtransaction,
-        'thresholdlimit' => $thresholdlimit,
-        'uploadedFiles' => $uploadedFiles
-    ]);
-    echo "</pre>";
-} else {
-    echo "<h4>Invalid request method.</h4>";
+<style> 
+.auth-img-cover-login {
+    background-image: url('./assets/images/loginpage.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh; /* or set a fixed height like 400px if needed */
 }
 
+</style>
+
+<div class="wrapper">
+	<div class="section-authentication-cover">
+		<div class="">
+			<div class="row g-0">
+
+				<div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex">
+
+					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0 auth-img-cover-login">
+						<div class="card-body">
+							<!--<img src="./assets/images/login-images/login-cover.svg" class="img-fluid auth-img-cover-login" width="650" alt="" />-->
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+					<div class="card rounded-0 m-3 shadow-none bg-transparent mb-0">
+						<div class="card-body p-sm-5">
+							<div class="">
+								<div class="mb-3 text-center">
+									<img src="./assets/images/itstarlogo.png" width="120" alt="">
+								</div>
+								<div class="text-center mb-4">
+									<h5 class="">ItStarPay Admin</h5>
+									<p class="mb-0">Please log in to your account</p>
+								</div>
+								<div class="form-body">
+									<form class="row g-3" action="auth/login_process.php" method="POST">
+										<div class="col-12">
+											<label for="inputEmailAddress" class="form-label">Email</label>
+											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="jhon@example.com" required>
+										</div>
+
+										<div class="col-12">
+											<label for="inputChoosePassword" class="form-label">Password</label>
+											<div class="input-group" id="show_hide_password">
+												<input type="password" class="form-control border-end-0" name="password" id="inputChoosePassword" placeholder="Enter Password" required>
+												<a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
+											</div>
+										</div>
 
 
-?>
+										<div class="col-12">
+											<div class="d-grid">
+												<button type="submit" class="btn btn-primary">Sign in</button>
+											</div>
+										</div>
 
+										<div class="col-12">
+											<div class="text-center">
+												<p class="mb-0">Don't have an account yet? <a href="register.php">Sign up here</a></p>
+											</div>
+										</div>
+									</form>
 
+								</div>
+								<div class="login-separater text-center mb-5"> <span>OR SIGN IN WITH</span>
+									<hr>
+								</div>
 
-<input type="text" oninput="document.getElementById('val_gstin').innerText = this.value" placeholder="Enter GSTIN">
+							</div>
+						</div>
+					</div>
+				</div>
 
-
-<div class="d-flex justify-content-center align-items-center">
-                                            <button type="button" class="btn text-center btn-primary mb-4 mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
-                                        </div>
-
-
-   <!-- pdf generator -->
-    <!-- <script>
-        function downloadKYC() {
-            const element = document.getElementById('kycPreview');
-            const businessName = document.getElementById('nob').value.trim() || 'KYC';
-
-            // Sanitize filename (remove spaces/special chars)
-            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
-
-
-            const opt = {
-                margin: 0.8,
-                filename: `${cleanName}-KYC-Onboarding.pdf`,
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 2
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a4',
-                    orientation: 'portrait'
-                }
-            };
-
-            html2pdf().set(opt).from(element).save();
-        }
-    </script> -->
-    <!-- validateFile -->
-
-    <!-- <script>
-        const uploadedFiles = {}; // Global object to track files
-
-        function validateFile(input, msgId, previewId) {
-            const file = input.files[0];
-            const msg = document.getElementById(msgId);
-            const preview = document.getElementById(previewId);
-            const inputId = input.id;
-
-            msg.innerText = '';
-            preview.innerHTML = '';
-
-            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-            const maxSize = 2 * 1024 * 1024;
-
-            // Validation
-            if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
-                msg.innerText = "❌ Invalid or too large file.";
-                msg.style.color = "red";
-                input.value = '';
-                return;
-            }
-
-            // Save file reference
-            uploadedFiles[inputId] = file;
-
-            // Show file name
-            msg.innerText = "✅ File is valid.";
-            msg.style.color = "green";
-            preview.innerHTML = `<strong>${file.name}</strong><br>`;
-
-            // Preview logic
-            if (file.type === "application/pdf") {
-                const iframe = document.createElement("iframe");
-                iframe.src = URL.createObjectURL(file);
-                iframe.style.width = "100%";
-                iframe.style.height = "400px";
-                iframe.style.border = "1px solid #ccc";
-                preview.appendChild(iframe);
-            } else if (file.type.startsWith("image/")) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.style.maxWidth = "100%";
-                    img.style.border = "1px solid #ccc";
-                    img.style.marginTop = "10px";
-                    preview.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script> -->
-
+			</div>
+			<!--end row-->
+		</div>
+	</div>
+</div>
+<?php include 'template/footer.php'; ?>
