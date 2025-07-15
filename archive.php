@@ -21,7 +21,7 @@ if ($row = mysqli_fetch_assoc($result)) {
     // Step 3: Update and redirect
     $update = "UPDATE business_applications SET merchant_trash = '$newValue' WHERE id = $id";
     if (mysqli_query($mysqli, $update)) {
-        header("Location: $redirect");
+        header("Location: merchants-list.php");
         exit;
     } else {
         echo "❌ Update failed: " . mysqli_error($mysqli);

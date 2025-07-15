@@ -14,7 +14,7 @@ if ($_SESSION['user']['role'] !== 'admin') {
 }
 
 // Continue with registration logic below...
-require_once '../db.php';
+require_once './db.php';
 ?>
 <?php include 'middleware.php'; ?>
 <?php include 'template/header.php'; ?>

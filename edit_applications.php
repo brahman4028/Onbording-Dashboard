@@ -107,10 +107,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                         <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
-                            <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="https://itstarpay.com/contact-us"><i class='stepper-circle bx bx-user-plus me-1 fs-3'></i>Add new Merchant</a>
+                            <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="business_applications.php" target="_blank"><i class='stepper-circle bx bx-user-plus me-1 fs-3'></i> Add new Merchant</a>
                             </li>
 
-                            <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span>Go to Dashboard </span>
+                            <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span><a href="merchants-list.php" target="_blank" style="color:white !important;">Go to Dashboard </a></span>
                                 <div class="text-light ms-1">
                             </button>
                         </ul>
@@ -1102,9 +1102,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="panpreview"><?php if (!empty($docData['pan'])): ?>
+                                                            <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['panfile'] ?>" target="_blank">
+                                                                        <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -1259,7 +1259,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['aadhaarrentfilefile'] ?>" target="_blank">
+                                                                        <a href="<?= $docData['rentfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>

@@ -37,7 +37,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       font-size: 60px !important;
     }
     .thankyou-img {
-      background: url('./assets/images/parrot.jpg') no-repeat center center;
+      background: url('./assets/images/user.webp') no-repeat center center;
       background-size: cover;
       height: 100%;
       width: 100%;

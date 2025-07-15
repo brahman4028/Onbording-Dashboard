@@ -25,57 +25,49 @@
 						<div class="menu-title">Merchants List</div>
 					</a>
 				</li>
-<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
-				<li>
-					<a class="has-arrow" href="#">
-						<div class="parent-icon"><i class="bx bx-lock"></i>
-						</div>
-						<div class="menu-title">Authentication</div>
-					</a>
-					<ul>
-						<li>
-						<li><a href="login.php" target="_blank"><i class='bx bx-radio-circle'></i>Login</a></li>
-						
+				<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+					<li>
+						<a class="has-arrow" href="#">
+							<div class="parent-icon"><i class="bx bx-lock"></i>
+							</div>
+							<div class="menu-title">Authentication</div>
+						</a>
+						<ul>
+							<li>
+							<li><a href="login.php" target="_blank"><i class='bx bx-radio-circle'></i>Login</a></li>
+
 							<li>
 								<a href="register.php" target="_blank">
-									<i class='bx bx-radio-circle'></i> Register
+									<i class='bx bx-radio-circle'></i> Add New User
 								</a>
 							</li>
-						
 
-				</li>
+
+					</li>
 			</ul>
 			</li>
-			<?php endif; ?>
-			<!-- <li>
-				<a href="user-profile.html">
-					<div class="parent-icon"><i class="bx bx-user-circle"></i>
-					</div>
-					<div class="menu-title">User Profile</div>
-				</a>
-			</li> -->
-
+		<?php endif; ?>
+		<li>
+			<a href="https://itstarpay.com/contact-us/">
+				<div class="parent-icon"><i class="bx bx-support"></i>
+				</div>
+				<div class="menu-title">Support</div>
+			</a>
+		</li>
+		</ul>
+		<hr class="mt-2">
+<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+		<ul class="metismenu" id="menu1" style="margin-top: -15px !important;">
 			<li>
-				<a href="https://itstarpay.com/contact-us/">
-					<div class="parent-icon"><i class="bx bx-support"></i>
-					</div>
-					<div class="menu-title">Support</div>
-				</a>
-			</li>
-			</ul>
-			<hr class="mt-2">
-
-			<ul class="metismenu" id="menu1" style="margin-top: -15px !important;">
-				<li>
 				<a href="trash.php" style="color:#ff4e4e;">
-					<div class="parent-icon" ><i class="bx bx-trash"></i>
+					<div class="parent-icon"><i class="bx bx-trash"></i>
 					</div>
 					<div class="menu-title">Trash</div>
 				</a>
 			</li>
-			</ul>
-		
-			<!--end navigation-->
+		</ul>
+<?php endif; ?>
+		<!--end navigation-->
 		</div>
 		<!--end sidebar wrapper -->
 
@@ -133,16 +125,21 @@
 					</div>
 					<div class="user-box dropdown px-3">
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+							<img src="assets/images/user.webp" class="user-img" alt="user avatar">
 							<div class="user-info">
-								<p class="user-name mb-0">Pauline Seitz</p>
-								<p class="designattion mb-0">Web Designer</p>
+								<p class="user-name mb-0">
+									<?php echo isset($_SESSION['user']['username']) ? htmlspecialchars($_SESSION['user']['username']) : 'Guest'; ?>
+								</p>
+								<p class="designattion mb-0">
+									<?php echo isset($_SESSION['user']['role']) ? ucfirst(htmlspecialchars($_SESSION['user']['role'])) : 'Unknown Role'; ?>
+								</p>
 							</div>
+
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-													<li><a class="dropdown-item d-flex align-items-center" href="index.php"><i class="bx bx-home-circle fs-5"></i><span>Dashboard</span></a>
+							<li><a class="dropdown-item d-flex align-items-center" href="index.php"><i class="bx bx-home-circle fs-5"></i><span>Dashboard</span></a>
 							</li>
-						
+
 							<li>
 								<div class="dropdown-divider mb-0"></div>
 							</li>

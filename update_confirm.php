@@ -61,7 +61,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         <img src="assets/images/itstarlogo.png" alt="" width="200px" class="mb-5">
       </div>
       <h1 class="mb-3" style="font-size: 60px;">File has been updated Successfully</h1>
-      <a href="/Onbording-Dashboard/merchants-list.php" class="btn btn-primary btn-back mt-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
+      <a href="/Onbording-Dashboard/" class="btn btn-primary btn-back mt-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
         Back to Home <i class="bx bx-send ms-1"></i>
       </a>
     </div>

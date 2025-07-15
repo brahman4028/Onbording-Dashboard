@@ -10,7 +10,6 @@ include 'db.php';
 
 	<div class="page-wrapper">
 		<div class="page-content">
-
 			<!-- Breadcrumb -->
 			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 				<div class="breadcrumb-title pe-3">Merchants List</div>
@@ -24,17 +23,14 @@ include 'db.php';
 				</div>
 			</div>
 			<!-- End Breadcrumb -->
-
 			<?php
 			// Pagination setup
-			$limit = 5;
+			$limit = 10;
 			$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
 			if ($page <= 0) $page = 1;
 			$offset = ($page - 1) * $limit;
-
 			// Filter merchant_id (static 'n' or dynamic via session)
 			$merchant_id = 'n';
-
 			// Total records with condition
 			$total_result = mysqli_query($mysqli, "SELECT COUNT(*) AS total FROM business_applications WHERE merchant_trash = '$merchant_id'");
 			if (!$total_result) {
@@ -51,7 +47,6 @@ include 'db.php';
 				die("Data Query Failed: " . mysqli_error($mysqli));
 			}
 			?>
-
 			<div class="card">
 				<div class="card-body">
 
@@ -96,8 +91,8 @@ include 'db.php';
 										<td>{$status}</td>
 										<td>{$created_at}</td>
 										<td>
-											<a href='view-pdf.php?id={$id}' target='_blank' class='btn btn-primary btn-sm radius-30 px-4'>View PDF</a>
-										</td>";
+    <a href='view_application.php?id=" . $id . "' target='_blank' class='btn btn-primary btn-sm radius-30 px-4'>Vie PDF</a>
+</td>";
 
 									// Show edit/delete buttons only if user is admin
 									if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {

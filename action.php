@@ -64,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (
         empty($entity) || empty($doi) || empty($nob) || empty($gstin) || empty($pan) ||
-        empty($fullname) || empty($number) || empty($aadhaarnumber) || empty($totalvolume)
+        empty($fullname) || empty($number) || empty
+        
+        ($aadhaarnumber) || empty($totalvolume)
     ) {
         echo "<h4>Error: Required fields are missing. Please fill all mandatory fields.</h4>";
         exit;
@@ -110,8 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uploadedFiles[$field] = '';
     }
 }
-
-
 
     // Example output (you can replace this with DB insert logic)
     echo "<h3>Form Submitted Successfully</h3><pre>";
@@ -161,7 +161,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
     echo "</pre>";
 
-
     $dupCheck = $mysqli->query("
     SELECT id FROM business_applications 
     WHERE gstin = '$gstin' 
@@ -178,8 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         exit;
     }
-
-
     $query = "INSERT INTO business_applications (
         businessname, applicantname, entity, doi, nob, businesscategory, businesssubcategory, gstin, pan,
         registeredbsuiness, operatingaddress, url, businessnumber, alternnumber, supportemail,
