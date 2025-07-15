@@ -204,14 +204,15 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             </div>
 
                                             <div class="col-md-6">
+                                                <?php $selectedEntity = $appData['entity'] ?? ''; ?>
                                                 <label class="form-label">Type of Entity</label>
-                                                <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')" value="<?= htmlspecialchars($appData['entity']) ?>">
-                                                    <option selected disabled>--Select--</option>
-                                                    <option value="Proprietorship">Proprietorship</option>
-                                                    <option value="Partnership">Partnership</option>
-                                                    <option value="Pvt. Ltd.">Pvt. Ltd.</option>
-                                                    <option value="LLP">LLP</option>
-                                                    <option value="Public Ltd.">Public Ltd.</option>
+                                                <select class="form-select" name="entity" onblur="setPreviewValue(this, 'entityvalue')" >
+                                                    <option selected disabled <?= $selectedEntity === '' ? 'selected' : '' ?>>--Select--</option>
+                                                    <option value="Proprietorship" <?= $selectedEntity === 'Proprietorship' ? 'selected' : '' ?>>Proprietorship</option>
+                                                    <option value="Partnership" <?= $selectedEntity === 'Partnership' ? 'selected' : '' ?>>Partnership</option>
+                                                    <option value="Pvt. Ltd." <?= $selectedEntity === 'Pvt. Ltd.' ? 'selected' : '' ?>>Pvt. Ltd.</option>
+                                                    <option value="LLP" <?= $selectedEntity === 'LLP' ? 'selected' : '' ?>>LLP</option>
+                                                    <option value="Public Ltd." <?= $selectedEntity === 'Public Ltd.' ? 'selected' : '' ?>>Public Ltd.</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
@@ -429,11 +430,12 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                             </div>
                                             <div class="col-md-6">
+                                                <?php $selectedEntity1 = $appData['accounttype'] ?? ''; ?>
                                                 <label class="form-label">Account Type</label>
-                                                <select class="form-select" name="accounttype" onblur="setPreviewValue(this, 'accounttypevalue')" value="<?= htmlspecialchars($appData['accounttype']) ?>">
-                                                    <option selected disabled>--Select--</option>
-                                                    <option value="Saving Account">Saving Account</option>
-                                                    <option value="Current Account">Current Account</option>
+                                                <select class="form-select" name="accounttype" onblur="setPreviewValue(this, 'accounttypevalue')">
+                                                    <option selected disabled <?= $selectedEntity1 === '' ? 'selected' : '' ?>>--Select--</option>
+                                                    <option value="Saving Account" <?= $selectedEntity1 === 'Saving Account' ? 'selected' : '' ?>>Saving Account</option>
+                                                    <option value="Current Account" <?= $selectedEntity1 === 'Current Account' ? 'selected' : '' ?>>Current Account</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
@@ -1261,18 +1263,20 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 Kindly update merchant's application status.*
                                             </p>
                                             <div class="col-md-6 ">
+                                                <?php $selectedEntity3 = $appData['status'] ?? ''; ?>
                                                 <label class="form-label">Appplication Status</label>
                                                 <select class="form-select" name="status" onblur="setPreviewValue(this, 'statusvalue')">
-                                                    <option value="In Review" default>In Review</option>
-                                                    <option value="PVerified">Verified</option>
-                                                    <option value="Cancelled">Cancelled</option>
-                                                    <option value="Pending">Pending</option>
+                                                    <option value="" disabled>-- please select -- </option>
+                                                    <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?> >In Review</option>
+                                                    <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
+                                                    <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                                                    <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
                                                     <option value="Documents not completed<">Documents not completed</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label">Comment</label>
-                                                <input type="text" class="form-control" name="comment" id="comment" onblur="setPreviewValue(this, 'commentvalue')" placeholder="Reason of Pending or Cancellation">
+                                                <input type="text" class="form-control" name="comment" id="comment" onblur="setPreviewValue(this, 'commentvalue')" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['coment']) ?>">
                                             </div>
 
                                         </div>
@@ -1335,6 +1339,33 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     <script>
         new PerfectScrollbar(".app-container")
     </script>
+
+
+<!-- select dropdowndown script -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const entity = "<?= $appData['entity'] ?? '' ?>";
+  const select = document.getElementById('entity');
+  if (select && entity) {
+    select.value = entity;
+    setPreviewValue(select, 'entityvalue');
+  }
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const entity = "<?= $appData['accounttype'] ?? '' ?>";
+  const select = document.getElementById('accounttype');
+  if (select && entity) {
+    select.value = entity;
+    setPreviewValue(select, 'accounttypevalue');
+  }
+});
+</script>
+
+
+<!--  -->
 
     <script>
         $(function() {
