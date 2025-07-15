@@ -118,7 +118,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 </div>
             </nav>
         </header>
-        <form action="action.php" method="POST" enctype="multipart/form-data">
+        <form action="update.php" method="POST" enctype="multipart/form-data">
+            <!-- for passing the id field -->
+            <input type="hidden" name="id" value="<?= $appData['id'] ?>"> 
+            <!-- ///////// -->
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
                     <div class="card-body" style="padding: 0px;">
@@ -1008,7 +1011,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             </div><br>
 
                                             <!-- 3. Authorized Signatory 2 -->
-                                            <div style="">
+                                            <div >
                                                 <h5 class="fw-bold mt-2" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
                                                 <table class="table table-bordered align-middle">
                                                     <tr>
