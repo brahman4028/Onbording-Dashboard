@@ -1703,6 +1703,45 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
         });
     </script>
 
+<!-- reflecting pdf on onload -->
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const fileDivIds = [
+        'aadhaarpreview', 'panpreview', 'photographpreview',
+        'addressfilepreview', 'coifilepreview', 'moafilepreview',
+        'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+        'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+        'annexurebfilepreview', 'cancelledchequefile'
+    ];
+
+    fileDivIds.forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+
+        const link = container.querySelector('a');
+        if (!link) return;
+
+        const fileUrl = link.href;
+        const fileName = fileUrl.split('/').pop();
+        const inputName = id.replace('preview', ''); // assume name is like 'aadhaarfile'
+
+        fetch(fileUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const file = new File([blob], fileName, { type: blob.type });
+                uploadedFiles[inputName] = file;
+                console.log(`✅ File loaded: ${fileName} (${inputName})`);
+            })
+            .catch(err => {
+                console.warn(`❌ Could not fetch: ${fileUrl}`, err);
+            });
+    });
+});
+</script>
+
+
+<!-- /////////////// -->
 
     <!-- reflecting value on onload function -->
 
