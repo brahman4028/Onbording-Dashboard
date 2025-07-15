@@ -110,7 +110,7 @@ a {
 
 .logo-icon {
 
-	width: 45px
+	width: 130px
 
 }
 
@@ -208,27 +208,18 @@ a {
 
 .page-footer {
 
-	background: #fff;
-
-	/* left: 250px; */
-
-	/* right: 0; */
-
-	/* bottom: 0; */
-
-	/* position: fixed; */
-
+    background: #fff;
+    left: 250px !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    position: fixed !important;
 	text-align: center;
-
 	padding: 7px;
-
 	font-size: 14px;
-
 	border-top: 1px solid #e4e4e4;
-
 	z-index: 3
-
 }
+
 .page-footer1{
 	background-color: black;
 }
@@ -1237,9 +1228,9 @@ a {
 
 .order-actions a {
 
-	font-size: 18px;
+	font-size: 15px;
 
-	width: 34px;
+	width: 66px;
 
 	height: 34px;
 

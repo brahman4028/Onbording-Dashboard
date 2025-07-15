@@ -299,11 +299,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     ❌ Please enter a valid email address
                                                 </div>
                                             </div>
-
-
-
-
-
                                             <div class="col-12">
                                                 <button type="button" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);" class="btn btn-primary" onclick="stepper3.next()">Next</button>
                                             </div>
@@ -1392,7 +1387,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label">Comment</label>
-                                                <input type="text" class="form-control" name="comment" id="comment" onblur="setPreviewValue(this, 'commentvalue')" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['coment']) ?>">
+                                                <input type="text" class="form-control" name="coment" id="coment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['coment']) ?>">
                                             </div>
 
                                         </div>

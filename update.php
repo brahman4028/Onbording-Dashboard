@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     function clean($data) {
         return htmlspecialchars(strip_tags(trim($data)));
     }
-
     $application_id = intval($_POST['id']);
     if (!$application_id) {
         die("❌ Application ID missing.");
@@ -19,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'fullnameadn','designationadn','numberadn','personalemailadn','aadhaarnumberadn','pannumberadn',
         'accountname','bankname','branchname','accountnumber','ifsccode','accounttype',
         'totalvolume','numberofusers','sixmonthprojectionamount','sixmonthprojectionuser',
-        'numoftransactions','disbursedamount','mintransaction','maxtransaction','thresholdlimit'
+        'numoftransactions','disbursedamount','mintransaction','maxtransaction','thresholdlimit' , 'status', 'coment'
     ];
 
     foreach ($fields as $field) {

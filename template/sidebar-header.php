@@ -3,10 +3,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-				</div>
-				<div>
-					<h4 class="logo-text">Rocker</h4>
+					<img src="assets/images/logo-img.png" class="logo-icon" alt="logo icon">
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
 				</div>
@@ -21,7 +18,14 @@
 					</a>
 
 				</li>
-
+				<li>
+					<a href="merchants-list.php">
+						<div class="parent-icon"><i class='bx bx-grid-alt'></i>
+						</div>
+						<div class="menu-title">Merchants List</div>
+					</a>
+				</li>
+<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
 				<li>
 					<a class="has-arrow" href="#">
 						<div class="parent-icon"><i class="bx bx-lock"></i>
@@ -31,26 +35,46 @@
 					<ul>
 						<li>
 						<li><a href="login.php" target="_blank"><i class='bx bx-radio-circle'></i>Login</a></li>
-						<li><a href="register.php" target="_blank"><i class='bx bx-radio-circle'></i>Register</a></li>
+						
+							<li>
+								<a href="register.php" target="_blank">
+									<i class='bx bx-radio-circle'></i> Register
+								</a>
+							</li>
+						
+
 				</li>
 			</ul>
 			</li>
-			<li>
+			<?php endif; ?>
+			<!-- <li>
 				<a href="user-profile.html">
 					<div class="parent-icon"><i class="bx bx-user-circle"></i>
 					</div>
 					<div class="menu-title">User Profile</div>
 				</a>
-			</li>
+			</li> -->
 
 			<li>
-				<a href="#">
+				<a href="https://itstarpay.com/contact-us/">
 					<div class="parent-icon"><i class="bx bx-support"></i>
 					</div>
 					<div class="menu-title">Support</div>
 				</a>
 			</li>
 			</ul>
+			<hr class="mt-2">
+
+			<ul class="metismenu" id="menu1" style="margin-top: -15px !important;">
+				<li>
+				<a href="trash.php" style="color:#ff4e4e;">
+					<div class="parent-icon" ><i class="bx bx-trash"></i>
+					</div>
+					<div class="menu-title">Trash</div>
+				</a>
+			</li>
+			</ul>
+		
 			<!--end navigation-->
 		</div>
 		<!--end sidebar wrapper -->
@@ -116,12 +140,9 @@
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
+													<li><a class="dropdown-item d-flex align-items-center" href="index.php"><i class="bx bx-home-circle fs-5"></i><span>Dashboard</span></a>
 							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-home-circle fs-5"></i><span>Dashboard</span></a>
-							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-download fs-5"></i><span>Downloads</span></a>
-							</li>
+						
 							<li>
 								<div class="dropdown-divider mb-0"></div>
 							</li>

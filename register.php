@@ -1,4 +1,22 @@
-<?php include 'middleware.php';?>
+<?php
+session_start();
+
+// Redirect if user is not logged in
+if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Redirect if user is not admin
+if ($_SESSION['user']['role'] !== 'admin') {
+    echo "❌ Access Denied: Admins only.";
+    exit();
+}
+
+// Continue with registration logic below...
+require_once '../db.php';
+?>
+<?php include 'middleware.php'; ?>
 <?php include 'template/header.php'; ?>
 <!--wrapper-->
 <div class="wrapper">
@@ -21,10 +39,10 @@
 						<div class="card-body p-sm-5">
 							<div class="">
 								<div class="mb-3 text-center">
-									<img src="assets/images/logo-icon.png" width="60" alt="" />
+									<img src="assets/images/logo-img.png" width="200" alt="" />
 								</div>
 								<div class="text-center mb-4">
-									<h5 class="">Rocker Admin</h5>
+									<h5 class="">Itstarpay Admin</h5>
 									<p class="mb-0">Please fill the below details to create your account</p>
 								</div>
 								<div class="form-body">
@@ -34,21 +52,29 @@
 											<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Jhon" required>
 										</div>
 
-										<div class="col-12">
+										<div class="col-12 mt-2 mb-2">
 											<label for="inputEmailAddress" class="form-label">Email Address</label>
 											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" required>
 										</div>
 
-										<div class="col-12">
+										<div class="col-12 mt-2 mb-2">
 											<label for="inputChoosePassword" class="form-label">Password</label>
 											<div class="input-group" id="show_hide_password">
 												<input type="password" class="form-control border-end-0" name="password" id="inputChoosePassword" placeholder="Enter Password" required>
 												<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 											</div>
 										</div>
+										<div class="col-12 mt-2 mb-2">
+											<label for="inputSelectCountry" class="form-label">Select Role</label>
+											<select class="form-select" name="role" aria-label="Select role" required>
+												<option value="user" selected>User</option>
+												<option value="admin">Admin</option>
+											</select>
 
-										<div class="col-12">
-											<div class="d-grid">
+										</div>
+
+										<div class="col-12 mt-3 mb-2">
+											<div class="d-grid ">
 												<button type="submit" class="btn btn-primary">Sign up</button>
 											</div>
 										</div>
