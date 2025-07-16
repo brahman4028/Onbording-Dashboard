@@ -96,13 +96,6 @@ if ($id > 0) {
 										</div>
 
 										<div class="col-12 mt-2 mb-2">
-											<label for="inputChoosePassword" class="form-label">Password</label>
-											<div class="input-group" id="show_hide_password">
-												<input type="password" class="form-control border-end-0" name="password" id="inputChoosePassword" placeholder="Enter Password" value="<?php echo htmlspecialchars($password); ?>">
-												<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
-											</div>
-										</div>
-										<div class="col-12 mt-2 mb-2">
 											<label for="inputSelectCountry" class="form-label">Select Role</label>
 											<select class="form-select" name="role" aria-label="Select role" required>
 												<option value="user" <?php echo ($role === 'user') ? 'selected' : ''; ?>>User</option>
@@ -114,7 +107,7 @@ if ($id > 0) {
 
 										<div class="col-12 mt-3 mb-2">
 											<div class="d-grid ">
-												<button type="submit" class="btn btn-primary">Sign up</button>
+												<button type="submit" class="btn btn-primary">Update Sign up</button>
 											</div>
 										</div>
 

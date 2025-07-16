@@ -33,12 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $id > 0) {
     
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
-   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = trim($_POST['role']);
 
     // ✅ Prepare and execute update query
-    $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ?, password = ?, role = ?, created_by = ? WHERE id = ?");
-    $stmt->bind_param("sssssi", $username, $email, $password, $role, $sessionemail, $id);
+    $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ?, role = ?, created_by = ? WHERE id = ?");
+    $stmt->bind_param("ssssi", $username, $email, $role, $sessionemail, $id);
 
     if ($stmt->execute()) {
         echo "User updated successfully.<br><br>";

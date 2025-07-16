@@ -27,7 +27,7 @@ include 'db.php';
 				</div>
 				<div class="ms-auto">
 						<div class="btn-group">
-							<button type="button" class="btn btn-primary" style="z-index: 100;"><a href="index.php" style="color:white" target="_blank">Add New Merchant</a></button>
+							<button type="button" class="btn btn-primary"><a href="index.php" style="color:white" target="_blank">Add New Merchant</a></button>
 						
 							
 						</div>
