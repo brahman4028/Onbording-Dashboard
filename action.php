@@ -89,7 +89,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'bofile',
         'rentfile',
         'annexurebfile',
-        'cancelledchequefile'
+        'cancelledchequefile',
+        'aadhaaradnfile',
+        'personalpanadnfile',
+        'signatoryphotoadnfile',
+        'addressadnfile',
+        'signatorysignfile',
+        'signatorysignadnfile'
+
+
     ];
 
     foreach ($fileFields as $field) {
@@ -205,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO business_documents (
     application_id, aadhaarfile, personalpanfile, photograph, addressfile,
     coifile, moafile, aoafile, brfile, udyamfile,
-    gstinfile, bofile, rentfile, annexurebfile, cancelledchequefile
+    gstinfile, bofile, rentfile, annexurebfile, cancelledchequefile, aadhaaradnfile, personalpanadnfile, signatoryphotoadnfile, addressadnfile, signatorysignfile,  signatorysignadnfile
 ) VALUES (
     '$application_id',
     '$uploadedFiles[aadhaarfile]',
@@ -221,7 +229,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     '$uploadedFiles[bofile]',
     '$uploadedFiles[rentfile]',
     '$uploadedFiles[annexurebfile]',
-    '$uploadedFiles[cancelledchequefile]'
+    '$uploadedFiles[cancelledchequefile]',
+    '$uploadedFiles[aadhaaradnfile]',
+    '$uploadedFiles[personalpanadnfile]',
+    '$uploadedFiles[signatoryphotoadnfile]',
+    '$uploadedFiles[addressadnfile]',
+    '$uploadedFiles[signatorysignfile]',
+    '$uploadedFiles[signatorysignadnfile]'
 )";
 
     $result = mysqli_query($mysqli, $sql);
