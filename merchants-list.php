@@ -3,10 +3,6 @@ include 'middleware.php';
 include 'db.php';
 ?>
 
-<style> 
-
-</style>
-
 <?php include 'template/header.php'; ?>
 
 <div class="wrapper autth-img-cover-login">
@@ -20,7 +16,7 @@ include 'db.php';
 				<div class="ps-3" >
 					<nav aria-label="breadcrumb" >
 						<ol class="breadcrumb mb-0 p-0">
-							<li class="breadcrumb-item"><a href="javascript:;" ><i class="bx bx-home-alt"></i></a></li>
+							<li class="breadcrumb-item"><i class="bx bx-home-alt"></i></li>
 							<li class="breadcrumb-item active" aria-current="page" >Home</li>
 						</ol>
 					</nav>

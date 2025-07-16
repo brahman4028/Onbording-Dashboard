@@ -1,5 +1,15 @@
 <?php include 'db.php';
 
+session_start();
+
+// Redirect if user is not logged in
+// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
+//     header("Location: login.php");
+//     exit();
+// }
+
+// Redirect if user is not admin
+
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("Invalid or missing ID.");
 }
@@ -126,9 +136,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                         <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
+                            <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
                             <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="edit_applications.php?id=<?= $appData['id'] ?>" target="_blank"><i class='bx  bx-edit-alt fs-3'></i>Edit Application</a>
                             </li>
-
+                        <?php endif; ?>
                             <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span><a href="merchants-list.php" style="color:white !important;">Go to Dashboard </a></span>
                                 <div class="text-light ms-1">
                             </button>

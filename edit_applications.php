@@ -1129,7 +1129,7 @@ input[type="url"]  {
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): ?>
+                                                            <div id="panpreview"><?php if (!empty($docData['personalpanfile'])): ?>
                                                                     <p>
                                                                         <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
                                                                             View uploaded file

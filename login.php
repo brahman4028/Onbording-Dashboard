@@ -73,12 +73,7 @@
 											</div>
 										</div>
 									</form>
-
 								</div>
-								<div class="login-separater text-center mb-5"> <span>OR SIGN IN WITH</span>
-									<hr>
-								</div>
-
 							</div>
 						</div>
 					</div>

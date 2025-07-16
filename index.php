@@ -292,7 +292,7 @@ input[type="url"]  {
                                         </div>
                                         <hr class="my-4">
 
-                                        <div class="row g-3 " style="border-radius: ;">
+                                        <div class="row g-3 ">
                                             <div class="col-md-6">
                                                 <label class="form-label">Business Name</label>
                                                 <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')">
@@ -503,13 +503,25 @@ input[type="url"]  {
                                                 <label class="form-label">Account Holder Name</label>
                                                 <input type="text" class="form-control" name="accountname" onblur="setPreviewValue(this, 'accountnamevalue')" placeholder="Amit John">
                                             </div>
+                                              <!-- ifsc code -->
+                                            <div class="col-md-6">
+                                                <label class="form-label">IFSC Code</label>
+                                                <input type="text" class="form-control" name="ifsccode" id="ifsccode" placeholder="Enter IFSC Code" 
+                                                    onblur="setPreviewValue(this, 'ifsccodevalue')">
+                                                    <p class="text-danger" id="ifscerror"></p>
+                                                    <p class="text-success" id="ifscsuccess"></p>
+                                                
+                                            </div>
+                                            
                                             <div class="col-md-6">
                                                 <label class="form-label">Bank Name</label>
-                                                <input type="text" class="form-control" name="bankname" onblur="setPreviewValue(this, 'banknamevalue')" placeholder="ABC Bank">
+                                                <input type="text" class="form-control" name="bankname" id="bankname" onblur="setPreviewValue(this, 'banknamevalue')" placeholder="ABC Bank">
+                                                <p id="rzrbankname"></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Branch Name</label>
                                                 <input type="text" class="form-control" name="branchname" id="branchname" onblur="setPreviewValue(this, 'branchnamevalue')" >
+                                                <p id="rzrbranchname"></p>
                                                 
                                             </div>
                                             <div class="col-md-6">
@@ -517,12 +529,7 @@ input[type="url"]  {
                                                 <input type="text" class="form-control" id="accountnumber" name="accountnumber" onblur="setPreviewValue(this, 'accountnumbervalue')" placeholder="2300 0000 0049">
                                         
                                             </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">IFSC Code</label>
-                                                <input type="text" class="form-control" name="ifsccode" id="ifsccode" placeholder="Enter IFSC Code" 
-                                                    onblur="setPreviewValue(this, 'ifsccodevalue')">
-                                                
-                                            </div>
+                                          
                                             <div class="col-md-6">
                                                 <label class="form-label">Account Type</label>
                                                 <select class="form-select" name="accounttype" onblur="setPreviewValue(this, 'accounttypevalue')">
@@ -985,7 +992,7 @@ input[type="url"]  {
                                             </div><br>
 
                                             <!-- 3. Authorized Signatory 2 -->
-                                            <div style="">
+                                            <div>
                                                 <h5 class="fw-bold mt-2" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
                                                 <table class="table table-bordered align-middle">
                                                     <tr>
@@ -1523,6 +1530,33 @@ input[type="url"]  {
             if (target) {
                 target.textContent = value;
             }
+
+
+            const ifsc = document.getElementById("ifsccode").value.trim().toUpperCase();
+
+    
+
+	if (!ifsc || ifsc.length < 4) {
+		alert("Please enter a valid IFSC code.");
+		return;
+	}
+
+	fetch("https://ifsc.razorpay.com/" + ifsc)
+		.then((response) => {
+			if (!response.ok) throw new Error("Invalid IFSC Code");
+			return response.json();
+		})
+		.then((data) => {
+            document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
+			document.getElementById("bankname").value = data.BANK || "N/A";
+			document.getElementById("branchname").value = data.BRANCH || "N/A";
+		})
+		.catch((error) => {
+            document.getElementById("ifscerror").textContent = "Please Enter valid IFSC Code";
+			document.getElementById("bankname").textContent = "--";
+			document.getElementById("branchname").textContent = "--";
+			alert("❌ Error: " + error.message);
+		});
         }
     </script>
 
@@ -1845,6 +1879,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+
 
 </body>
 
