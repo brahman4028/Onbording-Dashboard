@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/dark-theme.css" />
     <link rel="stylesheet" href="assets/css/semi-dark.css" />
     <link rel="stylesheet" href="assets/css/header-colors.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <title>Stepper Form</title>
     <style>
         table {
@@ -29,6 +30,12 @@
             border-collapse: collapse;
             margin-bottom: 20px;
         }
+
+
+#customNavbar {
+  transition: all 0.3s ease;
+}
+
 
         table,
         th,
@@ -85,6 +92,13 @@
 
 }
 
+#navbarSupportedContent1 {
+	overflow: hidden;
+	transition: max-height 0.3s ease;
+}
+
+
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -95,42 +109,85 @@ input[type="url"]  {
 }
 
 
+
+@media (max-width: 768px){
+    #imgbox{
+        max-width: 300px  !important; 
+        display: none !important;
+        padding-bottom: 15px !important;
+    }
+    .secdesc{
+        margin-right: 10px !important;
+    }
+    .main-box{
+        padding: 10px !important;
+        height: 750px !important;
+    }
+    .sidebox{
+        display: none !important;
+    }
+    .boxinside{
+        padding: 15px !important;
+    }
+    #kycPreview{
+        width: auto !important;
+    }
+    #itlg{
+        margin-top: -20px !important;
+    }
+}
+
     </style>
 </head>
 
 <body>
     <div class="wrapper" style="display: flex; flex-direction:column; height:100vh; ">
-        <header class="login-header shadow ">
-            <nav class="navbar navbar-expand-lg navbar-light rounded-0 bg-white  rounded-0 shadow-none border-bottom">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="assets/images/logo-img.png" width="140" alt="" />
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-                        <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
-                            <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
-                            </li>
-                            <li class="nav-item me-2"> <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
-                            </li>
+    <header id="customHeader" class="login-header shadow">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-none rounded-0">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets/images/logo-img.png" width="140" alt="" />
+      </a>
 
-                            <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx bx-user me-1'></i><a href="merchants-dashboard.php" style="color: white;" target="_blank">Admin Login </a><div class="text-light ms-1"></button>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
+      <!-- Toggle Button -->
+      <button class="navbar-toggler" type="button" id="customToggleBtn" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Collapsible Menu -->
+      <div class="collapse navbar-collapse" id="customNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 16px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a href="merchants-dashboard.php" class="btn btn-primary d-flex justify-content-center align-items-center fs-6"
+               href="merchants-dashboard.php" target="_blank"
+               style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px; color: white;">
+              <i class='bx bx-user me-1'></i>Admin Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
         <form action="action.php" method="POST" enctype="multipart/form-data">
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
                     <div class="card-body" style="padding: 0px;">
                         <div id="stepper3" class="bs-stepper gap-0 vertical" style="height: 100%; ">
-                            <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;" class="sidebox">
                                 <!-- route line -->
                                 <div class="bs-stepper-header" role="tablist">
                                     <div class="step" data-target="#test-vl-1">
@@ -201,7 +258,7 @@ input[type="url"]  {
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-relative autth-img-cover-login" style="width: 100% ; height:100%;">
+                            <div class="position-relative autth-img-cover-login main-box" style="width: 100% ; height:100%;">
 
                                 <!-- welcome -->
                                 <!-- welcome screen page  -->
@@ -218,7 +275,7 @@ input[type="url"]  {
                                         <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
                                         <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
                                     </div>
-                                    <div style="width: 900px; " class="ms-auto	">
+                                    <div style="width: 900px; " class="ms-auto	" id="imgbox">
                                         <img src="./assets/images/dashb2.png" alt="User Avatar" class="img-fluid rounded " width="100%">
 
                                     </div>
@@ -226,11 +283,11 @@ input[type="url"]  {
                                 </div>
 
 
-                                <div class="bs-stepper-content px-5 py-5 " style="height: 750px; overflow-y: scroll !important; ">
+                                <div class="bs-stepper-content px-5 py-5 main-box" style="height: 750px; overflow-y: scroll !important; ">
                                     <!-- business details -->
-                                    <div id="test-vl-1" class="bs-stepper-pane fade blr p-5 " style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger1">
+                                    <div id="test-vl-1" class="bs-stepper-pane fade blr p-5 boxinside" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger1">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
-                                        <div class="" style="margin-right: 300px;">
+                                        <div class="secdesc" style="margin-right: 300px;" >
                                             <p class="mb-4 text-muted ">Please fill in your business information to help us verify your identity and activate features like vendor payouts, salary disbursements, and invoice management & so more.</p>
                                         </div>
                                         <hr class="my-4">
@@ -344,10 +401,10 @@ input[type="url"]  {
                                         </div>
                                     </div>
                                     <!-- authorization details -->
-                                    <div id="test-vl-2" class="bs-stepper-pane fade blr p-5" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger2">
+                                    <div id="test-vl-2" class="bs-stepper-pane fade blr p-5 boxinside" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger2">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Authorized Signatory Details</h2>
-                                        <div class="" style="margin-right: 300px;">
+                                        <div class="secdesc" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Please provide the details of the person authorized to sign documents and make decisions on behalf of the business. This is required for verification and legal compliance.</p>
                                         </div>
                                         <hr class="my-4">
@@ -433,10 +490,10 @@ input[type="url"]  {
 
                                     </div>
                                     <!-- Bank Account details -->
-                                    <div id="test-vl-3" class="bs-stepper-pane fade blr p-5" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger3">
+                                    <div id="test-vl-3" class="bs-stepper-pane fade blr p-5 boxinside" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger3">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Bank Account Details</h2>
-                                        <div class="" style="margin-right: 300px;">
+                                        <div class="secdesc" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Provide your complete bank details—including account number, IFSC, and branch info—to ensure smooth payouts, secure transactions, and successful verification.</p>
                                         </div>
                                         <hr class="my-4">
@@ -498,10 +555,10 @@ input[type="url"]  {
 
                                     </div>
                                     <!-- document submission -->
-                                    <div id="test-vl-4" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade" aria-labelledby="stepper3trigger4">
+                                    <div id="test-vl-4" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade boxinside" aria-labelledby="stepper3trigger4">
 
-                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Required Documents</h2>
-                                        <div class="" style="margin-right: 300px;">
+                                        <h2 class=" secdesc fs-2 " style="color:rgb(7, 104, 231)">Submit Required Documents</h2>
+                                        <div class="secdesc" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Submit valid business and identity documents to proceed. We keep your data safe and use it only for verification purposes.</p>
                                         </div>
                                         <hr class="my-4">
@@ -649,9 +706,9 @@ input[type="url"]  {
                                         </div>
                                     </div>
                                     <!-- declarations -->
-                                    <div id="test-vl-5" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade" aria-labelledby="stepper3trigger5">
+                                    <div id="test-vl-5" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade boxinside" aria-labelledby="stepper3trigger5">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Authorized Declarations & Consent</h2>
-                                        <div class="" style="margin-right: 300px;">
+                                        <div class="secdesc" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Read the following declarations carefully. These include your consent to data usage, identity verification, and acceptance of platform terms and conditions.</p>
                                         </div>
                                         <hr class="my-4">
@@ -784,15 +841,15 @@ input[type="url"]  {
                                         </div>
                                     </div>
                                     <!-- submission form -->
-                                    <div id="test-vl-6" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade" aria-labelledby="stepper3trigger6">
+                                    <div id="test-vl-6" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade boxinside" aria-labelledby="stepper3trigger6">
 
-                                        <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Submit Your Application</h2>
-                                        <div class="" style="margin-right: 300px;">
-                                            <p class="mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
+                                        <h2 class=" fs-2 " style="color:rgb(7, 104, 231)">Submit Your Application</h2>
+                                        <div class="secdesc" style="margin-right: 300px;">
+                                            <p class="secdesc mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
                                         </div>
                                         <hr class="my-4">
                                         <!-- pdf html template -->
-                                        <div class="container border p-4 bg-white blr" id="kycPreview" style="
+                                        <div class="container border p-4 bg-white blr " id="kycPreview" style="
                                             width: 210mm;
                                             height: auto;
                                             overflow-y: scroll;
@@ -826,7 +883,7 @@ input[type="url"]  {
 
 
                                             <div class="text-center mb-4" style="margin-top:-75px">
-                                                <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 65px;">
+                                                <img src="./assets/images/itstarlogo.png" alt="Logo" id="itlg" style="max-height: 65px;">
                                                 <h4 class="text-medium">Staar Payout Private Limited</h4>
                                                 <h5 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h5>
                                             </div>
@@ -1263,6 +1320,10 @@ input[type="url"]  {
     <script src="assets/plugins/chartjs/js/chart.js"></script>
     <script src="assets/js/index.js"></script>
     <!--app JS-->
+
+
+
+
     <script src="assets/js/app.js"></script>
     <script>
         new PerfectScrollbar(".app-container")
@@ -1587,6 +1648,8 @@ input[type="url"]  {
     </script>
 
 
+
+
     <!-- ///////////////// -->
 
     <!-- phone validation -->
@@ -1763,6 +1826,25 @@ input[type="url"]  {
 
         // }
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("customToggleBtn");
+  const menu = document.getElementById("customNavbar");
+
+  if (!toggleBtn || !menu) return;
+
+  // Hide initially
+  menu.style.display = "none";
+
+  toggleBtn.addEventListener("click", () => {
+    if (menu.style.display === "none") {
+      menu.style.display = "block";
+    } else {
+      menu.style.display = "none";
+    }
+  });
+});
+</script>
 
 </body>
 

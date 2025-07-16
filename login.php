@@ -27,14 +27,12 @@
 			<div class="row g-0 autth-img-cover-login">
 
 				<div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex">
-
 					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0 autth-img-cover-login ">
 						<div class="card-body">
 							<!-- ./assets/images/login-images/login-cover.svg -->
 							<!-- <img src="./assets/images/loginpage.jpg" class="img-fluid auth-img-cover-login" width="100%" alt="" /> -->
 						</div>
 					</div>
-
 				</div>
 				<div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center blr  ">
 					<div class="card rounded-0 m-3 shadow-none bg-transparent mb-0">
@@ -92,4 +90,39 @@
 	</div>
 </div>
 </div>
+	<script>
+		document.getElementById('searchInput').addEventListener('keyup', function() {
+			const filter = this.value.toUpperCase();
+			const rows = document.querySelectorAll('tbody tr');
+
+			rows.forEach(row => {
+				const text = row.textContent || row.innerText;
+				row.style.display = text.toUpperCase().includes(filter) ? '' : 'none';
+			});
+		});
+	</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const togglePassword = document.querySelector("#show_hide_password a");
+    const passwordInput = document.querySelector("#show_hide_password input");
+    const icon = document.querySelector("#show_hide_password i");
+
+    togglePassword.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("bx-hide");
+            icon.classList.add("bx-show");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("bx-show");
+            icon.classList.add("bx-hide");
+        }
+    });
+});
+</script>
+
 <?php include 'template/footer.php'; ?>

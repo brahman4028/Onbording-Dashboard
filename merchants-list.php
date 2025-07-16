@@ -3,24 +3,35 @@ include 'middleware.php';
 include 'db.php';
 ?>
 
+<style> 
+
+</style>
+
 <?php include 'template/header.php'; ?>
 
-<div class="wrapper">
+<div class="wrapper autth-img-cover-login">
 	<?php include 'template/sidebar-header.php'; ?>
 
-	<div class="page-wrapper">
+	<div class="page-wrapper blr1">
 		<div class="page-content">
 			<!-- Breadcrumb -->
-			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3" >
 				<div class="breadcrumb-title pe-3">Merchants List</div>
-				<div class="ps-3">
-					<nav aria-label="breadcrumb">
+				<div class="ps-3" >
+					<nav aria-label="breadcrumb" >
 						<ol class="breadcrumb mb-0 p-0">
-							<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></li>
-							<li class="breadcrumb-item active" aria-current="page">Home</li>
+							<li class="breadcrumb-item"><a href="javascript:;" ><i class="bx bx-home-alt"></i></a></li>
+							<li class="breadcrumb-item active" aria-current="page" >Home</li>
 						</ol>
 					</nav>
 				</div>
+				<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary" style="z-index: 100;"><a href="index.php" style="color:white" target="_blank">Add New Merchant</a></button>
+						
+							
+						</div>
+					</div>
 			</div>
 			<!-- End Breadcrumb -->
 			<?php
@@ -47,7 +58,7 @@ include 'db.php';
 				die("Data Query Failed: " . mysqli_error($mysqli));
 			}
 			?>
-			<div class="card">
+			<div class="card blr">
 				<div class="card-body">
 
 					<!-- Search Bar -->
@@ -61,9 +72,9 @@ include 'db.php';
 					</div>
 
 					<!-- Table -->
-					<div class="table-responsive">
-						<table class="table mb-0">
-							<thead class="table-light">
+					<div class="table-responsive blr">
+						<table class="table mb-0 blr">
+							<thead class="table-light blr">
 								<tr>
 									<th>Application ID</th>
 									<th>Business Name</th>
@@ -75,7 +86,7 @@ include 'db.php';
 									<th>Comment</th>
 								</tr>
 							</thead>
-							<tbody id="merchantTable">
+							<tbody id="merchantTable blr">
 								<?php while ($row = mysqli_fetch_assoc($result)) {
 									$id = $row['id'];
 									$businessname = $row['businessname'];
@@ -91,7 +102,7 @@ include 'db.php';
 										<td>{$status}</td>
 										<td>{$created_at}</td>
 										<td>
-    <a href='view_application.php?id=" . $id . "' target='_blank' class='btn btn-primary btn-sm radius-30 px-4'>Vie PDF</a>
+    <a href='view_application.php?id=" . $id . "' target='_blank' class='btn btn-primary btn-sm radius-30 px-4'>View PDF</a>
 </td>";
 
 									// Show edit/delete buttons only if user is admin

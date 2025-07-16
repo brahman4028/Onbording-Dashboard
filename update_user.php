@@ -1,20 +1,38 @@
 <?php
 session_start();
 
-// Redirect if user is not logged in
-// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
-//     header("Location: login.php");
-//     exit();
-// }
+// Continue with registration logic below...
+require_once './db.php';
 
-// Redirect if user is not admin
-if ($_SESSION['user']['role'] !== 'admin') {
-    echo "❌ Access Denied: Admins only.";
+// Redirect if  user is not logged in
+if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
+    header("Location: login.php");
     exit();
 }
 
-// Continue with registration logic below...
-require_once './db.php';
+// Redirect if user is not admin
+if ($_SESSION['user']['role'] !== 'admin') {
+    echo "❌ Access Denied: Only Admins can change the access.";
+    exit();
+}
+
+// -----------------------
+
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// 3. Fetch user data
+$username = $email = $password = $role = "";
+if ($id > 0) {
+    $stmt = $mysqli->prepare("SELECT username, email , password, role FROM users WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($username, $email, $password, $role);
+    $stmt->fetch();
+    $stmt->close();
+}
+
+
 ?>
 <?php include 'middleware.php'; ?>
 <?php include 'template/header.php'; ?>
@@ -62,35 +80,37 @@ require_once './db.php';
 								</div>
 								<div class="text-center mb-4">
 									<h5 class="">Itstarpay Admin</h5>
-									<p class="mb-0">Please fill the below details to create your account</p>
+									<p class="mb-0">Update user details and manage their role-based access rights.</p>
 								</div>
 								<div class="form-body">
-									<form action="auth/register_process.php" method="POST">
+									<form action="update_user_confirm.php" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
 										<div class="col-12">
 											<label for="inputUsername" class="form-label">Username</label>
-											<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Jhon" required>
+											<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Jhon" value="<?php echo htmlspecialchars($username); ?>">
 										</div>
 
 										<div class="col-12 mt-2 mb-2">
 											<label for="inputEmailAddress" class="form-label">Email Address</label>
-											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" required>
+											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" value="<?php echo htmlspecialchars($email); ?>">
 										</div>
 
 										<div class="col-12 mt-2 mb-2">
 											<label for="inputChoosePassword" class="form-label">Password</label>
 											<div class="input-group" id="show_hide_password">
-												<input type="password" class="form-control border-end-0" name="password" id="inputChoosePassword" placeholder="Enter Password" required>
+												<input type="password" class="form-control border-end-0" name="password" id="inputChoosePassword" placeholder="Enter Password" value="<?php echo htmlspecialchars($password); ?>">
 												<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 											</div>
 										</div>
 										<div class="col-12 mt-2 mb-2">
 											<label for="inputSelectCountry" class="form-label">Select Role</label>
 											<select class="form-select" name="role" aria-label="Select role" required>
-												<option value="user" selected>User</option>
-												<option value="admin">Admin</option>
+												<option value="user" <?php echo ($role === 'user') ? 'selected' : ''; ?>>User</option>
+												<option value="admin" <?php echo ($role === 'admin') ? 'selected' : ''; ?>>Admin</option>
 											</select>
 
 										</div>
+                                        <hr />
 
 										<div class="col-12 mt-3 mb-2">
 											<div class="d-grid ">
@@ -98,17 +118,11 @@ require_once './db.php';
 											</div>
 										</div>
 
-										<div class="col-12">
-											<div class="text-center">
-												<p class="mb-0">Already have an account? <a href="login.php">Sign in here</a></p>
-											</div>
-										</div>
 									</form>
 
 
 								</div>
-								<div class="login-separater text-center mb-5"> <span>OR SIGN UP WITH EMAIL</span>
-									<hr />
+									
 								</div>
 							</div>
 						</div>
@@ -121,20 +135,6 @@ require_once './db.php';
 	</div>
 </div>
 
-<!-- Search Filter Script -->
-	<script>
-		document.getElementById('searchInput').addEventListener('keyup', function() {
-			const filter = this.value.toUpperCase();
-			const rows = document.querySelectorAll('tbody tr');
-
-			rows.forEach(row => {
-				const text = row.textContent || row.innerText;
-				row.style.display = text.toUpperCase().includes(filter) ? '' : 'none';
-			});
-		});
-	</script>
-
-	
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const togglePassword = document.querySelector("#show_hide_password a");
@@ -155,5 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
+
 
 <?php include 'template/footer.php'; ?>

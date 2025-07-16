@@ -41,11 +41,21 @@
 									<i class='bx bx-radio-circle'></i> Add New User
 								</a>
 							</li>
+							
 
 
 					</li>
+
+				
 			</ul>
 			</li>
+				<li>
+								<a href="user.php" target="_blank">
+									<i class='bx bx-user'  style="font-size: 24px;"></i> <div class="menu-title">User List</div> 
+								</a>
+							</li>
+
+			
 		<?php endif; ?>
 		<li>
 			<a href="https://itstarpay.com/contact-us/">
