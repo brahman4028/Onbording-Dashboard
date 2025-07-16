@@ -32,9 +32,9 @@
         }
 
 
-#customNavbar {
-  transition: all 0.3s ease;
-}
+        #customNavbar {
+            transition: all 0.3s ease;
+        }
 
 
         table,
@@ -78,109 +78,116 @@
         }
 
         .autth-img-cover-login {
-    background-image: url('./assets/images/loginpage.jpg');
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
-    width: 100%;
-     height: 100%;/* or set a fixed height like 400px if needed */
-}
+            background-image: url('./assets/images/loginpage.jpg');
+            background-size: cover;
+            background-position: right center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            /* or set a fixed height like 400px if needed */
+        }
 
-.blr{
-	background-color:rgba(254, 254, 254, 0.8) !important;
-	backdrop-filter: blur(20px) !important;
+        .blr {
+            background-color: rgba(254, 254, 254, 0.8) !important;
+            backdrop-filter: blur(20px) !important;
 
-}
+        }
 
-#navbarSupportedContent1 {
-	overflow: hidden;
-	transition: max-height 0.3s ease;
-}
-
-
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="search"],
-input[type="url"]  {
-    background-color:rgba(255, 255, 255, 0.62) !important; /* Replace with any color you want */
-}
+        #navbarSupportedContent1 {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
 
 
 
-@media (max-width: 768px){
-    #imgbox{
-        max-width: 300px  !important; 
-        display: none !important;
-        padding-bottom: 15px !important;
-    }
-    .secdesc{
-        margin-right: 10px !important;
-    }
-    .main-box{
-        padding: 10px !important;
-        height: 750px !important;
-    }
-    .sidebox{
-        display: none !important;
-    }
-    .boxinside{
-        padding: 15px !important;
-    }
-    #kycPreview{
-        width: auto !important;
-    }
-    #itlg{
-        margin-top: -20px !important;
-    }
-}
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="search"],
+        input[type="url"] {
+            background-color: rgba(255, 255, 255, 0.62) !important;
+            /* Replace with any color you want */
+        }
 
+
+
+        @media (max-width: 768px) {
+            #imgbox {
+                max-width: 300px !important;
+                display: none !important;
+                padding-bottom: 15px !important;
+            }
+
+            .secdesc {
+                margin-right: 10px !important;
+            }
+
+            .main-box {
+                padding: 10px !important;
+                height: 750px !important;
+            }
+
+            .sidebox {
+                display: none !important;
+            }
+
+            .boxinside {
+                padding: 15px !important;
+            }
+
+            #kycPreview {
+                width: auto !important;
+            }
+
+            #itlg {
+                margin-top: -20px !important;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="wrapper" style="display: flex; flex-direction:column; height:100vh; ">
-    <header id="customHeader" class="login-header shadow">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-none rounded-0">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="assets/images/logo-img.png" width="140" alt="" />
-      </a>
+        <header id="customHeader" class="login-header shadow">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-none rounded-0">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/logo-img.png" width="140" alt="" />
+                    </a>
 
-      <!-- Toggle Button -->
-      <button class="navbar-toggler" type="button" id="customToggleBtn" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+                    <!-- Toggle Button -->
+                    <button class="navbar-toggler" type="button" id="customToggleBtn" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-      <!-- Collapsible Menu -->
-      <div class="collapse navbar-collapse" id="customNavbar">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 16px;">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
-          </li>
-          <li class="nav-item me-2">
-            <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
-          </li>
-          <li class="nav-item">
-            <a href="merchants-dashboard.php" class="btn btn-primary d-flex justify-content-center align-items-center fs-6"
-               href="merchants-dashboard.php" target="_blank"
-               style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px; color: white;">
-              <i class='bx bx-user me-1'></i>Admin Login
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+                    <!-- Collapsible Menu -->
+                    <div class="collapse navbar-collapse" id="customNavbar">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 16px;">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="merchants-dashboard.php" class="btn btn-primary d-flex justify-content-center align-items-center fs-6"
+                                    href="merchants-dashboard.php" target="_blank"
+                                    style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px; color: white;">
+                                    <i class='bx bx-user me-1'></i>Admin Login
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <form action="action.php" method="POST" enctype="multipart/form-data">
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
@@ -287,7 +294,7 @@ input[type="url"]  {
                                     <!-- business details -->
                                     <div id="test-vl-1" class="bs-stepper-pane fade blr p-5 boxinside" style="border-radius:6px" role="tabpanel" aria-labelledby="stepper3trigger1">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)">Set Up Your Business Profile</h2>
-                                        <div class="secdesc" style="margin-right: 300px;" >
+                                        <div class="secdesc" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Please fill in your business information to help us verify your identity and activate features like vendor payouts, salary disbursements, and invoice management & so more.</p>
                                         </div>
                                         <hr class="my-4">
@@ -443,6 +450,7 @@ input[type="url"]  {
                                                 <div class="text-danger mt-1 d-none" id="error-pannumber">Invalid PAN format (e.g., AAAAA9999A)</div>
                                             </div>
 
+
                                             <h6 class="mt-4 text-primary">Authorized Director 2 (If any)</h6><br>
 
                                             <div class="col-md-6">
@@ -503,16 +511,16 @@ input[type="url"]  {
                                                 <label class="form-label">Account Holder Name</label>
                                                 <input type="text" class="form-control" name="accountname" onblur="setPreviewValue(this, 'accountnamevalue')" placeholder="Amit John">
                                             </div>
-                                              <!-- ifsc code -->
+                                            <!-- ifsc code -->
                                             <div class="col-md-6">
                                                 <label class="form-label">IFSC Code</label>
-                                                <input type="text" class="form-control" name="ifsccode" id="ifsccode" placeholder="Enter IFSC Code" 
+                                                <input type="text" class="form-control" name="ifsccode" id="ifsccode" placeholder="Enter IFSC Code"
                                                     onblur="setPreviewValue(this, 'ifsccodevalue')">
-                                                    <p class="text-danger" id="ifscerror"></p>
-                                                    <p class="text-success" id="ifscsuccess"></p>
-                                                
+                                                <p class="text-danger" id="ifscerror"></p>
+                                                <p class="text-success" id="ifscsuccess"></p>
+
                                             </div>
-                                            
+
                                             <div class="col-md-6">
                                                 <label class="form-label">Bank Name</label>
                                                 <input type="text" class="form-control" name="bankname" id="bankname" onblur="setPreviewValue(this, 'banknamevalue')" placeholder="ABC Bank">
@@ -520,16 +528,16 @@ input[type="url"]  {
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Branch Name</label>
-                                                <input type="text" class="form-control" name="branchname" id="branchname" onblur="setPreviewValue(this, 'branchnamevalue')" >
+                                                <input type="text" class="form-control" name="branchname" id="branchname" onblur="setPreviewValue(this, 'branchnamevalue')">
                                                 <p id="rzrbranchname"></p>
-                                                
+
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Account Number</label>
                                                 <input type="text" class="form-control" id="accountnumber" name="accountnumber" onblur="setPreviewValue(this, 'accountnumbervalue')" placeholder="2300 0000 0049">
-                                        
+
                                             </div>
-                                          
+
                                             <div class="col-md-6">
                                                 <label class="form-label">Account Type</label>
                                                 <select class="form-select" name="accounttype" onblur="setPreviewValue(this, 'accounttypevalue')">
@@ -540,7 +548,7 @@ input[type="url"]  {
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Cancelled Cheque</label>
-                                                 <div class="input-group mb-3 mb-3">
+                                                <div class="input-group mb-3 mb-3">
                                                     <input type="file" class="form-control" id="inputGroupFile017" onchange="validateFile(this, 'ChequeMsg','cancelledchequefile')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="cancelledchequefile">
                                                     <label class="input-group-text" for="inputGroupFile017">Upload</label>
                                                 </div>
@@ -569,7 +577,8 @@ input[type="url"]  {
                                             <p class="mb-4 text-muted ">Submit valid business and identity documents to proceed. We keep your data safe and use it only for verification purposes.</p>
                                         </div>
                                         <hr class="my-4">
-                                        <h6 class="mt-4 text-primary">Personal identity</h6>
+                                        <h6 class="mt-4 text-primary">Personal identity (Authorized Director 1)</h6>
+                                        <!-- Authorized Document 1 -->
 
                                         <div class="row g-3">
                                             <!-- 1 -->
@@ -592,27 +601,109 @@ input[type="url"]  {
                                                 </div>
                                                 <span id="PanMsg"></span>
                                             </div>
+
                                             <!-- 3 -->
                                             <div class="col-12 col-lg-6 mb-3">
-                                                <label class="form-label fw-semibold">3. Photograph :</label>
 
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg','photographpreview')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
-                                                    <label class="input-group-text" for="inputGroupFile03">Upload</label>
-                                                </div>
-                                                <span id="PhotoMsg"></span>
-
-                                            </div>
-                                            <!-- 4 -->
-                                            <div class="col-12 col-lg-6 mb-3">
-
-                                                <label class="form-label fw-semibold">4. Address :</label>
+                                                <label class="form-label fw-semibold">3. Address :</label>
                                                 <div class="input-group mb-3">
                                                     <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressMsg','addressfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressfile">
                                                     <label class="input-group-text" for="inputGroupFile04">Upload</label>
                                                 </div>
                                                 <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
                                                 <span id="AddressMsg"></span>
+                                            </div>
+
+                                            <div class="row g-3 " style="margin-top: -10px;">
+                                                <!-- signatory 1 photo -->
+                                                <!-- 4 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">4. Upload Your Photo</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0111" onchange="validateFile(this, 'PhotoMsg','photographpreview')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
+                                                        <label class="input-group-text" for="inputGroupFile0111">Upload</label>
+                                                    </div>
+                                                    <span id="PhotoMsg"></span>
+
+                                                </div>
+                                                <!-- signatory 1 sign -->
+                                                <!-- 5 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">5. Upload Your Signature</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0112" onchange="validateFile(this, 'signatorysignMsg','signatorysignpreview')" accept=".jpeg,.jpg,.png,.webp" name="signatorysignfile">
+                                                        <label class="input-group-text" for="inputGroupFile0112">Upload</label>
+                                                    </div>
+                                                    <span id="signatorysignMsg"></span>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Authorized Document 2 -->
+                                            <h6 class="mt-4 mb-2 text-primary">Personal Identity (Authorized Director 2)</h6>
+
+                                            <!-- 1 -->
+                                            <div class="col-12 col-lg-6 mb-3">
+                                                <label class="form-label fw-semibold">1. Aadhaar Card :</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" onchange="validateFile(this, 'AadhaaradnMsg','aadhaaradnpreview')" class="form-control" id="inputGroupFile0113" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aadhaaradnfile">
+                                                    <label class="input-group-text" for="inputGroupFile0113">Upload</label>
+
+                                                </div>
+                                                <span id="AadhaaradnMsg"></span>
+
+                                            </div>
+                                            <!-- 2 -->
+                                            <div class="col-12 col-lg-6 mb-3">
+                                                <label class="form-label fw-semibold">2. Pan Card :</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="inputGroupFile0114" onchange="validateFile(this, 'PanadnMsg','panpadnpreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanadnfile">
+                                                    <label class="input-group-text" for="inputGroupFile0114">Upload</label>
+                                                </div>
+                                                <span id="PanadnMsg"></span>
+                                            </div>
+
+                                            <!-- 3 -->
+                                            <div class="col-12 col-lg-6 mb-3">
+
+                                                <label class="form-label fw-semibold">3. Address :</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="inputGroupFile0115" onchange="validateFile(this, 'AddressadnMsg','addressadnfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressadnfile">
+                                                    <label class="input-group-text" for="inputGroupFile0115">Upload</label>
+                                                </div>
+                                                <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
+                                                <span id="AddressadnMsg"></span>
+                                            </div>
+
+                                            <div class="row g-3 " style="margin-top: -10px;">
+                                                <!-- signatory 2 photo -->
+                                                <!-- 4 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">4. Upload Your Photo</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0116" onchange="validateFile(this, 'signatoryphotoadnMsg','signatoryphotoadnpreview')" accept=".jpeg,.jpg,.png,.webp" name="signatoryphotoadnfile">
+                                                        <label class="input-group-text" for="inputGroupFile0116">Upload</label>
+                                                    </div>
+                                                    <span id="signatoryphotoadnMsg"></span>
+
+                                                </div>
+                                                <!-- signatory 2 sign -->
+                                                <!-- 5 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">5. Upload Your Signature</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0117" onchange="validateFile(this, 'signatorysignadnMsg','signatorysignadnpreview')" accept=".jpeg,.jpg,.png,.webp" name="signatorysignadnfile">
+                                                        <label class="input-group-text" for="inputGroupFile0117">Upload</label>
+                                                    </div>
+                                                    <span id="signatorysignadnMsg"></span>
+
+                                                </div>
+
                                             </div>
 
                                             <h6 class="mt-4 mb-2 text-primary">Business identity</h6>
@@ -711,6 +802,10 @@ input[type="url"]  {
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+
                                     </div>
                                     <!-- declarations -->
                                     <div id="test-vl-5" role="tabpanel" style="border-radius:6px" class="bs-stepper-pane content blr p-5 fade boxinside" aria-labelledby="stepper3trigger5">
@@ -1071,6 +1166,9 @@ input[type="url"]  {
                                                 </thead>
                                                 <tbody>
                                                     <tr>
+                                                        <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 1</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
                                                             <div id="aadhaarpreview"></div>
@@ -1089,10 +1187,55 @@ input[type="url"]  {
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Signature</td>
+                                                        <td>
+                                                            <div id="signatorysignpreview"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
                                                             <div id="addressfilepreview"></div>
                                                         </td>
+                                                    </tr>
+
+                                                    <!-- for signatory 2 -->
+                                                    <tr>
+                                                        <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 2</td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Aadhaar Card</td>
+                                                        <td>
+                                                            <div id="aadhaaradnpreview"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PAN Card</td>
+                                                        <td>
+                                                            <div id="panpadnpreview"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Photograph</td>
+                                                        <td>
+                                                            <div id="signatoryphotoadnpreview"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Signature</td>
+                                                        <td>
+                                                            <div id="signatorysignadnpreview"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
+                                                        <td>
+                                                            <div id="addressadnfilepreview"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- //////////// -->
+                                                     <tr>
+                                                        <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Business Documents</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
@@ -1357,137 +1500,153 @@ input[type="url"]  {
 
 
     <script>
-    const uploadedFiles = {}; // Globally track files by 'name'
+        const uploadedFiles = {}; // Globally track files by 'name'
 
-    function validateFile(input, msgId, previewId) {
-        const file = input.files[0];
-        const msg = document.getElementById(msgId);
-        const preview = document.getElementById(previewId);
-        const inputKey = input.name;
+        function validateFile(input, msgId, previewId) {
+            const file = input.files[0];
+            const msg = document.getElementById(msgId);
+            const preview = document.getElementById(previewId);
+            const inputKey = input.name;
 
-        msg.innerText = '';
-        preview.innerHTML = '';
+            msg.innerText = '';
+            preview.innerHTML = '';
 
-        const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-        const maxSize = 2 * 1024 * 1024;
+            const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
+            const maxSize = 2 * 1024 * 1024;
 
-        if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
-            msg.innerText = "❌ Invalid or too large file.";
-            msg.style.color = "red";
-            input.value = '';
-            return;
+            if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
+                msg.innerText = "❌ Invalid or too large file.";
+                msg.style.color = "red";
+                input.value = '';
+                return;
+            }
+
+            // ✅ Sanitize file name
+            const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+            const sanitizedFile = new File([file], sanitizedFileName, {
+                type: file.type
+            });
+            uploadedFiles[inputKey] = sanitizedFile;
+
+            msg.innerText = "✅ File is valid.";
+            msg.style.color = "green";
+            preview.innerHTML = `<strong>${sanitizedFileName}</strong><br>`;
+
+            if (file.type === "application/pdf") {
+                const iframe = document.createElement("iframe");
+                iframe.src = URL.createObjectURL(sanitizedFile);
+                iframe.style.width = "100%";
+                iframe.style.height = "400px";
+                iframe.style.border = "1px solid #ccc";
+                preview.appendChild(iframe);
+            } else if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.style.maxWidth = "100%";
+                    img.style.border = "1px solid #ccc";
+                    img.style.marginTop = "10px";
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
-        // ✅ Sanitize file name
-        const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-        const sanitizedFile = new File([file], sanitizedFileName, { type: file.type });
-        uploadedFiles[inputKey] = sanitizedFile;
+        async function downloadKYC() {
+            const element = document.getElementById('kycPreview');
+            const businessName = document.getElementById('nob')?.value.trim() || 'KYC';
+            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
-        msg.innerText = "✅ File is valid.";
-        msg.style.color = "green";
-        preview.innerHTML = `<strong>${sanitizedFileName}</strong><br>`;
+            const previewIds = [
+                'aadhaarpreview', 'panpreview', 'photographpreview',
+                'addressfilepreview', 'coifilepreview', 'moafilepreview',
+                'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+                'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+                'annexurebfilepreview', 'cancelledchequefile'
+            ];
 
-        if (file.type === "application/pdf") {
-            const iframe = document.createElement("iframe");
-            iframe.src = URL.createObjectURL(sanitizedFile);
-            iframe.style.width = "100%";
-            iframe.style.height = "400px";
-            iframe.style.border = "1px solid #ccc";
-            preview.appendChild(iframe);
-        } else if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.style.maxWidth = "100%";
-                img.style.border = "1px solid #ccc";
-                img.style.marginTop = "10px";
-                preview.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
+            // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
+            previewIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    [...el.children].forEach(child => {
+                        if (child.tagName === "IFRAME" || child.tagName === "IMG") {
+                            el.removeChild(child);
+                        }
+                    });
+                }
+            });
 
-    async function downloadKYC() {
-        const element = document.getElementById('kycPreview');
-        const businessName = document.getElementById('nob')?.value.trim() || 'KYC';
-        const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
-
-        const previewIds = [
-            'aadhaarpreview', 'panpreview', 'photographpreview',
-            'addressfilepreview', 'coifilepreview', 'moafilepreview',
-            'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
-            'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-            'annexurebfilepreview', 'cancelledchequefile'
-        ];
-
-        // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
-        previewIds.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                [...el.children].forEach(child => {
-                    if (child.tagName === "IFRAME" || child.tagName === "IMG") {
-                        el.removeChild(child);
+            // 📄 Step 2: Generate PDF from HTML
+            const htmlBlob = await html2pdf()
+                .set({
+                    margin: 0.8,
+                    image: {
+                        type: 'jpeg',
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
                     }
-                });
+                })
+                .from(element)
+                .outputPdf('blob');
+
+            const htmlBytes = await htmlBlob.arrayBuffer();
+            const finalPdf = await PDFLib.PDFDocument.create();
+            const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+            const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+            pages.forEach(p => finalPdf.addPage(p));
+
+            // ➕ Step 3: Add uploaded files
+            for (const key in uploadedFiles) {
+                const file = uploadedFiles[key];
+                const bytes = await file.arrayBuffer();
+
+                if (file.type === 'application/pdf') {
+                    const extDoc = await PDFLib.PDFDocument.load(bytes);
+                    const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
+                    extPages.forEach(p => finalPdf.addPage(p));
+                } else if (file.type.startsWith('image/')) {
+                    const imgBytes = new Uint8Array(bytes);
+                    const embedded = file.type.includes('png') ?
+                        await finalPdf.embedPng(imgBytes) :
+                        await finalPdf.embedJpg(imgBytes);
+
+                    const page = finalPdf.addPage();
+                    const {
+                        width,
+                        height
+                    } = embedded.scale(0.5);
+                    page.drawImage(embedded, {
+                        x: 50,
+                        y: page.getHeight() - height - 50,
+                        width,
+                        height
+                    });
+                }
             }
-        });
 
-        // 📄 Step 2: Generate PDF from HTML
-        const htmlBlob = await html2pdf()
-            .set({
-                margin: 0.8,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            })
-            .from(element)
-            .outputPdf('blob');
-
-        const htmlBytes = await htmlBlob.arrayBuffer();
-        const finalPdf = await PDFLib.PDFDocument.create();
-        const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
-        const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
-        pages.forEach(p => finalPdf.addPage(p));
-
-        // ➕ Step 3: Add uploaded files
-        for (const key in uploadedFiles) {
-            const file = uploadedFiles[key];
-            const bytes = await file.arrayBuffer();
-
-            if (file.type === 'application/pdf') {
-                const extDoc = await PDFLib.PDFDocument.load(bytes);
-                const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
-                extPages.forEach(p => finalPdf.addPage(p));
-            } else if (file.type.startsWith('image/')) {
-                const imgBytes = new Uint8Array(bytes);
-                const embedded = file.type.includes('png') ?
-                    await finalPdf.embedPng(imgBytes) :
-                    await finalPdf.embedJpg(imgBytes);
-
-                const page = finalPdf.addPage();
-                const { width, height } = embedded.scale(0.5);
-                page.drawImage(embedded, {
-                    x: 50,
-                    y: page.getHeight() - height - 50,
-                    width,
-                    height
-                });
-            }
+            // 🔽 Step 4: Download
+            const finalBytes = await finalPdf.save();
+            const blob = new Blob([finalBytes], {
+                type: 'application/pdf'
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${cleanName}-KYC-Onboarding.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-
-        // 🔽 Step 4: Download
-        const finalBytes = await finalPdf.save();
-        const blob = new Blob([finalBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${cleanName}-KYC-Onboarding.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-</script>
+    </script>
 
 
 
@@ -1534,29 +1693,29 @@ input[type="url"]  {
 
             const ifsc = document.getElementById("ifsccode").value.trim().toUpperCase();
 
-    
 
-	if (!ifsc || ifsc.length < 4) {
-		alert("Please enter a valid IFSC code.");
-		return;
-	}
 
-	fetch("https://ifsc.razorpay.com/" + ifsc)
-		.then((response) => {
-			if (!response.ok) throw new Error("Invalid IFSC Code");
-			return response.json();
-		})
-		.then((data) => {
-            document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
-			document.getElementById("bankname").value = data.BANK || "N/A";
-			document.getElementById("branchname").value = data.BRANCH || "N/A";
-		})
-		.catch((error) => {
-            document.getElementById("ifscerror").textContent = "Please Enter valid IFSC Code";
-			document.getElementById("bankname").textContent = "--";
-			document.getElementById("branchname").textContent = "--";
-			alert("❌ Error: " + error.message);
-		});
+            if (!ifsc || ifsc.length < 4) {
+                alert("Please enter a valid IFSC code.");
+                return;
+            }
+
+            fetch("https://ifsc.razorpay.com/" + ifsc)
+                .then((response) => {
+                    if (!response.ok) throw new Error("Invalid IFSC Code");
+                    return response.json();
+                })
+                .then((data) => {
+                    document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
+                    document.getElementById("bankname").value = data.BANK || "N/A";
+                    document.getElementById("branchname").value = data.BRANCH || "N/A";
+                })
+                .catch((error) => {
+                    document.getElementById("ifscerror").textContent = "Please Enter valid IFSC Code";
+                    document.getElementById("bankname").textContent = "--";
+                    document.getElementById("branchname").textContent = "--";
+                    alert("❌ Error: " + error.message);
+                });
         }
     </script>
 
@@ -1602,7 +1761,7 @@ input[type="url"]  {
     </script>
 
     <!-- gsti validation message -->
-     
+
     <!-- <script>
         async function validateGSTIN() {
             const gstinEl = document.getElementById('gstin');
@@ -1860,25 +2019,25 @@ input[type="url"]  {
 
         // }
     </script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.getElementById("customToggleBtn");
-  const menu = document.getElementById("customNavbar");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleBtn = document.getElementById("customToggleBtn");
+            const menu = document.getElementById("customNavbar");
 
-  if (!toggleBtn || !menu) return;
+            if (!toggleBtn || !menu) return;
 
-  // Hide initially
-  menu.style.display = "none";
+            // Hide initially
+            menu.style.display = "none";
 
-  toggleBtn.addEventListener("click", () => {
-    if (menu.style.display === "none") {
-      menu.style.display = "block";
-    } else {
-      menu.style.display = "none";
-    }
-  });
-});
-</script>
+            toggleBtn.addEventListener("click", () => {
+                if (menu.style.display === "none") {
+                    menu.style.display = "block";
+                } else {
+                    menu.style.display = "none";
+                }
+            });
+        });
+    </script>
 
 
 
