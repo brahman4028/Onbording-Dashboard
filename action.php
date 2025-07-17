@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mintransaction = clean($_POST['mintransaction']);
     $maxtransaction = clean($_POST['maxtransaction']);
     $thresholdlimit = clean($_POST['thresholdlimit']);
+    $placevalue = clean($_POST['placevalue']);
 
     if (
         empty($entity) || empty($doi) || empty($nob) || empty($gstin) || empty($pan) ||
@@ -165,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'mintransaction' => $mintransaction,
         'maxtransaction' => $maxtransaction,
         'thresholdlimit' => $thresholdlimit,
+        'placevalue' => $placevalue,
         'uploadedFiles' => $uploadedFiles
     ]);
     echo "</pre>";
@@ -191,14 +193,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         fullname, designation, number, personalemail, aadhaarnumber, pannumber,
         fullnameadn, designationadn, numberadn, personalemailadn, aadhaarnumberadn, pannumberadn,
         totalvolume, numberofusers, sixmonthprojectionamount, sixmonthprojectionuser,
-        numoftransactions, disbursedamount, mintransaction, maxtransaction, thresholdlimit , accountname , bankname , branchname , accountnumber , ifsccode , accounttype
+        numoftransactions, disbursedamount, mintransaction, maxtransaction, thresholdlimit , accountname , bankname , branchname , accountnumber , ifsccode , accounttype , placevalue
     ) VALUES (
         '$businessname','$applicantname', '$entity', '$doi', '$nob', '$businesscategory', '$businesssubcategory', '$gstin', '$pan',
         '$registeredbsuiness', '$operatingaddress', '$url', '$businessnumber', '$alternnumber', '$supportemail',
         '$fullname', '$designation', '$number', '$personalemail', '$aadhaarnumber', '$pannumber',
         '$fullnameadn', '$designationadn', '$numberadn', '$personalemailadn', '$aadhaarnumberadn', '$pannumberadn',
         '$totalvolume', '$numberofusers', '$sixmonthprojectionamount', '$sixmonthprojectionuser',
-        '$numoftransactions', '$disbursedamount', '$mintransaction', '$maxtransaction', '$thresholdlimit' , '$accountname' , '$bankname' , '$branchname' , '$accountnumber' , '$ifsccode' ,'$accounttype'
+        '$numoftransactions', '$disbursedamount', '$mintransaction', '$maxtransaction', '$thresholdlimit' , '$accountname' , '$bankname' , '$branchname' , '$accountnumber' , '$ifsccode' ,'$accounttype' , '$placevalue'
     )";
 
     if (mysqli_query($mysqli, $query)) {

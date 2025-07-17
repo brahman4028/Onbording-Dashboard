@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'fullnameadn','designationadn','numberadn','personalemailadn','aadhaarnumberadn','pannumberadn',
         'accountname','bankname','branchname','accountnumber','ifsccode','accounttype',
         'totalvolume','numberofusers','sixmonthprojectionamount','sixmonthprojectionuser',
-        'numoftransactions','disbursedamount','mintransaction','maxtransaction','thresholdlimit' , 'status', 'coment'
+        'numoftransactions','disbursedamount','mintransaction','maxtransaction','thresholdlimit' , 'status', 'coment' , 'placevalue'
     ];
 
     foreach ($fields as $field) {
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fileFields = [
         'aadhaarfile','personalpanfile','photograph','addressfile','coifile',
         'moafile','aoafile','brfile','udyamfile','gstinfile','bofile','rentfile',
-        'annexurebfile','cancelledchequefile'
+        'annexurebfile','cancelledchequefile', 'aadhaaradnfile' , 'personalpanadnfile' , 'signatoryphotoadnfile' , 'addressadnfile' , 'signatorysignfile' , 'signatorysignadnfile'
     ];
 
     $updateFileParts = [];

@@ -93,32 +93,31 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             border: 1px solid #ddd;
         }
 
-               .autth-img-cover-login {
-    background-image: url('./assets/images/loginpage.jpg');
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
-    width: 100%;
-     height: 100%;/* or set a fixed height like 400px if needed */
-}
+        .autth-img-cover-login {
+            background-image: url('./assets/images/loginpage.jpg');
+            background-size: cover;
+            background-position: right center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            /* or set a fixed height like 400px if needed */
+        }
 
-.blr{
-	background-color:rgba(254, 254, 254, 0.8) !important;
-	backdrop-filter: blur(20px) !important;
+        .blr {
+            background-color: rgba(254, 254, 254, 0.8) !important;
+            backdrop-filter: blur(20px) !important;
 
-}
+        }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="search"],
-input[type="url"]  {
-    background-color:rgba(255, 255, 255, 0.62) !important; /* Replace with any color you want */
-}
-
-
-
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="search"],
+        input[type="url"] {
+            background-color: rgba(255, 255, 255, 0.62) !important;
+            /* Replace with any color you want */
+        }
     </style>
 </head>
 
@@ -147,7 +146,7 @@ input[type="url"]  {
         </header>
         <form action="update.php" method="POST" enctype="multipart/form-data">
             <!-- for passing the id field -->
-            <input type="hidden" name="id" value="<?= $appData['id'] ?>"> 
+            <input type="hidden" name="id" value="<?= $appData['id'] ?>">
             <!-- ///////// -->
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
@@ -332,7 +331,7 @@ input[type="url"]  {
                                         </div>
                                     </div>
                                     <!-- authorization details -->
-                                    <div id="test-vl-2" class="bs-stepper-pane fade blr p-4" style="border-radius:10px"  role="tabpanel" aria-labelledby="stepper3trigger2">
+                                    <div id="test-vl-2" class="bs-stepper-pane fade blr p-4" style="border-radius:10px" role="tabpanel" aria-labelledby="stepper3trigger2">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Authorized Signatory Details</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -421,7 +420,7 @@ input[type="url"]  {
 
                                     </div>
                                     <!-- Bank Account details -->
-                                    <div id="test-vl-3" class="bs-stepper-pane fade blr p-4" style="border-radius:10px"  role="tabpanel" aria-labelledby="stepper3trigger3">
+                                    <div id="test-vl-3" class="bs-stepper-pane fade blr p-4" style="border-radius:10px" role="tabpanel" aria-labelledby="stepper3trigger3">
 
                                         <h2 class=" fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Bank Account Details</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -496,14 +495,15 @@ input[type="url"]  {
 
                                     </div>
                                     <!-- document submission -->
-                                    <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px"  aria-labelledby="stepper3trigger4">
+                                    <div id="test-vl-4" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px" aria-labelledby="stepper3trigger4">
 
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Submit Required Documents</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Submit valid business and identity documents to proceed. We keep your data safe and use it only for verification purposes.</p>
                                         </div>
                                         <hr class="my-4">
-                                        <h6 class="mt-4 text-primary"><i class='bx  bx-edit-alt'></i> Personal identity</h6>
+                                        <h6 class="mt-4 text-primary"><i class='bx  bx-edit-alt'></i> Personal identity (Authorized Director 1)</h6>
+                                        <!-- Authorized Document 1  -->
 
                                         <div class="row g-3">
                                             <!-- 1 -->
@@ -546,44 +546,185 @@ input[type="url"]  {
                                                 <span id="PanMsg"></span>
                                             </div>
                                             <!-- 3 -->
-                                            <div class="col-12 col-lg-6 mb-3">
-                                                <label class="form-label fw-semibold">3. Photograph :</label>
-
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="inputGroupFile03" onchange="validateFile(this, 'PhotoMsg','photographpreview')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
-                                                    <label class="input-group-text" for="inputGroupFile03">Upload</label>
-                                                </div>
-                                                <?php if (!empty($docData['photograph'])): ?>
-                                                    <p>
-                                                        <a href="<?= $docData['photograph'] ?>" target="_blank">
-                                                            View uploaded file
-                                                        </a>
-                                                    </p>
-                                                <?php else: ?>
-                                                    <p style="color: #888;">No file uploaded</p>
-                                                <?php endif; ?>
-
-                                                <span id="PhotoMsg"></span>
-
-                                            </div>
-                                            <!-- 4 -->
+                                            <!-- 3 -->
                                             <div class="col-12 col-lg-6 mb-3">
 
-                                                <label class="form-label fw-semibold">4. Address :</label>
+                                                <label class="form-label fw-semibold">3. Address :</label>
                                                 <div class="input-group mb-3">
                                                     <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressMsg','addressfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressfile">
                                                     <label class="input-group-text" for="inputGroupFile04">Upload</label>
-                                                </div> <?php if (!empty($docData['addressfile'])): ?>
+                                                </div><?php if (!empty($docData['addressfile'])): ?>
                                                     <p>
                                                         <a href="<?= $docData['addressfile'] ?>" target="_blank">
                                                             View uploaded file
                                                         </a>
                                                     </p>
+
                                                 <?php else: ?>
                                                     <p style="color: #888;">No file uploaded</p>
                                                 <?php endif; ?>
                                                 <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
                                                 <span id="AddressMsg"></span>
+                                            </div>
+
+                                            <!-- /666  -->
+                                            <div class="row g-3 " style="margin-top: -10px;">
+                                                <!-- signatory 1 photo -->
+                                                <!-- 4 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">4. Upload Your Photo</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0111" onchange="validateFile(this, 'PhotoMsg','photographpreview')" accept=".jpeg,.jpg,.png,.webp" name="photograph">
+                                                        <label class="input-group-text" for="inputGroupFile0111">Upload</label>
+                                                    </div>
+                                                    <?php if (!empty($docData['photograph'])): ?>
+                                                        <p>
+                                                            <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                        </p>
+                                                    <?php else: ?>
+                                                        <p style="color: #888;">No file uploaded</p>
+                                                    <?php endif; ?>
+
+                                                    <span id="PhotoMsg"></span>
+
+                                                </div>
+                                                <!-- signatory 1 sign -->
+                                                <!-- 5 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">5. Upload Your Signature</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0112" onchange="validateFile(this, 'signatorysignMsg','signatorysignfilepreview')" accept=".jpeg,.jpg,.png,.webp" name="signatorysignfile">
+                                                        <label class="input-group-text" for="inputGroupFile0112">Upload</label>
+                                                    </div>
+                                                    <?php if (!empty($docData['signatorysignfile'])): ?>
+                                                        <p>
+                                                            <a href="<?= $docData['signatorysignfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                        </p>
+                                                    <?php else: ?>
+                                                        <p style="color: #888;">No file uploaded</p>
+                                                    <?php endif; ?>
+                                                    <span id="signatorysignMsg"></span>
+
+                                                </div>
+
+                                            </div>
+
+                                            <h6 class="mt-4 text-primary"><i class='bx  bx-edit-alt'></i> Personal identity (Authorized Director 2)</h6>
+                                            <!-- Authorized Document 2  -->
+
+                                            <!-- 1 -->
+                                            <div class="col-12 col-lg-6 mb-3">
+                                                <label class="form-label fw-semibold">1. Aadhaar Card :</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" onchange="validateFile(this, 'AadhaaradnMsg','aadhaaradnfilepreview')" class="form-control" id="inputGroupFile01" accept=".pdf,.jpeg,.jpg,.png,.webp" name="aadhaaradnfile">
+                                                    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+
+                                                </div>
+                                                <?php if (!empty($docData['aadhaaradnfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
+                                                <span id="AadhaaradnMsg"></span>
+
+                                            </div>
+                                            <!-- 2 -->
+                                            <div class="col-12 col-lg-6 mb-3">
+                                                <label class="form-label fw-semibold">2. Pan Card :</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="inputGroupFile02" onchange="validateFile(this, 'PanadnMsg','personalpanadnfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="personalpanadnfile">
+                                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                                </div>
+                                                <?php if (!empty($docData['personalpanadnfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['personalpanadnfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
+                                                <span id="PanadnMsg"></span>
+                                            </div>
+                                            <!-- 3 -->
+                                            <!-- 3 -->
+                                            <div class="col-12 col-lg-6 mb-3">
+
+                                                <label class="form-label fw-semibold">3. Address :</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="inputGroupFile04" onchange="validateFile(this, 'AddressadnMsg','addressadnfilepreview')" accept=".pdf,.jpeg,.jpg,.png,.webp" name="addressadnfile">
+                                                    <label class="input-group-text" for="inputGroupFile04">Upload</label>
+                                                </div> <?php if (!empty($docData['addressadnfile'])): ?>
+                                                    <p>
+                                                        <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                            View uploaded file
+                                                        </a>
+                                                    </p>
+
+                                                <?php else: ?>
+                                                    <p style="color: #888;">No file uploaded</p>
+                                                <?php endif; ?>
+                                                <p class="" style="color:red">(Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bill/ Voter ID Card) Not older than 3 months </p>
+                                                <span id="AddressadnMsg"></span>
+                                            </div>
+
+                                            <!-- /666  -->
+                                            <div class="row g-3 " style="margin-top: -10px;">
+                                                <!-- signatory 2 photo -->
+                                                <!-- 4 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">4. Upload Your Photo</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0111" onchange="validateFile(this, 'signatoryphotoadnMsg','signatoryphotoadnfilepreview')" accept=".jpeg,.jpg,.png,.webp" name="signatoryphotoadnfile">
+                                                        <label class="input-group-text" for="inputGroupFile0111">Upload</label>
+                                                    </div>
+                                                    <?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                        <p>
+                                                            <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                        </p>
+                                                    <?php else: ?>
+                                                        <p style="color: #888;">No file uploaded</p>
+                                                    <?php endif; ?>
+
+                                                    <span id="signatoryphotoadnMsg"></span>
+
+                                                </div>
+                                                <!-- signatory 2 sign -->
+                                                <!-- 5 -->
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label fw-semibold">5. Upload Your Signature</label>
+
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile0112" onchange="validateFile(this, 'signatorysignadnMsg','signatorysignadnfilepreview')" accept=".jpeg,.jpg,.png,.webp" name="signatorysignadnfile">
+                                                        <label class="input-group-text" for="inputGroupFile0112">Upload</label>
+                                                    </div>
+                                                    <?php if (!empty($docData['signatorysignfile'])): ?>
+                                                        <p>
+                                                            <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                        </p>
+                                                    <?php else: ?>
+                                                        <p style="color: #888;">No file uploaded</p>
+                                                    <?php endif; ?>
+                                                    <span id="signatorysignadnMsg"></span>
+
+                                                </div>
+
                                             </div>
 
                                             <h6 class="mt-4 mb-2 text-primary"><i class='bx  bx-edit-alt'></i> Business identity</h6>
@@ -754,9 +895,11 @@ input[type="url"]  {
                                                 </div>
                                             </div>
                                         </div>
+
+
                                     </div>
                                     <!-- declarations -->
-                                    <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px"  aria-labelledby="stepper3trigger5">
+                                    <div id="test-vl-5" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px" aria-labelledby="stepper3trigger5">
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Authorized Declarations & Consent</h2>
                                         <div class="" style="margin-right: 300px;">
                                             <p class="mb-4 text-muted ">Read the following declarations carefully. These include your consent to data usage, identity verification, and acceptance of platform terms and conditions.</p>
@@ -889,7 +1032,7 @@ input[type="url"]  {
                                         </div>
                                     </div>
                                     <!-- submission form -->
-                                    <div id="test-vl-6" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px"  aria-labelledby="stepper3trigger6">
+                                    <div id="test-vl-6" role="tabpanel" class="bs-stepper-pane content fade blr p-4" style="border-radius:10px" aria-labelledby="stepper3trigger6">
 
                                         <h2 class="fs-2 " style="color:rgb(7, 104, 231)"><i class='bx  bx-edit-alt'></i> Submit Your Application</h2>
                                         <div class="" style="margin-right: 300px;">
@@ -917,7 +1060,7 @@ input[type="url"]  {
                                                 <thead style="border: none !important;">
                                                     <tr style="border: none !important;">
                                                         <td colspan="2" class="text-end" style="border: none !important;">
-                                                            <strong>Date & Time:</strong> <span id="currentDateTime"></span>
+                                                            <strong>Date & Time:</strong> <span id=""><input type="text" style="border: none;" value="<?= htmlspecialchars($appData['created_at']) ?>" disabled></span>
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -937,134 +1080,138 @@ input[type="url"]  {
                                             </div>
 
                                             <!-- 1. Business Details -->
-                                            <h5 class="fw-bold " style="color:rgb(3, 106, 216); margin-top:-15px">1. Business Details</h5>
-                                            <table class="table table-bordered align-middle">
-                                                <tr>
-                                                    <td style="width: 40%;">Business Name</td>
-                                                    <td style="width: 60%;"><span id="businessnamevalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Type of Entity</td>
-                                                    <td><span id="entityvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Date of Incorporation</td>
-                                                    <td><span id="doivalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nature of Business</td>
-                                                    <td><span id="nobvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Business Category</td>
-                                                    <td><span id="businesscategoryvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Business Sub-Category</td>
-                                                    <td><span id="businesssubcategoryvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>GSTIN</td>
-                                                    <td><span id="gstinvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Business PAN Number</td>
-                                                    <td><span id="businesspanvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Registered Business Address</td>
-                                                    <td><span id="registeredbsuinessvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Operating Address (if different)</td>
-                                                    <td><span id="operatingaddressvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Website URL</td>
-                                                    <td><span id="urlvalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Application Name</td>
-                                                    <td><span id="applicantnamevalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Business Contact Number</td>
-                                                    <td><span id="businessnumbervalue"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Support Email ID</td>
-                                                    <td><span id="supportemailvalue"></span></td>
-                                                </tr>
-                                            </table>
-
-                                            <!-- 2. Authorized Signatory -->
                                             <div>
-                                                <h5 class="fw-bold  mt-1" style="color:rgb(3, 106, 216); page-break-before: always;">2. Authorized Signatory Details</h5>
+                                                <h5 class="fw-bold " style="color:rgb(3, 106, 216); margin-top:-15px">1. Business Details</h5>
                                                 <table class="table table-bordered align-middle">
                                                     <tr>
-                                                        <td>Full Name</td>
-                                                        <td><span id="fullnamevalue"></span></td>
+                                                        <td style="width: 40%;">Business Name</td>
+                                                        <td style="width: 60%;"><span id="businessnamevalue"></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Designation</td>
-                                                        <td><span id="designationvalue"></span></td>
+                                                        <td>Type of Entity</td>
+                                                        <td><span id="entityvalue"></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Mobile Number</td>
-                                                        <td><span id="numbervalue"></span></td>
+                                                        <td>Date of Incorporation</td>
+                                                        <td><span id="doivalue"></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Email ID</td>
-                                                        <td><span id="personalemailvalue"></span></td>
+                                                        <td>Nature of Business</td>
+                                                        <td><span id="nobvalue"></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Aadhaar Number</td>
-                                                        <td><span id="aadhaarnumbervalue"></span></td>
+                                                        <td>Business Category</td>
+                                                        <td><span id="businesscategoryvalue"></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>PAN Number</td>
-                                                        <td><span id="pannumbervalue"></span></td>
+                                                        <td>Business Sub-Category</td>
+                                                        <td><span id="businesssubcategoryvalue"></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Passport-size Photograph</td>
-                                                        <td>TO BE ATTACHED SEPARATELY</td>
+                                                        <td>GSTIN</td>
+                                                        <td><span id="gstinvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Business PAN Number</td>
+                                                        <td><span id="businesspanvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Registered Business Address</td>
+                                                        <td><span id="registeredbsuinessvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Operating Address (if different)</td>
+                                                        <td><span id="operatingaddressvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Website URL</td>
+                                                        <td><span id="urlvalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Application Name</td>
+                                                        <td><span id="applicantnamevalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Business Contact Number</td>
+                                                        <td><span id="businessnumbervalue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Support Email ID</td>
+                                                        <td><span id="supportemailvalue"></span></td>
                                                     </tr>
                                                 </table>
-                                            </div><br>
+                                            </div>
 
-                                            <!-- 3. Authorized Signatory 2 -->
-                                            <div >
-                                                <h5 class="fw-bold mt-2" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
-                                                <table class="table table-bordered align-middle">
-                                                    <tr>
-                                                        <td>Full Name</td>
-                                                        <td><span id="fullnameadnvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Designation</td>
-                                                        <td><span id="designationadnvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Mobile Number</td>
-                                                        <td><span id="numberadnvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Email ID</td>
-                                                        <td><span id="personalemailadnvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Aadhaar Number</td>
-                                                        <td><span id="aadhaarnumberadnvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>PAN Number</td>
-                                                        <td><span id="pannumberadnvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Passport-size Photograph</td>
-                                                        <td>TO BE ATTACHED SEPARATELY</td>
-                                                    </tr>
-                                                </table>
+                                            <!-- 2. Authorized Signatory 1 -->
+                                            <div style="page-break-before: always;">
+                                                <div>
+                                                    <h5 class="fw-bold  mt-1" style="color:rgb(3, 106, 216); ">2. Authorized Signatory Details</h5>
+                                                    <table class="table table-bordered align-middle">
+                                                        <tr>
+                                                            <td>Full Name</td>
+                                                            <td><span id="fullnamevalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Designation</td>
+                                                            <td><span id="designationvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mobile Number</td>
+                                                            <td><span id="numbervalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email ID</td>
+                                                            <td><span id="personalemailvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Aadhaar Number</td>
+                                                            <td><span id="aadhaarnumbervalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PAN Number</td>
+                                                            <td><span id="pannumbervalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Passport-size Photograph</td>
+                                                            <td>TO BE ATTACHED SEPARATELY</td>
+                                                        </tr>
+                                                    </table>
+                                                </div><br>
+
+                                                <!-- 3. Authorized Signatory 2 -->
+                                                <div>
+                                                    <h5 class="fw-bold mt-2" style="color:rgb(3, 106, 216);">3. Authorized Signatory Details 2 (If any)</h5>
+                                                    <table class="table table-bordered align-middle">
+                                                        <tr>
+                                                            <td>Full Name</td>
+                                                            <td><span id="fullnameadnvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Designation</td>
+                                                            <td><span id="designationadnvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mobile Number</td>
+                                                            <td><span id="numberadnvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email ID</td>
+                                                            <td><span id="personalemailadnvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Aadhaar Number</td>
+                                                            <td><span id="aadhaarnumberadnvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PAN Number</td>
+                                                            <td><span id="pannumberadnvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Passport-size Photograph</td>
+                                                            <td>TO BE ATTACHED SEPARATELY</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </div>
 
                                             <!-- 4. Bank Account Details -->
@@ -1102,259 +1249,378 @@ input[type="url"]  {
 
                                             <!-- document -->
 
-                                            <h5 class="fw-bold  " style="color:rgb(3, 106, 216); page-break-before: always; margin-top:-15px">5. Documents uploaded</h5>
-                                            <table class="table table-bordered mt-4">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Document</th>
-                                                        <th>Uploaded File</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Aadhaar Card</td>
-                                                        <td>
-                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>PAN Card</td>
-                                                        <td>
-                                                            <div id="panpreview"><?php if (!empty($docData['personalpanfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Photograph</td>
-                                                        <td>
-                                                            <div id="photographpreview"><?php if (!empty($docData['photograph'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['photograph'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
-                                                        <td>
-                                                            <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['addressfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
-                                                        <td>
-                                                            <div id="coifilepreview"><?php if (!empty($docData['coifile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['coifile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Memorandum of Association (MOA)</td>
-                                                        <td>
-                                                            <div id="moafilepreview"><?php if (!empty($docData['moafile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['moafile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Articles of Association (AOA) </td>
-                                                        <td>
-                                                            <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['aoafile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
-                                                        <td>
-                                                            <div id="brfilepreview"><?php if (!empty($docData['brfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['brfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>UDYAM Registration Certificate (If Available)</td>
-                                                        <td>
-                                                            <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['udyamfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>GSTIN Certificate</td>
-                                                        <td>
-                                                            <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['gstinfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
-                                                        <td>
-                                                            <div id="bofilepreview"><?php if (!empty($docData['bofile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['bofile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Cancelled Cheque</td>
-                                                        <td>
-                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
-                                                        <td>
-                                                            <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['rentfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>ANNEXURE B Form with Signature and Stamp</td>
-                                                        <td>
-                                                            <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): ?>
-                                                                    <p>
-                                                                        <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?></div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <div style="page-break-before: always;">
+                                                <table class="table table-bordered mt-4 page-break-before: always;">
+                                                    <thead>
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary fw-bold fs-5" style="color:rgb(3, 106, 216);">5. Documents uploaded</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Document</th>
+                                                            <th>Uploaded File</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Aadhaar Card</td>
+                                                            <td>
+                                                                <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PAN Card</td>
+                                                            <td>
+                                                                <div id="panpreview"><?php if (!empty($docData['personalpanfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Photograph</td>
+                                                            <td>
+                                                                <div id="photographpreview"><?php if (!empty($docData['photograph'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Signature</td>
+                                                            <td>
+                                                                <div id="signatorysignfilepreview"><?php if (!empty($docData['photograph'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
+                                                            <td>
+                                                                <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['addressfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- for signatory 2 -->
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 2</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Aadhaar Card</td>
+                                                            <td>
+                                                                <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PAN Card</td>
+                                                            <td>
+                                                                <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['personalpanadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Photograph</td>
+                                                            <td>
+                                                                <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Signature</td>
+                                                            <td>
+                                                                <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
+                                                            <td>
+                                                                <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- //////////// -->
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary fw-bold" style="color:rgb(3, 106, 216);">Business Documents</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
+                                                            <td>
+                                                                <div id="coifilepreview"><?php if (!empty($docData['coifile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['coifile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Memorandum of Association (MOA)</td>
+                                                            <td>
+                                                                <div id="moafilepreview"><?php if (!empty($docData['moafile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['moafile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Articles of Association (AOA) </td>
+                                                            <td>
+                                                                <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['aoafile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
+                                                            <td>
+                                                                <div id="brfilepreview"><?php if (!empty($docData['brfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['brfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>UDYAM Registration Certificate (If Available)</td>
+                                                            <td>
+                                                                <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['udyamfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>GSTIN Certificate</td>
+                                                            <td>
+                                                                <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['gstinfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
+                                                            <td>
+                                                                <div id="bofilepreview"><?php if (!empty($docData['bofile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['bofile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cancelled Cheque</td>
+                                                            <td>
+                                                                <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
+                                                            <td>
+                                                                <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['rentfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>ANNEXURE B Form with Signature and Stamp</td>
+                                                            <td>
+                                                                <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
                                             <!-- aanexure a -->
 
-                                            <div style="page-break-before: always;"></div>
+                                            <div style="page-break-before: always;">
 
-                                            <h5 class="fw-bold text-primary mb-3">Annexure A</h5>
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="fw-semibold">1. Total Volumes in amount and number of users</td>
-                                                        <td>
-                                                            a. Volumes in amount: <span id="totalvolumevalue"></span><br>
-                                                            b. Number of users: <span id="numberofusersvalue"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-semibold">2. Projections for the next six months</td>
-                                                        <td>
-                                                            a. Amount: <span id="sixmonthprojectionamountvalue"></span><br>
-                                                            b. Number of users: <span id="sixmonthprojectionuservalue"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-semibold">3. Number of transactions / frequencies in a day</td>
-                                                        <td><span id="numoftransactionsvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-semibold">4. Volume of total amount disbursed / distributed in a day</td>
-                                                        <td><span id="disbursedamountvalue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-semibold">5. Minimum and Maximum transaction amount</td>
-                                                        <td>
-                                                            a. Minimum Amount: <span id="mintransactionvalue"></span><br>
-                                                            b. Maximum Amount: <span id="maxtransactionvalue"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-semibold">6. Threshold limit and/or daily payout that can be fixed</td>
-                                                        <td><span id="thresholdlimitvalue"></span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
+                                                <h5 class="fw-bold text-primary mb-3">Annexure A</h5>
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="fw-semibold">1. Total Volumes in amount and number of users</td>
+                                                            <td>
+                                                                a. Volumes in amount: <span id="totalvolumevalue"></span><br>
+                                                                b. Number of users: <span id="numberofusersvalue"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-semibold">2. Projections for the next six months</td>
+                                                            <td>
+                                                                a. Amount: <span id="sixmonthprojectionamountvalue"></span><br>
+                                                                b. Number of users: <span id="sixmonthprojectionuservalue"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-semibold">3. Number of transactions / frequencies in a day</td>
+                                                            <td><span id="numoftransactionsvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-semibold">4. Volume of total amount disbursed / distributed in a day</td>
+                                                            <td><span id="disbursedamountvalue"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-semibold">5. Minimum and Maximum transaction amount</td>
+                                                            <td>
+                                                                a. Minimum Amount: <span id="mintransactionvalue"></span><br>
+                                                                b. Maximum Amount: <span id="maxtransactionvalue"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-semibold">6. Threshold limit and/or daily payout that can be fixed</td>
+                                                            <td><span id="thresholdlimitvalue"></span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
                                             <!-- documents preview -->
 
@@ -1383,14 +1649,87 @@ input[type="url"]  {
                                                     <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" style="font-size:16px;" class='bx bx-check-square'></i> I/We confirm that the information provided is true and accurate.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check2" style="font-size:16px;" class='bx bx-check-square'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check3" style="font-size:16px;" class='bx bx-check-square'></i> I/We agree to comply with all applicable RBI, AML, and KYC guidelines.</li>
-                                                    <li class="d-flex align-items-center" style="margin-top: 95px;"></li>
+                                                    <li class="d-flex align-items-center" style=""></li>
 
                                                 </ul>
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label ">Place : <span id="placevalue"></span></label>
+                                                </div>
                                             </div>
+
+
+                                            <!-- section for signatory photo and sign -->
+                                            <table border="1" cellpadding="10" style="width: 100%; text-align: center; margin-bottom:190px;">
+                                                <tr>
+                                                    <th>Authorized Signatory 1</th>
+                                                    <th>Authorized Signatory 2</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <!-- Photo placeholder -->
+                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['photograph']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span><br><br>
+                                                        <!-- Signature placeholder -->
+                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['signatorysignfile']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Photo placeholder -->
+                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['signatoryphotoadnfile']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span><br><br>
+                                                        <!-- Signature placeholder -->
+                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['signatorysignadnfile']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
+
+                                        <!-- download kyc form -->
+                                        <!-- <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
                                             <p class="mb-2 mt-3"> File will be downloaded with your attached Documents * </p>
                                             <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+                                        </div> -->
+                                        <!-- ////////////// -->
+
+
+                                        <!-- placevalue -->
+                                        <div class="col-12 col-lg-4 mb-3">
+                                            <label class="form-label fw-semibold">Place :</label>
+                                            <input type="text" class="form-control" placeholder="Enter your Place" name="placevalue" onblur="setPreviewValue(this, 'placevalue')" value="<?= htmlspecialchars($appData['placevalue']) ?>">
                                         </div>
 
 
@@ -1510,7 +1849,7 @@ input[type="url"]  {
             const fileFields = [
                 'aadhaarfile', 'panfile', 'photograph', 'addressfile', 'coifile',
                 'moafile', 'aoafile', 'brfile', 'udyamfile', 'gstinfile',
-                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile'
+                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile', 'aadhaaradnfile', 'personalpanadnfile', 'signatoryphotoadnfile', 'addressadnfile', 'signatorysignfile', 'signatorysignadnfile'
             ];
 
             fileFields.forEach(field => {
@@ -1558,11 +1897,87 @@ input[type="url"]  {
         });
     </script>
 
+
+
+    <!-- reflecting pdf on onload -->
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+
+            const fileDivIds = [
+                'aadhaarpreview', 'panpreview', 'photographpreview',
+                'addressfilepreview', 'coifilepreview', 'moafilepreview',
+                'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+                'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+                'annexurebfilepreview', 'cancelledchequefile', 'aadhaaradnfile', 'personalpanadnfile', 'signatoryphotoadnfile', 'addressadnfile', 'signatorysignfile', 'signatorysignadnfile'
+            ];
+
+            const photograph = document.querySelector('[name="photograph"]').name;
+            const signatoryphotoadnfile = document.querySelector('[name="signatoryphotoadnfile"]').name;
+            const signatorysignfile = document.querySelector('[name="signatorysignfile"]').name;
+            const signatorysignadnfile = document.querySelector('[name="signatorysignadnfile"]').name;
+
+            const signphoto1 = document.getElementById('signphoto1');
+            const sign1 = document.getElementById('sign1');
+            const signp2 = document.getElementById('signphoto2');
+            const signphoto2 = document.getElementById('signphoto2');
+
+
+            if (photograph) {
+                console.log("photo");
+                console.log(photograph);
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img1 = document.createElement("img");
+                    img1.src = photograph.target.result;
+                    img1.style.maxWidth = "200px";
+                    img1.style.border = "1px solid #ccc";
+                    img1.style.marginTop = "10px";
+                    signphoto1.appendChild(img1);
+                };
+                reader.readAsDataURL(file);
+            }
+
+
+
+            fileDivIds.forEach(id => {
+                const container = document.getElementById(id);
+                if (!container) return;
+
+                const link = container.querySelector('a');
+                if (!link) return;
+
+                const fileUrl = link.href;
+                const fileName = fileUrl.split('/').pop();
+                const inputName = id.replace('preview', ''); // assume name is like 'aadhaarfile'
+
+                fetch(fileUrl)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const file = new File([blob], fileName, {
+                            type: blob.type
+                        });
+                        uploadedFiles[inputName] = file;
+                        console.log(`✅ File loaded: ${fileName} (${inputName})`);
+                    })
+                    .catch(err => {
+                        console.warn(`❌ Could not fetch: ${fileUrl}`, err);
+                    });
+            });
+        });
+    </script>
+
+
     <!-- image validation and pdf merger -->
 
 
     <script>
         const uploadedFiles = {}; // Globally track files by 'name'
+        const signphoto1 = document.getElementById('signphoto1'),
+            signphoto2 = document.getElementById('signphoto2'),
+            sign1 = document.getElementById('sign1'),
+            sign2 = document.getElementById('sign2');
 
         function validateFile(input, msgId, previewId) {
             const file = input.files[0];
@@ -1570,11 +1985,15 @@ input[type="url"]  {
             const preview = document.getElementById(previewId);
             const inputKey = input.name;
 
+            console.log(inputKey);
+
+
+
             msg.innerText = '';
             preview.innerHTML = '';
 
             const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-            const maxSize = 2 * 1024 * 1024;
+            const maxSize = 5 * 1024 * 1024;
 
             if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
                 msg.innerText = "❌ Invalid or too large file.";
@@ -1594,6 +2013,8 @@ input[type="url"]  {
             msg.style.color = "green";
             preview.innerHTML = `<strong>${sanitizedFileName}</strong><br>`;
 
+
+
             if (file.type === "application/pdf") {
                 const iframe = document.createElement("iframe");
                 iframe.src = URL.createObjectURL(sanitizedFile);
@@ -1612,7 +2033,66 @@ input[type="url"]  {
                     preview.appendChild(img);
                 };
                 reader.readAsDataURL(file);
+
+                if (inputKey == "photograph") {
+                    console.log("dunction");
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img1 = document.createElement("img");
+                        img1.src = e.target.result;
+                        img1.style.maxWidth = "200px";
+                        img1.style.border = "1px solid #ccc";
+                        img1.style.marginTop = "10px";
+                        signphoto1.innerHTML = '<div></div>';
+                        signphoto1.appendChild(img1);
+                    };
+                    reader.readAsDataURL(file);
+                }
+                if (inputKey == "signatoryphotoadnfile") {
+                    console.log("dunction");
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img2 = document.createElement("img");
+                        img2.src = e.target.result;
+                        img2.style.maxWidth = "200px";
+                        img2.style.border = "1px solid #ccc";
+                        img2.style.marginTop = "10px";
+                        signphoto2.innerHTML = '<div></div>';
+                        signphoto2.appendChild(img2);
+                    };
+                    reader.readAsDataURL(file);
+                }
             }
+            if (inputKey == "signatorysignfile") {
+                console.log("dunction");
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img3 = document.createElement("img");
+                    img3.src = e.target.result;
+                    img3.style.maxWidth = "150px";
+                    img3.style.border = "1px solid #ccc";
+                    img3.style.marginTop = "10px";
+                    sign1.innerHTML = '<div></div>';
+                    sign1.appendChild(img3);
+                };
+                reader.readAsDataURL(file);
+            }
+            if (inputKey == "signatorysignadnfile") {
+                console.log("dunction");
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img4 = document.createElement("img");
+                    img4.src = e.target.result;
+                    img4.style.maxWidth = "150px";
+                    img4.style.border = "1px solid #ccc";
+                    img4.style.marginTop = "10px";
+                    sign2.innerHTML = '<div></div>';
+                    sign2.appendChild(img4);
+                };
+                reader.readAsDataURL(file);
+            }
+
+
         }
 
         async function downloadKYC() {
@@ -1625,7 +2105,7 @@ input[type="url"]  {
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile'
+                'annexurebfilepreview', 'cancelledchequefile', 'aadhaaradnfilepreview', 'personalpanadnfilepreview', 'signatoryphotoadnfilepreview', 'addressadnfilepreview', 'signatorysignfilepreview', 'signatorysignadnfilepreview'
             ];
 
             // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
@@ -1682,17 +2162,27 @@ input[type="url"]  {
                         await finalPdf.embedJpg(imgBytes);
 
                     const page = finalPdf.addPage();
-                    const {
-                        width,
-                        height
-                    } = embedded.scale(0.5);
+                    const pageWidth = page.getWidth();
+                    const pageHeight = page.getHeight();
+
+                    const margin = 100; // 100px margin on both left and right
+                    const availableWidth = pageWidth - 2 * margin;
+
+                    const originalWidth = embedded.width;
+                    const originalHeight = embedded.height;
+                    const aspectRatio = originalHeight / originalWidth;
+
+                    const targetWidth = availableWidth;
+                    const targetHeight = targetWidth * aspectRatio;
+
                     page.drawImage(embedded, {
-                        x: 50,
-                        y: page.getHeight() - height - 50,
-                        width,
-                        height
+                        x: margin,
+                        y: pageHeight - targetHeight - margin, // top margin
+                        width: targetWidth,
+                        height: targetHeight
                     });
                 }
+
             }
 
             // 🔽 Step 4: Download
@@ -1708,65 +2198,10 @@ input[type="url"]  {
             link.click();
             document.body.removeChild(link);
         }
-
-        // ✅ Auto-trigger validateFile() on page load and bind blur
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('input[type="file"]').forEach(input => {
-                const msgId = input.getAttribute('data-msg-id');
-                const previewId = input.getAttribute('data-preview-id');
-
-                // Run on page load if file is already selected (browser may retain)
-                if (input.files.length > 0) {
-                    validateFile(input, msgId, previewId);
-                }
-
-                // Also trigger on blur
-                input.addEventListener('blur', function() {
-                    validateFile(this, msgId, previewId);
-                });
-            });
-        });
     </script>
 
-<!-- reflecting pdf on onload -->
 
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    const fileDivIds = [
-        'aadhaarpreview', 'panpreview', 'photographpreview',
-        'addressfilepreview', 'coifilepreview', 'moafilepreview',
-        'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
-        'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-        'annexurebfilepreview', 'cancelledchequefile'
-    ];
-
-    fileDivIds.forEach(id => {
-        const container = document.getElementById(id);
-        if (!container) return;
-
-        const link = container.querySelector('a');
-        if (!link) return;
-
-        const fileUrl = link.href;
-        const fileName = fileUrl.split('/').pop();
-        const inputName = id.replace('preview', ''); // assume name is like 'aadhaarfile'
-
-        fetch(fileUrl)
-            .then(response => response.blob())
-            .then(blob => {
-                const file = new File([blob], fileName, { type: blob.type });
-                uploadedFiles[inputName] = file;
-                console.log(`✅ File loaded: ${fileName} (${inputName})`);
-            })
-            .catch(err => {
-                console.warn(`❌ Could not fetch: ${fileUrl}`, err);
-            });
-    });
-});
-</script>
-
-
-<!-- /////////////// -->
+    <!-- /////////////// -->
 
     <!-- reflecting value on onload function -->
 
@@ -1803,6 +2238,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (preview && fileName) {
                     const base = fileName.split(/[\\/]/).pop(); // clean up path if present
                     preview.innerHTML = `<strong>${base}</strong>`;
+
                 }
             });
         });

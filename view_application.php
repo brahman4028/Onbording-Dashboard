@@ -214,8 +214,8 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             <table class="table" id="kycPreview" style="border: none !important;">
                                                 <thead style="border: none !important;">
                                                     <tr style="border: none !important;">
-                                                        <td colspan="2" class="text-end" style="border: none !important; background:none;">
-                                                            <strong>Date & Time:</strong> <span id="currentDateTime"></span>
+                                                        <td colspan="2" class="text-end" style="border: none !important; background:none">
+                                                            <strong>Date & Time:</strong> <span id=""><input type="text" style="border: none;" value="<?= htmlspecialchars($appData['created_at']) ?>" disabled></span>
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -400,7 +400,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                             <!-- document -->
 
-                                            <h5 class="fw-bold  " style="color:rgb(3, 106, 216); page-break-before: always; margin-top:-15px">5. Documents uploaded</h5>
+                                            <h5 class="fw-bold  " style="color:rgb(3, 106, 216); page-break-before: always; margin-top: 15px">5. Documents uploaded</h5>
                                             <table class="table table-bordered mt-4">
                                                 <thead>
                                                     <tr>
@@ -409,6 +409,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <!-- //////////// -->
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 1</td>
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
@@ -454,6 +457,20 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    <td>Signature</td>
+                                                        <td>
+                                                            <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                     <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
@@ -469,6 +486,89 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                     <!-- for signatory 2 -->
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 2</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Aadhaar Card</td>
+                                                            <td>
+                                                                <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PAN Card</td>
+                                                            <td>
+                                                                <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['personalpanadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Photograph</td>
+                                                            <td>
+                                                                <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Signature</td>
+                                                            <td>
+                                                                <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
+                                                            <td>
+                                                                <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): ?>
+                                                                        <p>
+                                                                            <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                                                View uploaded file
+                                                                            </a>
+                                                                        </p>
+                                                                    <?php else: ?>
+                                                                        <p style="color: #888;">No file uploaded</p>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- //////////// -->
+                                                        <tr>
+                                                            <td colspan="2" class="text-primary fw-bold" style="color:rgb(3, 106, 216);">Business Documents</td>
+                                                        </tr>
                                                     <tr>
                                                         <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
                                                         <td>
@@ -694,10 +794,71 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <li class="d-flex align-items-center" style="margin-top: -5px;"><i id="check1" style="font-size:16px;" class='bx bx-check-square'></i> I/We confirm that the information provided is true and accurate.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check2" style="font-size:16px;" class='bx bx-check-square'></i> I/We authorize ITSTARPAY to verify the submitted information and documents.</li>
                                                     <li class="d-flex align-items-center" style="margin-top: 5px;"><i id="check3" style="font-size:16px;" class='bx bx-check-square'></i> I/We agree to comply with all applicable RBI, AML, and KYC guidelines.</li>
-                                                    <li class="d-flex align-items-center" style="margin-top: 95px;"></li>
+                                                    <li class="d-flex align-items-center" style="margin-top: 5px;"></li>
 
                                                 </ul>
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                    <label class="form-label ">Place : <span id="placevalue"></span></label>
+                                                </div>
                                             </div>
+
+                                              <!-- section for signatory photo and sign -->
+                                            <table border="1" cellpadding="10" style="width: 100%; text-align: center; margin-bottom:190px;">
+                                                <tr>
+                                                    <th>Authorized Signatory 1</th>
+                                                    <th>Authorized Signatory 2</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <!-- Photo placeholder -->
+                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['photograph']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span><br><br>
+                                                        <!-- Signature placeholder -->
+                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['signatorysignfile']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Photo placeholder -->
+                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['signatoryphotoadnfile']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span><br><br>
+                                                        <!-- Signature placeholder -->
+                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                                <div style="margin-top: 10px;">
+                                                                    <img src="<?= htmlspecialchars($docData['signatorysignadnfile']) ?>"
+                                                                        alt="Uploaded Image Preview"
+                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <p style="color: #888;">No file uploaded</p>
+                                                            <?php endif; ?>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
 
                                         <!-- preview file -->
@@ -706,6 +867,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         <div style="width: 780px; margin:auto;" class="previewstruct">
 
                                             <table class="table table-bordered mt-4 text-center" class="blr">
+                                                <!-- preview authorized 1 -->
+                                                  <tr>
+                                                            <td class="text-primary" style="margin-bottom: -10px;">Authorized Director 1</td>
+                                                        </tr>
 
                                                 <tr class="">
                                                     <td class="blr">
@@ -752,6 +917,20 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     </td>
                                                 </tr>
 
+                                                 <tr>
+                                                    <td>
+                                                        <strong>Signature</strong><br>
+
+                                                        <?php if (!empty($docData['signatorysignfile'])): ?>
+                                                            <a href="<?= $docData['signatorysignfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="signatorysignfilepreview" data-fileurl="<?= $docData['signatorysignfile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <strong>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</strong><br>
@@ -766,6 +945,86 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
+                                                <!-- preview authorized 2 -->
+                                                  <tr>
+                                                            <td class="text-primary" style="margin-bottom: -10px;">Authorized Director 2</td>
+                                                        </tr>
+
+                                                            <tr class="">
+                                                    <td class="blr">
+                                                        <strong>Aadhaar Card</strong><br>
+
+                                                        <?php if (!empty($docData['aadhaaradnfile'])): ?>
+                                                            <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="aadhaaradnfilepreview" data-fileurl="<?= $docData['aadhaaradnfile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <strong>PAN Card</strong><br>
+
+                                                        <?php if (!empty($docData['personaladnpanfile'])): ?>
+                                                            <a href="<?= $docData['personaladnpanfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="personalpanadnfilepreview" data-fileurl="<?= $docData['personalpanadnfile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <strong>Photograph</strong><br>
+
+                                                        <?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                            <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="signatoryphotoadnfilepreview" data-fileurl="<?= $docData['signatoryphotoadnfile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+
+                                                 <tr>
+                                                    <td>
+                                                        <strong>Signature</strong><br>
+
+                                                        <?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                            <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="signatorysignadnfilepreview" data-fileurl="<?= $docData['signatorysignadnfile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</strong><br>
+
+                                                        <?php if (!empty($docData['addressadnfile'])): ?>
+                                                            <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="addressadnfilepreview" data-fileurl="<?= $docData['addressadnfile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+
+
 
                                                 <tr>
                                                     <td>
@@ -1109,7 +1368,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile'
+                'annexurebfilepreview', 'cancelledchequefile' , 'aadhaaradnfile' , 'personalpanadnfile' , 'signatoryphotoadnfile' , 'addressadnfile' , 'signatorysignfile' , 'signatorysignadnfile'
             ];
 
             // 🧼 Step 1: Remove preview images/iframes (but keep names/links)

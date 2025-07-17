@@ -1167,7 +1167,7 @@
                                                 <table class="table table-bordered mt-4">
                                                     <thead>
                                                         <tr>
-                                                            <td colspan="2" class="text-primary fw-bold fs-5" style="olor:rgb(3, 106, 216);">5. Documents uploaded</td>
+                                                            <td colspan="2" class="text-primary fw-bold fs-5" style="color:rgb(3, 106, 216);">5. Documents uploaded</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Document</th>
@@ -1387,6 +1387,9 @@
                                                     <!-- <li class="d-flex align-items-center" style="margin-top: 95px;"></li> -->
 
                                                 </ul>
+                                                <div class="col-12 col-lg-6 mb-3">
+                                                <label class="form-label ">Place : <span id="placevalue"></span></label>
+                                            </div>
                                             </div>
 
                                             <!-- section for signatory photo and sign -->
@@ -1410,6 +1413,7 @@
                                                     </td>
                                                 </tr>
                                             </table>
+
 
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
@@ -1447,7 +1451,12 @@
                                                 </label>
                                             </div>
 
+                                                <!-- 3 -->
 
+                                            <div class="col-12 col-lg-4 mb-3">
+                                                <label class="form-label fw-semibold">Place :</label>
+                                                <input type="text" class="form-control" placeholder="Enter your Place" name="placevalue" onblur="setPreviewValue(this, 'placevalue')" required>
+                                            </div>
 
 
 
@@ -1555,7 +1564,7 @@
             preview.innerHTML = '';
 
             const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-            const maxSize = 2 * 1024 * 1024;
+            const maxSize = 5 * 1024 * 1024;
 
             if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
                 msg.innerText = "❌ Invalid or too large file.";
@@ -1782,6 +1791,7 @@
         function setPreviewValue(el, targetId) {
             const target = document.getElementById(targetId);
             let value = el.value?.trim(); // remove extra spaces
+            // console.log(target);
 
 
 
@@ -1803,9 +1813,9 @@
             }
 
 
-
-
-            const ifsc = document.getElementById("ifsccode").value.trim().toUpperCase();
+            if(el.name == "ifsccode"){
+                 const ifsc = document.getElementById("ifsccode").value.trim().toUpperCase();
+                 console.log("clicked")
 
 
 
@@ -1830,6 +1840,9 @@
                     document.getElementById("branchname").textContent = "--";
                     alert("❌ Error: " + error.message);
                 });
+
+            }
+
         }
     </script>
 
