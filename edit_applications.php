@@ -1720,8 +1720,8 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                         <!-- download kyc form -->
                                         <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
-                                            <p class="mb-2 mt-3"> File will be downloaded with your attached Documents * </p>
-                                            <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
+                                            <p class="mb-2 mt-3"> File will be downloaded with your attached Documents, Don't forgot to save the changes first  * </p>
+                                            <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Update changes & Download KYC PDF</button>
                                         </div>
                                         <!-- ////////////// -->
 
@@ -1762,7 +1762,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             <div class="d-flex gap-3">
 
                                                 <button type="button" class="btn btn-outline-secondary px-4" onclick="stepper3.previous()">Previous</button>
-                                                <button type="submit" class="btn btn-success px-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 253, 137, 0.62);">Update Application</button>
+                                                <button type="submit" class="btn btn-success px-4" id="updateform" style="box-shadow: 0 0.5rem 1rem rgba(13, 253, 137, 0.62);">Update Application</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1968,7 +1968,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             preview.innerHTML = '';
 
             const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-            const maxSize = 2 * 1024 * 1024;
+            const maxSize = 5 * 1024 * 1024;
 
             if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
                 msg.innerText = "❌ Invalid or too large file.";
@@ -2113,6 +2113,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            document.getElementById('updateform').click();
         }
 
         // ✅ Auto-trigger validateFile() on page load and bind blur
@@ -2132,6 +2133,8 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 });
             });
         });
+
+
     </script>
 
 
