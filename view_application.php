@@ -150,7 +150,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
         </header>
         <form action="update.php" method="POST" enctype="multipart/form-data">
             <!-- for passing the id field -->
-            <input type="hidden" name="businame" value="<?= $appData['businessname'] ?>">
+            <input type="text" hidden name="businame" id="businame" value="<?= $appData['businessname'] ?>">
             <!-- ///////// -->
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
@@ -1361,6 +1361,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             console.log("hellpo");
             const element = document.getElementById('kycPreview');
             const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
+            console.log(businessName);
             const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
             const previewIds = [
@@ -1368,7 +1369,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile' , 'aadhaaradnfile' , 'personalpanadnfile' , 'signatoryphotoadnfile' , 'addressadnfile' , 'signatorysignfile' , 'signatorysignadnfile'
+                'annexurebfilepreview', 'cancelledchequefile' , 'aadhaaradnfilepreview' , 'personalpanadnfilepreview' , 'signatoryphotoadnfilepreview' , 'addressadnfilepreview' , 'signatorysignfilepreview' , 'signatorysignadnfilepreview' , 'signphoto1' , 'signphoto2' , 'sign1' , 'sign2'
             ];
 
             // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
@@ -1410,7 +1411,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             pages.forEach(p => finalPdf.addPage(p));
 
             // ➕ Step 3: Add uploaded files
-            for (const key in uploadedFiles) {
+           for (const key in uploadedFiles) {
                 const file = uploadedFiles[key];
                 const bytes = await file.arrayBuffer();
 
@@ -1425,17 +1426,27 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                         await finalPdf.embedJpg(imgBytes);
 
                     const page = finalPdf.addPage();
-                    const {
-                        width,
-                        height
-                    } = embedded.scale(0.5);
+                    const pageWidth = page.getWidth();
+                    const pageHeight = page.getHeight();
+
+                    const margin = 100; // 100px margin on both left and right
+                    const availableWidth = pageWidth - 2 * margin;
+
+                    const originalWidth = embedded.width;
+                    const originalHeight = embedded.height;
+                    const aspectRatio = originalHeight / originalWidth;
+
+                    const targetWidth = availableWidth;
+                    const targetHeight = targetWidth * aspectRatio;
+
                     page.drawImage(embedded, {
-                        x: 50,
-                        y: page.getHeight() - height - 50,
-                        width,
-                        height
+                        x: margin,
+                        y: pageHeight - targetHeight - margin, // top margin
+                        width: targetWidth,
+                        height: targetHeight
                     });
                 }
+
             }
 
             // 🔽 Step 4: Download
@@ -1480,7 +1491,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile'
+                'annexurebfilepreview', 'cancelledchequefile' , 'aadhaaradnfilepreview' , 'personalpanadnfilepreview' , 'signatoryphotoadnfilepreview' , 'addressadnfilepreview' , 'signatorysignfilepreview' , 'signatorysignadnfilepreview' , 'signphoto1' , 'signphoto2' , 'sign1' , 'sign2'
             ];
 
             fileDivIds.forEach(id => {
@@ -1626,7 +1637,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             const fileFields = [
                 'aadhaarfile', 'panfile', 'photograph', 'addressfile', 'coifile',
                 'moafile', 'aoafile', 'brfile', 'udyamfile', 'gstinfile',
-                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile'
+                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile' , 'aadhaaradnfile' , 'personalpanadnfile' , 'signatoryphotoadnfile' , 'addressadnfile' , 'signatorysignfile' , 'signatorysignadnfile' , 'signphoto1' , 'signphoto2' , 'sign1' , 'sign2'
             ];
 
             fileFields.forEach(field => {

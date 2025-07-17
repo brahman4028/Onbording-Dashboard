@@ -11,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("❌ Application ID missing.");
     }
 
+    ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     // ========== Collect and sanitize all fields ==========
     $fields = [ 'businessname','applicantname','entity','doi','nob','businesscategory','businesssubcategory','gstin','pan',
         'registeredbsuiness','operatingaddress','url','businessnumber','alternnumber','supportemail',

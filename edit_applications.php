@@ -1719,10 +1719,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         </div>
 
                                         <!-- download kyc form -->
-                                        <!-- <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
+                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
                                             <p class="mb-2 mt-3"> File will be downloaded with your attached Documents * </p>
                                             <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
-                                        </div> -->
+                                        </div>
                                         <!-- ////////////// -->
 
 
@@ -1849,7 +1849,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             const fileFields = [
                 'aadhaarfile', 'panfile', 'photograph', 'addressfile', 'coifile',
                 'moafile', 'aoafile', 'brfile', 'udyamfile', 'gstinfile',
-                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile', 'aadhaaradnfile', 'personalpanadnfile', 'signatoryphotoadnfile', 'addressadnfile', 'signatorysignfile', 'signatorysignadnfile'
+                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile', 'aadhaaradnfile', 'personalpanadnfile', 'signatoryphotoadnfile', 'addressadnfile', 'signatorysignfile', 'signatorysignadnfile' , 'signphoto1' , 'signphoto2' , 'sign1' , 'sign2'
             ];
 
             fileFields.forEach(field => {
@@ -1910,7 +1910,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile', 'aadhaaradnfile', 'personalpanadnfile', 'signatoryphotoadnfile', 'addressadnfile', 'signatorysignfile', 'signatorysignadnfile'
+                'annexurebfilepreview', 'cancelledchequefile', 'aadhaaradnfilepreview', 'personalpanadnfilepreview', 'signatoryphotoadnfilepreview', 'addressadnfilepreview', 'signatorysignfilepreview', 'signatorysignadnfilepreview', 'signphoto1' , 'signphoto2' , 'sign1' , 'sign2'
             ];
 
             const photograph = document.querySelector('[name="photograph"]').name;
@@ -1922,23 +1922,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             const sign1 = document.getElementById('sign1');
             const signp2 = document.getElementById('signphoto2');
             const signphoto2 = document.getElementById('signphoto2');
-
-
-            if (photograph) {
-                console.log("photo");
-                console.log(photograph);
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img1 = document.createElement("img");
-                    img1.src = photograph.target.result;
-                    img1.style.maxWidth = "200px";
-                    img1.style.border = "1px solid #ccc";
-                    img1.style.marginTop = "10px";
-                    signphoto1.appendChild(img1);
-                };
-                reader.readAsDataURL(file);
-            }
-
 
 
             fileDivIds.forEach(id => {
@@ -1974,10 +1957,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
     <script>
         const uploadedFiles = {}; // Globally track files by 'name'
-        const signphoto1 = document.getElementById('signphoto1'),
-            signphoto2 = document.getElementById('signphoto2'),
-            sign1 = document.getElementById('sign1'),
-            sign2 = document.getElementById('sign2');
 
         function validateFile(input, msgId, previewId) {
             const file = input.files[0];
@@ -1985,15 +1964,11 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             const preview = document.getElementById(previewId);
             const inputKey = input.name;
 
-            console.log(inputKey);
-
-
-
             msg.innerText = '';
             preview.innerHTML = '';
 
             const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"];
-            const maxSize = 5 * 1024 * 1024;
+            const maxSize = 2 * 1024 * 1024;
 
             if (!file || !allowedTypes.includes(file.type) || file.size > maxSize) {
                 msg.innerText = "❌ Invalid or too large file.";
@@ -2013,8 +1988,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             msg.style.color = "green";
             preview.innerHTML = `<strong>${sanitizedFileName}</strong><br>`;
 
-
-
             if (file.type === "application/pdf") {
                 const iframe = document.createElement("iframe");
                 iframe.src = URL.createObjectURL(sanitizedFile);
@@ -2033,79 +2006,22 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                     preview.appendChild(img);
                 };
                 reader.readAsDataURL(file);
-
-                if (inputKey == "photograph") {
-                    console.log("dunction");
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img1 = document.createElement("img");
-                        img1.src = e.target.result;
-                        img1.style.maxWidth = "200px";
-                        img1.style.border = "1px solid #ccc";
-                        img1.style.marginTop = "10px";
-                        signphoto1.innerHTML = '<div></div>';
-                        signphoto1.appendChild(img1);
-                    };
-                    reader.readAsDataURL(file);
-                }
-                if (inputKey == "signatoryphotoadnfile") {
-                    console.log("dunction");
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img2 = document.createElement("img");
-                        img2.src = e.target.result;
-                        img2.style.maxWidth = "200px";
-                        img2.style.border = "1px solid #ccc";
-                        img2.style.marginTop = "10px";
-                        signphoto2.innerHTML = '<div></div>';
-                        signphoto2.appendChild(img2);
-                    };
-                    reader.readAsDataURL(file);
-                }
             }
-            if (inputKey == "signatorysignfile") {
-                console.log("dunction");
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img3 = document.createElement("img");
-                    img3.src = e.target.result;
-                    img3.style.maxWidth = "150px";
-                    img3.style.border = "1px solid #ccc";
-                    img3.style.marginTop = "10px";
-                    sign1.innerHTML = '<div></div>';
-                    sign1.appendChild(img3);
-                };
-                reader.readAsDataURL(file);
-            }
-            if (inputKey == "signatorysignadnfile") {
-                console.log("dunction");
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img4 = document.createElement("img");
-                    img4.src = e.target.result;
-                    img4.style.maxWidth = "150px";
-                    img4.style.border = "1px solid #ccc";
-                    img4.style.marginTop = "10px";
-                    sign2.innerHTML = '<div></div>';
-                    sign2.appendChild(img4);
-                };
-                reader.readAsDataURL(file);
-            }
-
-
         }
 
         async function downloadKYC() {
+            console.log("hellpo");
             const element = document.getElementById('kycPreview');
-            const businessName = document.getElementById('nob')?.value.trim() || 'KYC';
+            const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
+            console.log(businessName);
             const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
             const previewIds = [
-                'aadhaarpreview', 'panpreview', 'photographpreview',
+                'aadhaarpreview', 'personalpanpreview', 'photographpreview',
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile', 'aadhaaradnfilepreview', 'personalpanadnfilepreview', 'signatoryphotoadnfilepreview', 'addressadnfilepreview', 'signatorysignfilepreview', 'signatorysignadnfilepreview'
+                'annexurebfilepreview', 'cancelledchequefile' , 'aadhaaradnfilepreview' , 'personalpanadnfilepreview' , 'signatoryphotoadnfilepreview' , 'addressadnfilepreview' , 'signatorysignfilepreview' , 'signatorysignadnfilepreview' , 'signphoto1' , 'signphoto2' , 'sign1' , 'sign2'
             ];
 
             // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
@@ -2147,7 +2063,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             pages.forEach(p => finalPdf.addPage(p));
 
             // ➕ Step 3: Add uploaded files
-            for (const key in uploadedFiles) {
+           for (const key in uploadedFiles) {
                 const file = uploadedFiles[key];
                 const bytes = await file.arrayBuffer();
 
@@ -2198,6 +2114,24 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             link.click();
             document.body.removeChild(link);
         }
+
+        // ✅ Auto-trigger validateFile() on page load and bind blur
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                const msgId = input.getAttribute('data-msg-id');
+                const previewId = input.getAttribute('data-preview-id');
+
+                // Run on page load if file is already selected (browser may retain)
+                if (input.files.length > 0) {
+                    validateFile(input, msgId, previewId);
+                }
+
+                // Also trigger on blur
+                input.addEventListener('blur', function() {
+                    validateFile(this, msgId, previewId);
+                });
+            });
+        });
     </script>
 
 
