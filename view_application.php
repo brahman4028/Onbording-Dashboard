@@ -1682,7 +1682,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
 
     <!-- timestamp for pdf -->
-    <script>
+    <!-- <script>
         window.onload = function() {
             const now = new Date();
             const formatted = now.toLocaleString('en-IN', {
@@ -1692,7 +1692,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
             document.getElementById('currentDateTime').textContent = formatted;
         };
-    </script>
+    </script> -->
 
     <!--  -->
 
