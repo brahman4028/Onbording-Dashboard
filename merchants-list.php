@@ -11,23 +11,23 @@ include 'db.php';
 	<div class="page-wrapper blr1">
 		<div class="page-content">
 			<!-- Breadcrumb -->
-			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3" >
+			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 				<div class="breadcrumb-title pe-3">Merchants List</div>
-				<div class="ps-3" >
-					<nav aria-label="breadcrumb" >
+				<div class="ps-3">
+					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mb-0 p-0">
 							<li class="breadcrumb-item"><i class="bx bx-home-alt"></i></li>
-							<li class="breadcrumb-item active" aria-current="page" >Home</li>
+							<li class="breadcrumb-item active" aria-current="page">Home</li>
 						</ol>
 					</nav>
 				</div>
 				<div class="ms-auto">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary"><a href="index.php" style="color:white" target="_blank">Add New Merchant</a></button>
-						
-							
-						</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary"><a href="index.php" style="color:white" target="_blank">Add New Merchant</a></button>
+
+
 					</div>
+				</div>
 			</div>
 			<!-- End Breadcrumb -->
 			<?php
@@ -105,8 +105,8 @@ include 'db.php';
 									if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
 										echo "<td>
 											<div class='d-flex order-actions'>
-												<a href='edit_applications.php?id={$id}' target='_blank'><i class='bx bxs-edit'></i>edit</a>
-												<a href='archive.php?id={$id}' class='ms-3' onclick=\"return confirm('⚠️ Are you sure you want to delete this application? This action cannot be undone.')\">
+												<a href='edit_applications.php?id={$id}' target='_blank' style=''><i class='bx bxs-edit'></i>edit</a>
+												<a href='archive.php?id={$id}' class='ms-3' style='background-color: #ffb2b2d1; border: 1px solid #ff6767; color: #e20505;' onclick=\"return confirm('⚠️ Are you sure you want to delete this application? This action cannot be undone.')\">
 													<i class='bx bxs-trash'></i>
 												</a>
 											</div>
