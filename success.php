@@ -7,6 +7,7 @@ if (!isset($_SESSION['user'])) {
 ?>
 <!DOCTYPE html>
 <html>
+	 <link rel="icon" href="assets/images/starfav.png" type="image/png" />
 <head>
 	<title>Success</title>
 	<meta http-equiv="refresh" content="3;url=dashboard.php" />

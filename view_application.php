@@ -39,7 +39,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="assets/images/starfav.png" type="image/png" />
     <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />

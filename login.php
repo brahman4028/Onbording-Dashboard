@@ -1,6 +1,7 @@
 <?php include 'template/header.php'; ?>
 <!--wrapper-->
 
+ <link rel="icon" href="assets/images/starfav.png" type="image/png" />
 <style> 
 .autth-img-cover-login {
     background-image: url('./assets/images/loginpage.jpg');

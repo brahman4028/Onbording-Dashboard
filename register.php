@@ -19,6 +19,8 @@ require_once './db.php';
 <?php include 'middleware.php'; ?>
 <?php include 'template/header.php'; ?>
 
+ <link rel="icon" href="assets/images/starfav.png" type="image/png" />
+
 <style> 
 .autth-img-cover-login {
     background-image: url('./assets/images/loginpage.jpg');

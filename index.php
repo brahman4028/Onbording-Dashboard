@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="assets/images/starfav.png" type="image/png" />
     <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
@@ -110,6 +110,51 @@
             /* Replace with any color you want */
         }
 
+        #errorBox {
+            display: none;
+            /* 👈 hide by default */
+            background: #fff5f5;
+            border: 1px solid #e5737383;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: "Segoe UI", sans-serif;
+            margin-top: 20px;
+            color: #b71c1c;
+            backdrop-filter: blur(20px);
+        }
+
+        #errorBox.active {
+            /* 👈 visible only when error occurs */
+            display: block;
+        }
+
+        #errorBox .error-section {
+            margin-bottom: 2px;
+            margin-top: -2px;
+        }
+
+        #errorBox .error-section h3 {
+            margin-bottom: 20px;
+        }
+
+        #errorBox .error-section h4 {
+            font-size: 14px;
+            color: #c62828;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ffcdd2;
+            padding-bottom: 5px;
+        }
+
+        #errorBox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #errorBox td {
+            width: 50%;
+            padding: 8px 10px;
+            vertical-align: top;
+        }
 
 
         @media (max-width: 768px) {
@@ -189,7 +234,7 @@
             </nav>
         </header>
 
-        <form action="action.php" method="POST" enctype="multipart/form-data">
+        <form action="action.php" method="POST" enctype="multipart/form-data" id="myForm">
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
                     <div class="card-body" style="padding: 0px;">
@@ -899,7 +944,7 @@
                                                         <!-- File Preview (PDF in iframe) -->
                                                         <div class="mb-3">
                                                             <iframe
-                                                                src="http://localhost/Onbording-Dashboard/assets/pdf/ANNEXUREB.pdf"
+                                                                src="assets/pdf/ANNEXUREB.pdf"
                                                                 width="100%"
                                                                 height="400px"
                                                                 style="border: 1px solid #ccc;"
@@ -950,6 +995,9 @@
                                             <p class="secdesc mb-4 text-muted ">This is the final step. Ensure all fields are correctly filled and documents uploaded. After submission, you’ll receive a confirmation shortly.</p>
                                         </div>
                                         <hr class="my-4">
+
+
+
                                         <!-- pdf html template -->
                                         <div class="container border p-4 bg-white blr " id="kycPreview" style="
                                             width: 210mm;
@@ -1388,8 +1436,8 @@
 
                                                 </ul>
                                                 <div class="col-12 col-lg-6 mb-3">
-                                                <label class="form-label ">Place : <span id="placevalue"></span></label>
-                                            </div>
+                                                    <label class="form-label ">Place : <span id="placevalue"></span></label>
+                                                </div>
                                             </div>
 
                                             <!-- section for signatory photo and sign -->
@@ -1416,15 +1464,17 @@
 
 
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
+                                        <!-- bownload kyc form button -->
+                                        <!-- <div id="downloadSection" class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
                                             <p class="mb-2 mt-3"> File will be downloaded with your attached Documents * </p>
                                             <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Download KYC PDF</button>
-                                        </div>
+                                        </div> -->
+                                        <!-- //////////////// -->
 
 
                                         <!--  -->
                                         <!-- declaration points -->
-                                        <div class="row g-3 mt-4">
+                                        <div class="row g-3 mt-4" id="declaration-point">
                                             <p class=" text-muted">
                                                 Kindly confirm your acceptance of the terms outlined below before continuing.
                                             </p>
@@ -1451,12 +1501,21 @@
                                                 </label>
                                             </div>
 
-                                                <!-- 3 -->
+                                            <!-- 3 -->
 
                                             <div class="col-12 col-lg-4 mb-3">
                                                 <label class="form-label fw-semibold">Place :</label>
                                                 <input type="text" class="form-control" placeholder="Enter your Place" name="placevalue" onblur="setPreviewValue(this, 'placevalue')" required>
                                             </div>
+
+                                            <!-- box for error -->
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 mb-3">
+                                                    <div id="errorBox"></div>
+                                                </div>
+                                            </div>
+                                            <!-- ////////// -->
+
 
 
 
@@ -1813,33 +1872,33 @@
             }
 
 
-            if(el.name == "ifsccode"){
-                 const ifsc = document.getElementById("ifsccode").value.trim().toUpperCase();
-                 console.log("clicked")
+            if (el.name == "ifsccode") {
+                const ifsc = document.getElementById("ifsccode").value.trim().toUpperCase();
+                console.log("clicked")
 
 
 
-            if (!ifsc || ifsc.length < 4) {
-                alert("Please enter a valid IFSC code.");
-                return;
-            }
+                if (!ifsc || ifsc.length < 4) {
+                    alert("Please enter a valid IFSC code.");
+                    return;
+                }
 
-            fetch("https://ifsc.razorpay.com/" + ifsc)
-                .then((response) => {
-                    if (!response.ok) throw new Error("Invalid IFSC Code");
-                    return response.json();
-                })
-                .then((data) => {
-                    document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
-                    document.getElementById("bankname").value = data.BANK || "N/A";
-                    document.getElementById("branchname").value = data.BRANCH || "N/A";
-                })
-                .catch((error) => {
-                    document.getElementById("ifscerror").textContent = "Please Enter valid IFSC Code";
-                    document.getElementById("bankname").textContent = "--";
-                    document.getElementById("branchname").textContent = "--";
-                    alert("❌ Error: " + error.message);
-                });
+                fetch("https://ifsc.razorpay.com/" + ifsc)
+                    .then((response) => {
+                        if (!response.ok) throw new Error("Invalid IFSC Code");
+                        return response.json();
+                    })
+                    .then((data) => {
+                        document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
+                        document.getElementById("bankname").value = data.BANK || "N/A";
+                        document.getElementById("branchname").value = data.BRANCH || "N/A";
+                    })
+                    .catch((error) => {
+                        document.getElementById("ifscerror").textContent = "Please Enter valid IFSC Code";
+                        document.getElementById("bankname").textContent = "--";
+                        document.getElementById("branchname").textContent = "--";
+                        alert("❌ Error: " + error.message);
+                    });
 
             }
 
@@ -2165,6 +2224,125 @@
             });
         });
     </script>
+
+    <!-- preventing form before submission -->
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop form from submitting
+
+            const requiredFields = {
+                "Business Details": {
+                    businessname: "Business Name",
+                    entity: "Type of Entity",
+                    doi: "Date of Incorporation",
+                    nob: "Nature of Business",
+                    businesscategory: "Business Category",
+                    gstin: "GSTIN",
+                    pan: "Business PAN Number",
+                    registeredbsuiness: "Registered Business Address",
+                    operatingaddress: "Operating Address",
+                    url: "Website URL",
+                    businessnumber: "Business Contact Number",
+                    supportemail: "Support Email ID"
+
+                },
+                "Authorized Director 1": {
+                    fullname: "Full Name",
+                    designation: "Designation",
+                    number: "Mobile Number",
+                    personalemail: "Email ID",
+                    aadhaarnumber: "Aadhaar Number",
+                    pannumber: "PAN Number"
+
+                },
+                "Documents": {
+                    aadhaarfile : "Aadhaar Card",
+                    personalpanfile: "Pan Card",
+                    photograph: "Address",
+                    addressfile: "Upload Your Photo",
+                    signatorysignfile: "Upload Your Signature",
+                    coifile: "Certificate of Incorporation (COI) / Business Registration Certificate",
+                    moafile: "Memorandum of Association (MOA)",
+                    aoafile: "Articles of Association (AOA)",
+                    brfile: "Board Resolution (BR) / Letter of Authorization for Signatory",
+                    gstinfile: "GSTIN Certificate",
+                    bofile: "List of Directors/Partners/Beneficial Ownership (BO)",
+                    rentfile: "Rent Agreement / Lease Agreement / Property Tax Receipt"
+                },
+                "Annexure A": {
+                    totalvolume : "Volumes in amount",
+                    numberofusers : "Number of users",
+                    sixmonthprojectionamount : "Amount",
+                    sixmonthprojectionuser : "Projections for the next six months (Number of Users)",
+                    numoftransactions : "Number of transactions /frequencies in a day",
+                    disbursedamount : "Volume of total amount disbursed /distributed in a day",
+                    mintransaction : "Minimum Amount",
+                    maxtransaction : "Maximum Amount",
+                    thresholdlimit : "Threshold limit and/or daily payout that can be fixed",
+                    annexurebfile : "Sign and Stamp on Annexure B file"
+                }
+            };
+
+            let missing = {};
+            for (let section in requiredFields) {
+                let fields = requiredFields[section];
+                for (let fieldName in fields) {
+                    let input = document.querySelector(`[name="${fieldName}"]`);
+                    if (!input || !input.value.trim()) {
+                        if (!missing[section]) missing[section] = [];
+                        missing[section].push(fields[fieldName]);
+                    }
+                }
+            }
+
+            const errorBox = document.getElementById('errorBox');
+
+            if (Object.keys(missing).length > 0) {
+                let html = `<h3>Please fill the following fields:</h3>`;
+                for (let section in missing) {
+                    html += `<div class="error-section"><h4>${section}</h4><table><tr>`;
+                    const fields = missing[section];
+                    for (let i = 0; i < fields.length; i++) {
+                        html += `<td>${fields[i]}</td>`;
+                        if (i % 2 === 1 && i !== fields.length - 1) html += `</tr><tr>`;
+                    }
+                    html += `</tr></table></div>`;
+                }
+                errorBox.innerHTML = html;
+                errorBox.classList.add('active');
+            } else {
+                errorBox.innerHTML = '';
+                errorBox.classList.remove('active');
+                this.submit(); // ✅ All fields filled — submit form
+            }
+        });
+    </script>
+
+
+    <!-- hide download kyc button -->
+    <!-- <script>
+    function checkDeclarationComplete() {
+        const terms = document.getElementById('termsCheckbox').checked;
+        const privacy = document.getElementById('privacyCheckbox').checked;
+        const marketing = document.getElementById('marketingCheckbox').checked;
+        const place = document.querySelector('[name="placevalue"]').value.trim();
+
+        const downloadSection = document.getElementById('downloadSection');
+
+        if (terms && privacy && marketing && place !== "") {
+            downloadSection.hidden = false;
+        } else {
+            downloadSection.hidden = true;
+        }
+    }
+
+    // Attach events
+    document.getElementById('termsCheckbox').addEventListener('change', checkDeclarationComplete);
+    document.getElementById('privacyCheckbox').addEventListener('change', checkDeclarationComplete);
+    document.getElementById('marketingCheckbox').addEventListener('change', checkDeclarationComplete);
+    document.querySelector('[name="placevalue"]').addEventListener('input', checkDeclarationComplete);
+</script>
+ -->
 
 
 
