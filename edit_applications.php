@@ -1719,10 +1719,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                         </div>
 
                                         <!-- download kyc form -->
-                                        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
-                                            <p class="mb-2 mt-3"> File will be downloaded with your attached Documents, Don't forgot to save the changes first  * </p>
-                                            <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Update changes & Download KYC PDF</button>
-                                        </div>
+                                        <!--<div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">-->
+                                        <!--    <p class="mb-2 mt-3"> File will be downloaded with your attached Documents, Don't forgot to save the changes first  * </p>-->
+                                        <!--    <button type="button" class="btn text-center btn-primary mb-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;" onclick="downloadKYC()">Update changes & Download KYC PDF</button>-->
+                                        <!--</div>-->
                                         <!-- ////////////// -->
 
 
@@ -1958,6 +1958,11 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     <script>
         const uploadedFiles = {}; // Globally track files by 'name'
 
+         const signphoto1 = document.getElementById('signphoto1'),
+            signphoto2 = document.getElementById('signphoto2'),
+            sign1 = document.getElementById('sign1'),
+            sign2 = document.getElementById('sign2');
+
         function validateFile(input, msgId, previewId) {
             const file = input.files[0];
             const msg = document.getElementById(msgId);
@@ -2007,7 +2012,64 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 };
                 reader.readAsDataURL(file);
             }
-        }
+             if (inputKey == "photograph") {
+                    console.log("dunction")
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img1 = document.createElement("img");
+
+                        img1.src = e.target.result;
+                        img1.style.maxWidth = "200px";
+                        img1.style.border = "1px solid #ccc";
+                        img1.style.marginTop = "10px";
+                        signphoto1.innerHTML = "<div></div>";
+                        signphoto1.appendChild(img1);
+                    };
+                    reader.readAsDataURL(file);
+                }
+                if (inputKey == "signatoryphotoadnfile") {
+                    console.log("dunction")
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img2 = document.createElement("img");
+                        img2.src = e.target.result;
+                        img2.style.maxWidth = "200px";
+                        img2.style.border = "1px solid #ccc";
+                        img2.style.marginTop = "10px";
+                        signphoto2.innerHTML = "<div></div>";
+                        signphoto2.appendChild(img2);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            if (inputKey == "signatorysignfile") {
+                console.log("dunction")
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img3 = document.createElement("img");
+                    img3.src = e.target.result;
+                    img3.style.maxWidth = "150px";
+                    img3.style.border = "1px solid #ccc";
+                    img3.style.marginTop = "10px";
+                    sign1.innerHTML = "<div></div>";
+                    sign1.appendChild(img3);
+                };
+                reader.readAsDataURL(file);
+            }
+            if (inputKey == "signatorysignadnfile") {
+                console.log("dunction")
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img4 = document.createElement("img");
+                    img4.src = e.target.result;
+                    img4.style.maxWidth = "150px";
+                    img4.style.border = "1px solid #ccc";
+                    img4.style.marginTop = "10px";
+                    sign2.innerHTML = "<div></div>";
+                    sign2.appendChild(img4);
+                };
+                reader.readAsDataURL(file);
+            }
 
         async function downloadKYC() {
             console.log("hellpo");
