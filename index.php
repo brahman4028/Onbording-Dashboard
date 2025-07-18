@@ -323,7 +323,7 @@
 
                                     <div>
                                         <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
-                                        <h1 class="fw-light">Welcome to </h1>
+                                        <h1 class="fw-light">Welcome</h1>
                                         <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
                                         <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
                                     </div>
