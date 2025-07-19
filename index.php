@@ -189,6 +189,22 @@
                 margin-top: -20px !important;
             }
         }
+
+        .autth-img-cover-login {
+            background-image: url('./assets/images/sky.jpg');
+            background-size: cover;
+            background-position: left center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            /* or set a fixed height like 400px if needed */
+        }
+
+        .blr {
+            background-color: rgba(254, 254, 254, 0.77) !important;
+            backdrop-filter: blur(10px) !important;
+
+        }
     </style>
 </head>
 
@@ -305,30 +321,37 @@
                                         <h5>Having Trouble?</h5>
                                         <p class="text-muted">We're here to help—feel free to reach out<br> to our support team for quick assistance anytime.</p>
                                         <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="text-decoration:none; color:white; box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><a href="https://itstarpay.com/contact-us" style="text-decoration: none; color: white;" target="_blank" class="d-flex f-cloumn justify-content-center">Get in Touch </a>
-                                           <i class='bx  bx-paper-plane fs-4 text-light ms-1'></i>
+                                            <i class='bx  bx-paper-plane fs-4 text-light ms-1'></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-relative autth-img-cover-login main-box" style="width: 100% ; height:100%;">
+                            <div class="position-relative autth-img-cover-login main-box " style="width: 100% ; height:100%;">
 
                                 <!-- welcome -->
                                 <!-- welcome screen page  -->
-                                <div class="position-absolute top-0 start-0  z-3 ps-5 pt-5 d-flex justify-content-between "
-                                    style="width : 100%; height:100%; background-image: url('./assets/images/welcomescreen.png'); 
+                                <div class="position-absolute top-0 start-0  z-3  d-flex justify-content-between autth-img-cover-login"
+                                    style="width : 100%; height:100%; 
                                             background-size: cover; 
                                             background-position: center center; 
                                             background-attachment: scroll;
-                                            background-color:white; flex-direction:column;" id="startonboardingpage">
+                                             flex-direction:column;" id="startonboardingpage">
+                                    <div class="blr d-flex justify-content-between ps-5 pt-5" style="width : 100%; height:100%; 
+                                            background-size: cover; 
+                                            background-position: center center; 
+                                            background-attachment: scroll;
+                                             flex-direction:column; ">
+                                        <div>
+                                            <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
+                                            <h1 class="fw-light">Welcome to </h1>
+                                            <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
+                                            <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
+                                        </div>
 
-                                    <div>
-                                        <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
-                                        <h1 class="fw-light">Welcome to </h1>
-                                        <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
-                                        <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
-                                    </div>
-                                    <div style="width: 900px; " class="ms-auto	" id="imgbox">
-                                        <img src="./assets/images/dashb2.png" alt="User Avatar" class="img-fluid rounded " width="100%">
+                                        <div style="width: 900px; " class="ms-auto	" id="imgbox">
+                                            <img src="./assets/images/dashb2.png" alt="User Avatar" class="img-fluid rounded " width="100%">
+
+                                        </div>
 
                                     </div>
                                     <!-- ///////////// -->
@@ -1890,8 +1913,8 @@
                     })
                     .then((data) => {
                         document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
-                       const bankdata = document.getElementById("bankname").value = data.BANK || "N/A";
-                       const bankspan = document.getElementById("banknamevalue");
+                        const bankdata = document.getElementById("bankname").value = data.BANK || "N/A";
+                        const bankspan = document.getElementById("banknamevalue");
                         bankspan.textContent = bankdata;
 
                         const branchdata = document.getElementById("branchname").value = data.BRANCH || "N/A";
@@ -2261,7 +2284,7 @@
 
                 },
                 "Documents": {
-                    aadhaarfile : "Aadhaar Card",
+                    aadhaarfile: "Aadhaar Card",
                     personalpanfile: "Pan Card",
                     photograph: "Address",
                     addressfile: "Upload Your Photo",
@@ -2275,16 +2298,16 @@
                     rentfile: "Rent Agreement / Lease Agreement / Property Tax Receipt"
                 },
                 "Annexure A": {
-                    totalvolume : "Volumes in amount",
-                    numberofusers : "Number of users",
-                    sixmonthprojectionamount : "Amount",
-                    sixmonthprojectionuser : "Projections for the next six months (Number of Users)",
-                    numoftransactions : "Number of transactions /frequencies in a day",
-                    disbursedamount : "Volume of total amount disbursed /distributed in a day",
-                    mintransaction : "Minimum Amount",
-                    maxtransaction : "Maximum Amount",
-                    thresholdlimit : "Threshold limit and/or daily payout that can be fixed",
-                    annexurebfile : "Sign and Stamp on Annexure B file"
+                    totalvolume: "Volumes in amount",
+                    numberofusers: "Number of users",
+                    sixmonthprojectionamount: "Amount",
+                    sixmonthprojectionuser: "Projections for the next six months (Number of Users)",
+                    numoftransactions: "Number of transactions /frequencies in a day",
+                    disbursedamount: "Volume of total amount disbursed /distributed in a day",
+                    mintransaction: "Minimum Amount",
+                    maxtransaction: "Maximum Amount",
+                    thresholdlimit: "Threshold limit and/or daily payout that can be fixed",
+                    annexurebfile: "Sign and Stamp on Annexure B file"
                 }
             };
 
