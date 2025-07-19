@@ -38,7 +38,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       font-size: 60px !important;
     }
     .thankyou-img {
-      background: url('./assets/images/parrot.jpg') no-repeat center center;
+      /* background: url('./assets/images/parrot.jpg') no-repeat center center; */
       background-size: cover;
       height: 100%;
       width: 100%;
@@ -49,21 +49,35 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       font-weight: 500;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+    .autth-img-cover-login {
+    background-image: url('./assets/images/sky.jpg');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 100%;
+     height: 100%;/* or set a fixed height like 400px if needed */
+}
+
+.blr{
+	background-color:rgba(254, 254, 254, 0.69) !important;
+	backdrop-filter: blur(30px) !important;
+
+}
   </style>
 </head>
 <body>
 
-<div class="container-fluid">
-  <div class="row thankyou-wrapper d-flex align-items-center">
+<div class="container-fluid thankyou-wrapper" >
+  <div class="row thankyou-wrapper d-flex align-items-center autth-img-cover-login">
     
     <!-- Left Text Section -->
-    <div class="col-md-6 d-flex p-6 flex-column justify-content-center align-items-center text-center px-5">
-      <div>
+    <div class="col-md-6 thankyou-wrapper d-flex p-6 flex-column justify-content-center align-items-center text-center px-5 blr">
+      <div class=" ">
         <img src="assets/images/itstarlogo.png" alt="" width="200px" class="mb-5">
       </div>
       <h1 class="mb-3" style="font-size: 60px;">File has been updated Successfully</h1>
-      <a href="/Onbording-Dashboard/" class="btn btn-primary btn-back mt-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
-        Back to Home <i class="bx bx-send ms-1"></i>
+      <a href="merchants-list.php" class="btn btn-primary btn-back mt-4" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
+        Back to Dashboard <i class="bx bx-send ms-1"></i>
       </a>
     </div>
 

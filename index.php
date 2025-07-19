@@ -304,8 +304,8 @@
                                         <div class="bs-stepper text-primary"><i class='bx  bx-info-circle fs-3 '></i> </div>
                                         <h5>Having Trouble?</h5>
                                         <p class="text-muted">We're here to help—feel free to reach out<br> to our support team for quick assistance anytime.</p>
-                                        <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center fs-6 b" style="text-decoration:none; color:white; box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><a href="https://itstarpay.com/contact-us" style="text-decoration: none; color: white;">Get in Touch </a>
-                                            <div class="text-light ms-1"><i class='bx  bx-paper-plane fs-4 '></i>
+                                        <button type="button" class="btn btn-primary  d-flex f-cloumn justify-content-center align-items-center fs-6 b" style="text-decoration:none; color:white; box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><a href="https://itstarpay.com/contact-us" style="text-decoration: none; color: white;" target="_blank" class="d-flex f-cloumn justify-content-center">Get in Touch </a>
+                                           <i class='bx  bx-paper-plane fs-4 text-light ms-1'></i>
                                         </button>
                                     </div>
                                 </div>
@@ -1890,8 +1890,13 @@
                     })
                     .then((data) => {
                         document.getElementById("ifscsuccess").textContent = "IFSC code is valid";
-                        document.getElementById("bankname").value = data.BANK || "N/A";
-                        document.getElementById("branchname").value = data.BRANCH || "N/A";
+                       const bankdata = document.getElementById("bankname").value = data.BANK || "N/A";
+                       const bankspan = document.getElementById("banknamevalue");
+                        bankspan.textContent = bankdata;
+
+                        const branchdata = document.getElementById("branchname").value = data.BRANCH || "N/A";
+                        const branchspan = document.getElementById("branchnamevalue");
+                        branchspan.textContent = branchdata;
                     })
                     .catch((error) => {
                         document.getElementById("ifscerror").textContent = "Please Enter valid IFSC Code";
