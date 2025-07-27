@@ -92,14 +92,14 @@ echo $pan;
                 <div class="card rounded-0  shadow-none bg-transparent mb-0 autth-img-cover-login">
                     <div class="card-body d-flex p- " style="flex-direction: row;  justify-content: start; align-items:end;">
                         <!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
-                        sad
+                        
                     </div>
                 </div>
 
             </div>
 
             <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center border p-0" style="position:relative;">
-                <a href="../logout.php" 
+                <a href="merchant_logout.php" 
    class="btn btn-outline-danger btn-sm rounded-pill" 
    style="position: absolute; bottom: 0; right: 0; margin: 1rem;">
    Logout
