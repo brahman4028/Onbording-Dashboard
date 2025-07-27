@@ -31,9 +31,9 @@ $docQuery = "SELECT * FROM business_documents WHERE application_id = $applicatio
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
-$id = $appData['id'];
-$gstin = $appData['gstin'];
-$pan = $appData['pan'];
+// $id = $appData['id'];
+// $gstin = $appData['gstin'];
+// $pan = $appData['pan'];
 
 }
 
@@ -99,7 +99,7 @@ echo $pan;
             </div>
 
             <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center border p-0" style="position:relative;">
-                <a href="logout.php" 
+                <a href="../logout.php" 
    class="btn btn-outline-danger btn-sm rounded-pill" 
    style="position: absolute; bottom: 0; right: 0; margin: 1rem;">
    Logout
