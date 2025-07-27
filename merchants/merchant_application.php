@@ -31,15 +31,15 @@ $docQuery = "SELECT * FROM business_documents WHERE application_id = $applicatio
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
-// $id = $appData['id'];
-// $gstin = $appData['gstin'];
-// $pan = $appData['pan'];
+$id = $appData['id'];
+$gstin = $appData['gstin'];
+$pan = $appData['pan'];
 
 }
 
-echo $id;
-echo $gstin;
-echo $pan;
+// echo $id;
+// echo $gstin;
+// echo $pan;
 
 
 // echo $username;
