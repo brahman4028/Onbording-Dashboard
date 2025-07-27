@@ -144,7 +144,7 @@ $pan = $appData['pan'];
 
 <div class="d-flex justify-content-center align-items-center">
     <a href="../view_application.php?id=' . urlencode($id) . '&gstin=' . urlencode($gstin) . '&pan=' . urlencode($pan) . '" class="btn btn-primary text-center btn-back mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
-        View your application status <i class="bx bx-send ms-1"></i>
+        View your application <i class="bx bx-send ms-1"></i>
     </a>
 </div>';
 
