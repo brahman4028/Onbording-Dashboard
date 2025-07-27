@@ -16,6 +16,7 @@ $username = $_SESSION['merchant_info']['username'];
 $application_id = $_SESSION['merchant_info']['application_id'];
 $merchantuseremail = $_SESSION['merchant_info']['email'];
 
+if($application_id != ''){
 $appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
 $appResult = mysqli_query($mysqli, $appQuery);
 
@@ -29,6 +30,16 @@ $appData = mysqli_fetch_assoc($appResult);
 $docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
+
+$id = $appData['id'];
+$gstin = $appData['gstin'];
+$pan = $appData['pan'];
+
+}
+
+echo $id;
+echo $gstin;
+echo $pan;
 
 
 // echo $username;
@@ -110,43 +121,39 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                             if ($application_id != '') {
                                 echo '<div class="card shadow-sm rounded-3 p-3" style="max-width: 700px;">
-                                <div class="row">
-                            <!-- Left Section -->
-                            <div class="col-md-8">
-                            <!-- Company and Date -->
-                            <div class="d-flex justify-content-between">
-                            <h5 class="mb-0">' . htmlspecialchars($appData["businessname"]) . '</h5>
-                            </div>
+    <div class="row">
+        <!-- Left Section -->
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between">
+                <h5 class="mb-0">' . htmlspecialchars($appData["businessname"]) . '</h5>
+            </div>
+            <p class="text-muted mt-1 mb-3"><strong>GSTIN:</strong> ' . htmlspecialchars($appData["gstin"]) . '</p>
+            <div class="mt-4">
+                <small class="text-muted">Onboarding Date & Time: ' . htmlspecialchars($appData["created_at"]) . '</small><br>
+                <span>Application status: <span class="badge bg-warning text-dark">' . htmlspecialchars($appData["status"]) . '</span></span>
+            </div>
+        </div>
 
-                        <!-- GST No. -->
-                        <p class="text-muted mt-1 mb-3"><strong>GSTIN:</strong> ' . htmlspecialchars($appData["gstin"]) . '</p>
+        <!-- Right Section: Photo -->
+        <div class="col-md-4 text-end">
+            <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail" style="width: 100%; height: 120px; object-fit: cover;"><br>
+            Applicant:<p class="fw-semibold">' . htmlspecialchars($appData["fullname"]) . '</p>
+        </div>
+    </div>
+</div>
 
-                        <!-- Application Status -->
-                        <div class="mt-4">
-                            <small class="text-muted">Onboarding Date & Time: ' . htmlspecialchars($appData["created_at"]) . '</small><br>
-                        <span>Application status: <span class="badge bg-warning text-dark">' . htmlspecialchars($appData["status"]) . '</span></span>
-                    </div>
-                </div>
+<div class="d-flex justify-content-center align-items-center">
+    <a href="../view_application.php?id=' . urlencode($id) . '&gstin=' . urlencode($gstin) . '&pan=' . urlencode($pan) . '" class="btn btn-primary text-center btn-back mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
+        View your application status <i class="bx bx-send ms-1"></i>
+    </a>
+</div>';
 
-                    <!-- Right Section: Photo -->
-                    <div class="col-md-4 text-end">
-                    <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail" style="width: 100px; height: 120px; object-fit: cover;"><br>
-                    Applicant:<p class="fw-semibold">' . htmlspecialchars($appData["fullname"]) . '</p>
-                    </div>
-                </div>
-                    </div>
-                    <div class="d-flex" style="justify-content:center; align-items:center;">
-                    <a href="view_application.php?id={$id}&gstin={$gstin}&pan={$pan}" class="btn btn-primary text-center btn-back mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
-                            View your application status <i class="bx bx-send ms-1"></i>
-                            </a></div>
-                    
-                    ';
                             } else {
                                 echo '<div class="card text-center border-0 shadow-sm p-4" style="max-width: 400px; margin: auto; border-radius: 1rem;">
                                 <div class="card-body">
                                 <h5 class="card-title mb-3">You\'re Almost There!</h5>
                                  <p class="card-text text-muted mb-4">It looks like you haven’t filled out your form yet. Start now to complete your onboarding.</p>
-                                  <a href="onboarding.php" class="btn btn-primary rounded-pill px-4">Begin Onboarding</a>
+                                  <a href="../index.php" class="btn btn-primary rounded-pill px-4">Begin Onboarding</a>
                                  </div>
                                  </div>';
                             }
