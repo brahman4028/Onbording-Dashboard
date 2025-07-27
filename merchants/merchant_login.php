@@ -38,7 +38,7 @@
 							<div class="card-body d-flex p-3 " style="flex-direction: row;  justify-content: start; align-items:end;">
 							<!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
 							 <div class="blr1 p-3 rounded" style="height: auto; width:600px">
-								<button class="btn blr border rounded-pill shadow" > View Your Application Status</button>
+								<button class="btn blr border rounded-pill shadow" > Login to View Your Application</button>
 								<p class="mt-2">ItStarPay is your trusted partner for streamlined vendor payouts and HRMS solutions. Manage payments, compliance, and onboarding in one place.</p>
 							 </div>
 						</div>
