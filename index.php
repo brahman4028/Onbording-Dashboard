@@ -252,7 +252,7 @@ $merchantuseremail = $_SESSION['merchant_info']['email'];
         }
 
         .autth-img-cover-login {
-            background-image: url('./assets/images/sales5.jpg');
+            background-image: url('./assets/images/sales6.jpg');
             background-size: cover;
             background-position: left center;
             background-repeat: no-repeat;

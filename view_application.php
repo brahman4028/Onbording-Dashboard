@@ -118,7 +118,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
         }
 
         .autth-img-cover-login {
-            background-image: url('./assets/images/loginpage.jpg');
+            background-image: url('./assets/images/sales6.jpg');
             background-size: cover;
             background-position: right center;
             background-repeat: no-repeat;
