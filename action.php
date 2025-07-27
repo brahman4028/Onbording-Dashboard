@@ -10,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     {
         return htmlspecialchars(strip_tags(trim($data)));
     }
-
+    // merchantuseremail
+    $merchantemail = clean($_POST['merchantemail']);
     // Text fields
     $businessname = clean($_POST['businessname']);
     $applicantname = clean($_POST['applicantname']);
@@ -210,7 +211,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";
     }
 
+    
+
     $application_id = $mysqli->insert_id;
+    $merchant_id = $mysqli->insert_id;
 
     $sql = "INSERT INTO business_documents (
     application_id, aadhaarfile, personalpanfile, photograph, addressfile,
@@ -239,6 +243,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     '$uploadedFiles[signatorysignfile]',
     '$uploadedFiles[signatorysignadnfile]'
 )";
+
+
+// insert application id to merchant_id 
+
+$sql2 = "UPDATE your_table_name SET merchant_id = $merchant_id WHERE email = $merchantemail;";
+$result2 = mysqli_query($mysqli, $sql2);
 
     $result = mysqli_query($mysqli, $sql);
 

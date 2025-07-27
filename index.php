@@ -1,4 +1,21 @@
-<?php include 'db.php'; ?>
+<?php include 'db.php';
+
+session_start();
+
+if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
+    // Redirect to registration page
+    header("Location: merchants/merchant_login.php");
+    exit();
+}
+
+// Fetch user name
+$username = $_SESSION['merchant_info']['username'];
+$merchantuseremail = $_SESSION['merchant_info']['email'];
+// echo $username;
+
+?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -78,7 +95,7 @@
         }
 
         .autth-img-cover-login {
-            background-image: url('./assets/images/loginpage.jpg');
+            /* background-image: url('./assets/images/sales3.jpg'); */
             background-size: cover;
             background-position: right center;
             background-repeat: no-repeat;
@@ -156,6 +173,50 @@
             vertical-align: top;
         }
 
+          .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      /* background-color: #007bff; */
+      /* color: white; */
+      /* padding: 10px 16px; */
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+   
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 4px;
+      z-index: 999;
+    }
+
+    .dropdown-menu a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Show the menu on hover */
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
 
         @media (max-width: 768px) {
             #imgbox {
@@ -191,7 +252,7 @@
         }
 
         .autth-img-cover-login {
-            background-image: url('./assets/images/sky.jpg');
+            background-image: url('./assets/images/sales5.jpg');
             background-size: cover;
             background-position: left center;
             background-repeat: no-repeat;
@@ -225,25 +286,41 @@
                     <!-- Collapsible Menu -->
                     <div class="collapse navbar-collapse" id="customNavbar">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 16px;">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-at me-1'></i>Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildings me-1'></i>About us</a>
+                                <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-buildngs me-1'></i>About us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-category-alt me-1'></i>Our Offerings</a>
+                                <a class="nav-link" href="https://itstarpay.com/"><i class='bx bx-categry-alt me-1'></i>Our Offerings</a>
                             </li>
                             <li class="nav-item me-2">
-                                <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microphone me-1'></i>Contact us</a>
+                                <a class="nav-link" href="https://itstarpay.com/contact-us"><i class='bx bx-microhone me-1'></i>Contact us</a>
+                            </li> -->
+                            <li class="nav-item dropdown me-2 z-5">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown-menu" aria-expanded="false">
+                                    Welcome, <?php echo $username; ?>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="./merchants/merchant_logout.php">Logout</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
+
+                            <!-- <li class="nav-item">
+                                <a href="merchants-dashboard.php" class="btn me-3 d-flex justify-content-center align-items-center fs-6"
+                                    href="merchants-dashboard.php" target="_blank"
+                                    style="border-radius:30px; color: black; border: 1px solid #078cdeff; ">
+                                    View Application
+                                </a>
+                            </li> -->
+                            <!-- <li class="nav-item">
                                 <a href="merchants-dashboard.php" class="btn btn-primary d-flex justify-content-center align-items-center fs-6"
                                     href="merchants-dashboard.php" target="_blank"
                                     style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px; color: white;">
                                     <i class='bx bx-user me-1'></i>Admin Login
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -251,6 +328,9 @@
         </header>
 
         <form action="action.php" method="POST" enctype="multipart/form-data" id="myForm">
+            <!-- for passing the merchant email field -->
+            <input type="hidden" name="merchantemail" value="<?= $_SESSION['merchant_info']['email'] ?>">
+            <!-- ///////// -->
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">
                     <div class="card-body" style="padding: 0px;">
@@ -343,7 +423,7 @@
                                              flex-direction:column; ">
                                         <div>
                                             <h5 class="fw-light text-muted" style="font-size:14px">a smarter way to handle business payments.</h5>
-                                            <h1 class="fw-light">Welcome to </h1>
+                                            <h1 class="fw-light">Welcome to ItStarPay</h1>
                                             <p class="text-muted">Start your onboarding today to unlock access to seamless payment gateway integration,<br> real-time payouts, and a robust dashboard built to simplify financial workflows and scale your operations.</p>
                                             <button onclick="startOnboardingProcess()" type="button" class="btn btn-primary rounded-lg d-flex f-cloumn justify-content-center fs-6 shadow-primary bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">Start Your Onboarding process <div class="text-light ms-1 "><i class='bx  bx-heart fs-4 '></i></button>
                                         </div>

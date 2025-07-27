@@ -4,7 +4,7 @@
  <link rel="icon" href="assets/images/starfav.png" type="image/png" />
 <style> 
 .autth-img-cover-login {
-    background-image: url('./assets/images/loginpage.jpg');
+    background-image: url('./assets/images/sales2.jpg');
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -18,6 +18,12 @@
 
 }
 
+.blr1 {
+		background-color: rgba(254, 254, 254, 0.57) !important;
+		backdrop-filter: blur(20px) !important;
+
+	}
+
 </style>
 
 <div class="autth-img-cover-login">
@@ -29,9 +35,12 @@
 
 				<div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex">
 					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0 autth-img-cover-login ">
-						<div class="card-body">
-							<!-- ./assets/images/login-images/login-cover.svg -->
-							<!-- <img src="./assets/images/loginpage.jpg" class="img-fluid auth-img-cover-login" width="100%" alt="" /> -->
+						<div class="card-body d-flex p-3 " style="flex-direction: row;  justify-content: start; align-items:end;">
+							<!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
+							 <div class="blr1 p-3 rounded" style="height: auto; width:600px">
+								<button class="btn blr border rounded-pill shadow" > View Your Application Status</button>
+								<p class="mt-2">ItStarPay is your trusted partner for streamlined vendor payouts and HRMS solutions. Manage payments, compliance, and onboarding in one place.</p>
+							 </div>
 						</div>
 					</div>
 				</div>
@@ -70,7 +79,7 @@
 
 										<div class="col-12">
 											<div class="text-center">
-												<p class="mb-0">Don't have an account yet? <a href="register.php">Sign up here</a></p>
+												<p class="mb-0">Don't have an account yet? <a href="admin_register.php">Sign up here</a></p>
 											</div>
 										</div>
 									</form>

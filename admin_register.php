@@ -1,45 +1,29 @@
 <?php
 session_start();
 
-// Continue with registration logic below...
-require_once './db.php';
-
-// Redirect if  user is not logged in
-if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
-    header("Location: admin_login.php");
-    exit();
-}
+// Redirect if user is not logged in
+// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 // Redirect if user is not admin
 if ($_SESSION['user']['role'] !== 'admin') {
-    echo "❌ Access Denied: Only Admins can change the access.";
+    echo "❌ Access Denied: Admins only.";
     exit();
 }
 
-// -----------------------
-
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// 3. Fetch user data
-$username = $email = $password = $role = "";
-if ($id > 0) {
-    $stmt = $mysqli->prepare("SELECT username, email , password, role FROM users WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->bind_result($username, $email, $password, $role);
-    $stmt->fetch();
-    $stmt->close();
-}
-
-
+// Continue with registration logic below...
+require_once './db.php';
 ?>
-<?php include 'middleware.php'; ?>
+ <?php include 'middleware.php' ?>
 <?php include 'template/header.php'; ?>
+
+ <link rel="icon" href="assets/images/starfav.png" type="image/png" />
 
 <style> 
 .autth-img-cover-login {
-    background-image: url('./assets/images/loginpage.jpg');
+    background-image: url('./assets/images/sales2.jpg');
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -53,6 +37,12 @@ if ($id > 0) {
 
 }
 
+.blr1 {
+		background-color: rgba(254, 254, 254, 0.57) !important;
+		backdrop-filter: blur(20px) !important;
+
+	}
+
 </style>
 
 <!--wrapper-->
@@ -64,8 +54,12 @@ if ($id > 0) {
 				<div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex">
 
 					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0 autth-img-cover-login">
-						<div class="card-body">
+						<div class="card-body d-flex p- " style="flex-direction: row;  justify-content: start; align-items:end;">
 							<!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
+							 <div class="blr1 p-3 rounded" style="height: auto; width:600px">
+								<button class="btn blr border rounded-pill shadow" > View Your Application Status</button>
+								<p class="mt-2">ItStarPay is your trusted partner for streamlined vendor payouts and HRMS solutions. Manage payments, compliance, and onboarding in one place.</p>
+							 </div>
 						</div>
 					</div>
 
@@ -80,42 +74,53 @@ if ($id > 0) {
 								</div>
 								<div class="text-center mb-4">
 									<h5 class="">Itstarpay Admin</h5>
-									<p class="mb-0">Update user details and manage their role-based access rights.</p>
+									<p class="mb-0">Please fill the below details to create your account</p>
 								</div>
 								<div class="form-body">
-									<form action="update_user_confirm.php" method="POST">
-                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+									<form action="auth/register_process.php" method="POST">
 										<div class="col-12">
 											<label for="inputUsername" class="form-label">Username</label>
-											<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Jhon" value="<?php echo htmlspecialchars($username); ?>">
+											<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Jhon" required>
 										</div>
 
 										<div class="col-12 mt-2 mb-2">
 											<label for="inputEmailAddress" class="form-label">Email Address</label>
-											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" value="<?php echo htmlspecialchars($email); ?>">
+											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" required>
 										</div>
 
 										<div class="col-12 mt-2 mb-2">
+											<label for="inputChoosePassword" class="form-label">Password</label>
+											<div class="input-group" id="show_hide_password">
+												<input type="password" class="form-control border-end-0" name="password" id="inputChoosePassword" placeholder="Enter Password" required>
+												<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+											</div>
+										</div>
+										<div class="col-12 mt-2 mb-2">
 											<label for="inputSelectCountry" class="form-label">Select Role</label>
 											<select class="form-select" name="role" aria-label="Select role" required>
-												<option value="user" <?php echo ($role === 'user') ? 'selected' : ''; ?>>User</option>
-												<option value="admin" <?php echo ($role === 'admin') ? 'selected' : ''; ?>>Admin</option>
+												<option value="user" selected>User</option>
+												<option value="admin">Admin</option>
 											</select>
 
 										</div>
-                                        <hr />
 
 										<div class="col-12 mt-3 mb-2">
 											<div class="d-grid ">
-												<button type="submit" class="btn btn-primary">Update Sign up</button>
+												<button type="submit" class="btn btn-primary">Sign up</button>
 											</div>
 										</div>
 
+										<div class="col-12">
+											<div class="text-center">
+												<p class="mb-0">Already have an account? <a href="admin_login.php">Sign in here</a></p>
+											</div>
+										</div>
 									</form>
 
 
 								</div>
-									
+								<div class="login-separater text-center mb-5"> <span>OR SIGN UP WITH EMAIL</span>
+									<hr />
 								</div>
 							</div>
 						</div>
@@ -128,6 +133,20 @@ if ($id > 0) {
 	</div>
 </div>
 
+<!-- Search Filter Script -->
+	<script>
+		document.getElementById('searchInput').addEventListener('keyup', function() {
+			const filter = this.value.toUpperCase();
+			const rows = document.querySelectorAll('tbody tr');
+
+			rows.forEach(row => {
+				const text = row.textContent || row.innerText;
+				row.style.display = text.toUpperCase().includes(filter) ? '' : 'none';
+			});
+		});
+	</script>
+
+	
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const togglePassword = document.querySelector("#show_hide_password a");
@@ -148,7 +167,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-
-
 
 <?php include 'template/footer.php'; ?>

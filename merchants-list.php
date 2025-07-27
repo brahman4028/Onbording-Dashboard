@@ -85,6 +85,8 @@ include 'db.php';
 							<tbody id="merchantTable blr">
 								<?php while ($row = mysqli_fetch_assoc($result)) {
 									$id = $row['id'];
+									$gstin = $row['gstin'];
+									$pan = $row['pan'];
 									$businessname = $row['businessname'];
 									$fullname = $row['fullname'];
 									$status = $row['status'];
@@ -98,14 +100,14 @@ include 'db.php';
 										<td>{$status}</td>
 										<td>{$created_at}</td>
 										<td>
-    <a href='view_application.php?id=" . $id . "' target='_blank' class='btn btn-primary btn-sm radius-30 px-4'>View PDF</a>
+    <a href='view_application.php?id=" . $id . "&gstin={$gstin}&pan={$pan}' target='_blank' class='btn btn-primary btn-sm radius-30 px-4'>View PDF</a>
 </td>";
 
 									// Show edit/delete buttons only if user is admin
 									if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
 										echo "<td>
 											<div class='d-flex order-actions'>
-												<a href='edit_applications.php?id={$id}' target='_blank' style=''><i class='bx bxs-edit'></i>edit</a>
+												<a href='edit_applications.php?id={$id}&gstin={$gstin}&pan={$pan}' target='_blank' style=''><i class='bx bxs-edit'></i>edit</a>
 												<a href='archive.php?id={$id}' class='ms-3' style='background-color: #ffb2b2d1; border: 1px solid #ff6767; color: #e20505;' onclick=\"return confirm('⚠️ Are you sure you want to delete this application? This action cannot be undone.')\">
 													<i class='bx bxs-trash'></i>
 												</a>

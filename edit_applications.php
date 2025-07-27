@@ -6,8 +6,22 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $application_id = intval($_GET['id']);
 
+// Validate and retrieve 'gstin'
+if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
+    die("Missing GSTIN.");
+}
+$gstin = $_GET['gstin'];
+
+// Validate and retrieve 'pan'
+if (!isset($_GET['pan']) || empty($_GET['pan'])) {
+    die("Missing PAN.");
+}
+$pan = $_GET['pan'];
+
+// Now you can use $id, $gstin, and $pan in your code
+
 // Fetch business_application data
-$appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
+$appQuery = "SELECT * FROM business_applications WHERE id = $application_id AND gstin = '$gstin' AND pan = '$pan' ";
 $appResult = mysqli_query($mysqli, $appQuery);
 
 if (!$appResult || mysqli_num_rows($appResult) === 0) {

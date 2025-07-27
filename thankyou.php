@@ -6,18 +6,34 @@ $supportemail = "Not available"; // default fallback
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = (int) $_GET['id'];
+    // Validate and retrieve 'gstin'
+if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
+    die("Missing GSTIN.");
+}
+$gstin = $_GET['gstin'];
 
-    $stmt = $mysqli->prepare("SELECT fullname, supportemail FROM business_applications WHERE id = ?");
-    $stmt->bind_param("i", $id);
+// Validate and retrieve 'pan'
+if (!isset($_GET['pan']) || empty($_GET['pan'])) {
+    die("Missing PAN.");
+}
+$pan = $_GET['pan'];
+
+     $stmt = $mysqli->prepare("SELECT fullname, supportemail FROM business_applications WHERE id = ? AND gstin = ? AND pan = ?");
+    $stmt->bind_param("iss", $id, $gstin, $pan); // i = integer, s = string, s = string
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
         $fullname = $row['fullname'];
         $supportemail = $row['supportemail'];
+        // You can now use $fullname and $supportemail as needed
+    } else {
+        die("No application found with the provided details.");
     }
 
     $stmt->close();
+} else {
+    die("Invalid or missing ID.");
 }
 ?>
 
@@ -67,7 +83,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 </head>
 <body>
 
-<div class="container-fluid">
+<div class="">
   <div class="row thankyou-wrapper d-flex align-items-center autth-img-cover-login">
     
     <!-- Left Text Section -->
@@ -78,8 +94,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       <p class="text-muted mb-1" >Thankyo, <span class="text-primary"><?php echo htmlspecialchars($fullname); ?></span></p>
       <h1 class="mb-3" style="font-size: 60px;">We’ve Got Your Application</h1>
       <p class="mb-2">We've received your details and will review your application within 24 hours.</p>
-      <p class="mb-4">You'll get a confirmation and next steps by email at <span class="text-primary"><?php echo htmlspecialchars($supportemail); ?></span> shortly.</p>
-      <?php echo "<a href='view_application.php?id={$id}' class='btn btn-primary btn-back mt-4' style='box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;'>" ?>
+      <p class="mb-4">You'll get a confirmation and next steps by email at <span class="text-primary"><?php echo htmlspecialchars($supportemail); ?></span> shortly.</p><br>
+      <p>Your Application id : <span class="text-primary fs-2"><?php echo htmlspecialchars($id); ?><span></p><br>
+      <?php echo "<a href='view_application.php?id={$id}&gstin={$gstin}&pan={$pan}' class='btn btn-primary btn-back mt-4' style='box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;'>" ?>
         View your application status <i class="bx bx-send ms-1"></i>
       </a>
     </div>

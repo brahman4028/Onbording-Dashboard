@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			];
 
 
-			header("Location: ../index.php");
+			header("Location: ../merchants-list.php");
 			exit;
 		} else {
 			echo "❌ Incorrect password.";
