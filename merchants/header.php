@@ -21,7 +21,7 @@
 	<link href="../assets/css/app.css" rel="stylesheet">
 	<link href="../assets/css/icons.css" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="a../ssets/css/dark-theme.css"/>
+	<link rel="stylesheet" href="../assets/css/dark-theme.css"/>
 	<link rel="stylesheet" href="../assets/css/semi-dark.css"/>
 	<link rel="stylesheet" href="../assets/css/header-colors.css"/>
 	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>

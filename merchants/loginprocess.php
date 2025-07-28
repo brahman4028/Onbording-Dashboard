@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             echo "login done";
 
-			header("Location: merchant_application.php");
+			header("Location: merchant_dashboard.php");
 			exit;
 		} else {
 			echo "❌ Incorrect password.";
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt2->num_rows > 0) {
 		// Bind result variables
-		$stmt2->bind_result($merchant_id, $username, $email, $phone, $hashed_password,);
+		$stmt2->bind_result($merchant_id, $application_id, $username, $email, $phone, $hashed_password,);
 		$stmt2->fetch();
 
 		if (password_verify($password, $hashed_password)) {
@@ -54,11 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				'username' => $username,
 				'email' => $emailorphone,
 				'phone' => $phone,
-				'merchant_id' => $merchant_id
+				'merchant_id' => $merchant_id,
+				'application_id' => $application_id
 			];
 
             echo "login done";
-			header("Location: merchant_application.php");
+			header("Location: merchant_dashboard.php");
 			exit;
 		} else {
 			echo "❌ Incorrect password. stm2";
