@@ -2,15 +2,40 @@
 
 session_start();
 
-if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
+error_reporting(0);
+$adminname = '';
+$rolevalue = '';
+$username = '';
+$merchantapplication_id = 's';
+
+if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username']) || isset($_SESSION['user']['role'])) {
     // Redirect to registration page
-    header("Location: merchants/merchant_login.php");
+    $rolevalue = $_SESSION['user']['role'];
+    $merchantapplication_id = $_SESSION['merchant_info']['application_id'];
+    echo $merchantapplication_id;
+    if( $rolevalue == "admin"){
+        $adminname = $_SESSION['user']['username'];
+    }
+    else{
+        header("Location: merchants/merchant_login.php");
     exit();
+    }
 }
 
-// Fetch user name
+
 $username = $_SESSION['merchant_info']['username'];
 $merchantuseremail = $_SESSION['merchant_info']['email'];
+$merchantapplication_id = $_SESSION['merchant_info']['application_id'];
+
+if($merchantapplication_id != ''){
+        
+    echo "You've already submitted the application. Multiple submissions are not allowed.";
+    header("Location: merchants/merchant_dashboard.php");
+     exit();
+    }
+
+// Fetch user name
+
 // echo $username;
 
 ?>
@@ -300,7 +325,7 @@ $merchantuseremail = $_SESSION['merchant_info']['email'];
                             </li> -->
                             <li class="nav-item dropdown me-2 z-5">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown-menu" aria-expanded="false">
-                                    Welcome, <?php echo $username; ?>
+                                    Welcome, <?php echo $username; echo $adminname; ?>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="./merchants/merchant_logout.php">Logout</a></li>
