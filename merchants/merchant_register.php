@@ -33,6 +33,7 @@ require_once '../db.php';
 		backdrop-filter: blur(20px) !important;
 
 	}
+
 	.blr1 {
 		background-color: rgba(254, 254, 254, 0.57) !important;
 		backdrop-filter: blur(20px) !important;
@@ -52,10 +53,10 @@ require_once '../db.php';
 					<div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0 autth-img-cover-login " style="position:relative;">
 						<div class="card-body d-flex p- " style="flex-direction: row;  justify-content: start; align-items:end;">
 							<!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
-							 <div class="blr1 p-3 rounded" style="height: auto; width:600px">
-								<button class="btn blr border rounded-pill shadow" > Login to View Your Application</button>
+							<div class="blr1 p-3 rounded" style="height: auto; width:600px">
+								<button class="btn blr border rounded-pill shadow"> Login to View Your Application</button>
 								<p class="mt-2">ItStarPay is your trusted partner for streamlined vendor payouts and HRMS solutions. Manage payments, compliance, and onboarding in one place.</p>
-							 </div>
+							</div>
 						</div>
 					</div>
 
@@ -111,7 +112,7 @@ require_once '../db.php';
 												<li id="number" class="text-muted">✔️ At least one number</li>
 												<li id="symbol" class="text-muted">✔️ At least one special character</li>
 											</ul>
-											
+
 										</div>
 
 										<div class="col-12 mt-3 mb-2">
@@ -234,117 +235,117 @@ require_once '../db.php';
 
 <!-- password syrength -->
 <script>
-function togglePassword() {
-  const passwordInput = document.getElementById("inputChoosePassword");
-  const toggleIcon = document.getElementById("toggleIcon");
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    toggleIcon.classList.replace("bx-hide", "bx-show");
-  } else {
-    passwordInput.type = "password";
-    toggleIcon.classList.replace("bx-show", "bx-hide");
-  }
-}
+	function togglePassword() {
+		const passwordInput = document.getElementById("inputChoosePassword");
+		const toggleIcon = document.getElementById("toggleIcon");
+		if (passwordInput.type === "password") {
+			passwordInput.type = "text";
+			toggleIcon.classList.replace("bx-hide", "bx-show");
+		} else {
+			passwordInput.type = "password";
+			toggleIcon.classList.replace("bx-show", "bx-hide");
+		}
+	}
 
-document.getElementById("inputChoosePassword").addEventListener("input", function () {
-  const value = this.value;
-  const lengthValid = value.length >= 8;
-  const uppercaseValid = /[A-Z]/.test(value);
-  const numberValid = /[0-9]/.test(value);
-  const symbolValid = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+	document.getElementById("inputChoosePassword").addEventListener("input", function() {
+		const value = this.value;
+		const lengthValid = value.length >= 8;
+		const uppercaseValid = /[A-Z]/.test(value);
+		const numberValid = /[0-9]/.test(value);
+		const symbolValid = /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
-  // Update checklist colors
-  document.getElementById("length").className = lengthValid ? "text-success" : "text-muted";
-  document.getElementById("uppercase").className = uppercaseValid ? "text-success" : "text-muted";
-  document.getElementById("number").className = numberValid ? "text-success" : "text-muted";
-  document.getElementById("symbol").className = symbolValid ? "text-success" : "text-muted";
+		// Update checklist colors
+		document.getElementById("length").className = lengthValid ? "text-success" : "text-muted";
+		document.getElementById("uppercase").className = uppercaseValid ? "text-success" : "text-muted";
+		document.getElementById("number").className = numberValid ? "text-success" : "text-muted";
+		document.getElementById("symbol").className = symbolValid ? "text-success" : "text-muted";
 
-  // Calculate strength
-  let strength = lengthValid + uppercaseValid + numberValid + symbolValid;
-  const strengthBar = document.getElementById("strengthBar");
+		// Calculate strength
+		let strength = lengthValid + uppercaseValid + numberValid + symbolValid;
+		const strengthBar = document.getElementById("strengthBar");
 
-  strengthBar.style.width = (strength * 25) + "%";
-  strengthBar.className = "progress-bar"; // reset classes
+		strengthBar.style.width = (strength * 25) + "%";
+		strengthBar.className = "progress-bar"; // reset classes
 
-  if (strength === 0) {
-    strengthBar.classList.add("bg-danger");
-  } else if (strength <= 2) {
-    strengthBar.classList.add("bg-warning");
-  } else if (strength === 3) {
-    strengthBar.classList.add("bg-info");
-  } else {
-    strengthBar.classList.add("bg-success");
-  }
-});
+		if (strength === 0) {
+			strengthBar.classList.add("bg-danger");
+		} else if (strength <= 2) {
+			strengthBar.classList.add("bg-warning");
+		} else if (strength === 3) {
+			strengthBar.classList.add("bg-info");
+		} else {
+			strengthBar.classList.add("bg-success");
+		}
+	});
 </script>
 
 
 <!-- protect from submitting -->
 
 <script>
-function togglePassword() {
-  const passwordInput = document.getElementById("inputChoosePassword");
-  const toggleIcon = document.getElementById("toggleIcon");
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    toggleIcon.classList.replace("bx-hide", "bx-show");
-  } else {
-    passwordInput.type = "password";
-    toggleIcon.classList.replace("bx-show", "bx-hide");
-  }
-}
+	function togglePassword() {
+		const passwordInput = document.getElementById("inputChoosePassword");
+		const toggleIcon = document.getElementById("toggleIcon");
+		if (passwordInput.type === "password") {
+			passwordInput.type = "text";
+			toggleIcon.classList.replace("bx-hide", "bx-show");
+		} else {
+			passwordInput.type = "password";
+			toggleIcon.classList.replace("bx-show", "bx-hide");
+		}
+	}
 
-function checkPasswordStrength(password) {
-  const lengthValid = password.length >= 8;
-  const uppercaseValid = /[A-Z]/.test(password);
-  const numberValid = /[0-9]/.test(password);
-  const symbolValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  return {
-    valid: lengthValid && uppercaseValid && numberValid && symbolValid,
-    lengthValid,
-    uppercaseValid,
-    numberValid,
-    symbolValid
-  };
-}
+	function checkPasswordStrength(password) {
+		const lengthValid = password.length >= 8;
+		const uppercaseValid = /[A-Z]/.test(password);
+		const numberValid = /[0-9]/.test(password);
+		const symbolValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+		return {
+			valid: lengthValid && uppercaseValid && numberValid && symbolValid,
+			lengthValid,
+			uppercaseValid,
+			numberValid,
+			symbolValid
+		};
+	}
 
-document.getElementById("inputChoosePassword").addEventListener("input", function () {
-  const value = this.value;
-  const checks = checkPasswordStrength(value);
+	document.getElementById("inputChoosePassword").addEventListener("input", function() {
+		const value = this.value;
+		const checks = checkPasswordStrength(value);
 
-  // Update checklist colors
-  document.getElementById("length").className = checks.lengthValid ? "text-success" : "text-muted";
-  document.getElementById("uppercase").className = checks.uppercaseValid ? "text-success" : "text-muted";
-  document.getElementById("number").className = checks.numberValid ? "text-success" : "text-muted";
-  document.getElementById("symbol").className = checks.symbolValid ? "text-success" : "text-muted";
+		// Update checklist colors
+		document.getElementById("length").className = checks.lengthValid ? "text-success" : "text-muted";
+		document.getElementById("uppercase").className = checks.uppercaseValid ? "text-success" : "text-muted";
+		document.getElementById("number").className = checks.numberValid ? "text-success" : "text-muted";
+		document.getElementById("symbol").className = checks.symbolValid ? "text-success" : "text-muted";
 
-  // Update strength bar
-  const strength = [checks.lengthValid, checks.uppercaseValid, checks.numberValid, checks.symbolValid].filter(Boolean).length;
-  const strengthBar = document.getElementById("strengthBar");
-  strengthBar.style.width = (strength * 25) + "%";
-  strengthBar.className = "progress-bar";
+		// Update strength bar
+		const strength = [checks.lengthValid, checks.uppercaseValid, checks.numberValid, checks.symbolValid].filter(Boolean).length;
+		const strengthBar = document.getElementById("strengthBar");
+		strengthBar.style.width = (strength * 25) + "%";
+		strengthBar.className = "progress-bar";
 
-  if (strength === 0) {
-    strengthBar.classList.add("bg-danger");
-  } else if (strength <= 2) {
-    strengthBar.classList.add("bg-warning");
-  } else if (strength === 3) {
-    strengthBar.classList.add("bg-info");
-  } else {
-    strengthBar.classList.add("bg-success");
-  }
-});
+		if (strength === 0) {
+			strengthBar.classList.add("bg-danger");
+		} else if (strength <= 2) {
+			strengthBar.classList.add("bg-warning");
+		} else if (strength === 3) {
+			strengthBar.classList.add("bg-info");
+		} else {
+			strengthBar.classList.add("bg-success");
+		}
+	});
 
-// Prevent form submission if password is weak
-document.getElementById("signupForm").addEventListener("submit", function (e) {
-  const password = document.getElementById("inputChoosePassword").value;
-  const isStrong = checkPasswordStrength(password).valid;
+	// Prevent form submission if password is weak
+	document.getElementById("signupForm").addEventListener("submit", function(e) {
+		const password = document.getElementById("inputChoosePassword").value;
+		const isStrong = checkPasswordStrength(password).valid;
 
-  if (!isStrong) {
-    e.preventDefault();
-    alert("Password is too weak. Please make sure it meets all the strength requirements.");
-  }
-});
+		if (!isStrong) {
+			e.preventDefault();
+			alert("Password is too weak. Please make sure it meets all the strength requirements.");
+		}
+	});
 </script>
 
 

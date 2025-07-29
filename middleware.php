@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
-    header("Location: login.php");
+    header("Location: ./merchants/merchant_login.php");
     exit();
 }
 

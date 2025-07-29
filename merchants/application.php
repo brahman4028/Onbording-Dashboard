@@ -1,65 +1,4 @@
-<?php include '../db.php';
 
-session_start();
-
-$application_id = '';
-
-if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
-    // Redirect to registration page
-    header("Location: merchant_login.php");
-    exit();
-}
-// Redirect if user is not logged in
-// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
-//     header("Location: login.php");
-//     exit();
-// }
-
-// Redirect if user is not admin
-
-
-
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    die("Invalid or missing ID.");
-}
-
-$application_id = intval($_GET['id']);
-
-// Validate and retrieve 'gstin'
-if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
-    die("Missing GSTIN.");
-}
-$gstin = $_GET['gstin'];
-
-// Validate and retrieve 'pan'
-if (!isset($_GET['pan']) || empty($_GET['pan'])) {
-    die("Missing PAN.");
-}
-
-
-
-
-$pan = $_GET['pan'];
-
-// Now you can use $id, $gstin, and $pan in your code
-
-// Fetch business_application data
-$appQuery = "SELECT * FROM business_applications WHERE id = $application_id AND gstin = '$gstin' AND pan = '$pan' ";
-$appResult = mysqli_query($mysqli, $appQuery);
-
-if (!$appResult || mysqli_num_rows($appResult) === 0) {
-    die("No record found with ID: $application_id");
-}
-
-$appData = mysqli_fetch_assoc($appResult);
-
-// Fetch business_documents data
-$docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
-$docResult = mysqli_query($mysqli, $docQuery);
-$docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
-
-
-?>
 
 <!doctype html>
 <html lang="en">
@@ -70,7 +9,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     <link rel="icon" href="../assets/images/starfav.png" type="image/png" />
     <link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-    <link href="../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <!-- <link href="../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" /> -->
     <link href="../assets/plugins/bs-stepper/css/bs-stepper.css" rel="stylesheet" />
     <link href="../assets/css/pace.min.css" rel="stylesheet" />
     <script src="../assets/js/pace.min.js"></script>
@@ -78,11 +17,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     <link href="../assets/css/bootstrap-extended.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="../assets/css/app.css" rel="stylesheet">
-    <link href="../assets/css/icons.css" rel="stylesheet">
+    <!-- <link href="../assets/css/icons.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="../assets/css/dark-theme.css" />
     <link rel="stylesheet" href="../assets/css/semi-dark.css" />
     <link rel="stylesheet" href="../assets/css/header-colors.css" />
-    <title>Stepper Form</title>
     <style>
         table {
             width: 100%;
@@ -188,19 +126,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                         <div id="stepper3" class="bs-stepper gap-0 vertical blr" style="height: 100%; ">
                             <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;" class="blr">
                                 <!-- route line -->
-                                <div class="bs-stepper-header" role="tablist">
-                                    <div class="step" data-target="#test-vl-1">
-                                        <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
-                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
-                                            <div>
-                                                <h5 class=" mt-4 text-center" style="color:rgba(15, 15, 15, 1)">
-                                                    <?= htmlspecialchars($appData['businessname']) ?>'s Application
-                                                </h5>
-                                                <p class="mb-0 steper-sub-title">Just a file Preview</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="position-relative autth-img-cover-login" style="width: 100% ; height:100%;">
 
@@ -220,7 +146,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                     <!-- declarations -->
 
                                     <!-- submission form -->
-                                    <div id="test-vl-1" role="tabpanel" class="bs-stepper-pane content fade wrapper " aria-labelledby="stepper3trigger1">
 
                                         <!-- pdf html template -->
                                         <div class="container border p-4 bg-white blr" id="kycPreview" style="
@@ -1237,7 +1162,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                                         </div>
 
-                                    </div>
+                                  
                                 </div>
                             </div>
                         </div>

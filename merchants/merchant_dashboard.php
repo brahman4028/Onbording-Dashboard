@@ -20,25 +20,27 @@ $merchantuseremail = $_SESSION['merchant_info']['email'];
 
 // echo $application_id;
 
-if($application_id != ''){
-$appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
-$appResult = mysqli_query($mysqli, $appQuery);
+if ($application_id != '') {
+    $appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
+    $appResult = mysqli_query($mysqli, $appQuery);
 
-if (!$appResult || mysqli_num_rows($appResult) === 0) {
-    die("No record found with ID: $application_id");
-}
+    if (!$appResult || mysqli_num_rows($appResult) === 0) {
+        die("No record found with ID: $application_id");
+    }
 
-$appData = mysqli_fetch_assoc($appResult);
+    $appData = mysqli_fetch_assoc($appResult);
 
-// Fetch business_documents data
-$docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
-$docResult = mysqli_query($mysqli, $docQuery);
-$docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
+    // Fetch business_documents data
+    $docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
+    $docResult = mysqli_query($mysqli, $docQuery);
+    $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
-$id = $appData['id'];
-$gstin = $appData['gstin'];
-$pan = $appData['pan'];
-
+    $id = $appData['id'];
+    $gstin = $appData['gstin'];
+    $pan = $appData['pan'];
+    $status = $appData['status'];
+    $coment = $appData['coment'];
+    $merchant_trash = $appData['merchant_trash'];
 }
 
 // echo $id;
@@ -96,18 +98,18 @@ $pan = $appData['pan'];
                 <div class="card rounded-0  shadow-none bg-transparent mb-0 autth-img-cover-login">
                     <div class="card-body d-flex p- " style="flex-direction: row;  justify-content: start; align-items:end;">
                         <!-- <img src="assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login" width="550" alt="" /> -->
-                        
+
                     </div>
                 </div>
 
             </div>
 
             <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center border p-0" style="position:relative;">
-                <a href="merchant_logout.php" 
-   class="btn btn-outline-danger btn-sm rounded-pill" 
-   style="position: absolute; bottom: 0; right: 0; margin: 1rem;">
-   Logout
-</a>
+                <a href="merchant_logout.php"
+                    class="btn btn-outline-danger btn-sm rounded-pill"
+                    style="position: absolute; bottom: 0; right: 0; margin: 1rem;">
+                    Logout
+                </a>
 
                 <div class="cad shadow-none bg-transparent shadow-none rounded-0 mb-0  " style=" width:60%;">
                     <div class="card-body p-0" style="width: 100%;">
@@ -123,43 +125,78 @@ $pan = $appData['pan'];
 
                             <?php
 
-                            if ($application_id != '') {
-                                echo '<div class="card shadow-sm rounded-3 p-3" style="max-width: 700px;">
-    <div class="row">
-        <!-- Left Section -->
+                            if ($application_id != '' && $status != "Cancelled" && $merchant_trash != "y") {
+                                echo '
+                                <div class="card p-3 rounded-4" style="max-width: 700px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);">
+                                 <div class="row g-3">
+                                 <!-- Left Section -->
         <div class="col-md-8">
-            <div class="d-flex justify-content-between">
-                <h5 class="mb-0">' . htmlspecialchars($appData["businessname"]) . '</h5>
+            <div class="d-flex justify-content-between align-items-start">
+                <h5 class="mb-1 fw-bold text-dark">' . htmlspecialchars($appData["businessname"]) . '</h5>
             </div>
             <p class="text-muted mt-1 mb-3"><strong>GSTIN:</strong> ' . htmlspecialchars($appData["gstin"]) . '</p>
-            <div class="mt-4">
-                <small class="text-muted">Onboarding Date & Time: ' . htmlspecialchars($appData["created_at"]) . '</small><br>
-                <span>Application status: <span class="badge bg-warning text-dark">' . htmlspecialchars($appData["status"]) . '</span></span>
+            <div class="mt-3">
+                <small class="text-muted d-block">Onboarding Date & Time: ' . htmlspecialchars($appData["created_at"]) . '</small>
+                <span class="mt-1 d-inline-block">Application status: <span class="badge bg-warning text-dark">' . htmlspecialchars($appData["status"]) . '</span></span>
             </div>
         </div>
 
         <!-- Right Section: Photo -->
         <div class="col-md-4 text-end">
-            <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail" style="width: 100%; height: 120px; object-fit: cover;"><br>
-            Applicant:<p class="fw-semibold">' . htmlspecialchars($appData["fullname"]) . '</p>
+            <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail rounded-3 border-0" style="width: 100%; height: 120px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <p class="mt-2 mb-0 text-muted small">Applicant:</p>
+            <p class="fw-semibold text-dark mb-0">' . htmlspecialchars($appData["fullname"]) . '</p>
         </div>
     </div>
 </div>
 
 <div class="d-flex justify-content-center align-items-center">
-    <a href="merchant_application.php?id=' . urlencode($id) . '&gstin=' . urlencode($gstin) . '&pan=' . urlencode($pan) . '" class="btn btn-primary text-center btn-back mt-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
+    <a href="merchant_application.php?id=' . urlencode($id) . '&gstin=' . urlencode($gstin) . '&pan=' . urlencode($pan) . '" class="btn btn-primary text-center btn-back mt-3 px-4 py-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
         View your application <i class="bx bx-send ms-1"></i>
     </a>
 </div>';
-
+                            } elseif ($status == "Cancelled" && $merchant_trash != "y") {
+                                echo '
+<div class="card text-center border-0 p-4" style="
+    max-width: 600px; 
+    margin: auto; 
+    border-radius: 1rem; 
+    background: rgba(255, 255, 255, 0.6); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); 
+    backdrop-filter: blur(6px); 
+    -webkit-backdrop-filter: blur(6px); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+">
+    <div class="card-body">
+        <h5 class="card-title mb-3 fw-semibold text-dark">Application Declined</h5>
+        <p class="card-text text-muted mb-4">
+            Your previous application with ID <span class="text-dark fw-medium">' . htmlspecialchars($id) . '</span> was cancelled due to the reason <span class="text-dark fw-semibold">"' . htmlspecialchars($coment) . '"</span> please submit a fresh application.
+        </p>
+        <a href="../index.php" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm">
+            Begin Onboarding
+        </a>
+    </div>
+</div>';
                             } else {
-                                echo '<div class="card text-center border-0 shadow-sm p-4" style="max-width: 400px; margin: auto; border-radius: 1rem;">
-                                <div class="card-body">
-                                <h5 class="card-title mb-3">You\'re Almost There!</h5>
-                                 <p class="card-text text-muted mb-4">It looks like you haven’t filled out your form yet. Start now to complete your onboarding.</p>
-                                  <a href="../index.php" class="btn btn-primary rounded-pill px-4">Begin Onboarding</a>
-                                 </div>
-                                 </div>';
+                                echo '
+<div class="card text-center border-0 p-4" style="
+    max-width: 400px; 
+    margin: auto; 
+    border-radius: 1rem; 
+    background: rgba(255, 255, 255, 0.6); 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+">
+    <div class="card-body">
+        <h5 class="card-title mb-3 fw-semibold text-dark">You\'re Almost There!</h5>
+        <p class="card-text text-muted mb-4">It looks like you haven’t filled out your form yet. Start now to complete your onboarding.</p>
+        <a href="../index.php" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.2);">
+            Begin Onboarding
+        </a>
+    </div>
+</div>';
                             }
                             ?>
 
@@ -171,7 +208,7 @@ $pan = $appData['pan'];
 
 
                             <!-- //////////// -->
-                        
+
                         </div>
                     </div>
                 </div>
@@ -386,6 +423,27 @@ $pan = $appData['pan'];
             alert("Password is too weak. Please make sure it meets all the strength requirements.");
         }
     });
+</script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		const togglePassword = document.querySelector("#show_hide_password a");
+		const passwordInput = document.querySelector("#show_hide_password input");
+		const icon = document.querySelector("#show_hide_password i");
+
+		togglePassword.addEventListener("click", function(e) {
+			e.preventDefault();
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+				icon.classList.remove("bx-hide");
+				icon.classList.add("bx-show");
+			} else {
+				passwordInput.type = "password";
+				icon.classList.remove("bx-show");
+				icon.classList.add("bx-hide");
+			}
+		});
+	});
 </script>
 
 

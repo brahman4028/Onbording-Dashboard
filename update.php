@@ -3,6 +3,9 @@ include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    $status = trim($_POST['emailorphone']);
+
+
     function clean($data) {
         return htmlspecialchars(strip_tags(trim($data)));
     }
@@ -73,6 +76,13 @@ error_reporting(E_ALL);
 // echo "</pre>";
 
     // Redirect or display message
+
+
+
+
+
+
+
     header("Location: update_confirm.php?id=$application_id");
     exit;
 } else {

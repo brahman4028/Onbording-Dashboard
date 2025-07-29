@@ -1762,7 +1762,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
                                                     <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                                     <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
-                                                    <option value="Documents not completed<">Documents not completed</option>
+                                                    <option value="Documents not completed" <?= $selectedEntity3 === 'Documents not completed' ? 'selected' : '' ?>>Documents not completed</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-4">
