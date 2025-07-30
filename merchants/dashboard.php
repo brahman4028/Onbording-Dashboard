@@ -83,6 +83,7 @@ if ($application_id != '') {
     <title>Merchant Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             background-color: #ffffffff;
@@ -187,6 +188,23 @@ if ($application_id != '') {
             background-color: #0066ff;
             color: white;
         }
+        .card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .stat {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .subtext {
+      color: #888;
+      font-size: 0.85rem;
+    }
     </style>
 </head>
 
@@ -244,84 +262,69 @@ if ($application_id != '') {
                 <div id="yourApp" class="tab-section active">
                     <h4 class="mb-4">Your Previous Applications</h4>
                     <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card p-3 bg-white">
+                                <div class="card-title">Total Revenue</div>
+                                <div class="stat text-success">$40,109</div>
+                                <div class="subtext">+12.5% this week</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-3 bg-white">
+                                <div class="card-title">Products Sold</div>
+                                <div class="stat text-primary">1,951</div>
+                                <div class="subtext">+3.2% increase</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-3 bg-white">
+                                <div class="card-title">New Customers</div>
+                                <div class="stat text-warning">4,514</div>
+                                <div class="subtext">+5.8% growth</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Application + Chart -->
+                    <div class="row mb-4">
+                    
+                        <!-- application status -->
+                         <div class="col-md-8">
+                            <div class="card p-3 bg-white " >
+                                <?php include 'application_status.php' ?>
+                            </div>
+                        </div>
+
+                        <!-- ////////////////////// -->
+                        <div class="col-md-4">
+                            <div class="card p-3 bg-white">
+                                <div class="card-title">Weekly Stats</div>
+                                <canvas id="weeklyChart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Notifications -->
+                    <div class="row">
                         <div class="col-md-8">
-                            <?php
-
-                            if ($application_id != '' && $status != "Cancelled" && $merchant_trash != "y") {
-                                echo '
-                                <div class="card p-3 rounded-4" style="max-width: 700px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);">
-                                 <div class="row g-3">
-                                 <!-- Left Section -->
-        <div class="col-md-8">
-            <div class="d-flex justify-content-between align-items-start">
-                <h5 class="mb-1 fw-bold text-dark">' . htmlspecialchars($appData["businessname"]) . '</h5>
-            </div>
-            <p class="text-muted mt-1 mb-3"><strong>GSTIN:</strong> ' . htmlspecialchars($appData["gstin"]) . '</p>
-            <div class="mt-3">
-                <small class="text-muted d-block">Onboarding Date & Time: ' . htmlspecialchars($appData["created_at"]) . '</small>
-                <span class="mt-1 d-inline-block">Application status: <span class="badge bg-warning text-dark">' . htmlspecialchars($appData["status"]) . '</span></span>
-            </div>
-        </div>
-
-        <!-- Right Section: Photo -->
-        <div class="col-md-4 text-end">
-            <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail rounded-3 border-0" style="width: 100%; height: 120px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
-            <p class="mt-2 mb-0 text-muted small">Applicant:</p>
-            <p class="fw-semibold text-dark mb-0">' . htmlspecialchars($appData["fullname"]) . '</p>
-        </div>
-    </div>
-</div>
-
-<div class="d-flex  ">
-    <a href="merchant_application.php?id=' . urlencode($id) . '&gstin=' . urlencode($gstin) . '&pan=' . urlencode($pan) . '" class="btn btn-primary text-center btn-back mt-3 px-4 py-2" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
-        View your application <i class="bx bx-send ms-1"></i>
-    </a>
-</div>';
-                            } elseif ($status == "Cancelled" && $merchant_trash != "y") {
-                                echo '
-<div class="card text-center border-0 p-4" style="
-    max-width: 600px; 
-    margin: auto; 
-    border-radius: 1rem; 
-    background: rgba(255, 255, 255, 0.6); 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); 
-    backdrop-filter: blur(6px); 
-    -webkit-backdrop-filter: blur(6px); 
-    border: 1px solid rgba(255, 255, 255, 0.3);
-">
-    <div class="card-body">
-        <h5 class="card-title mb-3 fw-semibold text-dark">Application Declined</h5>
-        <p class="card-text text-muted mb-4">
-            Your previous application with ID <span class="text-dark fw-medium">' . htmlspecialchars($id) . '</span> was cancelled due to the reason <span class="text-dark fw-semibold">"' . htmlspecialchars($coment) . '"</span> please submit a fresh application.
-        </p>
-        <a href="../index.php" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm">
-            Begin Onboarding
-        </a>
-    </div>
-</div>';
-                            } else {
-                                echo '
-<div class="card text-center border-0 p-4" style="
-    max-width: 400px; 
-    margin: auto; 
-    border-radius: 1rem; 
-    background: rgba(255, 255, 255, 0.6); 
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
-    backdrop-filter: blur(8px); 
-    -webkit-backdrop-filter: blur(8px); 
-    border: 1px solid rgba(255, 255, 255, 0.3);
-">
-    <div class="card-body">
-        <h5 class="card-title mb-3 fw-semibold text-dark">You\'re Almost There!</h5>
-        <p class="card-text text-muted mb-4">It looks like you haven’t filled out your form yet. Start now to complete your onboarding.</p>
-        <a href="../index.php" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.2);">
-            Begin Onboarding
-        </a>
-    </div>
-</div>';
-                            }
-                            ?>
-
+                            <div class="card p-4 bg-white">
+                                <div class="card-title">Application Status</div>
+                                <ul class="list-group list-group-flush mt-3">
+                                    <li class="list-group-item">KYC Verification: <span class="badge bg-success">Completed</span></li>
+                                    <li class="list-group-item">Business Documents: <span class="badge bg-warning">Pending</span></li>
+                                    <li class="list-group-item">Bank Info: <span class="badge bg-info">In Progress</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-4 bg-white">
+                                <div class="card-title">Notifications</div>
+                                <ul class="list-group list-group-flush mt-2">
+                                    <li class="list-group-item">🟣 You have 3 new orders</li>
+                                    <li class="list-group-item">🔔 Business document submission reminder</li>
+                                    <li class="list-group-item">✅ KYC verification approved</li>
+                                </ul>
+                            </div>
                         </div>
                         <!-- ////////////////////////////// -->
                         <!-- <div class="col-md-6">
@@ -663,6 +666,33 @@ if ($application_id != '') {
             });
         });
     </script>
+
+    <script>
+const ctx = document.getElementById('weeklyChart').getContext('2d');
+const weeklyChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{
+      label: 'Sales',
+      data: [120, 190, 300, 250, 270, 380, 410],
+      borderColor: '#4e73df',
+      backgroundColor: 'rgba(78, 115, 223, 0.1)',
+      borderWidth: 2,
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    scales: {
+      y: { beginAtZero: true }
+    },
+    plugins: {
+      legend: { display: false }
+    }
+  }
+});
+</script>
 
 </body>
 
