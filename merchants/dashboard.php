@@ -1,10 +1,12 @@
 <?php include '../db.php';
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
 
 $address = "";
-// error_reporting(0);
+$accountnumber = "";
+	$accountnumberadn = "";
+error_reporting(0);
 
 session_start();
 
@@ -52,6 +54,8 @@ if ($application_id != '') {
     $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
     $id = $appData['id'];
+	$accountnumber = $appData['accountnumber'];
+	$accountnumberadn = $appData['accountnumberadn'];
     $gstin = $appData['gstin'];
     $pan = $appData['pan'];
     $status = $appData['status'];
@@ -289,7 +293,7 @@ if ($application_id != '') {
                     <li><a class="nav-link" onclick="showTab('bankaccount')"><i class='bx bx-credit-card'></i>Bank Account</a></li>
                     <li><a class="nav-link" onclick="showTab('api')"><i class='bx bx-plug'></i>Webhooks & API</a></li>
                     <li><a class="nav-link" onclick="showTab('viewapplication')"><i class='bx bx-detail'></i>View Application</a></li>
-                   
+
                 </ul>
             </div>
 
@@ -420,7 +424,7 @@ if ($application_id != '') {
                     </div>
                 </div>
 
-                <!-- Tab 2: New Application -->
+                <!-- Tab 2: previous Application -->
                 <div id="yourApp" class="tab-section">
                     <h4 class="mb-4">Previuos Application</h4>
                     <div class="application-card">
@@ -450,7 +454,7 @@ if ($application_id != '') {
                 <!-- Tab 4: Bank Account Verification 1 -->
                 <div id="bankaccount" class="tab-section">
                     <?php include 'bankaccount1.php' ?>
-                    
+
                     <div class="section-divider mb-3"></div>
                     <!-- Tab 4: Bank Account Verification 2 -->
                     <?php include 'bankaccount2.php' ?>
@@ -836,54 +840,46 @@ if ($application_id != '') {
     </script>
 
 
- <!-- update secondary bank account info -->
- <script>
-     $('#addbankAccountForm2').on('submit', function(e) {
-         e.preventDefault(); // Prevent default form submit
+    <!-- update secondary bank account info -->
+    <script>
+        $('#addbankAccountForm2').on('submit', function(e) {
+            e.preventDefault();
 
-         let accountnameadn = $('#accountnameadn').val();
-         let banknameadn = $('#banknameadn').val();
-         let branchnameadn = $('#branchnameadn').val();
-         let accountnumberadn = $('#accountnumberadn').val();
-         let ifsccodeadn = $('#ifsccodeadn').val();
-         let accounttypeadn = $('#accounttypeadn').val();
+            let formData = new FormData(this); // 🔥 Automatically handles file + text fields
 
-         if (accountnameadn == "" || banknameadn == "" || branchnameadn == "" || accountnumberadn == "" || ifsccodeadn == "" || accounttypeadn == "") {
-             alert("Please fill all the fields");
-             return;
-         }
+            $.ajax({
+                url: 'add_secondary_bank_account.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: false, // 🔥 Required for FormData to work
+                processData: false, // 🔥 Don't convert to query string
+                success: function(response) {
+                    console.log("Response:", response);
 
+                    if (response.status === 'success') {
+                        $('#addbankAccountForm2')[0].reset();
+                        $('#toast2').fadeIn().delay(3000).fadeOut();
 
-         let formData = $(this).serialize();
+                        // Refresh the page 3 seconds after toast appears
+                        setTimeout(function() {
+                            location.reload(); // This refreshes the page
+                        }, 3000);
+                        
 
-         $.ajax({
-             url: 'add_secondary_bank_account.php', // Your PHP file
-             type: 'POST',
-             data: formData,
-             dataType: 'json',
-             success: function(response) {
-                 console.log("Raw Text Response:", response.status);
-
-                 // let json = JSON.parse(response);
-                 // console.log("Parsed JSON:", json)
-                 if (response.status === 'success') {
-                     $('#toast2').fadeIn().delay(3000).fadeOut(); // Show notification
-                     $('#addbankAccountForm2')[0].reset(); // Clear form
-                    //  $('#inputChoosePassword').val('');
-                    //  $('#confirmpassword').val('');
-                 } else {
-                     alert("Error: " + response.message); // 👈 show real err
-                 }
-             },
-             error: function(xhr, status, error) {
-                 console.log("XHR:", xhr);
-                 console.log("Status:", status);
-                 console.log("Error:", error);
-                 alert("AJAX error: " + xhr.responseText);
-             }
-         });
-     });
- </script>
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("XHR:", xhr);
+                    console.log("Status:", status);
+                    console.log("Error:", error);
+                    alert("AJAX error: " + xhr.responseText);
+                }
+            });
+        });
+    </script>
 
 </body>
 

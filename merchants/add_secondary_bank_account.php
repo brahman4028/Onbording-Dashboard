@@ -21,13 +21,21 @@ $accounttypeadn = $mysqli->real_escape_string($_POST['accounttypeadn']);
     $sql = "UPDATE business_applications SET accountnameadn='$accountnameadn',banknameadn='$banknameadn',branchnameadn='$branchnameadn',accountnumberadn='$accountnumberadn',ifsccodeadn='$ifsccodeadn',accounttypeadn='$accounttypeadn' WHERE id='$id' "; // Adjust WHERE clause
 
       // File Uploads
-    $uploadDir = '../test/';
+    $uploadDir = '../uploads/';
+    // echo $uploadDir;
+// exit;
+//     if (!is_dir($uploadDir)) {
+//     mkdir($uploadDir, 0777, true);
+// }
+
     $uploadedFiles = [];
     $fileFields = [
         'cancelledchequefileadn'
-        
 
     ];
+
+
+
 
     foreach ($fileFields as $field) {
     if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
@@ -41,7 +49,7 @@ $accounttypeadn = $mysqli->real_escape_string($_POST['accounttypeadn']);
         $targetPath = $uploadDir . $uniqueName;
 
         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-            $uploadedFiles[$field] = $targetPath;
+            $uploadedFiles[$field] = 'uploads/'.$uniqueName;
         } else {
             $uploadedFiles[$field] = '';
         }
@@ -50,21 +58,43 @@ $accounttypeadn = $mysqli->real_escape_string($_POST['accounttypeadn']);
     }
 }
 
+$cancelledChequePath = $uploadedFiles['cancelledchequefileadn'];
+// echo $cancelledChequePath;
+// echo "TMP: " . $_FILES['cancelledchequefileadn']['tmp_name'] . "<br>";
+// echo "ERR: " . $_FILES['cancelledchequefileadn']['error'] . "<br>";
+// echo "NAME: " . $_FILES['cancelledchequefileadn']['name'] . "<br>";
+// exit;
 
-   $sql2 = "UPDATE business_documents SET cancelledchequefileadn='$uploadedFiles[cancelledchequefileadn]' WHERE application_id='$id' "; // Adjust WHERE clause
+// exit;
+
+   $sql2 = "UPDATE business_documents SET cancelledchequefileadn='$cancelledChequePath' WHERE application_id='$id' "; // Adjust WHERE clause
  
 
-if ($mysqli->query($sql) && $mysqli->query($sql2)) {
-
- $response = [
-    "status" => "success",
-    "message" => "Profile updated successfully"
-];
-
-// Tell browser this is JSON
-
-// Send JSON back
-echo json_encode($response);
+if ($mysqli->query($sql)) {
+    if ($uploadedFiles['cancelledchequefileadn']) {
+        if ($mysqli->query($sql2)) {
+            $response = [
+                "status" => "success",
+                "message" => "Profile and file updated successfully"
+            ];
+        } else {
+            $response = [
+                "status" => "partial",
+                "message" => "Profile updated but file info not saved to DB"
+            ];
+        }
+    } else {
+        $response = [
+            "status" => "partial",
+            "message" => "Profile updated but file was not uploaded"
+        ];
+    }
+} else {
+    $response = [
+        "status" => "error",
+        "message" => "Failed to update profile"
+    ];
 }
+echo json_encode($response);
 
 ?>

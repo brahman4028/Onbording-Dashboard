@@ -81,10 +81,16 @@
                                             <i class="bx bxs-time-five text-warning fs-5"></i>
                                              <span class="text-warning fw-semibold small">Bank Account Under Review</span>
                                             </div>';
+                    } elseif ($appData['bankeject'] == "yes" ) {
+                        echo '<!-- not verified -->
+                                        <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded shadow-sm border border-danger" style="background: #fdecea; box-shadow: 0 2px 6px rgba(255, 0, 0, 0.08);">
+                                            <i class="bx bxs-error-circle text-danger fs-5"></i>
+                                            <span class="text-danger fw-semibold small">Bank Account Ejected</span>
+                                        </div>';
                     } 
-                    elseif( $appData['bankeject'] == "yes" || $appData['accountname'] == ''){
+                    elseif ($appData['accountnumber'] == "" ) {
                         echo '';
-                    }
+                    } 
                     else {
                         echo '<!-- not verified -->
                                         <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded shadow-sm border border-danger" style="background: #fdecea; box-shadow: 0 2px 6px rgba(255, 0, 0, 0.08);">
@@ -106,10 +112,15 @@
                 ?>
              <?php
                 if ($appData['bankeject'] == "no" && $appData['accountname'] != "") {
-                    echo ' <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded shadow-sm border border-danger" style="background: #fdecea; box-shadow: 0 2px 6px rgba(255, 0, 0, 0.08);">
-                                    <i class="bx bxs-error-circle text-danger fs-5"></i>
-                                    <span class="text-danger fw-semibold small"><a>Eject Account</a></span>
-                                </div>';
+                    echo '<div class="d-flex" style="flex-direction:column; justify-content:end; align-items:end;"> <div><div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded shadow-sm border border-danger" style="background: #fdecea;  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.08); f">
+    <i class="bx bxs-error-circle text-danger fs-5"></i>
+    <span class="text-danger fw-semibold small">
+        <a href="eject_account.php?accountnumber=' . $accountnumber . '" class="ms-3" style="text-decoration: none; color: red;" onclick="return confirm(\'⚠️ Are you sure you want to delete this application? This action cannot be undone.\')">Eject Account</a>
+    </span>
+</div></div>
+
+<p class="text-danger small mt-2 mb-0">⚠️ Once you eject this account, you won\'t be able to edit or add it again.</p> </div>';
+
                 }
 
                 ?>

@@ -63,7 +63,7 @@
              <div class="col-md-8">
                  <div class="mb-3">
                      <label class="form-label">Upload Cancelled Cheque / Bank Passbook</label>
-                     <input type="file" class="form-control" name="bank_proof" required>
+                     <input type="file" class="form-control" name="cancelledchequefileadn" id="cancelledchequefileadn" >
                      <small class="form-text text-muted">Make sure your name, account number, and IFSC are clearly visible.</small>
                  </div>
                  <!-- verified -->
@@ -72,7 +72,7 @@
 
          <!-- account 2 Buttons -->
          <div class="d-flex justify-content-end mt-4">
-             <button class="btn btn-light border me-2" type="button" onclick="showTab(`dashboard`)">Cancel</button>
+             <button class="btn btn-light border me-2" type="button" onclick="showTab(`dashboard`)" id="closepage">Cancel</button>
              <button class="btn btn-primary border me-2" type="submit" onclick="showTab(`addsecondarybankaccount`)">Update bank account</button>
          </div>
      </form>
