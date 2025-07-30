@@ -24,7 +24,7 @@ error_reporting(E_ALL);
         'fullnameadn','designationadn','numberadn','personalemailadn','aadhaarnumberadn','pannumberadn',
         'accountname','bankname','branchname','accountnumber','ifsccode','accounttype',
         'totalvolume','numberofusers','sixmonthprojectionamount','sixmonthprojectionuser',
-        'numoftransactions','disbursedamount','mintransaction','maxtransaction','thresholdlimit' , 'status', 'coment' , 'placevalue'
+        'numoftransactions','disbursedamount','mintransaction','maxtransaction','thresholdlimit' , 'status', 'coment' , 'placevalue' , 'kycverification', 'documentsverification', 'bankverification', 'kyccomment', 'documentscomment', 'bankcomment'
     ];
 
     foreach ($fields as $field) {

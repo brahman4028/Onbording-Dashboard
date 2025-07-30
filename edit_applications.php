@@ -1771,6 +1771,77 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             </div>
 
                                         </div>
+                                         <!-- Kyc Status -->
+                                        <div class="row g-3 mt-4">
+                                            <p class=" text-muted">
+                                                Kindly update merchant's KYC status.*
+                                            </p>
+                                            <div class="col-md-6 ">
+                                                <?php $selectedEntity3 = $appData['kycverification'] ?? ''; ?>
+                                                <label class="form-label">KYC Status</label>
+                                                <select class="form-select" name="kycverification" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <option value="" disabled>-- please select -- </option>
+                                                    <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
+                                                    <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
+                                                    <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                                                    <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
+                                                    <option value="Documents not completed" <?= $selectedEntity3 === 'Documents not completed' ? 'selected' : '' ?>>Documents not completed</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <label class="form-label">KYC Comment</label>
+                                                <input type="text" class="form-control" name="kyccomment" id="kyccomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['kyccomment']) ?>">
+                                            </div>
+
+                                        </div>
+
+                                         <!-- Documents Status -->
+                                        <div class="row g-3 mt-4">
+                                            <p class=" text-muted">
+                                                Kindly update merchant's Documents status.*
+                                            </p>
+                                            <div class="col-md-6 ">
+                                                <?php $selectedEntity3 = $appData['documentsverification'] ?? ''; ?>
+                                                <label class="form-label">Documents Status</label>
+                                                <select class="form-select" name="documentsverification" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <option value="" disabled>-- please select -- </option>
+                                                    <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
+                                                    <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
+                                                    <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                                                    <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
+                                                    <option value="Documents not completed" <?= $selectedEntity3 === 'Documents not completed' ? 'selected' : '' ?>>Documents not completed</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <label class="form-label">Comment</label>
+                                                <input type="text" class="form-control" name="documentscomment" id="documentscomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['documentscomment']) ?>">
+                                            </div>
+
+                                        </div>
+                                        <!-- Bank Status -->
+                                        <div class="row g-3 mt-4">
+                                            <p class=" text-muted">
+                                                Kindly update merchant's bank account Status.*
+                                            </p>
+                                            <div class="col-md-6 ">
+                                                <?php $selectedEntity3 = $appData['bankverification'] ?? ''; ?>
+                                                <label class="form-label">Bank Account Status</label>
+                                                <select class="form-select" name="bankverification" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <option value="" disabled>-- please select -- </option>
+                                                    <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
+                                                    <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
+                                                    <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                                                    <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
+                                                    <option value="Documents not completed" <?= $selectedEntity3 === 'Documents not completed' ? 'selected' : '' ?>>Documents not completed</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <label class="form-label">Comment</label>
+                                                <input type="text" class="form-control" name="bankcomment" id="bankcomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['bankcomment']) ?>">
+                                            </div>
+
+                                        </div>
+
 
                                         <div class="col-12">
                                             <div class="d-flex gap-3">

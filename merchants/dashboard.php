@@ -83,7 +83,7 @@ if ($application_id != '') {
     <title>Merchant Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             background-color: #ffffffff;
@@ -188,41 +188,108 @@ if ($application_id != '') {
             background-color: #0066ff;
             color: white;
         }
+
         .card {
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    .stat {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .subtext {
-      color: #888;
-      font-size: 0.85rem;
-    }
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .stat {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .subtext {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .notifications-card {
+            background: linear-gradient(145deg, #f5f7fa, #e2e8f0);
+            border-radius: 1rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notifications-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .notifications-card .card-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .notifications-list {
+            list-style: none;
+            padding-left: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .notifications-list li {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #333;
+            border-bottom: 1px solid #cacacaff;
+            padding-bottom: 5px;
+        }
+
+        .notifications-list li::before {
+            content: "•";
+            color: #6c63ff;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .notifications-separator {
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 
 <body>
     <div class="d-flex">
         <!-- Sidebar -->
-        <div class="sidebar p-2 me-6">
+        <div class="sidebar p-2 me-6 position-fixed" style="width: 240px; left: 0; top: 0; z-index: 1000;">
             <div>
                 <div class="text-start mt-2 fs-5 ms-2 me-5 fw-bold mb-4">Merchant Dashboard</div>
 
                 <ul class="nav flex-column">
-                    <li><a class="nav-link active" onclick="showTab('yourApp')"><i class='bx bx-user'></i>Your Application</a></li>
+                    <li><a class="nav-link active" onclick="showTab('dashboard')"><i class='bx bx-bar-chart-alt-2'></i>Dashboard</a></li>
+                    <li><a class="nav-link" onclick="showTab('yourApp')"><i class='bx bx-user'></i>Your Application</a></li>
                     <li><a class="nav-link" onclick="showTab('newApp')"><i class='bx bx-plus-circle'></i>New Application</a></li>
                     <li><a class="nav-link" onclick="showTab('payout')"><i class='bx bx-link'></i>Payout Link</a></li>
-                    <li><a class="nav-link" onclick="showTab('verification')"><i class='bx bx-shield'></i>Account Verification</a></li>
-                    <li><a class="nav-link" onclick="showTab('accountdetails')"><i class='bx bx-shield'></i>Account Details</a></li>
-                    <li><a class="nav-link" onclick="showTab('api')"><i class='bx bx-shield'></i>Webhooks & API</a></li>
-                    <li><a class="nav-link" onclick="showTab('viewapplication')"><i class='bx bx-shield'></i>View Application</a></li>
+                    <li><a class="nav-link" onclick="showTab('bankaccount')"><i class='bx bx-credit-card'></i>Bank Account</a></li>
+                    <li><a class="nav-link" onclick="showTab('api')"><i class='bx bx-plug'></i>Webhooks & API</a></li>
+                    <li><a class="nav-link" onclick="showTab('viewapplication')"><i class='bx bx-detail'></i>View Application</a></li>
+                   
                 </ul>
             </div>
 
@@ -234,9 +301,9 @@ if ($application_id != '') {
         </div>
 
         <!-- Main Content -->
-        <div class="flex-grow-1">
+        <div class="flex-grow-1" style="margin-left: 240px; ">
             <!-- Header -->
-            <div class="header">
+            <div class="header d-flex justify-content-between align-items-center px-4 py-2 position-sticky top-0 z-3" style="backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.8); border-bottom: 1px solid #ddd;">
                 <div><img src="../assets/images/logo-img.png" alt="Logo"></div>
 
                 <div class="dropdown">
@@ -258,25 +325,32 @@ if ($application_id != '') {
 
             <!-- All Sections -->
             <div class="container p-5">
-                <!-- Tab 1: Your Applications -->
-                <div id="yourApp" class="tab-section active">
+                <!-- Tab 1: Dashboard -->
+                <div id="dashboard" class="tab-section active">
                     <h4 class="mb-4">Your Previous Applications</h4>
                     <div class="row g-4">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="card p-3 bg-white">
                                 <div class="card-title">Total Revenue</div>
                                 <div class="stat text-success">$40,109</div>
                                 <div class="subtext">+12.5% this week</div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="card p-3 bg-white">
                                 <div class="card-title">Products Sold</div>
                                 <div class="stat text-primary">1,951</div>
                                 <div class="subtext">+3.2% increase</div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="card p-3 bg-white">
+                                <div class="card-title">New Customers</div>
+                                <div class="stat text-warning">4,514</div>
+                                <div class="subtext">+5.8% growth</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="card p-3 bg-white">
                                 <div class="card-title">New Customers</div>
                                 <div class="stat text-warning">4,514</div>
@@ -287,11 +361,11 @@ if ($application_id != '') {
 
                     <!-- Row 2: Application + Chart -->
                     <div class="row mb-4">
-                    
+
                         <!-- application status -->
-                         <div class="col-md-8">
-                            <div class="card p-3 bg-white " >
-                                <?php include 'application_status.php' ?>
+                        <div class="col-md-8">
+                            <div class="card p-3 bg-white ">
+                                <?php include 'previous_application_status.php' ?>
                             </div>
                         </div>
 
@@ -310,20 +384,28 @@ if ($application_id != '') {
                             <div class="card p-4 bg-white">
                                 <div class="card-title">Application Status</div>
                                 <ul class="list-group list-group-flush mt-3">
-                                    <li class="list-group-item">KYC Verification: <span class="badge bg-success">Completed</span></li>
-                                    <li class="list-group-item">Business Documents: <span class="badge bg-warning">Pending</span></li>
-                                    <li class="list-group-item">Bank Info: <span class="badge bg-info">In Progress</span></li>
+                                    <?php include 'application_status.php' ?>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card p-4 bg-white">
-                                <div class="card-title">Notifications</div>
-                                <ul class="list-group list-group-flush mt-2">
-                                    <li class="list-group-item">🟣 You have 3 new orders</li>
-                                    <li class="list-group-item">🔔 Business document submission reminder</li>
-                                    <li class="list-group-item">✅ KYC verification approved</li>
+                            <div class="notifications-card">
+                                <div class="card-title">🔔 Notifications</div>
+                                <ul class="notifications-list">
+                                    <?php if ($appData['coment']) : ?>
+                                        <li><?= htmlspecialchars($appData['coment']) ?></li>
+                                    <?php endif; ?>
+                                    <?php if ($appData['kyccomment']) : ?>
+                                        <li>KYC: <?= htmlspecialchars($appData['kyccomment']) ?></li>
+                                    <?php endif; ?>
+                                    <?php if ($appData['documentscomment']) : ?>
+                                        <li>Business Documents: <?= htmlspecialchars($appData['documentscomment']) ?></li>
+                                    <?php endif; ?>
+                                    <?php if ($appData['bankcomment']) : ?>
+                                        <li>Bank Account: <?= htmlspecialchars($appData['bankcomment']) ?></li>
+                                    <?php endif; ?>
                                 </ul>
+                                <div class="notifications-separator"></div>
                             </div>
                         </div>
                         <!-- ////////////////////////////// -->
@@ -335,6 +417,15 @@ if ($application_id != '') {
                                 <button class="btn btn-sm btn-outline-primary">View Details</button>
                             </div>
                         </div> -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: New Application -->
+                <div id="yourApp" class="tab-section">
+                    <h4 class="mb-4">Previuos Application</h4>
+                    <div class="application-card">
+                        <p>This is the form for a new merchant application.</p>
+                        <!-- Add form fields here -->
                     </div>
                 </div>
 
@@ -356,17 +447,58 @@ if ($application_id != '') {
                     </div>
                 </div>
 
-                <!-- Tab 4: Account Verification -->
-                <div id="verification" class="tab-section">
-                    <h4 class="mb-4">Account Verification</h4>
+                <!-- Tab 4: Bank Account Verification 1 -->
+                <div id="bankaccount" class="tab-section">
+                    <?php include 'bankaccount1.php' ?>
+                    
+                    <div class="section-divider mb-3"></div>
+                    <!-- Tab 4: Bank Account Verification 2 -->
+                    <?php include 'bankaccount2.php' ?>
+
+                    <!-- Notification -->
+                    <div id="toast" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999; display: none;">
+                        <div class="toast align-items-center text-white bg-success border-0 show">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    Bank account added successfully!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- only to run script -->
+
+                <div>
+
+                </div>
+
+
+                <!-- Tab 4: Webhooks & API  -->
+                <div id="api" class="tab-section">
+                    <h4 class="mb-4">Webhooks & API</h4>
                     <div class="application-card">
                         <p>Upload your KYC documents for verification.</p>
                         <!-- Add KYC upload UI -->
                     </div>
                 </div>
 
+                <!-- Tab 5: View Application  -->
+                <div id="viewapplication" class="tab-section">
+                    <h4 class="mb-4">view APplication</h4>
+                    <div class="application-card">
+                        <p>Upload your KYC documents for verification.</p>
+                        <!-- Add KYC upload UI -->
+                    </div>
+                </div>
+
+                <!-- Tab 6: Adding secondary bank account  -->
+                <div id="addsecondarybankaccount" class="tab-section">
+                    <?php include 'addbankaccount2.php' ?>
+                </div>
 
 
+                <!-- view profile -->
                 <div id="viewprofile" class="tab-section">
                     <div class="">
                         <form id="profileForm">
@@ -489,7 +621,9 @@ if ($application_id != '') {
 
                 </div>
             </div>
+            <!-- ///////////////////// -->
         </div>
+    </div>
     </div>
 
     <!-- Script to handle tab switch -->
@@ -498,6 +632,7 @@ if ($application_id != '') {
             document.querySelectorAll('.tab-section').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
+            console.log(event.target);
             event.target.classList.add('active');
         }
     </script>
@@ -667,32 +802,88 @@ if ($application_id != '') {
         });
     </script>
 
+    <!-- //////////////////// -->
+
     <script>
-const ctx = document.getElementById('weeklyChart').getContext('2d');
-const weeklyChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [{
-      label: 'Sales',
-      data: [120, 190, 300, 250, 270, 380, 410],
-      borderColor: '#4e73df',
-      backgroundColor: 'rgba(78, 115, 223, 0.1)',
-      borderWidth: 2,
-      fill: true,
-      tension: 0.3
-    }]
-  },
-  options: {
-    scales: {
-      y: { beginAtZero: true }
-    },
-    plugins: {
-      legend: { display: false }
-    }
-  }
-});
-</script>
+        const ctx = document.getElementById('weeklyChart').getContext('2d');
+        const weeklyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [120, 190, 300, 250, 270, 380, 410],
+                    borderColor: '#4e73df',
+                    backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+
+
+ <!-- update secondary bank account info -->
+ <script>
+     $('#addbankAccountForm2').on('submit', function(e) {
+         e.preventDefault(); // Prevent default form submit
+
+         let accountnameadn = $('#accountnameadn').val();
+         let banknameadn = $('#banknameadn').val();
+         let branchnameadn = $('#branchnameadn').val();
+         let accountnumberadn = $('#accountnumberadn').val();
+         let ifsccodeadn = $('#ifsccodeadn').val();
+         let accounttypeadn = $('#accounttypeadn').val();
+
+         if (accountnameadn == "" || banknameadn == "" || branchnameadn == "" || accountnumberadn == "" || ifsccodeadn == "" || accounttypeadn == "") {
+             alert("Please fill all the fields");
+             return;
+         }
+
+
+         let formData = $(this).serialize();
+
+         $.ajax({
+             url: 'add_secondary_bank_account.php', // Your PHP file
+             type: 'POST',
+             data: formData,
+             dataType: 'json',
+             success: function(response) {
+                 console.log("Raw Text Response:", response.status);
+
+                 // let json = JSON.parse(response);
+                 // console.log("Parsed JSON:", json)
+                 if (response.status === 'success') {
+                     $('#toast2').fadeIn().delay(3000).fadeOut(); // Show notification
+                     $('#addbankAccountForm2')[0].reset(); // Clear form
+                    //  $('#inputChoosePassword').val('');
+                    //  $('#confirmpassword').val('');
+                 } else {
+                     alert("Error: " + response.message); // 👈 show real err
+                 }
+             },
+             error: function(xhr, status, error) {
+                 console.log("XHR:", xhr);
+                 console.log("Status:", status);
+                 console.log("Error:", error);
+                 alert("AJAX error: " + xhr.responseText);
+             }
+         });
+     });
+ </script>
 
 </body>
 
