@@ -88,194 +88,8 @@ if ($application_id != '') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            background-color: #ffffffff;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .sidebar {
-            height: 100vh;
-            background: white;
-            border-right: 1px solid #ddd;
-            justify-content: space-between;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar .nav-link {
-            color: #333;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            border-radius: 15px;
-            margin-bottom: 10px;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background: #f1f1f1;
-            color: #0286dfff;
-            font-weight: 400;
-            /* border: 1px solid #bababaff; */
-        }
-
-        .sidebar i {
-            margin-right: 10px;
-        }
-
-        .header {
-            height: 60px;
-            background: white;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-
-        .header img {
-            max-width: 120px;
-        }
-
-        .application-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .tab-section {
-            display: none;
-        }
-
-        .tab-section.active {
-            display: block;
-        }
-
-        .sidebar-bottom {
-            margin-top: auto;
-        }
-
-        .form-label-title {
-            font-weight: 600;
-            font-size: 14px;
-            color: #343a40;
-            margin-bottom: 4px;
-        }
-
-        .form-subtext {
-            font-size: 12px;
-            color: #6c757d;
-        }
-
-        .section-divider {
-            border-top: 1px solid #dee2e6;
-            margin: 32px 0;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #212529;
-        }
-
-        .btn-cancel {
-            background-color: white;
-            border: 1px solid #ced4da;
-            color: #495057;
-        }
-
-        .btn-proceed {
-            background-color: #0066ff;
-            color: white;
-        }
-
-        .card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .stat {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .subtext {
-            color: #888;
-            font-size: 0.85rem;
-        }
-
-        .notifications-card {
-            background: linear-gradient(145deg, #f5f7fa, #e2e8f0);
-            border-radius: 1rem;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .notifications-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(180deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .notifications-card .card-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .notifications-list {
-            list-style: none;
-            padding-left: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .notifications-list li {
-            display: flex;
-            align-items: start;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            color: #333;
-            border-bottom: 1px solid #cacacaff;
-            padding-bottom: 5px;
-        }
-
-        .notifications-list li::before {
-            content: "•";
-            color: #6c63ff;
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .notifications-separator {
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            margin-top: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+   
 </head>
 
 <body>
@@ -299,6 +113,7 @@ if ($application_id != '') {
 
             <!-- //////////////////// -->
             <div class="sidebar-bottom d-flex justify-content-between px-2 mt-3 " style="flex-direction: column;">
+                <!-- <a class="nav-link"></i>Need Help?</a> -->
                 <a class="nav-link"><i class='bx bx-cog'></i>Settings</a>
                 <a class="nav-link"><i class='bx bx-key'></i>Credentials</a>
             </div>
@@ -452,7 +267,7 @@ if ($application_id != '') {
                 </div>
 
                 <!-- Tab 4: Bank Account Verification 1 -->
-                <div id="bankaccount" class="tab-section">
+                <div id="bankaccount" class="tab-section card border shadow-sm p-2">
                     <?php include 'bankaccount1.php' ?>
 
                     <div class="section-divider mb-3"></div>
@@ -480,11 +295,9 @@ if ($application_id != '') {
 
                 <!-- Tab 4: Webhooks & API  -->
                 <div id="api" class="tab-section">
-                    <h4 class="mb-4">Webhooks & API</h4>
-                    <div class="application-card">
-                        <p>Upload your KYC documents for verification.</p>
-                        <!-- Add KYC upload UI -->
-                    </div>
+                   
+                        <?php include 'webhook_api.php' ?>
+              
                 </div>
 
                 <!-- Tab 5: View Application  -->
@@ -492,6 +305,7 @@ if ($application_id != '') {
                     <h4 class="mb-4">view APplication</h4>
                     <div class="application-card">
                         <p>Upload your KYC documents for verification.</p>
+                  
                         <!-- Add KYC upload UI -->
                     </div>
                 </div>

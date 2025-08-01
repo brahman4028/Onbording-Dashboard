@@ -50,7 +50,7 @@
          <div class="section-divider mb-3"></div>
 
          <!-- Section 2: Verify Account 2 -->
-         <div class="row align-items-start mb-4">
+         <div class="row align-items-start mb-4 p-2">
              <div class="col-md-4">
                  <div class="form-label">Verify Account</div>
                  <div class="form-subtext text-muted">Upload a document to verify the bank account.</div>
