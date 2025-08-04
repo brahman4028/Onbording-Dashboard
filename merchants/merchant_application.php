@@ -990,6 +990,20 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Cancelled Cheque (Authorised Signatory 1)</strong><br>
+
+                                                        <?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                            <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="cancelledchequefilepreview" data-fileurl="../<?= $docData['cancelledchequefile'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
                                                 <!-- preview authorized 2 -->
                                                 <tr>
                                                     <td class="text-primary" style="margin-bottom: -10px;">Authorized Director 2</td>
@@ -1068,7 +1082,20 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Cancelled Cheque (Authorised Signatory 2)</strong><br>
 
+                                                        <?php if (!empty($docData['cancelledchequefileadn'])): ?>
+                                                            <a href="../<?= $docData['cancelledchequefileadn'] ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="cancelledchequefileadnpreview" data-fileurl="../<?= $docData['cancelledchequefileadn'] ?>"></div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
 
 
                                                 <tr>
