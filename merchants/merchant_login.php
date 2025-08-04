@@ -1,6 +1,18 @@
 <?php include 'header.php'; ?>
 <!--wrapper-->
 
+<?php 
+
+session_start();
+if (isset($_SESSION['merchant_info']) || isset($_SESSION['merchant_info']['username'])) {
+    // Redirect to registration page
+        header("Location: dashboard.php");
+    exit();
+
+}
+
+?>
+
  <link rel="icon" href="../assets/images/starfav.png" type="image/png" />
 <style> 
 .autth-img-cover-login {

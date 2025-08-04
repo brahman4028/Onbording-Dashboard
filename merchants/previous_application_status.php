@@ -13,7 +13,7 @@
                 <p class="text-muted mt-1 mb-3"><strong>GSTIN:</strong> ' . htmlspecialchars($appData["gstin"]) . '</p>
             </div>
         </div>
-            <div class="">
+            <div class="mt-2">
                 <small class="text-muted d-block">Date & Time: ' . htmlspecialchars($appData["created_at"]) . '</small>
                 <span class="mt-1 d-inline-block">Application status: <span class="badge bg-warning text-dark">' . htmlspecialchars($appData["status"]) . '</span></span>
             </div>
