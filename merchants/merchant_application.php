@@ -515,6 +515,21 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                     <tr>
+                                                        <td>Cancelled Cheque</td>
+                                                        <td>
+                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                                    <p>
+                                                                        <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                     <!-- for signatory 2 -->
                                                     <tr>
                                                         <td colspan="2" class="text-primary" style="margin-bottom: -10px;">Authorized Director 2</td>
@@ -585,6 +600,21 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): ?>
                                                                     <p>
                                                                         <a href="../<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Cancelled Cheque</td>
+                                                        <td>
+                                                            <div id="cancelledchequefileadn"><?php if (!empty($docData['cancelledchequefileadn'])): ?>
+                                                                    <p>
+                                                                        <a href="../<?= $docData['cancelledchequefileadn'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -704,21 +734,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         </td>
                                                     </tr>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Cancelled Cheque</td>
-                                                        <td>
-                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
-                                                                    <p>
-                                                                        <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
-                                                                            View uploaded file
-                                                                        </a>
-                                                                    </p>
-                                                                <?php else: ?>
-                                                                    <p style="color: #888;">No file uploaded</p>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                   
                                                     <tr>
                                                         <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
                                                         <td>
@@ -1153,7 +1169,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="cancelledchequefilepreview" data-fileurl=../<?= $docData['cancelledchequefile'] ?>"></div>
+                                                            <div id="cancelledchequefilepreview" data-fileurl=../<?= $docData['cancelledchequefile'] ?>></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
