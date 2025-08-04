@@ -2,7 +2,7 @@
 
 session_start();
 
-// error_reporting(0);
+error_reporting(0);
 $adminname = '';
 $rolevalue = '';
 $username = '';
@@ -31,12 +31,12 @@ $merchantapplication_id = $_SESSION['merchant_info']['application_id'];
 // echo $username;
 
 // Fetch business_application data
-$appQuery = "SELECT * FROM business_applications WHERE id = $merchantapplication_id";
-$appResult = mysqli_query($mysqli, $appQuery);
+// $appQuery = "SELECT * FROM business_applications WHERE id = $merchantapplication_id";
+// $appResult = mysqli_query($mysqli, $appQuery);
 
-if (!$appResult || mysqli_num_rows($appResult) === 0) {
-    // die("No record found with ID: $merchantapplication_id");
-}
+// if (!$appResult || mysqli_num_rows($appResult) === 0) {
+//     die("No record found with ID: $merchantapplication_id");
+// }
 
 
 // Fetch application data
@@ -50,23 +50,23 @@ $coment = $appData['coment'] ?? '';
 $merchant_trash = $appData['merchant_trash'] ?? 0;
 
 // Fetch business_documents data
-$docQuery = "SELECT * FROM business_documents WHERE application_id = $merchantapplication_id";
-$docResult = mysqli_query($mysqli, $docQuery);
-$docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
+// $docQuery = "SELECT * FROM business_documents WHERE application_id = $merchantapplication_id";
+// $docResult = mysqli_query($mysqli, $docQuery);
+// $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
 
-if($merchantapplication_id != ''){
+// if($merchantapplication_id != ''){
 
-    if($status != "Cancelled" && $merchant_trash != "y"){
-        echo "You've already submitted the application. Multiple submissions are not allowed.";
-    header("Location: merchants/merchant_dashboard.php");
-     exit();
-    }
+//     if($status != "Cancelled" && $merchant_trash != "y"){
+//         echo "You've already submitted the application. Multiple submissions are not allowed.";
+//     header("Location: merchants/merchant_dashboard.php");
+//      exit();
+//     }
 
 
         
 
-}
+// }
 
 
 ?>
