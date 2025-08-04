@@ -446,7 +446,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['aadhaarfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -461,7 +461,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['personalpanfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -476,7 +476,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="photographpreview"><?php if (!empty($docData['photograph'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['photograph'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -490,7 +490,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td>
                                                         <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
                                                                 <p>
-                                                                    <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                    <a href="../<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
                                                                         View uploaded file
                                                                     </a>
                                                                 </p>
@@ -505,7 +505,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['addressfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['addressfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -524,7 +524,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['aadhaaradnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -539,7 +539,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['personalpanadnfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['personalpanadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -554,7 +554,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -569,7 +569,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['signatorysignadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -584,7 +584,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['addressadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -603,7 +603,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="coifilepreview"><?php if (!empty($docData['coifile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['coifile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['coifile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -618,7 +618,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="moafilepreview"><?php if (!empty($docData['moafile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['moafile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['moafile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -633,7 +633,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['aoafile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['aoafile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -648,7 +648,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="brfilepreview"><?php if (!empty($docData['brfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['brfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['brfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -663,7 +663,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['udyamfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['udyamfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -693,7 +693,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="bofilepreview"><?php if (!empty($docData['bofile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['bofile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['bofile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -709,7 +709,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -724,7 +724,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['rentfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['rentfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -739,7 +739,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['annexurebfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -842,7 +842,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <!-- Photo placeholder -->
                                                         <span id="signphoto1"><?php if (!empty($docData['photograph'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= htmlspecialchars($docData['photograph']) ?>"
+                                                                    <img src="../<?= htmlspecialchars($docData['photograph']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -853,7 +853,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <!-- Signature placeholder -->
                                                         <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= htmlspecialchars($docData['signatorysignfile']) ?>"
+                                                                    <img src="../<?= htmlspecialchars($docData['signatorysignfile']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -866,7 +866,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <!-- Photo placeholder -->
                                                         <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= htmlspecialchars($docData['signatoryphotoadnfile']) ?>"
+                                                                    <img src="../<?= htmlspecialchars($docData['signatoryphotoadnfile']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -877,7 +877,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <!-- Signature placeholder -->
                                                         <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= htmlspecialchars($docData['signatorysignadnfile']) ?>"
+                                                                    <img src="../<?= htmlspecialchars($docData['signatorysignadnfile']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -906,10 +906,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Aadhaar Card</strong><br>
 
                                                         <?php if (!empty($docData['aadhaarfile'])): ?>
-                                                            <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['aadhaarfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="aadhaarfilepreview" data-fileurl="<?= $docData['aadhaarfile'] ?>"></div>
+                                                            <div id="aadhaarfilepreview" data-fileurl="../<?= $docData['aadhaarfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -921,10 +921,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>PAN Card</strong><br>
 
                                                         <?php if (!empty($docData['personalpanfile'])): ?>
-                                                            <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['personalpanfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanfilepreview" data-fileurl="<?= $docData['personalpanfile'] ?>"></div>
+                                                            <div id="personalpanfilepreview" data-fileurl="../<?= $docData['personalpanfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -936,10 +936,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Photograph</strong><br>
 
                                                         <?php if (!empty($docData['photograph'])): ?>
-                                                            <a href="<?= $docData['photograph'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['photograph'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="photographpreview" data-fileurl="<?= $docData['photograph'] ?>"></div>
+                                                            <div id="photographpreview" data-fileurl="../<?= $docData['photograph'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -951,10 +951,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Signature</strong><br>
 
                                                         <?php if (!empty($docData['signatorysignfile'])): ?>
-                                                            <a href="<?= $docData['signatorysignfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['signatorysignfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="signatorysignfilepreview" data-fileurl="<?= $docData['signatorysignfile'] ?>"></div>
+                                                            <div id="signatorysignfilepreview" data-fileurl="../<?= $docData['signatorysignfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -965,10 +965,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</strong><br>
 
                                                         <?php if (!empty($docData['addressfile'])): ?>
-                                                            <a href="<?= $docData['addressfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['addressfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="addressfilepreview" data-fileurl="<?= $docData['addressfile'] ?>"></div>
+                                                            <div id="addressfilepreview" data-fileurl="../<?= $docData['addressfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -984,10 +984,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Aadhaar Card</strong><br>
 
                                                         <?php if (!empty($docData['aadhaaradnfile'])): ?>
-                                                            <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['aadhaaradnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="aadhaaradnfilepreview" data-fileurl="<?= $docData['aadhaaradnfile'] ?>"></div>
+                                                            <div id="aadhaaradnfilepreview" data-fileurl="../<?= $docData['aadhaaradnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -999,10 +999,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>PAN Card</strong><br>
 
                                                         <?php if (!empty($docData['personaladnpanfile'])): ?>
-                                                            <a href="<?= $docData['personaladnpanfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['personaladnpanfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanadnfilepreview" data-fileurl="<?= $docData['personalpanadnfile'] ?>"></div>
+                                                            <div id="personalpanadnfilepreview" data-fileurl="../<?= $docData['personalpanadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1014,10 +1014,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Photograph</strong><br>
 
                                                         <?php if (!empty($docData['signatoryphotoadnfile'])): ?>
-                                                            <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="signatoryphotoadnfilepreview" data-fileurl="<?= $docData['signatoryphotoadnfile'] ?>"></div>
+                                                            <div id="signatoryphotoadnfilepreview" data-fileurl="../<?= $docData['signatoryphotoadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1029,10 +1029,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Signature</strong><br>
 
                                                         <?php if (!empty($docData['signatorysignadnfile'])): ?>
-                                                            <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['signatorysignadnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="signatorysignadnfilepreview" data-fileurl="<?= $docData['signatorysignadnfile'] ?>"></div>
+                                                            <div id="signatorysignadnfilepreview" data-fileurl="../<?= $docData['signatorysignadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1043,10 +1043,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</strong><br>
 
                                                         <?php if (!empty($docData['addressadnfile'])): ?>
-                                                            <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['addressadnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="addressadnfilepreview" data-fileurl="<?= $docData['addressadnfile'] ?>"></div>
+                                                            <div id="addressadnfilepreview" data-fileurl="../<?= $docData['addressadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1060,10 +1060,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Certificate of Incorporation (COI) / Business Registration Certificate</strong><br>
 
                                                         <?php if (!empty($docData['coifile'])): ?>
-                                                            <a href="<?= $docData['coifile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['coifile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="coifilepreview" data-fileurl="<?= $docData['coifile'] ?>"></div>
+                                                            <div id="coifilepreview" data-fileurl="../<?= $docData['coifile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1075,10 +1075,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Memorandum of Association (MOA)</strong><br>
 
                                                         <?php if (!empty($docData['moafile'])): ?>
-                                                            <a href="<?= $docData['moafile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['moafile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="moafilepreview" data-fileurl="<?= $docData['moafile'] ?>"></div>
+                                                            <div id="moafilepreview" data-fileurl="../<?= $docData['moafile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1090,10 +1090,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Board Resolution (BR) / Letter of Authorization for Signatory</strong><br>
 
                                                         <?php if (!empty($docData['brfile'])): ?>
-                                                            <a href="<?= $docData['brfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['brfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="brfilepreview" data-fileurl="<?= $docData['brfile'] ?>"></div>
+                                                            <div id="brfilepreview" data-fileurl="../<?= $docData['brfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1105,10 +1105,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>UDYAM Registration Certificate (If Available)</strong><br>
 
                                                         <?php if (!empty($docData['udyamfile'])): ?>
-                                                            <a href="<?= $docData['udyamfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['udyamfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="udyamfilepreview" data-fileurl="<?= $docData['udyamfile'] ?>"></div>
+                                                            <div id="udyamfilepreview" data-fileurl="../<?= $docData['udyamfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1120,10 +1120,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>GSTIN Certificate</strong><br>
 
                                                         <?php if (!empty($docData['gstinfile'])): ?>
-                                                            <a href="<?= $docData['gstinfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['gstinfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="gstinfilepreview" data-fileurl="<?= $docData['gstinfile'] ?>"></div>
+                                                            <div id="gstinfilepreview" data-fileurl="../<?= $docData['gstinfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1135,10 +1135,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>List of Directors/Partners/Beneficial Ownership (BO)</strong><br>
 
                                                         <?php if (!empty($docData['bofile'])): ?>
-                                                            <a href="<?= $docData['bofile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['bofile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="bofilepreview" data-fileurl="<?= $docData['bofile'] ?>"></div>
+                                                            <div id="bofilepreview" data-fileurl="../<?= $docData['bofile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1150,10 +1150,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Cancelled Cheque</strong><br>
 
                                                         <?php if (!empty($docData['cancelledchequefile'])): ?>
-                                                            <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="cancelledchequefilepreview" data-fileurl="<?= $docData['cancelledchequefile'] ?>"></div>
+                                                            <div id="cancelledchequefilepreview" data-fileurl=../<?= $docData['cancelledchequefile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1165,10 +1165,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</strong><br>
 
                                                         <?php if (!empty($docData['rentfile'])): ?>
-                                                            <a href="<?= $docData['rentfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['rentfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="rentfilepreview" data-fileurl="<?= $docData['rentfile'] ?>"></div>
+                                                            <div id="rentfilepreview" data-fileurl="../<?= $docData['rentfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1180,10 +1180,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>ANNEXURE B Form with Signature and Stamp</strong><br>
 
                                                         <?php if (!empty($docData['annexurebfile'])): ?>
-                                                            <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
+                                                            <a href="../<?= $docData['annexurebfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="annexurebfilepreview" data-fileurl="<?= $docData['annexurebfile'] ?>"></div>
+                                                            <div id="annexurebfilepreview" data-fileurl="../<?= $docData['annexurebfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
