@@ -2,7 +2,7 @@
 
 session_start();
 
-error_reporting(0);
+// error_reporting(0);
 $adminname = '';
 $rolevalue = '';
 $username = '';
@@ -35,23 +35,24 @@ $appQuery = "SELECT * FROM business_applications WHERE id = $merchantapplication
 $appResult = mysqli_query($mysqli, $appQuery);
 
 if (!$appResult || mysqli_num_rows($appResult) === 0) {
-    die("No record found with ID: $merchantapplication_id");
+    // die("No record found with ID: $merchantapplication_id");
 }
 
-$appData = mysqli_fetch_assoc($appResult);
+
+// Fetch application data
+$appData = $appResult ? mysqli_fetch_assoc($appResult) : [];
+
+$id = $appData['id'] ?? null;
+$gstin = $appData['gstin'] ?? '';
+$pan = $appData['pan'] ?? '';
+$status = $appData['status'] ?? '';
+$coment = $appData['coment'] ?? '';
+$merchant_trash = $appData['merchant_trash'] ?? 0;
 
 // Fetch business_documents data
 $docQuery = "SELECT * FROM business_documents WHERE application_id = $merchantapplication_id";
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
-
-
-$id = $appData['id'];
-$gstin = $appData['gstin'];
-$pan = $appData['pan'];
-$status = $appData['status'];
-$coment = $appData['coment'];
-$merchant_trash = $appData['merchant_trash'];
 
 
 if($merchantapplication_id != ''){
@@ -61,6 +62,8 @@ if($merchantapplication_id != ''){
     header("Location: merchants/merchant_dashboard.php");
      exit();
     }
+
+
         
 
 }
