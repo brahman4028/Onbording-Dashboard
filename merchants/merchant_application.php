@@ -1243,7 +1243,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 <div class="col-md-6 ">
                                                     <?php $selectedEntity3 = $appData['kycverification'] ?? ''; ?>
                                                     <label class="form-label">KYC Status</label>
-                                                    <select class="form-select" name="kycverification" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <select class="form-select" name="kycverification" onblur="setPreviewValue(this, 'statusvalue')" disabled>
                                                         <option value="" disabled>-- please select -- </option>
                                                         <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
                                                         <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
@@ -1267,7 +1267,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 <div class="col-md-6 ">
                                                     <?php $selectedEntity3 = $appData['documentsverification'] ?? ''; ?>
                                                     <label class="form-label">Documents Status</label>
-                                                    <select class="form-select" name="documentsverification" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <select class="form-select" name="documentsverification" onblur="setPreviewValue(this, 'statusvalue')" disabled>
                                                         <option value="" disabled>-- please select -- </option>
                                                         <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
                                                         <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
@@ -1290,7 +1290,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 <div class="col-md-6 ">
                                                     <?php $selectedEntity3 = $appData['bankverification'] ?? ''; ?>
                                                     <label class="form-label">Bank Account Status</label>
-                                                    <select class="form-select" name="bankverification" onblur="setPreviewValue(this, 'statusvalue')">
+                                                    <select class="form-select" name="bankverification" onblur="setPreviewValue(this, 'statusvalue')" disabled>
                                                         <option value="" disabled>-- please select -- </option>
                                                         <option value="In Review" <?= $selectedEntity3 === 'In Review' ? 'selected' : '' ?>>In Review</option>
                                                         <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
