@@ -412,7 +412,37 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td>TO BE ATTACHED SEPARATELY</td>
                                                 </tr>
                                             </table>
-
+                                             <h6 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);"> Secondary Bank Account Details</h6>
+                                            <table class="table table-bordered align-middle">
+                                                <tr>
+                                                    <td>Account Holder Name</td>
+                                                    <td><span id="accountnameadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bank Name</td>
+                                                    <td><span id="banknameadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Branch Name</td>
+                                                    <td><span id="branchnameadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Account Number</td>
+                                                    <td><span id="accountnumberadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IFSC Code</td>
+                                                    <td><span id="ifsccodeadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Account Type</td>
+                                                    <td><span id="accounttypeadn"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cancelled Cheque</td>
+                                                    <td>TO BE ATTACHED SEPARATELY</td>
+                                                </tr>
+                                            </table>
                                             <!-- document -->
 
                                             <h5 class="fw-bold  " style="color:rgb(3, 106, 216); page-break-before: always; margin-top: 15px">5. Documents uploaded</h5>

@@ -395,7 +395,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             </div>
 
                                             <!-- 4. Bank Account Details -->
-                                            <h6 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);"> Secondary Bank Account Details</h6>
+                                            <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">4.  Bank Account Details</h5>
                                             <table class="table table-bordered align-middle">
                                                 <tr>
                                                     <td>Account Holder Name</td>
@@ -426,7 +426,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td>TO BE ATTACHED SEPARATELY</td>
                                                 </tr>
                                             </table>
-
+                                            <h6 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);"> Secondary Bank Account Details</h6>
                                             <table class="table table-bordered align-middle">
                                                 <tr>
                                                     <td>Account Holder Name</td>
