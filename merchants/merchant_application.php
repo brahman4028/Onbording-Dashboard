@@ -1254,7 +1254,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 </div>
                                                 <div class="col-md-6 mb-4">
                                                     <label class="form-label">KYC Comment</label>
-                                                    <input type="text" class="form-control" name="kyccomment" id="kyccomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['kyccomment']) ?>">
+                                                    <input type="text" class="form-control" disabled name="kyccomment" id="kyccomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['kyccomment']) ?>">
                                                 </div>
 
                                             </div>
@@ -1278,7 +1278,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 </div>
                                                 <div class="col-md-6 mb-4">
                                                     <label class="form-label">Comment</label>
-                                                    <input type="text" class="form-control" name="documentscomment" id="documentscomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['documentscomment']) ?>">
+                                                    <input type="text" class="form-control" disabled name="documentscomment" id="documentscomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['documentscomment']) ?>">
                                                 </div>
 
                                             </div>
@@ -1301,7 +1301,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 </div>
                                                 <div class="col-md-6 mb-4">
                                                     <label class="form-label">Comment</label>
-                                                    <input type="text" class="form-control" name="bankcomment" id="bankcomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['bankcomment']) ?>">
+                                                    <input type="text" class="form-control" disabled name="bankcomment" id="bankcomment" placeholder="Reason of Pending or Cancellation" value="<?= htmlspecialchars($appData['bankcomment']) ?>">
                                                 </div>
 
                                             </div>
