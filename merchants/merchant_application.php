@@ -678,7 +678,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['gstinfile'] ?>" target="_blank">
+                                                                        <a href="../<?= $docData['gstinfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
