@@ -2,7 +2,7 @@
 
                             if ($application_id != '' && $status != "Cancelled" && $merchant_trash != "y") {
                                 echo '
-                                <div class="card p-3 rounded-4" style=" height:180px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);">
+                                <div class="card p-3 rounded-4" style="  background: linear-gradient(135deg, #f8f9fa, #e9ecef); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);">
                                  <div class="row g-3">
                                  <!-- Left Section -->
         <div class="col-md-8 d-flex justify-content-between align-items-start" style=" height:100%; justify-content:space-between; flex-direction:column;">
@@ -21,7 +21,7 @@
         </div>
         <!-- Right Section: Photo -->
         <div class="col-md-4 text-end">
-            <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail rounded-3 border-0" style="width: 100%; height: 120px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <img src="../' . htmlspecialchars($docData["photograph"]) . '" alt="Applicant Photo" class="img-thumbnail rounded-3 border-0" style="width: 100%; height: 100px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
             <p class="mt-2 mb-0 text-muted small">Applicant:</p>
             <p class="fw-semibold text-dark mb-0">' . htmlspecialchars($appData["fullname"]) . '</p>
         </div>

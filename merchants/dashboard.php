@@ -242,10 +242,13 @@ if ($application_id != '') {
                 <!-- Tab 2: previous Application -->
                 <div id="yourApp" class="tab-section">
                     <h4 class="mb-4">Previuos Application</h4>
-                    <div class="application-card">
-                        <p>This is the form for a new merchant application.</p>
-                        <!-- Add form fields here -->
-                    </div>
+                   
+                        <div class="col-md-8">
+                            <div class="card p-3 bg-white ">
+                                <?php include 'previous_application_status.php' ?>
+                            </div>
+                        </div>
+                    
                 </div>
 
                 <!-- Tab 2: New Application -->
