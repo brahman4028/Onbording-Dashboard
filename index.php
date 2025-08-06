@@ -161,7 +161,7 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
         }
 
         .blr {
-            background-color: rgba(254, 254, 254, 0.8) !important;
+            background-color: rgba(254, 254, 254, 0.9) !important;
             backdrop-filter: blur(20px) !important;
 
         }
@@ -179,7 +179,7 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
         input[type="number"],
         input[type="search"],
         input[type="url"] {
-            background-color: rgba(255, 255, 255, 0.62) !important;
+            background-color: rgba(255, 255, 255, 0.86) !important;
             /* Replace with any color you want */
         }
 
