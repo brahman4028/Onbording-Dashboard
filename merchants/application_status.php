@@ -7,7 +7,7 @@
                                     }
                                     else{
                                         echo '<li class="list-group-item d-flex justify-content-between align-items-start">KYC Verification: <span class="badge badge bg-warning ">'.$appData['status'].'</span></li>';
-                                    }
+                                    }                                                                 
                                     ?>
                                     <!-- Business Documents -->
                                     <?php

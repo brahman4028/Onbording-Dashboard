@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             echo "login done";
 
-			header("Location: dashboard.php");
+			header("Location: merchant_dashboard.php");
 			exit;
 		} else {
 			echo "❌ Incorrect password.";
