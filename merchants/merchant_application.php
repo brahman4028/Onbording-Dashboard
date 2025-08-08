@@ -170,7 +170,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                 <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="edit_applications.php?id=<?= $appData['id'] ?>" target="_blank"><i class='bx  bx-edit-alt fs-3'></i>Edit Application</a>
                                 </li>
                             <?php endif; ?>
-                            <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span><a href="merchant_dashboard.php" style="color:white !important;">Go to Dashboard </a></span>
+                            <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span><a href="dashboard.php" style="color:white !important;">Go to Dashboard </a></span>
                                 <div class="text-light ms-1">
                             </button>
                         </ul>

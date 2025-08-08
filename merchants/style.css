@@ -27,7 +27,7 @@
             background: #f1f1f1;
             color: #0286dfff;
             font-weight: 400;
-            /* border: 1px solid #bababaff; */
+            border: 1px solid #bababaff;
         }
 
         .sidebar i {
@@ -63,9 +63,9 @@
             display: block;
         }
 
-        .sidebar-bottom {
+        /* .sidebar-bottom {
             margin-top: auto;
-        }
+        } */
 
         .form-label-title {
             font-weight: 600;

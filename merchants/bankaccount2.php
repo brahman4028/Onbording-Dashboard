@@ -106,10 +106,10 @@
          <div class="d-flex justify-content-end mt-4">
              <?php
                 if ($appData['bankverificationadn'] == "Cancelled" && $appData['bankejectadn'] == "no") {
-                    echo '<button class="btn btn-light border me-2" type="button" onclick="showTab("yourApp")">Edit bank account</button>';
+                    echo '<button class="btn btn-light border me-2" type="button" onclick="showMainSection("Dashboard")">Edit bank account</button>';
                 }
                 elseif ( $appData['bankejectadn'] == "no" && $appData['accountnameadn'] == "" && $appData['banknameadn'] == "") {
-                    echo '<button class="btn btn-primary border me-2" type="button" onclick="showTab(`addsecondarybankaccount`)">Add bank account</button>';
+                    echo '<button class="btn btn-primary border me-2" type="button" onclick="showMainSection(`addsecondarybankaccount`)">Add bank account</button>';
 
                 }
                 

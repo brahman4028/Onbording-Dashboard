@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             echo "login done";
 
-			header("Location: merchant_dashboard.php");
+			header("Location: dashboard.php");
 			exit;
 		} else {
 			echo "❌ Incorrect password.";
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			];
 
             echo "login done";
-			header("Location: merchant_dashboard.php");
+			header("Location: dashboard.php");
 			exit;
 		} else {
 			echo "❌ Incorrect password. stm2";
