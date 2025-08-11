@@ -107,7 +107,7 @@ require_once '../db.php';
 											</div>
 											<small id="passwordHelp" class="form-text text-muted">Password must include:</small>
 											<ul class="mb-2" style="list-style: none; padding-left: 0;">
-												<li id="length" class="text-muted">✔️ 8 or more characters</li>
+												<li id="length" class="text-muted">✔️ 12 or more characters</li>
 												<li id="uppercase" class="text-muted">✔️ At least one uppercase letter</li>
 												<li id="number" class="text-muted">✔️ At least one number</li>
 												<li id="symbol" class="text-muted">✔️ At least one special character</li>
@@ -249,7 +249,7 @@ require_once '../db.php';
 
 	document.getElementById("inputChoosePassword").addEventListener("input", function() {
 		const value = this.value;
-		const lengthValid = value.length >= 8;
+		const lengthValid = value.length >= 12;
 		const uppercaseValid = /[A-Z]/.test(value);
 		const numberValid = /[0-9]/.test(value);
 		const symbolValid = /[!@#$%^&*(),.?":{}|<>]/.test(value);
@@ -296,7 +296,7 @@ require_once '../db.php';
 	}
 
 	function checkPasswordStrength(password) {
-		const lengthValid = password.length >= 8;
+		const lengthValid = password.length >= 12;
 		const uppercaseValid = /[A-Z]/.test(password);
 		const numberValid = /[0-9]/.test(password);
 		const symbolValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);

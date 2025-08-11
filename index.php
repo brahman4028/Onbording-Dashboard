@@ -55,18 +55,15 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
 // $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
 
-// if($merchantapplication_id != ''){
+if($merchantapplication_id != ''){
 
-//     if($status != "Cancelled" && $merchant_trash != "y"){
-//         echo "You've already submitted the application. Multiple submissions are not allowed.";
-//     header("Location: merchants/merchant_dashboard.php");
-//      exit();
-//     }
+    if($status != "Cancelled" && $merchant_trash != "y"){
+        echo "You've already submitted the application. Multiple submissions are not allowed.";
+    header("Location: merchants/dashboard.php");
+     exit();
+    }
 
-
-        
-
-// }
+}
 
 
 ?>
@@ -504,10 +501,6 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
                                         <hr class="my-4">
 
                                         <div class="row g-3 ">
-                                            <div class="col-md-6">
-                                                <label class="form-label">Business Name</label>
-                                                <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')">
-                                            </div>
 
                                             <div class="col-md-6">
                                                 <label class="form-label">Type of Entity</label>
@@ -519,6 +512,26 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
                                                     <option value="LLP">LLP</option>
                                                     <option value="Public Ltd.">Public Ltd.</option>
                                                 </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="gstin" class="form-label">GSTIN</label>
+                                                <input type="text" class="form-control" id="gstin" name="gstin" onblur="setPreviewValue(this, 'gstinvalue')">
+                                                <div id="gstin-error" class="text-danger mt-1 d-none">❌ Enter a valid 15-character GSTIN</div>
+                                                <div class=" d-none" id="gstin-info">
+                                                    <label class="form-label">Company Info</label>
+                                                    <div class="p-2 border rounded bg-light">
+                                                        <p class="mb-1"><strong>Company Name:</strong> <span id="companyName">—</span></p>
+                                                        <p class="mb-0"><strong>Status:</strong> <span id="gstinStatus">—</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 d-none" id="gstin-info">
+                                                <label class="form-label">Company Info</label>
+                                                <div class="p-2 border rounded bg-light">
+                                                    <p class="mb-1"><strong>Company Name:</strong> <span id="companyName">—</span></p>
+                                                    <p class="mb-0"><strong>Status:</strong> <span id="gstinStatus">—</span></p>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Date of Incorporation</label>
@@ -541,25 +554,9 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
                                             <label class="form-label">GSTIN</label>
                                             <input type="text" class="form-control" name="gstin">
                                         </div> -->
-                                            <div class="col-md-6">
-                                                <label for="gstin" class="form-label">GSTIN</label>
-                                                <input type="text" class="form-control" id="gstin" name="gstin" onblur="setPreviewValue(this, 'gstinvalue')">
-                                                <div id="gstin-error" class="text-danger mt-1 d-none">❌ Enter a valid 15-character GSTIN</div>
-                                                <div class=" d-none" id="gstin-info">
-                                                    <label class="form-label">Company Info</label>
-                                                    <div class="p-2 border rounded bg-light">
-                                                        <p class="mb-1"><strong>Company Name:</strong> <span id="companyName">—</span></p>
-                                                        <p class="mb-0"><strong>Status:</strong> <span id="gstinStatus">—</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 d-none" id="gstin-info">
-                                                <label class="form-label">Company Info</label>
-                                                <div class="p-2 border rounded bg-light">
-                                                    <p class="mb-1"><strong>Company Name:</strong> <span id="companyName">—</span></p>
-                                                    <p class="mb-0"><strong>Status:</strong> <span id="gstinStatus">—</span></p>
-                                                </div>
+                                             <div class="col-md-6">
+                                                <label class="form-label">Business Name</label>
+                                                <input type="text" class="form-control" name="businessname" id="nob" onblur="setPreviewValue(this, 'businessnamevalue')">
                                             </div>
 
                                             <div class="col-md-6">

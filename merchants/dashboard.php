@@ -10,11 +10,11 @@ error_reporting(0);
 
 session_start();
 
-// if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
-//     // Redirect to registration page
-//     header("Location: merchant_login.php");
-//     exit();
-// }
+if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
+    // Redirect to registration page
+    header("Location: merchant_login.php");
+    exit();
+}
 
 $merchantuseremail = $_SESSION['merchant_info']['email'];
 
