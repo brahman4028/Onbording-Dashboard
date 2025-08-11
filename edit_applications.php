@@ -1,4 +1,22 @@
 <?php include 'db.php';
+error_reporting(0);
+$adminname = '';
+$rolevalue = '';
+$username = '';
+$merchantapplication_id = 's';
+
+if (!isset($_SESSION['user']['role'])) {
+    // Redirect to registration page
+    $rolevalue = $_SESSION['user']['role'];
+    if( $rolevalue == "admin"){
+        $adminname = $_SESSION['user']['username'];
+    }
+    else{
+        header("Location: merchants/merchant_login.php");
+    exit();
+    }
+}
+
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("Invalid or missing ID.");
