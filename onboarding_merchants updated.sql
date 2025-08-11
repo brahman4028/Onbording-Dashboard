@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2025 at 02:49 PM
+-- Generation Time: Aug 11, 2025 at 08:51 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -99,7 +99,7 @@ CREATE TABLE `business_applications` (
 --
 
 INSERT INTO `business_applications` (`id`, `entity`, `doi`, `nob`, `businesscategory`, `businesssubcategory`, `gstin`, `pan`, `registeredbsuiness`, `operatingaddress`, `url`, `businessnumber`, `alternnumber`, `supportemail`, `fullname`, `designation`, `number`, `personalemail`, `aadhaarnumber`, `pannumber`, `fullnameadn`, `designationadn`, `numberadn`, `personalemailadn`, `aadhaarnumberadn`, `pannumberadn`, `totalvolume`, `numberofusers`, `sixmonthprojectionamount`, `sixmonthprojectionuser`, `numoftransactions`, `disbursedamount`, `mintransaction`, `maxtransaction`, `thresholdlimit`, `created_at`, `businessname`, `applicantname`, `accountname`, `bankname`, `branchname`, `accountnumber`, `ifsccode`, `accounttype`, `bankeject`, `status`, `coment`, `placevalue`, `merchant_trash`, `kycverification`, `documentsverification`, `bankverification`, `kyccomment`, `documentscomment`, `bankcomment`, `accountnameadn`, `banknameadn`, `branchnameadn`, `accountnumberadn`, `ifsccodeadn`, `accounttypeadn`, `bankejectadn`, `bankverificationadn`, `kyccommentadn`) VALUES
-(482738, 'Pvt. Ltd.', '1988-10-12', 'Dolor neque ut conse', 'Unde est harum quo', 'Expedita laboris nec', 'Asperiores ut i', 'ET CULPA R', 'Harum doloribus in c', 'Cum labore ut aut de', 'Obcaecati repellendu', '604', '784', 'vonawujexu@mailinator.com', 'Shelly Nixon', 'Qui error aut maxime', '569', 'sapoqoz@mailinator.com', '552', '248', 'Hector Parks', 'Aperiam accusamus re', '65', 'vaboci@mailinator.com', '141', '146', 'Provident atque inc', '866', '4', '1', 'Labore qui numquam a', 'Similique aliquam et', 'Deserunt neque ut ut', 'Velit enim id iure', 'Repellendus Quam ev', '2025-07-18 10:42:10', 'India Stout', 'Declan Day', 'Lisandra Ayers', 'Libby Cox', 'Pamela Wilkinson', '609', 'Hic itaque blanditii', 'Current Account', 'no', 'In Review', 'Wrong Info', 'sdf', 'n', 'In Review', 'Pending', 'Verified', 'not provided needed documents yet', 'in pending', 'bank account verified', '', '', '', '', '', '', 'no', 'In Review', '');
+(482738, 'Pvt. Ltd.', '1988-10-12', 'Dolor neque ut conse', 'Unde est harum quo', 'Expedita laboris nec', 'Asperiores ut i', 'ET CULPA R', 'Harum doloribus in c', 'Cum labore ut aut de', 'Obcaecati repellendu', '604', '784', 'vonawujexu@mailinator.com', 'Shelly Nixon', 'Qui error aut maxime', '569', 'sapoqoz@mailinator.com', '552', '248', 'Hector Parks', 'Aperiam accusamus re', '65', 'vaboci@mailinator.com', '141', '146', 'Provident atque inc', '866', '4', '1', 'Labore qui numquam a', 'Similique aliquam et', 'Deserunt neque ut ut', 'Velit enim id iure', 'Repellendus Quam ev', '2025-07-18 10:42:10', 'India Stout', 'Declan Day', 'Lisandra Ayers', 'Libby Cox', 'Pamela Wilkinson', '609', 'Hic itaque blanditii', 'Current Account', 'no', 'In Review', 'Wrong Info', 'sdf', 'n', 'In Review', 'Pending', 'Verified', 'not provided needed documents yet', 'in pending', 'bank account verified', 'sur', 'ban', 'brn', 'acty', 'ifsc', 'tty', 'no', 'In Review', 'sdd');
 
 -- --------------------------------------------------------
 
@@ -162,7 +162,9 @@ CREATE TABLE `merchant_info` (
 --
 
 INSERT INTO `merchant_info` (`merchant_id`, `application_id`, `username`, `email`, `phone`, `password`, `date`, `address`) VALUES
-(87838, 482738, 'suraj pandey', 'surajp4028@gmail.com', '9876543210', '$2y$10$WpUVOGXtU4Ig2RLLuD7HWe1FqoKoCiQMXgQbupcBqJgxo0pal9Q8a', '2025-07-27 13:49:07', 'ssgkkjkj');
+(87838, 482738, 'suraj pandey', 'surajp4028@gmail.com', '9876543210', '$2y$10$WpUVOGXtU4Ig2RLLuD7HWe1FqoKoCiQMXgQbupcBqJgxo0pal9Q8a', '2025-07-27 13:49:07', 'ssgkkjkj'),
+(87839, NULL, 'brahman', 'brahman4028@gmail.com', '7982624533', '$2y$10$YrehdPh/ZW.VqNR3ksGSBOcSjvSPpaxgx/Oqz9O3pDOfqmYd.T/7G', '2025-08-01 18:26:34', ''),
+(87840, NULL, 'dddfd', 'merchant@gmail.com', '9876544565', '$2y$10$Hr7Ox/FystOw4RCF028jR.qMgjlxRuhQEMfVuQdOhCpoR11GNct06', '2025-08-04 14:24:11', '');
 
 -- --------------------------------------------------------
 
@@ -238,7 +240,7 @@ ALTER TABLE `business_documents`
 -- AUTO_INCREMENT for table `merchant_info`
 --
 ALTER TABLE `merchant_info`
-  MODIFY `merchant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87839;
+  MODIFY `merchant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87841;
 
 --
 -- AUTO_INCREMENT for table `users`
