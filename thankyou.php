@@ -30,7 +30,10 @@ $merResult = mysqli_query($mysqli, $merQuery);
 $merData = $merResult ? mysqli_fetch_assoc($merResult) : [];
 
  $fullname = $merData['fullname'];
+ echo $fullname;
+
  $supportemail = $merData['supportemail'];
+ echo $supportemail;
 
 
 //  else {
