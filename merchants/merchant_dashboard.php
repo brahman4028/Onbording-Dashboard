@@ -31,7 +31,7 @@ if ($application_id != '') {
     $appData = mysqli_fetch_assoc($appResult);
 
     // Fetch business_documents data
-    $docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
+    $docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
     $docResult = mysqli_query($mysqli, $docQuery);
     $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
