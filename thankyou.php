@@ -25,28 +25,20 @@ if (isset($_GET['id'])) {
 
   echo $pan;
 
-  $stmt = $mysqli->prepare("SELECT fullname, supportemail 
-                          FROM business_applications 
-                          WHERE id = ? AND gstin = ? AND pan = ?");
+ $merQuery = "SELECT * FROM business_applications 
+             WHERE id = '$id' AND gstin = '$gstin' AND pan = '$pan'";
+$merResult = mysqli_query($mysqli, $merQuery);
 
-  if (!$stmt) {
-    die("Prepare failed: " . $mysqli->error);
-  }
+if ($merResult && mysqli_num_rows($merResult) > 0) {
+    $merData = mysqli_fetch_assoc($merResult);
 
-  // All fields are strings → "sss"
-  $stmt->bind_param("sss", $id, $gstin, $pan);
+    $fullname = $merData['fullname'];
+    $supportemail = $merData['supportemail'];
 
-  $stmt->execute();
-  $result = $stmt->get_result();
-
-  if ($row = $result->fetch_assoc()) {
-    $fullname = $row['fullname'];
-    $supportemail = $row['supportemail'];
-
-    // ✅ You can now use $fullname and $supportemail as needed
-  } else {
+    // ✅ Do whatever you need with the data here
+} else {
     die("No application found with the provided details.");
-  }
+}
 
   $stmt->close();
 } else {
