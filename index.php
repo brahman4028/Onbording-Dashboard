@@ -71,6 +71,16 @@ $pan = $appData['pan'] ?? '';
 $status = $appData['status'] ?? '';
 $coment = $appData['coment'] ?? '';
 $merchant_trash = $appData['merchant_trash'] ?? 0;
+
+if ($appResult && mysqli_num_rows($appResult) > 0) {
+    $row = mysqli_fetch_assoc($appResult);
+    $application_id = $row['application_id'];
+     header("Location: merchants/dashboard.php");
+    // // ✅ Row exists, exit code
+    // exit("Application already exists with ID: " . $application_id);
+}
+
+
 }
 
 
