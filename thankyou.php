@@ -6,12 +6,15 @@ $supportemail = "Not available"; // default fallback
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    echo $id;
     // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
-  echo $_GET['gstin'];
+  // echo $_GET['gstin'];
     die("Missing GSTIN.");
 }
 $gstin = $_GET['gstin'];
+
+echo $gstin;
 
 
 // Validate and retrieve 'pan'
