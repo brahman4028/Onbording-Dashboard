@@ -4,7 +4,7 @@
 $fullname = "Unknown";
 $supportemail = "Not available"; // default fallback
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = (int) $_GET['id'];
     // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
