@@ -26,7 +26,7 @@ $merData = $merResult ? mysqli_fetch_assoc($merResult) : [];
 
 if ($merResult && mysqli_num_rows($merResult) > 0) {
     $row = mysqli_fetch_assoc($merResult);
-    $application_id = $row['application_id'];
+    // $application_id = $row['application_id'];
     echo $application_id;
     // // ✅ Row exists, exit code
     // exit("Application already exists with ID: " . $application_id);
@@ -36,6 +36,7 @@ if ($merResult && mysqli_num_rows($merResult) > 0) {
 
 $address = $merData['address'];
 $merchant_id = $merData['merchant_id'];
+$application_id = $merData['application_id'];
 
 // Fetch user name
 $username = $_SESSION['merchant_info']['username'];
