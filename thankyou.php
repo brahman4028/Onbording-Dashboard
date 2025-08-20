@@ -8,15 +8,19 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
+  echo $_GET['gstin'];
     die("Missing GSTIN.");
 }
 $gstin = $_GET['gstin'];
+
 
 // Validate and retrieve 'pan'
 if (!isset($_GET['pan']) || empty($_GET['pan'])) {
     die("Missing PAN.");
 }
 $pan = $_GET['pan'];
+
+echo $pan;
 
      $stmt = $mysqli->prepare("SELECT fullname, supportemail FROM business_applications WHERE id = ? AND gstin = ? AND pan = ?");
     $stmt->bind_param("sss", $id, $gstin, $pan); // i = integer, s = string, s = string
