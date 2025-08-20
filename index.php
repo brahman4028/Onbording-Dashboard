@@ -39,12 +39,13 @@ $merResult = mysqli_query($mysqli, $merQuery);
 
 if ($merResult && mysqli_num_rows($merResult) > 0) {
     $row = mysqli_fetch_assoc($merResult);
-    $application_id = $row['application_id'];
+    // $application_id = $row['application_id'];
     // // ✅ Row exists, exit code
     // exit("Application already exists with ID: " . $application_id);
      header("Location: merchants/dashboard.php");
 }
 
+$application_id = $merData['application_id'];
 
 // Fetch user name
 

@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
 //             $uploadedFiles[$field] = $targetPath;
-//         } else {
+//         } else {4
 //             $uploadedFiles[$field] = '';
 //         }
 //     } else {
