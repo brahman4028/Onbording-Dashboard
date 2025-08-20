@@ -22,13 +22,21 @@ $merQuery = "SELECT * FROM merchant_info WHERE email = '$merchantuseremail'";
 $merResult = mysqli_query($mysqli, $merQuery);
 $merData = $merResult ? mysqli_fetch_assoc($merResult) : [];
 
+if ($merResult && mysqli_num_rows($merResult) > 0) {
+    $row = mysqli_fetch_assoc($merResult);
+    $application_id = $row['application_id'];
+    // // ✅ Row exists, exit code
+    // exit("Application already exists with ID: " . $application_id);
+    //  header("Location: merchants/dashboard.php");
+}
+
 
 $address = $merData['address'];
 $merchant_id = $merData['merchant_id'];
 
 // Fetch user name
 $username = $_SESSION['merchant_info']['username'];
-$application_id = $_SESSION['merchant_info']['application_id'];
+// $application_id = $_SESSION['merchant_info']['application_id'];
 
 $merchantphone = $_SESSION['merchant_info']['phone'];
 
