@@ -7,7 +7,8 @@ $prefix = "ITSTAR";
 do {
     // generate random 5-digit number padded with zeros
     $randomNumber = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
-    $uniqueID = $prefix . "_" . $randomNumber;
+    // $uniqueID = $prefix . "_" . $randomNumber;
+    $uniqueID = $prefix . $randomNumber;
 
     // check if this ID already exists in DB
     $merQuery = "SELECT id FROM business_applications WHERE id = '$uniqueID' LIMIT 1";
