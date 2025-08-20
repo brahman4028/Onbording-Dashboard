@@ -70,6 +70,12 @@ $status = $appData['status'] ?? '';
 $coment = $appData['coment'] ?? '';
 $merchant_trash = $appData['merchant_trash'] ?? 0;
 
+   if($status != "Cancelled" && $merchant_trash != "y"){
+        echo "You've already submitted the application. Multiple submissions are not allowed.";
+    header("Location: merchants/dashboard.php");
+     exit();
+    }
+
 
 }
 
@@ -80,17 +86,6 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
 // $docResult = mysqli_query($mysqli, $docQuery);
 // $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
-
-if($application_id != ''){
-    // echo "notblank";
-
-    if($status != "Cancelled" && $merchant_trash != "y"){
-        echo "You've already submitted the application. Multiple submissions are not allowed.";
-    header("Location: merchants/dashboard.php");
-     exit();
-    }
-
-}
 
 
 ?>
