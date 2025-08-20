@@ -5,7 +5,7 @@ $fullname = "Unknown";
 $supportemail = "Not available"; // default fallback
 
 if (isset($_GET['id'])) {
-    $id = (int) $_GET['id'];
+    $id = $_GET['id'];
     // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
     die("Missing GSTIN.");
