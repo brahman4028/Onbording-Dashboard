@@ -216,7 +216,7 @@ foreach ($fileFields as $field) {
         $targetPath = $uploadDir . $fileName;
 
         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-            $uploadedFiles[$field] = $fileName; // save only filename
+            $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
         } else {
             $uploadedFiles[$field] = '';
         }
