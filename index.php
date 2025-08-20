@@ -42,6 +42,7 @@ $merData = $merResult ? mysqli_fetch_assoc($merResult) : [];
 
 $application_id = $merData['application_id'];
 
+
 // Fetch user name
 
 // echo $username;
