@@ -15,7 +15,7 @@ if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['use
 
 // Fetch user name
 $username = $_SESSION['merchant_info']['username'];
-$application_id = $_SESSION['merchant_info']['application_id'];
+// $application_id = $_SESSION['merchant_info']['application_id'];
 $merchantuseremail = $_SESSION['merchant_info']['email'];
 
 // echo $application_id;
