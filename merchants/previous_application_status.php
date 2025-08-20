@@ -1,6 +1,8 @@
 <?php
 echo "jjjjjj";
 
+echo $application_id;
+
                             if ($application_id != '' && $status != "Cancelled" && $merchant_trash != "y") {
                                 echo '
                                 <div class="card p-3 rounded-4" style="  background: linear-gradient(135deg, #f8f9fa, #e9ecef); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);">
