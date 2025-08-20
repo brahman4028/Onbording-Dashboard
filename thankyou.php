@@ -25,20 +25,27 @@ if (isset($_GET['id'])) {
 
   echo $pan;
 
-  $merQuery = "SELECT * FROM business_applications WHERE id = '$id' AND gstin = '$gstin' AND pan = '$pan'";
+ $merQuery = "SELECT * FROM business_applications 
+             WHERE id = '$id' AND gstin = '$gstin' AND pan = '$pan'";
 $merResult = mysqli_query($mysqli, $merQuery);
-$merData = $merResult ? mysqli_fetch_assoc($merResult) : [];
 
+$merData = mysqli_fetch_assoc($merResult);
  $fullname = $merData['fullname'];
- echo $fullname;
+    $supportemail = $merData['supportemail'];
 
- $supportemail = $merData['supportemail'];
- echo $supportemail;
+    echo $fullname;
+    echo $supportemail;
 
+// if ($merResult && mysqli_num_rows($merResult) > 0) {
+    
 
-//  else {
+   
+
+//     // ✅ Do whatever you need with the data here
+// } else {
 //     die("No application found with the provided details.");
-//   }
+// }
+
 
   $stmt->close();
 } else {
