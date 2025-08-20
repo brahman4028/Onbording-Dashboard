@@ -51,7 +51,7 @@ echo $application_id;
 // Fetch business_application data
 
 if($application_id != ''){
-$appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
+$appQuery = "SELECT * FROM business_applications WHERE id = '$application_id'";
 $appResult = mysqli_query($mysqli, $appQuery);
 
 // if (!$appResult || mysqli_num_rows($appResult) === 0) {
