@@ -39,7 +39,7 @@ $merchantphone = $_SESSION['merchant_info']['phone'];
 // echo $application_id;
 
 if ($application_id != '') {
-    $appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
+    $appQuery = "SELECT * FROM business_applications WHERE id = '$application_id'";
     $appResult = mysqli_query($mysqli, $appQuery);
 
     if (!$appResult || mysqli_num_rows($appResult) === 0) {

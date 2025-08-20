@@ -2,6 +2,18 @@
 
 include 'db.php';
 
+$prefix = "ITSTAR";
+
+do {
+    // generate random 5-digit number padded with zeros
+    $randomNumber = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+    $uniqueID = $prefix . "_" . $randomNumber;
+
+    // check if this ID already exists in DB
+    $merQuery = "SELECT id FROM business_applications WHERE id = '$uniqueID' LIMIT 1";
+    $merResult = mysqli_query($mysqli, $merQuery);
+
+} while (mysqli_num_rows($merResult) > 0);
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -102,19 +114,109 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     ];
 
-    foreach ($fileFields as $field) {
+//    foreach ($fileFields as $field) {
+//     if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+//         $originalName = basename($_FILES[$field]['name']);
+
+//         // 🧼 Sanitize filename (remove spaces and special characters)
+//         $cleanName = preg_replace('/[^a-zA-Z0-9.\-_]/', '_', $originalName);
+
+//         // 🔐 Unique name = Application ID + uniqid() + original name
+//         $fileName = $uniqueID . "_" . uniqid() . "_" . $cleanName;
+//         $targetPath = $uploadDir . $fileName;
+
+//         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+//             $uploadedFiles[$field] = $targetPath;
+//         } else {
+//             $uploadedFiles[$field] = '';
+//         }
+//     } else {
+//         $uploadedFiles[$field] = '';
+//     }
+// }
+
+foreach ($fileFields as $field) {
     if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
         $originalName = basename($_FILES[$field]['name']);
 
-        // 🧼 Sanitize filename (remove spaces and special characters)
-        $cleanName = preg_replace('/[^a-zA-Z0-9.\-_]/', '_', $originalName);
+        // 🧼 Get file extension
+        $ext = pathinfo($originalName, PATHINFO_EXTENSION);
 
-        // 🔐 Unique filename to avoid conflicts
-        $uniqueName = uniqid() . "_" . $cleanName;
-        $targetPath = $uploadDir . $uniqueName;
+        // Default clean name (fallback)
+        $alias = $field;
+
+        // Map field → custom alias
+        switch ($field) {
+            case 'aadhaarfile':
+                $alias = 'aadhaar';
+                break;
+            case 'personalpanfile':
+                $alias = 'pan';
+                break;
+            case 'photograph':
+                $alias = 'photo';
+                break;
+            case 'addressfile':
+                $alias = 'address';
+                break;
+            case 'signatorysignfile':
+                $alias = 'sign';
+                break;
+            case 'coifile':
+                $alias = 'coa';
+                break;
+            case 'moafile':
+                $alias = 'moa';
+                break;
+            case 'aoafile':
+                $alias = 'aoa';
+                break;
+            case 'brfile':
+                $alias = 'br';
+                break;
+            case 'udyamfile':
+                $alias = 'udyam';
+                break;
+            case 'gstinfile':
+                $alias = 'gstin';
+                break;
+            case 'bofile':
+                $alias = 'bo';
+                break;
+            case 'rentfile':
+                $alias = 'rent';
+                break;
+            case 'annexurebfile':
+                $alias = 'annexureb';
+                break;
+            case 'cancelledchequefile':
+                $alias = 'cancelledcheque';
+                break;
+            case 'aadhaaradnfile':
+                $alias = 'aadhaar2';
+                break;
+            case 'personalpanadnfile':
+                $alias = 'pan2';
+                break;
+            case 'signatoryphotoadnfile':
+                $alias = 'photo2';
+                break;
+            case 'addressadnfile':
+                $alias = 'address2';
+                break;
+            case 'signatorysignadnfile':
+                $alias = 'sign2';
+                break;
+            
+        }
+
+        // 🔐 Final filename = uniqueID + alias + extension
+        // $fileName = $uniqueID . "_" . $alias;
+        $fileName = $uniqueID . "_" . $alias . "." . $ext;
+        $targetPath = $uploadDir . $fileName;
 
         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-            $uploadedFiles[$field] = $targetPath;
+            $uploadedFiles[$field] = $fileName; // save only filename
         } else {
             $uploadedFiles[$field] = '';
         }
@@ -188,7 +290,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         exit;
     }
-    $query = "INSERT INTO business_applications (
+    $query = "INSERT INTO business_applications ( id, 
         businessname, applicantname, entity, doi, nob, businesscategory, businesssubcategory, gstin, pan,
         registeredbsuiness, operatingaddress, url, businessnumber, alternnumber, supportemail,
         fullname, designation, number, personalemail, aadhaarnumber, pannumber,
@@ -196,7 +298,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         totalvolume, numberofusers, sixmonthprojectionamount, sixmonthprojectionuser,
         numoftransactions, disbursedamount, mintransaction, maxtransaction, thresholdlimit , accountname , bankname , branchname , accountnumber , ifsccode , accounttype , placevalue
     ) VALUES (
-        '$businessname','$applicantname', '$entity', '$doi', '$nob', '$businesscategory', '$businesssubcategory', '$gstin', '$pan',
+        '$uniqueID', '$businessname','$applicantname', '$entity', '$doi', '$nob', '$businesscategory', '$businesssubcategory', '$gstin', '$pan',
         '$registeredbsuiness', '$operatingaddress', '$url', '$businessnumber', '$alternnumber', '$supportemail',
         '$fullname', '$designation', '$number', '$personalemail', '$aadhaarnumber', '$pannumber',
         '$fullnameadn', '$designationadn', '$numberadn', '$personalemailadn', '$aadhaarnumberadn', '$pannumberadn',
@@ -221,7 +323,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     coifile, moafile, aoafile, brfile, udyamfile,
     gstinfile, bofile, rentfile, annexurebfile, cancelledchequefile, aadhaaradnfile, personalpanadnfile, signatoryphotoadnfile, addressadnfile, signatorysignfile,  signatorysignadnfile
 ) VALUES (
-    '$application_id',
+    '$uniqueID',
     '$uploadedFiles[aadhaarfile]',
     '$uploadedFiles[personalpanfile]',
     '$uploadedFiles[photograph]',
@@ -247,14 +349,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // insert application id to merchant_id 
 
-$sql2 = "UPDATE your_table_name SET merchant_id = $merchant_id WHERE email = $merchantemail;";
+$sql2 = "UPDATE merchant_info SET application_id = '$uniqueID' WHERE email = '$merchantemail'";
 $result2 = mysqli_query($mysqli, $sql2);
 
     $result = mysqli_query($mysqli, $sql);
 
     if ($result) {
-        echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
-        header("Location: thankyou.php?id=$application_id");
+
+        if($result2){
+             echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
+        header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+        }
+       else{
+        echo "failed to update merchant";
+       }
     } else {
         // echo "❌ Error: " . mysqli_error($mysqli);
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";

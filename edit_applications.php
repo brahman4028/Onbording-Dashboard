@@ -5,6 +5,10 @@ $rolevalue = '';
 $username = '';
 $merchantapplication_id = 's';
 
+session_start();
+
+
+
 if (!isset($_SESSION['user']['role'])) {
     // Redirect to registration page
     $rolevalue = $_SESSION['user']['role'];
@@ -18,11 +22,11 @@ if (!isset($_SESSION['user']['role'])) {
 }
 
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+if (!isset($_GET['id'])) {
     die("Invalid or missing ID.");
 }
 
-$application_id = intval($_GET['id']);
+$application_id = $_GET['id'];
 
 // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
@@ -39,7 +43,7 @@ $pan = $_GET['pan'];
 // Now you can use $id, $gstin, and $pan in your code
 
 // Fetch business_application data
-$appQuery = "SELECT * FROM business_applications WHERE id = $application_id AND gstin = '$gstin' AND pan = '$pan' ";
+$appQuery = "SELECT * FROM business_applications WHERE id = '$application_id' AND gstin = '$gstin' AND pan = '$pan' ";
 $appResult = mysqli_query($mysqli, $appQuery);
 
 if (!$appResult || mysqli_num_rows($appResult) === 0) {
@@ -49,7 +53,7 @@ if (!$appResult || mysqli_num_rows($appResult) === 0) {
 $appData = mysqli_fetch_assoc($appResult);
 
 // Fetch business_documents data
-$docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
+$docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
@@ -165,8 +169,8 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                         <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
-                            <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="business_applications.php" target="_blank"><i class='stepper-circle bx bx-user-plus me-1 fs-3'></i> Add new Merchant</a>
-                            </li>
+                            <!-- <li class="nav-item me-2 d-flex f-column justify-content-center align-items-center"> <a class="nav-link d-flex column justify-content-center align-items-center" href="business_applications.php" target="_blank"><i class='stepper-circle bx bx-user-plus me-1 fs-3'></i> Add new Merchant</a>
+                            </li> -->
 
                             <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span><a href="merchants-list.php" target="_blank" style="color:white !important;">Go to Dashboard </a></span>
                                 <div class="text-light ms-1">

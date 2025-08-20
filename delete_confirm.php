@@ -4,11 +4,11 @@
 $fullname = "Unknown";
 $supportemail = "Not available"; // default fallback
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = (int) $_GET['id'];
+if (isset($_GET['id']) ) {
+    $id =  $_GET['id'];
 
     $stmt = $mysqli->prepare("SELECT fullname, supportemail FROM business_applications WHERE id = ?");
-    $stmt->bind_param("i", $id);
+    $stmt->bind_param("s", $id);
     $stmt->execute();
     $result = $stmt->get_result();
 

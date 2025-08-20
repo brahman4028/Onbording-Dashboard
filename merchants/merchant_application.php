@@ -19,11 +19,11 @@ if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['use
 
 
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+if (!isset($_GET['id'])) {
     die("Invalid or missing ID.");
 }
 
-$application_id = intval($_GET['id']);
+$application_id = $_GET['id'];
 
 // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
@@ -44,7 +44,7 @@ $pan = $_GET['pan'];
 // Now you can use $id, $gstin, and $pan in your code
 
 // Fetch business_application data
-$appQuery = "SELECT * FROM business_applications WHERE id = $application_id AND gstin = '$gstin' AND pan = '$pan' ";
+$appQuery = "SELECT * FROM business_applications WHERE id = '$application_id' AND gstin = '$gstin' AND pan = '$pan' ";
 $appResult = mysqli_query($mysqli, $appQuery);
 
 if (!$appResult || mysqli_num_rows($appResult) === 0) {
@@ -54,7 +54,7 @@ if (!$appResult || mysqli_num_rows($appResult) === 0) {
 $appData = mysqli_fetch_assoc($appResult);
 
 // Fetch business_documents data
-$docQuery = "SELECT * FROM business_documents WHERE application_id = $application_id";
+$docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 

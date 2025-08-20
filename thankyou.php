@@ -4,8 +4,8 @@
 $fullname = "Unknown";
 $supportemail = "Not available"; // default fallback
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = (int) $_GET['id'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
     // Validate and retrieve 'gstin'
 if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
     die("Missing GSTIN.");
@@ -19,7 +19,7 @@ if (!isset($_GET['pan']) || empty($_GET['pan'])) {
 $pan = $_GET['pan'];
 
      $stmt = $mysqli->prepare("SELECT fullname, supportemail FROM business_applications WHERE id = ? AND gstin = ? AND pan = ?");
-    $stmt->bind_param("iss", $id, $gstin, $pan); // i = integer, s = string, s = string
+    $stmt->bind_param("sss", $id, $gstin, $pan); // i = integer, s = string, s = string
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -91,7 +91,7 @@ $pan = $_GET['pan'];
       <div>
         <img src="assets/images/itstarlogo.png" alt="" width="200px" class="mb-5">
       </div>
-      <p class="text-muted mb-1" >Thankyo, <span class="text-primary"><?php echo htmlspecialchars($fullname); ?></span></p>
+      <p class="text-muted mb-1" >Thankyou, <span class="text-primary"><?php echo htmlspecialchars($fullname); ?></span></p>
       <h1 class="mb-3" style="font-size: 60px;">We’ve Got Your Application</h1>
       <p class="mb-2">We've received your details and will review your application within 24 hours.</p>
       <p class="mb-4">You'll get a confirmation and next steps by email at <span class="text-primary"><?php echo htmlspecialchars($supportemail); ?></span> shortly.</p><br>

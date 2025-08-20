@@ -1,10 +1,10 @@
 <?php
 include 'db.php';
 
-$id = intval($_GET['id']); // or from POST
+$id = $_GET['id']; // or from POST
 
 // Step 1: Get current value
-$result = mysqli_query($mysqli, "SELECT merchant_trash FROM business_applications WHERE id = $id");
+$result = mysqli_query($mysqli, "SELECT merchant_trash FROM business_applications WHERE id = '$id'");
 
 if ($row = mysqli_fetch_assoc($result)) {
     $current = $row['merchant_trash'];
@@ -19,7 +19,7 @@ if ($row = mysqli_fetch_assoc($result)) {
     }
 
     // Step 3: Update and redirect
-    $update = "UPDATE business_applications SET merchant_trash = '$newValue' WHERE id = $id";
+    $update = "UPDATE business_applications SET merchant_trash = '$newValue' WHERE id = '$id'";
     if (mysqli_query($mysqli, $update)) {
         header("Location: merchants-list.php");
         exit;

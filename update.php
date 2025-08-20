@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     function clean($data) {
         return htmlspecialchars(strip_tags(trim($data)));
     }
-    $application_id = intval($_POST['id']);
+    $application_id = $_POST['id'];
     if (!$application_id) {
         die("❌ Application ID missing.");
     }

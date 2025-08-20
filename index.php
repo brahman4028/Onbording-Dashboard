@@ -1,18 +1,20 @@
 <?php include 'db.php';
 
+
 session_start();
+
 
 error_reporting(0);
 $adminname = '';
 $rolevalue = '';
 $username = '';
-$merchantapplication_id = 's';
+// $merchantapplication_id = '';
 
 if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username']) || isset($_SESSION['user']['role'])) {
     // Redirect to registration page
     $rolevalue = $_SESSION['user']['role'];
-    $merchantapplication_id = $_SESSION['merchant_info']['application_id'];
-    echo $merchantapplication_id;
+    // $merchantapplication_id = $_SESSION['merchant_info']['application_id'];
+    // echo $merchantapplication_id;
     if( $rolevalue == "admin"){
         $adminname = $_SESSION['user']['username'];
     }
@@ -23,26 +25,45 @@ if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['use
 }
 
 
+
+
+// $merchantapplication_id = $_SESSION['merchant_info']['application_id'];
+// echo $merchantapplication_id;
+
+
 $username = $_SESSION['merchant_info']['username'];
 $merchantuseremail = $_SESSION['merchant_info']['email'];
-$merchantapplication_id = $_SESSION['merchant_info']['application_id'];
+
+$merQuery = "SELECT application_id FROM merchant_info where email = '$merchantuseremail' LIMIT 1"; 
+$merResult = mysqli_query($mysqli, $merQuery);
+
+if ($merResult && mysqli_num_rows($merResult) > 0) {
+    $row = mysqli_fetch_assoc($merResult);
+    $application_id = $row['application_id'];
+    // // ✅ Row exists, exit code
+    // exit("Application already exists with ID: " . $application_id);
+}
+
+
 // Fetch user name
 
 // echo $username;
 
 // Fetch business_application data
-// $appQuery = "SELECT * FROM business_applications WHERE id = $merchantapplication_id";
-// $appResult = mysqli_query($mysqli, $appQuery);
+$appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
+$appResult = mysqli_query($mysqli, $appQuery);
 
 // if (!$appResult || mysqli_num_rows($appResult) === 0) {
-//     die("No record found with ID: $merchantapplication_id");
+//     die("No record found with ID:  $merchantapplication_id");
 // }
 
 
 // Fetch application data
 $appData = $appResult ? mysqli_fetch_assoc($appResult) : [];
 
+
 $id = $appData['id'] ?? null;
+echo $id;
 $gstin = $appData['gstin'] ?? '';
 $pan = $appData['pan'] ?? '';
 $status = $appData['status'] ?? '';
@@ -55,7 +76,8 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
 // $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
 
-if($merchantapplication_id != ''){
+if($application_id != ''){
+    // echo "notblank";
 
     if($status != "Cancelled" && $merchant_trash != "y"){
         echo "You've already submitted the application. Multiple submissions are not allowed.";
