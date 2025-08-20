@@ -1,8 +1,5 @@
 <?php
-echo "jjjjjj";
 
-echo $application_id;
-echo $merchantuseremail;
 
                             if ($application_id != '' && $status != "Cancelled" && $merchant_trash != "y") {
                                 echo '
