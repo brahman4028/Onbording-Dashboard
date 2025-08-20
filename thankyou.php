@@ -1,57 +1,59 @@
-<?php include 'db.php';
-
+<?php 
+include 'db.php';
 
 $fullname = "Unknown";
 $supportemail = "Not available"; // default fallback
 
 if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  echo $id;
-  // Validate and retrieve 'gstin'
-  if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
-    // echo $_GET['gstin'];
-    die("Missing GSTIN.");
-  }
-  $gstin = $_GET['gstin'];
+    $id = trim($_GET['id']);
+    $gstin = isset($_GET['gstin']) ? trim($_GET['gstin']) : '';
+    $pan = isset($_GET['pan']) ? trim($_GET['pan']) : '';
 
-  echo $gstin;
+    if (empty($gstin)) {
+        die("Missing GSTIN.");
+    }
+    if (empty($pan)) {
+        die("Missing PAN.");
+    }
 
+    // Debugging output
+    echo "<br>ID: $id<br>";
+    echo "GSTIN: $gstin<br>";
+    echo "PAN: $pan<br>";
 
-  // Validate and retrieve 'pan'
-  if (!isset($_GET['pan']) || empty($_GET['pan'])) {
-    die("Missing PAN.");
-  }
-  $pan = $_GET['pan'];
+    // ✅ SQL with proper escaping
+    $idEscaped    = mysqli_real_escape_string($mysqli, $id);
+    $gstinEscaped = mysqli_real_escape_string($mysqli, $gstin);
+    $panEscaped   = mysqli_real_escape_string($mysqli, $pan);
 
-  echo $pan;
+    $merQuery = "
+        SELECT fullname, supportemail 
+        FROM business_applications 
+        WHERE id = '$idEscaped' 
+          AND gstin = '$gstinEscaped' 
+          AND pan = '$panEscaped'
+        LIMIT 1
+    ";
 
- $merQuery = "SELECT * FROM business_applications 
-             WHERE id = '$id' AND gstin = '$gstin' AND pan = '$pan'";
-$merResult = mysqli_query($mysqli, $merQuery);
+    $merResult = mysqli_query($mysqli, $merQuery);
 
-$merData = mysqli_fetch_assoc($merResult);
- $fullname = $merData['fullname'];
-    $supportemail = $merData['supportemail'];
+    if ($merResult && mysqli_num_rows($merResult) > 0) {
+        $merData = mysqli_fetch_assoc($merResult);
+        $fullname = $merData['fullname'];
+        $supportemail = $merData['supportemail'];
 
-    echo $fullname;
-    echo $supportemail;
+        echo "<br>Full Name: $fullname<br>";
+        echo "Support Email: $supportemail<br>";
+    } else {
+        echo "<br><b>No application found with the provided details.</b><br>";
+        echo "Debug SQL: $merQuery"; // 🔎 for debugging
+    }
 
-// if ($merResult && mysqli_num_rows($merResult) > 0) {
-    
-
-   
-
-//     // ✅ Do whatever you need with the data here
-// } else {
-//     die("No application found with the provided details.");
-// }
-
-
-  $stmt->close();
 } else {
-  die("Invalid or missing ID.");
+    die("Invalid or missing ID.");
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
