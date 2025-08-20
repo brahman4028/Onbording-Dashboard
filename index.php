@@ -50,6 +50,8 @@ if ($merResult && mysqli_num_rows($merResult) > 0) {
 // echo $username;
 
 // Fetch business_application data
+
+if($application_id != ''){
 $appQuery = "SELECT * FROM business_applications WHERE id = $application_id";
 $appResult = mysqli_query($mysqli, $appQuery);
 
@@ -69,6 +71,9 @@ $pan = $appData['pan'] ?? '';
 $status = $appData['status'] ?? '';
 $coment = $appData['coment'] ?? '';
 $merchant_trash = $appData['merchant_trash'] ?? 0;
+}
+
+
 
 // Fetch business_documents data
 // $docQuery = "SELECT * FROM business_documents WHERE application_id = $merchantapplication_id";
