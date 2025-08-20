@@ -358,7 +358,7 @@ $result2 = mysqli_query($mysqli, $sql2);
 
         if($result2){
              echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
-        // header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+        header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
         }
        else{
         echo "failed to update merchant";
