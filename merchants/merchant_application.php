@@ -10,8 +10,8 @@ function getSignedUrl($fileKey) {
 
     $bucket    = "onboarding-plus";
     $region    = "ap-south-1";
-    $awsKey    = "AKIAxxxx";
-    $awsSecret = "LwRHxxxx";
+    $awsKey    = "AKIA5FTY6UPGU5LZHY5T";
+    $awsSecret = "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";
 
     $s3 = new S3Client([
         'version' => 'latest',
@@ -506,9 +506,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])):  ?>
+                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): $aadhaarUrl = getSignedUrl($docData['aadhaaradnfile']); ?>
                                                                     <p>
-                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                                        <a href="<?= $aadhaarUrl ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
