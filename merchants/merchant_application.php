@@ -1004,7 +1004,42 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td class="text-primary" style="margin-bottom: -10px;">Authorized Director 1</td>
                                                 </tr>
 
-                                              
+                                                <tr class="">
+                                                    <td class="blr">
+                                                        <strong>Aadhaar Card</strong><br>
+
+                                                        <?php if (!empty($docData['aadhaarfile'])): $aadhaarfile = getSignedUrl($docData['aadhaarfile']); ?>
+                                                            <a href="<?= $aadhaarfile ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+
+                                                            <div id="aadhaarfilepreview" class="file-preview" data-fileurl="<?= $aadhaarfile ?>">
+                                                              <?= renderFilePreview($aadhaarfile) ?>
+                                                            </div>
+
+
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <strong>PAN Card</strong><br>
+
+                                                        <?php if (!empty($docData['personalpanfile'])): $personalpanfileUrl = getSignedUrl($docData['personalpanfile']); ?>
+                                                            <a href="<?= $personalpanfileUrl ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="personalpanfilepreview" data-fileurl="<?= $personalpanfileUrl ?>">
+                                                                <?= renderFilePreview($personalpanfileUrl) ?>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
 
                                                 <tr>
                                                     <td>
