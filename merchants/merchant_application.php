@@ -531,9 +531,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): $aadhaarUrl = getSignedUrl($docData['aadhaarfile']); ?>
+                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): $aadhaarfile = getSignedUrl($docData['aadhaarfile']); ?>
                                                                     <p>
-                                                                        <a href="<?= $aadhaarUrl ?>" target="_blank">
+                                                                        <a href="<?= $aadhaarfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -546,9 +546,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): ?>
+                                                            <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): $personalpanfile = getSignedUrl($docData['personalpanfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['personalpanfile'] ?>" target="_blank">
+                                                                        <a href="<?= $personalpanfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -561,9 +561,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Photograph</td>
                                                         <td>
-                                                            <div id="photographpreview"><?php if (!empty($docData['photograph'])): ?>
+                                                            <div id="photographpreview"><?php if (!empty($docData['photograph'])): $photograph = getSignedUrl($docData['photograph']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['photograph'] ?>" target="_blank">
+                                                                        <a href="<?= $photograph ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -575,9 +575,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     </tr>
                                                     <td>Signature</td>
                                                     <td>
-                                                        <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                        <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfile = getSignedUrl($docData['signatoryphotoadnfile']);?>
                                                                 <p>
-                                                                    <a href="../<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                    <a href="<?= $signatoryphotoadnfile ?>" target="_blank">
                                                                         View uploaded file
                                                                     </a>
                                                                 </p>
@@ -590,9 +590,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
-                                                            <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): ?>
+                                                            <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): $addressfile = getSignedUrl($docData['addressfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['addressfile'] ?>" target="_blank">
+                                                                        <a href="<?= $addressfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -605,9 +605,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Cancelled Cheque</td>
                                                         <td>
-                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): $cancelledchequefile = getSignedUrl($docData['cancelledchequefile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                        <a href="<?= $cancelledchequefile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -624,9 +624,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): ?>
+                                                            <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): $aadhaaradnfile = getSignedUrl($docData['aadhaaradnfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['aadhaaradnfile'] ?>" target="_blank">
+                                                                        <a href="<?= $aadhaaradnfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -639,9 +639,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): ?>
+                                                            <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): $personalpanadnfile = getSignedUrl($docData['personalpanadnfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['personalpanadnfile'] ?>" target="_blank">
+                                                                        <a href="<?= $personalpanadnfile?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -654,9 +654,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Photograph</td>
                                                         <td>
-                                                            <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                            <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfile = getSignedUrl($docData['signatoryphotoadnfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
+                                                                        <a href="<?= $signatoryphotoadnfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -669,9 +669,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Signature</td>
                                                         <td>
-                                                            <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                            <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfile = getSignedUrl($docData['signatorysignadnfile']); ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['signatorysignadnfile'] ?>" target="_blank">
+                                                                        <a href="<?= $signatorysignadnfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -684,9 +684,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
-                                                            <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): ?>
+                                                            <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): $addressadnfile = getSignedUrl($docData['addressadnfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['addressadnfile'] ?>" target="_blank">
+                                                                        <a href="<?= $daddressadnfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -699,9 +699,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Cancelled Cheque</td>
                                                         <td>
-                                                            <div id="cancelledchequefileadn"><?php if (!empty($docData['cancelledchequefileadn'])): ?>
+                                                            <div id="cancelledchequefileadn"><?php if (!empty($docData['cancelledchequefileadn'])): $cancelledchequefileadn = getSignedUrl($docData['cancelledchequefileadn']); ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['cancelledchequefileadn'] ?>" target="_blank">
+                                                                        <a href="<?= $dcancelledchequefileadn ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -718,9 +718,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
                                                         <td>
-                                                            <div id="coifilepreview"><?php if (!empty($docData['coifile'])): ?>
+                                                            <div id="coifilepreview"><?php if (!empty($docData['coifile'])): $coifile = getSignedUrl($docData['coifile']); ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['coifile'] ?>" target="_blank">
+                                                                        <a href="<?= $coifile?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -733,9 +733,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Memorandum of Association (MOA)</td>
                                                         <td>
-                                                            <div id="moafilepreview"><?php if (!empty($docData['moafile'])): ?>
+                                                            <div id="moafilepreview"><?php if (!empty($docData['moafile'])): $moafile = getSignedUrl($docData['moafile']); ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['moafile'] ?>" target="_blank">
+                                                                        <a href="<?= $moafile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -748,9 +748,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Articles of Association (AOA) </td>
                                                         <td>
-                                                            <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): ?>
+                                                            <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): $aoafile = getSignedUrl($docData['aoafile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['aoafile'] ?>" target="_blank">
+                                                                        <a href="<?= $aoafile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -763,9 +763,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
                                                         <td>
-                                                            <div id="brfilepreview"><?php if (!empty($docData['brfile'])): ?>
+                                                            <div id="brfilepreview"><?php if (!empty($docData['brfile'])): $brfile = getSignedUrl($docData['brfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['brfile'] ?>" target="_blank">
+                                                                        <a href="<?= $brfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -778,9 +778,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>UDYAM Registration Certificate (If Available)</td>
                                                         <td>
-                                                            <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): ?>
+                                                            <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): $udyamfile = getSignedUrl($docData['udyamfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['udyamfile'] ?>" target="_blank">
+                                                                        <a href="<?= $udyamfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -793,9 +793,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>GSTIN Certificate</td>
                                                         <td>
-                                                            <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): ?>
+                                                            <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): $gstinfile = getSignedUrl($docData['gstinfile']); ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['gstinfile'] ?>" target="_blank">
+                                                                        <a href="<?= $gstinfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -808,9 +808,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
                                                         <td>
-                                                            <div id="bofilepreview"><?php if (!empty($docData['bofile'])): ?>
+                                                            <div id="bofilepreview"><?php if (!empty($docData['bofile'])): $bofile = getSignedUrl($docData['bofile']); ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['bofile'] ?>" target="_blank">
+                                                                        <a href="<?= $bofile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -825,9 +825,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
                                                         <td>
-                                                            <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
+                                                            <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): $rentfile = getSignedUrl($docData['rentfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['rentfile'] ?>" target="_blank">
+                                                                        <a href="<?= $rentfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -840,9 +840,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>ANNEXURE B Form with Signature and Stamp</td>
                                                         <td>
-                                                            <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): ?>
+                                                            <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): $annexurebfile = getSignedUrl($docData['annexurebfile']);?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['annexurebfile'] ?>" target="_blank">
+                                                                        <a href="<?= $annexurebfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
