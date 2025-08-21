@@ -5,14 +5,14 @@ require __DIR__ . '/aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
 
 
-$awsKey = $_ENV['AWS_KEY'];
-$awsSecret = $_ENV['AWS_SECRET'];
-$region  = $_ENV['AWS_REGION'];
-$bucket  = $_ENV['AWS_BUCKET'];
+$awsKey = $_ENV['AKIA5FTY6UPGU5LZHY5T'];
+$awsSecret = $_ENV['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'];
+$region  = $_ENV['ap-south-1'];
+$bucket  = $_ENV['onboarding-plus'];
 
 
 // Create S3 Client
