@@ -945,7 +945,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <!-- Photo placeholder -->
                                                         <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <?php echo $photographpr; ?>
+                                                                    
                                                                     <img src="<?= $photographpr ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
@@ -955,9 +955,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): ?>
+                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="../<?= htmlspecialchars($docData['signatorysignfile']) ?>"
+                                                                    <img src="<?= $signatorysignfilepr ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -968,9 +968,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     </td>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']); ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="../<?= htmlspecialchars($docData['signatoryphotoadnfile']) ?>"
+                                                                    <img src="<?= $signatoryphotoadnfilepr ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -979,9 +979,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="../<?= htmlspecialchars($docData['signatorysignadnfile']) ?>"
+                                                                    <img src="<?= $signatorysignadnfilepr ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
