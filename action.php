@@ -2,6 +2,27 @@
 
 include 'db.php';
 
+require __DIR__ . '/aws/aws-autoloader.php';
+
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
+
+// ===== AWS Config =====
+$bucket    = "onboarding-plus";
+$region    = "ap-south-1";
+$awsKey    = "AKIA5FTY6UPGU5LZHY5T";
+$awsSecret = "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";
+
+// Create S3 Client
+$s3 = new S3Client([
+    'version' => 'latest',
+    'region'  => $region,
+    'credentials' => [
+        'key'    => $awsKey,
+        'secret' => $awsSecret,
+    ],
+]);
+
 $prefix = "ITSTAR";
 
 do {
@@ -218,6 +239,21 @@ foreach ($fileFields as $field) {
 
         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
             $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
+
+            // ===== Upload to AWS S3 =====
+                try {
+                    $s3Result = $s3->putObject([
+                        'Bucket'     => $bucket,
+                        'Key'        => "IT_STARPAY/" . $fileName,
+                        'SourceFile' => $targetPath,
+                        //'ACL'      => 'public-read', // optional
+                    ]);
+                    $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
+                } catch (AwsException $e) {
+                    echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+                    $uploadedFiles[$field] = $targetPath; // fallback to local path
+                }
+                
         } else {
             $uploadedFiles[$field] = '';
         }
