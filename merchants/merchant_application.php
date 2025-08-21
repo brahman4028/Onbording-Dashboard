@@ -993,7 +993,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                                 View uploaded file
                                                             </a>
                                                             
-                                                            <div id="aadhaarfilepreview" data-fileurl="<?= $aadhaarUrl ?>"></div>
+                                                            <div id="file-preview" data-fileurl="<?= $aadhaarUrl ?>"></div>
 
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
@@ -2262,23 +2262,37 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
 
 <script>
-  (function () {
-    const div = document.getElementById("aadhaarfilepreviw");
+document.querySelectorAll('.file-preview').forEach(div => {
     const fileUrl = div.dataset.fileurl;
     if (!fileUrl) return;
 
-    const ext = fileUrl.split('.').pop().toLowerCase();
+    let previewElement;
 
-    if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) {
-      div.innerHTML = `<img src="${fileUrl}" alt="preview" style="max-width:100%;height:auto;border:1px solid #ddd;padding:4px;border-radius:6px;" />`;
+    if (/\.(jpg|jpeg|png|gif|webp)$/i.test(fileUrl)) {
+        // If image
+        previewElement = document.createElement('img');
+        previewElement.src = fileUrl;
+        previewElement.style.maxWidth = "200px";
+        previewElement.style.display = "block";
     } 
-    else if (ext === "pdf") {
-      div.innerHTML = `<iframe src="${fileUrl}" width="100%" height="500px" style="border:1px solid #ddd;border-radius:6px;"></iframe>`;
+    else if (/\.pdf$/i.test(fileUrl)) {
+        // If PDF
+        previewElement = document.createElement('embed');
+        previewElement.src = fileUrl;
+        previewElement.type = "application/pdf";
+        previewElement.width = "300";
+        previewElement.height = "200";
     } 
     else {
-      div.innerHTML = `<a href="${fileUrl}" target="_blank">Download File</a>`;
+        // Other file types
+        previewElement = document.createElement('a');
+        previewElement.href = fileUrl;
+        previewElement.textContent = "Download File";
+        previewElement.target = "_blank";
     }
-  })();
+
+    div.appendChild(previewElement);
+});
 </script>
 
 
