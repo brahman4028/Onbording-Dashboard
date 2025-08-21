@@ -3,9 +3,11 @@
 session_start();
 
 require __DIR__ . '/../aws/aws-autoloader.php';
+
 use Aws\S3\S3Client;
 
-function getSignedUrl($fileKey) {
+function getSignedUrl($fileKey)
+{
     if (empty($fileKey)) return null;
 
     $bucket    = "onboarding-plus";
@@ -26,7 +28,7 @@ function getSignedUrl($fileKey) {
         // If full URL is passed, extract only the Key
         if (strpos($fileKey, 'https://') === 0) {
             $parsedUrl = parse_url($fileKey);
-            $fileKey   = ltrim($parsedUrl['path'], '/'); 
+            $fileKey   = ltrim($parsedUrl['path'], '/');
         }
 
         $cmd = $s3->getCommand('GetObject', [
@@ -39,6 +41,24 @@ function getSignedUrl($fileKey) {
         return null;
     }
 }
+
+function renderFilePreview($fileUrl) {
+    if (!$fileUrl) return '';
+
+    $ext = strtolower(pathinfo(parse_url($fileUrl, PHP_URL_PATH), PATHINFO_EXTENSION));
+
+    if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+        // Image preview
+        return '<img src="' . htmlspecialchars($fileUrl) . '" alt="Preview" style="max-width:100%; height:auto; border:1px solid #ccc; border-radius:8px;">';
+    } elseif ($ext === 'pdf') {
+        // PDF preview
+        return '<iframe src="' . htmlspecialchars($fileUrl) . '" style="width:100%; height:400px; border:1px solid #ccc; border-radius:8px;"></iframe>';
+    } else {
+        // Fallback - unknown type
+        return '<a href="' . htmlspecialchars($fileUrl) . '" target="_blank">Download File</a>';
+    }
+}
+
 $application_id = '';
 
 if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
@@ -432,7 +452,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                             </div>
 
                                             <!-- 4. Bank Account Details -->
-                                            <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">4.  Bank Account Details</h5>
+                                            <h5 class="fw-bold  mt-4" style="color:rgb(3, 106, 216);">4. Bank Account Details</h5>
                                             <table class="table table-bordered align-middle">
                                                 <tr>
                                                     <td>Account Holder Name</td>
@@ -582,7 +602,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                     <tr>
+                                                    <tr>
                                                         <td>Cancelled Cheque</td>
                                                         <td>
                                                             <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
@@ -676,7 +696,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                     <tr>
+                                                    <tr>
                                                         <td>Cancelled Cheque</td>
                                                         <td>
                                                             <div id="cancelledchequefileadn"><?php if (!empty($docData['cancelledchequefileadn'])): ?>
@@ -801,7 +821,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         </td>
                                                     </tr>
                                                     </tr>
-                                                   
+
                                                     <tr>
                                                         <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
                                                         <td>
@@ -992,8 +1012,12 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <a href="<?= $aadhaarUrl ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            
+
                                                             <div id="" class="file-preview" data-fileurl="<?= $aadhaarUrl ?>"></div>
+
+                                                            <div id="aadhaarfilepreviw">
+                                                                <?= renderFilePreview($aadhaarUrl) ?>
+                                                            </div>
 
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
@@ -1593,7 +1617,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 'addressfilepreview', 'coifilepreview', 'moafilepreview',
                 'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
                 'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile','cancelledchequefileadn', 'aadhaaradnfilepreview', 'personalpanadnfilepreview', 'signatoryphotoadnfilepreview', 'addressadnfilepreview', 'signatorysignfilepreview', 'signatorysignadnfilepreview', 'signphoto1', 'signphoto2', 'sign1', 'sign2'
+                'annexurebfilepreview', 'cancelledchequefile', 'cancelledchequefileadn', 'aadhaaradnfilepreview', 'personalpanadnfilepreview', 'signatoryphotoadnfilepreview', 'addressadnfilepreview', 'signatorysignfilepreview', 'signatorysignadnfilepreview', 'signphoto1', 'signphoto2', 'sign1', 'sign2'
             ];
 
             // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
@@ -2258,42 +2282,40 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     </script>
 
 
-<!-- show media preview -->
+    <!-- show media preview -->
 
 
-<script>
-document.querySelectorAll('.file-preview').forEach(div => {
-    const fileUrl = div.dataset.fileurl;
-    if (!fileUrl) return;
+    <script>
+        document.querySelectorAll('.file-preview').forEach(div => {
+            const fileUrl = div.dataset.fileurl;
+            if (!fileUrl) return;
 
-    let previewElement;
+            let previewElement;
 
-    if (/\.(jpg|jpeg|png|gif|webp)$/i.test(fileUrl)) {
-        // If image
-        previewElement = document.createElement('img');
-        previewElement.src = fileUrl;
-        previewElement.style.maxWidth = "200px";
-        previewElement.style.display = "block";
-    } 
-    else if (/\.pdf$/i.test(fileUrl)) {
-        // If PDF
-        previewElement = document.createElement('embed');
-        previewElement.src = fileUrl;
-        previewElement.type = "application/pdf";
-        previewElement.width = "300";
-        previewElement.height = "200";
-    } 
-    else {
-        // Other file types
-        previewElement = document.createElement('a');
-        previewElement.href = fileUrl;
-        previewElement.textContent = "Download File";
-        previewElement.target = "_blank";
-    }
+            if (/\.(jpg|jpeg|png|gif|webp)$/i.test(fileUrl)) {
+                // If image
+                previewElement = document.createElement('img');
+                previewElement.src = fileUrl;
+                previewElement.style.maxWidth = "200px";
+                previewElement.style.display = "block";
+            } else if (/\.pdf$/i.test(fileUrl)) {
+                // If PDF
+                previewElement = document.createElement('embed');
+                previewElement.src = fileUrl;
+                previewElement.type = "application/pdf";
+                previewElement.width = "300";
+                previewElement.height = "200";
+            } else {
+                // Other file types
+                previewElement = document.createElement('a');
+                previewElement.href = fileUrl;
+                previewElement.textContent = "Download File";
+                previewElement.target = "_blank";
+            }
 
-    div.appendChild(previewElement);
-});
-</script>
+            div.appendChild(previewElement);
+        });
+    </script>
 
 
 </body>
