@@ -988,11 +988,11 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td class="blr">
                                                         <strong>Aadhaar Card</strong><br>
 
-                                                        <?php if (!empty($docData['aadhaarfile'])): ?>
-                                                            <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                        <?php if (!empty($docData['aadhaarfile'])): $aadhaarUrl = getSignedUrl($docData['aadhaaradnfile']); ?>
+                                                            <a href="<?= $aadhaarUrl ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="aadhaarfilepreview" data-fileurl="<?= $docData['aadhaarfile'] ?>"></div>
+                                                            <div id="aadhaarfilepreview" data-fileurl="<?= $aadhaarUrl ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
