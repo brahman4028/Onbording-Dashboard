@@ -4,14 +4,15 @@ require __DIR__ . '/aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// $dotenv = Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
 
 
-$awsKey = $_ENV['AWS_KEY'];
-$awsSecret = $_ENV['AWS_SECRET'];
-$region  = $_ENV['AWS_REGION'];
-$bucket  = $_ENV['AWS_BUCKET'];
+// AWS Config
+$bucket    = "onboarding-plus";   // only bucket name
+$region    = "ap-south-1";        // your bucket region
+$awsKey    = "AKIA5FTY6UPGU5LZHY5T";
+$awsSecret = "LwRHCaRKs9WjGR+nP7vnb75t87Y9zURKaZg2sQdP";
 
 
 // ===== File to fetch =====

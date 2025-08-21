@@ -9,10 +9,11 @@ use Aws\Exception\AwsException;
 // $dotenv->load();
 
 
-$awsKey = $_ENV['AKIA5FTY6UPGU5LZHY5T'];
-$awsSecret = $_ENV['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'];
-$region  = $_ENV['ap-south-1'];
-$bucket  = $_ENV['onboarding-plus'];
+// AWS Config
+$bucket    = "onboarding-plus";   // only bucket name
+$region    = "ap-south-1";        // your bucket region
+$awsKey    = "AKIA5FTY6UPGU5LZHY5T";
+$awsSecret = "LwRHCaRKs9WjGR+nP7vnb75t87Y9zURKaZg2sQdP";
 
 
 // Create S3 Client
