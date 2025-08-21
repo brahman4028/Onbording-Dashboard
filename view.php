@@ -35,8 +35,8 @@ try {
         'Key'    => $key
     ]);
 
-    $request = $s3->createPresignedRequest($cmd, '+15 minutes');
-    $presignedUrl = "https://{$bucket}.s3.{$region}.amazonaws.com/{$key}";
+    $request = $s3->createPresignedRequest($cmd, '+1 minutes');
+    $presignedUrl = (string) $request->getUri();
 
     // Display image preview
     echo "<h3>Private Media Preview</h3>";
