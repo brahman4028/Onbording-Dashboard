@@ -2,6 +2,37 @@
 
 session_start();
 
+require __DIR__ . '/aws/aws-autoloader.php';
+use Aws\S3\S3Client;
+
+function getSignedUrl($fileKey) {
+    if (empty($fileKey)) return null;
+
+    $bucket    = "onboarding-plus";
+    $region    = "ap-south-1";
+    $awsKey    = "AKIAxxxx";
+    $awsSecret = "LwRHxxxx";
+
+    $s3 = new S3Client([
+        'version' => 'latest',
+        'region'  => $region,
+        'credentials' => [
+            'key'    => $awsKey,
+            'secret' => $awsSecret,
+        ],
+    ]);
+
+    try {
+        $cmd = $s3->getCommand('GetObject', [
+            'Bucket' => $bucket,
+            'Key'    => ltrim($fileKey, '/')
+        ]);
+        $request = $s3->createPresignedRequest($cmd, '+5 minutes');
+        return (string) $request->getUri();
+    } catch (Exception $e) {
+        return null;
+    }
+}
 
 $application_id = '';
 
@@ -475,9 +506,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): $aadhaarUrl = getSignedUrl($docData['aadhaaradnfile']); ?>
+                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])):  ?>
                                                                     <p>
-                                                                        <a href="<?= $aadhaarUrl ?>" target="_blank">
+                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
