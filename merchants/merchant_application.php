@@ -1013,11 +1013,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                                 View uploaded file
                                                             </a>
 
-                                                            <div id="aadhaarfilepreviw" class="file-preview" data-fileurl="<?= $aadhaarUrl ?>"></div>
-
-                                                            <div id="aadhaarfilepreview">
-                                                                <?= renderFilePreview($aadhaarUrl) ?>
+                                                            <div id="aadhaarfilepreview" class="file-preview" data-fileurl="<?= $aadhaarUrl ?>">
+                                                              <?= renderFilePreview($aadhaarUrl) ?>
                                                             </div>
+
 
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
