@@ -995,9 +995,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             
                                                             <div id="aadhaarfilepreview" data-fileurl="<?= $aadhaarUrl ?>"></div>
 
-                                                            <?php echo $aadhaarUrl ?>
-                                                            
-                                                            <img src="<?php echo $aadhaarUrl ?>">
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -2259,6 +2256,31 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             });
         });
     </script>
+
+
+<!-- show media preview -->
+
+
+<script>
+  (function () {
+    const div = document.getElementById("aadhaarfilepreviw");
+    const fileUrl = div.dataset.fileurl;
+    if (!fileUrl) return;
+
+    const ext = fileUrl.split('.').pop().toLowerCase();
+
+    if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) {
+      div.innerHTML = `<img src="${fileUrl}" alt="preview" style="max-width:100%;height:auto;border:1px solid #ddd;padding:4px;border-radius:6px;" />`;
+    } 
+    else if (ext === "pdf") {
+      div.innerHTML = `<iframe src="${fileUrl}" width="100%" height="500px" style="border:1px solid #ddd;border-radius:6px;"></iframe>`;
+    } 
+    else {
+      div.innerHTML = `<a href="${fileUrl}" target="_blank">Download File</a>`;
+    }
+  })();
+</script>
+
 
 </body>
 
