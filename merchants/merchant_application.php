@@ -1013,7 +1013,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                                 View uploaded file
                                                             </a>
 
-                                                            <div id="" class="file-preview" data-fileurl="<?= $aadhaarUrl ?>"></div>
+                                                            <div id="aadhaarfilepreviw" class="file-preview" data-fileurl="<?= $aadhaarUrl ?>"></div>
 
                                                             <div id="aadhaarfilepreviw">
                                                                 <?= renderFilePreview($aadhaarUrl) ?>
@@ -1029,11 +1029,13 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td>
                                                         <strong>PAN Card</strong><br>
 
-                                                        <?php if (!empty($docData['personalpanfile'])): ?>
-                                                            <a href="../<?= $docData['personalpanfile'] ?>" target="_blank">
+                                                        <?php if (!empty($docData['personalpanfile'])): $personalpanfileUrl = getSignedUrl($docData['personalpanfile']); ?>
+                                                            <a href="<?= $personalpanfileUrl ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanfilepreview" data-fileurl="../<?= $docData['personalpanfile'] ?>"></div>
+                                                            <div id="personalpanfilepreview" data-fileurl="../<?= $docData['personalpanfile'] ?>">
+                                                                <?= renderFilePreview($personalpanfileUrl) ?>
+                                                            </div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
