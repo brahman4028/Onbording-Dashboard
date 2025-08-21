@@ -995,6 +995,8 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             
                                                             <div id="aadhaarfilepreview" data-fileurl="<?= $aadhaarUrl ?>"></div>
 
+                                                            <?php echo $aadhaarUrl ?>
+                                                            
                                                             <img src="<?php echo $aadhaarUrl ?>">
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
