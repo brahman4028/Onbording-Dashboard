@@ -36,7 +36,7 @@ try {
     ]);
 
     $request = $s3->createPresignedRequest($cmd, '+15 minutes');
-    $presignedUrl = (string) $request->getUri();
+    $presignedUrl = "https://{$bucket}.s3.{$region}.amazonaws.com/{$key}";
 
     // Display image preview
     echo "<h3>Private Media Preview</h3>";
@@ -45,3 +45,4 @@ try {
 } catch (AwsException $e) {
     echo "<p style='color:red;'>❌ Error fetching private file: " . $e->getMessage() . "</p>";
 }
+?>
