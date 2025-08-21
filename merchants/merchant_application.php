@@ -575,9 +575,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     </tr>
                                                     <td>Signature</td>
                                                     <td>
-                                                        <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfile = getSignedUrl($docData['signatoryphotoadnfile']);?>
+                                                        <div id="signatorysignfilepreview"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfile = getSignedUrl($docData['signatorysignfile']);?>
                                                                 <p>
-                                                                    <a href="<?= $signatoryphotoadnfile ?>" target="_blank">
+                                                                    <a href="<?= $signatorysignfile ?>" target="_blank">
                                                                         View uploaded file
                                                                     </a>
                                                                 </p>
