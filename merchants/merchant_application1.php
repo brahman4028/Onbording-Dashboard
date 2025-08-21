@@ -1033,7 +1033,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <a href="<?= $personalpanfileUrl ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanfilepreview" data-fileurl="<?= $personalpanfileUrl ?>">
+                                                            <div id="personalpanfilepreview" data-fileurl="../<?= $docData['personalpanfile'] ?>">
                                                                 <?= renderFilePreview($personalpanfileUrl) ?>
                                                             </div>
                                                         <?php else: ?>
