@@ -2,37 +2,6 @@
 
 session_start();
 
-require __DIR__ . '../aws/aws-autoloader.php';
-use Aws\S3\S3Client;
-
-function getSignedUrl($fileKey) {
-    if (empty($fileKey)) return null;
-
-    $bucket    = "onboarding-plus";
-    $region    = "ap-south-1";
-    $awsKey    = "AKIA5FTY6UPGU5LZHY5T";
-    $awsSecret = "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";
-
-    $s3 = new S3Client([
-        'version' => 'latest',
-        'region'  => $region,
-        'credentials' => [
-            'key'    => $awsKey,
-            'secret' => $awsSecret,
-        ],
-    ]);
-
-    try {
-        $cmd = $s3->getCommand('GetObject', [
-            'Bucket' => $bucket,
-            'Key'    => ltrim($fileKey, '/')
-        ]);
-        $request = $s3->createPresignedRequest($cmd, '+5 minutes');
-        return (string) $request->getUri();
-    } catch (Exception $e) {
-        return null;
-    }
-}
 
 $application_id = '';
 
