@@ -943,9 +943,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                 <tr>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): ?>
+                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="../<?= htmlspecialchars($docData['photograph']) ?>"
+                                                                    <?php echo $photographpr; ?>
+                                                                    <img src="<?= $photographpr ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
