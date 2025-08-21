@@ -5,7 +5,7 @@ require __DIR__ . '/aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 
