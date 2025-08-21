@@ -11,7 +11,6 @@ use Aws\Exception\AwsException;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Access AWS credentials
 $awsKey = $_ENV['AWS_KEY'];
 $awsSecret = $_ENV['AWS_SECRET'];
 $region  = $_ENV['AWS_REGION'];
