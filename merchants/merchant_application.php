@@ -2,7 +2,7 @@
 
 session_start();
 
-require __DIR__ . './aws/aws-autoloader.php';
+require __DIR__ . '../aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 
 function getSignedUrl($fileKey) {
