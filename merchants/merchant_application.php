@@ -23,16 +23,21 @@ function getSignedUrl($fileKey) {
     ]);
 
     try {
+        // If full URL is passed, extract only the Key
+        if (strpos($fileKey, 'https://') === 0) {
+            $parsedUrl = parse_url($fileKey);
+            $fileKey   = ltrim($parsedUrl['path'], '/'); 
+        }
+
         $cmd = $s3->getCommand('GetObject', [
             'Bucket' => $bucket,
-            'Key'    => ltrim($fileKey, '/')
+            'Key'    => $fileKey
         ]);
-        $request = $s3->createPresignedRequest($cmd, '+5 minutes');
+        $request = $s3->createPresignedRequest($cmd, '+1 minutes');
         return (string) $request->getUri();
     } catch (Exception $e) {
         return null;
     }
-}
 
 $application_id = '';
 
