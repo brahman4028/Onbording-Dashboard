@@ -476,7 +476,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): ?>
                                                                     <p>
-                                                                        <a href="../<?= $docData['aadhaarfile'] ?>" target="_blank">
+                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
