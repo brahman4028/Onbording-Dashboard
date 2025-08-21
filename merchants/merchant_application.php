@@ -38,7 +38,7 @@ function getSignedUrl($fileKey) {
     } catch (Exception $e) {
         return null;
     }
-
+}
 $application_id = '';
 
 if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
