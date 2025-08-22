@@ -1946,7 +1946,7 @@ echo "</pre>";
 
     <!-- reflecting pdf on onload -->
 
-    <!-- <script>
+    <script>
         window.addEventListener('DOMContentLoaded', () => {
             const fileDivIds = [
                 'aadhaarpreview', 'personalpanpreview', 'photographpreview',
@@ -1981,7 +1981,7 @@ echo "</pre>";
                     });
             });
         });
-    </script> -->
+    </script>
 
 
     <!-- /////////////// -->
