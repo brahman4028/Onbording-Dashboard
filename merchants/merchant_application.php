@@ -116,22 +116,22 @@ $docQuery = "SELECT * FROM business_documents WHERE application_id = '$applicati
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
-$fileData = [
-    "aadhaar"       => !empty($docData['aadhaarfile']) ? getSignedUrl($docData['aadhaarfile']) : null,
-    "personalpan"   => !empty($docData['personalpanfile']) ? getSignedUrl($docData['personalpanfile']) : null,
-    "photograph"    => !empty($docData['photographfile']) ? getSignedUrl($docData['photographfile']) : null,
-    "address"       => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
-    "coi"           => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
-    "moa"           => !empty($docData['moafile']) ? getSignedUrl($docData['moafile']) : null,
-    "aoa"           => !empty($docData['aoafile']) ? getSignedUrl($docData['aoafile']) : null,
-    "br"            => !empty($docData['brfile']) ? getSignedUrl($docData['brfile']) : null,
-    "udyam"         => !empty($docData['udyamfile']) ? getSignedUrl($docData['udyamfile']) : null,
-    "gstin"         => !empty($docData['gstinfile']) ? getSignedUrl($docData['gstinfile']) : null,
-    "bo"            => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
-    "rent"          => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
-    "annexureb"     => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
-    "cancelledcheque" => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null
-];
+// $fileData = [
+//     "aadhaar"       => !empty($docData['aadhaarfile']) ? getSignedUrl($docData['aadhaarfile']) : null,
+//     "personalpan"   => !empty($docData['personalpanfile']) ? getSignedUrl($docData['personalpanfile']) : null,
+//     "photograph"    => !empty($docData['photographfile']) ? getSignedUrl($docData['photographfile']) : null,
+//     "address"       => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
+//     "coi"           => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
+//     "moa"           => !empty($docData['moafile']) ? getSignedUrl($docData['moafile']) : null,
+//     "aoa"           => !empty($docData['aoafile']) ? getSignedUrl($docData['aoafile']) : null,
+//     "br"            => !empty($docData['brfile']) ? getSignedUrl($docData['brfile']) : null,
+//     "udyam"         => !empty($docData['udyamfile']) ? getSignedUrl($docData['udyamfile']) : null,
+//     "gstin"         => !empty($docData['gstinfile']) ? getSignedUrl($docData['gstinfile']) : null,
+//     "bo"            => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
+//     "rent"          => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
+//     "annexureb"     => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
+//     "cancelledcheque" => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null
+// ];
 
 ?>
 
