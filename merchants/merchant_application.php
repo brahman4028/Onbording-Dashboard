@@ -1014,7 +1014,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                                 View uploaded file
                                                             </a>
 
-                                                            <div id="aadhaarfilepreviw" class="file-preview" data-fileurl="<?= $aadhaarfile ?>">
+                                                            <div id="aadhaarfilepreview" class="file-preview" data-fileurl="<?= $aadhaarfile ?>">
                                                               <?= renderFilePreview($aadhaaradnfile) ?>
                                                             </div>
 
@@ -1033,7 +1033,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <a href="<?= $personalpanfileUrl ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanfilepreviw" data-fileurl="<?= $personalpanfileUrl ?>">
+                                                            <div id="personalpanfilepreview" data-fileurl="<?= $personalpanfileUrl ?>">
                                                                 <?= renderFilePreview($personalpanfileUrl) ?>
                                                             </div>
                                                         <?php else: ?>
