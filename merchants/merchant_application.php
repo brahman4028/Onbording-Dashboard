@@ -120,7 +120,7 @@ $fileData = [
     // Core docs
     "aadhaar"            => !empty($docData['aadhaarfile']) ? getSignedUrl($docData['aadhaarfile']) : null,
     "personalpan"        => !empty($docData['personalpanfile']) ? getSignedUrl($docData['personalpanfile']) : null,
-    "photograph"         => !empty($docData['photographfile']) ? getSignedUrl($docData['photographfile']) : null,
+    "photograph"         => !empty($docData['photograph']) ? getSignedUrl($docData['photograph']) : null,
     "address"            => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
     "coi"                => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
     "moa"                => !empty($docData['moafile']) ? getSignedUrl($docData['moafile']) : null,
@@ -285,7 +285,7 @@ $fileData = [
                                             <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                             <div>
                                                 <h5 class=" mt-4 text-center" style="color:rgba(15, 15, 15, 1)">
-                                                    <?= htmlspecialchars($appData['businessname']) ?>'s Application
+                                                    <?=  htmlspecialchars($appData['businessname']) ?>'s Application
                                                 </h5>
                                                 <p class="mb-0 steper-sub-title">Just a file Preview</p>
                                             </div>
@@ -1118,7 +1118,7 @@ $fileData = [
                                                                 View uploaded file
                                                             </a>
                                                             <div id="addressfilepreview" data-fileurl="<?= $daddressfilepr ?>">
-                                                                <?= renderFilePreview($aadhaarfilepr) ?>
+                                                                <?= renderFilePreview($addressfilepr) ?>
                                                             </div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
@@ -1274,6 +1274,22 @@ $fileData = [
                                                             </a>
                                                             <div id="moafilepreview" data-fileurl="<?= $moafilepr ?>">
                                                                 <?= renderFilePreview($moafilepr) ?>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <p style="color: #888;">No file uploaded</p>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Articles of Association (AOA)</strong><br>
+
+                                                        <?php if (!empty($docData['aoafile'])): $aoafilepr = getSignedUrl($docData['aoafile']); ?>
+                                                            <a href="<?= $aoafilepr ?>" target="_blank">
+                                                                View uploaded file
+                                                            </a>
+                                                            <div id="moafilepreview" data-fileurl="<?= $aoafilepr ?>">
+                                                                <?= renderFilePreview($aoafilepr) ?>
                                                             </div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
