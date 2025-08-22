@@ -1268,7 +1268,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                     <td>
                                                         <strong>UDYAM Registration Certificate (If Available)</strong><br>
 
-                                                        <?php if (!empty($docData['udyamfile'])): $udyamfilepr = getSignedUrl($docData['brfudyamfileile']);?>
+                                                        <?php if (!empty($docData['udyamfile'])): $udyamfilepr = getSignedUrl($docData['udyamfile']);?>
                                                             <a href="<?= $udyamfilepr ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
