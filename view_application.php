@@ -339,7 +339,7 @@ $fileData = [
 
 
                                             <div class="text-center mb-4" style="margin-top:-75px">
-                                                <img src="../assets/images/itstarlogo.png" alt="Logo" style="max-height: 65px;">
+                                                <img src="assets/images/itstarlogo.png" alt="Logo" style="max-height: 65px;">
                                                 <h4 class="text-medium">Staar Payout Private Limited</h4>
                                                 <h5 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h5>
                                             </div>
