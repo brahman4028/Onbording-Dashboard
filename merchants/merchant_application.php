@@ -1187,8 +1187,8 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                             <a href="../<?= $addressadnfilepr ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="addressadnfilepreview" data-fileurl="<?= $daddressadnfilepr ?>">
-                                                                <?= renderFilePreview($aadhaarfilepr) ?>
+                                                            <div id="addressadnfilepreview" data-fileurl="<?= $addressadnfilepr ?>">
+                                                                <?= renderFilePreview($addressadnfilepr) ?>
                                                             </div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
