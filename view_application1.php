@@ -2,67 +2,6 @@
 
 session_start();
 
-
-require __DIR__ . '/../aws/aws-autoloader.php';
-
-use Aws\S3\S3Client;
-
-function getSignedUrl($fileKey)
-{
-    if (empty($fileKey)) return null;
-
-    $bucket    = "onboarding-plus";
-    $region    = "ap-south-1";
-    $awsKey    = "AKIA5FTY6UPGU5LZHY5T";
-    $awsSecret = "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";
-
-    $s3 = new S3Client([
-        'version' => 'latest',
-        'region'  => $region,
-        'credentials' => [
-            'key'    => $awsKey,
-            'secret' => $awsSecret,
-        ],
-    ]);
-
-    try {
-        // If full URL is passed, extract only the Key
-        if (strpos($fileKey, 'https://') === 0) {
-            $parsedUrl = parse_url($fileKey);
-            $fileKey   = ltrim($parsedUrl['path'], '/');
-        }
-
-        $cmd = $s3->getCommand('GetObject', [
-            'Bucket' => $bucket,
-            'Key'    => $fileKey
-        ]);
-        $request = $s3->createPresignedRequest($cmd, '+15 minutes');
-        return (string) $request->getUri();
-    } catch (Exception $e) {
-        return null;
-    }
-}
-
-function renderFilePreview($fileUrl)
-{
-    if (!$fileUrl) return '';
-
-    $ext = strtolower(pathinfo(parse_url($fileUrl, PHP_URL_PATH), PATHINFO_EXTENSION));
-
-    if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-        // Image preview
-        return '<img src="' . htmlspecialchars($fileUrl) . '" alt="Preview" style="max-width:100%; height:auto; border:1px solid #ccc; border-radius:8px;">';
-    } elseif ($ext === 'pdf') {
-        // PDF preview
-        return '<iframe src="' . htmlspecialchars($fileUrl) . '" style="width:100%; height:400px; border:1px solid #ccc; border-radius:8px;"></iframe>';
-    } else {
-        // Fallback - unknown type
-        return '<a href="' . htmlspecialchars($fileUrl) . '" target="_blank">Download File</a>';
-    }
-}
-
-
-
 // Redirect if user is not logged in
 // if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
 //     header("Location: login.php");
@@ -105,44 +44,6 @@ $appData = mysqli_fetch_assoc($appResult);
 $docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
-
-$fileData = [
-    // Core docs
-    "aadhaar"            => !empty($docData['aadhaarfile']) ? getSignedUrl($docData['aadhaarfile']) : null,
-    "personalpan"        => !empty($docData['personalpanfile']) ? getSignedUrl($docData['personalpanfile']) : null,
-    "photograph"         => !empty($docData['photograph']) ? getSignedUrl($docData['photograph']) : null,
-    "address"            => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
-    "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
-     "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
-     
-      // Additional previews (adn = additional?)
-    "aadhaaradn"         => !empty($docData['aadhaaradnfile']) ? getSignedUrl($docData['aadhaaradnfile']) : null,
-    "personalpanadn"     => !empty($docData['personalpanadnfile']) ? getSignedUrl($docData['personalpanadnfile']) : null,
-    "addressadn"         => !empty($docData['addressadnfile']) ? getSignedUrl($docData['addressadnfile']) : null,
-    "signatoryphotoadn"  => !empty($docData['signatoryphotoadnfile']) ? getSignedUrl($docData['signatoryphotoadnfile']) : null,
-      "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
-      "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
-    
-
-
-    "coi"                => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
-    "moa"                => !empty($docData['moafile']) ? getSignedUrl($docData['moafile']) : null,
-    "aoa"                => !empty($docData['aoafile']) ? getSignedUrl($docData['aoafile']) : null,
-    "br"                 => !empty($docData['brfile']) ? getSignedUrl($docData['brfile']) : null,
-    "udyam"              => !empty($docData['udyamfile']) ? getSignedUrl($docData['udyamfile']) : null,
-    "gstin"              => !empty($docData['gstinfile']) ? getSignedUrl($docData['gstinfile']) : null,
-    "bo"                 => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
-    "rent"               => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
-    "annexureb"          => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
-   
-
-
-    // Signatures/photos (single or multiple)
-    "signphoto1"         => !empty($docData['signphoto1']) ? getSignedUrl($docData['signphoto1']) : null,
-    "signphoto2"         => !empty($docData['signphoto2']) ? getSignedUrl($docData['signphoto2']) : null,
-    "sign1"              => !empty($docData['sign1']) ? getSignedUrl($docData['sign1']) : null,
-    "sign2"              => !empty($docData['sign2']) ? getSignedUrl($docData['sign2']) : null,
-];
 
 ?>
 
@@ -259,7 +160,7 @@ $fileData = [
                 </div>
             </nav>
         </header>
-         <form action="update.php" method="POST" enctype="multipart/form-data">
+        <form action="update.php" method="POST" enctype="multipart/form-data">
             <!-- for passing the id field -->
             <input type="text" hidden name="businame" id="businame" value="<?= $appData['businessname'] ?>">
             <!-- ///////// -->
@@ -339,7 +240,7 @@ $fileData = [
 
 
                                             <div class="text-center mb-4" style="margin-top:-75px">
-                                                <img src="../assets/images/itstarlogo.png" alt="Logo" style="max-height: 65px;">
+                                                <img src="./assets/images/itstarlogo.png" alt="Logo" style="max-height: 65px;">
                                                 <h4 class="text-medium">Staar Payout Private Limited</h4>
                                                 <h5 class="mt-2 fw-bold " style="color:rgb(3, 106, 216);">MERCHANT ONBOARDING FORM</h5>
                                             </div>
@@ -555,9 +456,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): $aadhaarfile = getSignedUrl($docData['aadhaarfile']); ?>
+                                                            <div id="aadhaarpreview"> <?php if (!empty($docData['aadhaarfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $aadhaarfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -570,9 +471,9 @@ $fileData = [
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): $personalpanfile = getSignedUrl($docData['personalpanfile']); ?>
+                                                            <div id="personalpanpreview"><?php if (!empty($docData['personalpanfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $personalpanfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -585,9 +486,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Photograph</td>
                                                         <td>
-                                                            <div id="photographpreview"><?php if (!empty($docData['photograph'])): $photograph = getSignedUrl($docData['photograph']); ?>
+                                                            <div id="photographpreview"><?php if (!empty($docData['photograph'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $photograph ?>" target="_blank">
+                                                                        <a href="<?= $docData['photograph'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -599,9 +500,9 @@ $fileData = [
                                                     </tr>
                                                     <td>Signature</td>
                                                     <td>
-                                                        <div id="signatorysignfilepreview"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfile = getSignedUrl($docData['signatorysignfile']); ?>
+                                                        <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
                                                                 <p>
-                                                                    <a href="<?= $signatorysignfile ?>" target="_blank">
+                                                                    <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
                                                                         View uploaded file
                                                                     </a>
                                                                 </p>
@@ -614,9 +515,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
-                                                            <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): $addressfile = getSignedUrl($docData['addressfile']); ?>
+                                                            <div id="addressfilepreview"><?php if (!empty($docData['addressfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $addressfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['addressfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -627,11 +528,11 @@ $fileData = [
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Cancelled Cheque</td>
+                                                        <td>Cancelled Cheque (Authorised Signatory 1)</td>
                                                         <td>
-                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): $cancelledchequefile = getSignedUrl($docData['cancelledchequefile']); ?>
+                                                            <div id="cancelledchequefilepreview"><?php if (!empty($docData['cancelledchequefile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $cancelledchequefile ?>" target="_blank">
+                                                                        <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -648,9 +549,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Aadhaar Card</td>
                                                         <td>
-                                                            <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): $aadhaaradnfile = getSignedUrl($docData['aadhaaradnfile']); ?>
+                                                            <div id="aadhaaradnfilepreview"><?php if (!empty($docData['aadhaaradnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $aadhaaradnfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -663,9 +564,9 @@ $fileData = [
                                                     <tr>
                                                         <td>PAN Card</td>
                                                         <td>
-                                                            <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): $personalpanadnfile = getSignedUrl($docData['personalpanadnfile']); ?>
+                                                            <div id="personalpanadnfilepreview"><?php if (!empty($docData['personalpanadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $personalpanadnfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['personalpanadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -678,9 +579,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Photograph</td>
                                                         <td>
-                                                            <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfile = getSignedUrl($docData['signatoryphotoadnfile']); ?>
+                                                            <div id="signatoryphotoadnfilepreview"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $signatoryphotoadnfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -693,9 +594,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Signature</td>
                                                         <td>
-                                                            <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfile = getSignedUrl($docData['signatorysignadnfile']); ?>
+                                                            <div id="signatorysignadnfilepreview"><?php if (!empty($docData['signatorysignadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $signatorysignadnfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -708,9 +609,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</td>
                                                         <td>
-                                                            <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): $addressadnfile = getSignedUrl($docData['addressadnfile']); ?>
+                                                            <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $addressadnfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -721,11 +622,11 @@ $fileData = [
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Cancelled Cheque</td>
+                                                        <td>Cancelled Cheque (Authorised Signatory 2)</td>
                                                         <td>
-                                                            <div id="cancelledchequefileadn"><?php if (!empty($docData['cancelledchequefileadn'])): $cancelledchequefileadn = getSignedUrl($docData['cancelledchequefileadn']); ?>
+                                                            <div id="cancelledchequefileadnpreview"><?php if (!empty($docData['cancelledchequefileadn'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $dcancelledchequefileadn ?>" target="_blank">
+                                                                        <a href="<?= $docData['cancelledchequefileadn'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -742,9 +643,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Certificate of Incorporation (COI) / Business Registration Certificate</td>
                                                         <td>
-                                                            <div id="coifilepreview"><?php if (!empty($docData['coifile'])): $coifile = getSignedUrl($docData['coifile']); ?>
+                                                            <div id="coifilepreview"><?php if (!empty($docData['coifile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $coifile ?>" target="_blank">
+                                                                        <a href="<?= $docData['coifile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -757,9 +658,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Memorandum of Association (MOA)</td>
                                                         <td>
-                                                            <div id="moafilepreview"><?php if (!empty($docData['moafile'])): $moafile = getSignedUrl($docData['moafile']); ?>
+                                                            <div id="moafilepreview"><?php if (!empty($docData['moafile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $moafile ?>" target="_blank">
+                                                                        <a href="<?= $docData['moafile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -772,9 +673,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Articles of Association (AOA) </td>
                                                         <td>
-                                                            <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): $aoafile = getSignedUrl($docData['aoafile']); ?>
+                                                            <div id="aoafilepreview"><?php if (!empty($docData['aoafile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $aoafile ?>" target="_blank">
+                                                                        <a href="<?= $docData['aoafile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -787,9 +688,9 @@ $fileData = [
                                                     <tr>
                                                         <td>Board Resolution (BR) / Letter of Authorization for Signatory</td>
                                                         <td>
-                                                            <div id="brfilepreview"><?php if (!empty($docData['brfile'])): $brfile = getSignedUrl($docData['brfile']); ?>
+                                                            <div id="brfilepreview"><?php if (!empty($docData['brfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $brfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['brfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -802,9 +703,9 @@ $fileData = [
                                                     <tr>
                                                         <td>UDYAM Registration Certificate (If Available)</td>
                                                         <td>
-                                                            <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): $udyamfile = getSignedUrl($docData['udyamfile']); ?>
+                                                            <div id="udyamfilepreview"><?php if (!empty($docData['udyamfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $udyamfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['udyamfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -817,9 +718,9 @@ $fileData = [
                                                     <tr>
                                                         <td>GSTIN Certificate</td>
                                                         <td>
-                                                            <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): $gstinfile = getSignedUrl($docData['gstinfile']); ?>
+                                                            <div id="gstinfilepreview"><?php if (!empty($docData['gstinfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $gstinfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['gstinfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -832,9 +733,9 @@ $fileData = [
                                                     <tr>
                                                         <td>List of Directors/Partners/Beneficial Ownership (BO)</td>
                                                         <td>
-                                                            <div id="bofilepreview"><?php if (!empty($docData['bofile'])): $bofile = getSignedUrl($docData['bofile']); ?>
+                                                            <div id="bofilepreview"><?php if (!empty($docData['bofile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $bofile ?>" target="_blank">
+                                                                        <a href="<?= $docData['bofile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -845,13 +746,27 @@ $fileData = [
                                                         </td>
                                                     </tr>
                                                     </tr>
-
+                                                    <tr>
+                                                        <td>Cancelled Cheque</td>
+                                                        <td>
+                                                            <div id="cancelledchequefile"><?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                                    <p>
+                                                                        <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
+                                                                            View uploaded file
+                                                                        </a>
+                                                                    </p>
+                                                                <?php else: ?>
+                                                                    <p style="color: #888;">No file uploaded</p>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                     <tr>
                                                         <td>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</td>
                                                         <td>
-                                                            <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): $rentfile = getSignedUrl($docData['rentfile']); ?>
+                                                            <div id="rentfilepreview"><?php if (!empty($docData['rentfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $rentfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['rentfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -864,9 +779,9 @@ $fileData = [
                                                     <tr>
                                                         <td>ANNEXURE B Form with Signature and Stamp</td>
                                                         <td>
-                                                            <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): $annexurebfile = getSignedUrl($docData['annexurebfile']); ?>
+                                                            <div id="annexurebfilepreview"><?php if (!empty($docData['annexurebfile'])): ?>
                                                                     <p>
-                                                                        <a href="<?= $annexurebfile ?>" target="_blank">
+                                                                        <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
@@ -967,10 +882,9 @@ $fileData = [
                                                 <tr>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']); ?>
+                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): ?>
                                                                 <div style="margin-top: 10px;">
-
-                                                                    <img src="<?= $photographpr ?>"
+                                                                    <img src="<?= htmlspecialchars($docData['photograph']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -979,9 +893,9 @@ $fileData = [
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']); ?>
+                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatorysignfilepr ?>"
+                                                                    <img src="<?= htmlspecialchars($docData['signatorysignfile']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -992,9 +906,9 @@ $fileData = [
                                                     </td>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']); ?>
+                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatoryphotoadnfilepr ?>"
+                                                                    <img src="<?= htmlspecialchars($docData['signatoryphotoadnfile']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1003,9 +917,9 @@ $fileData = [
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']); ?>
+                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatorysignadnfilepr ?>"
+                                                                    <img src="<?= htmlspecialchars($docData['signatorysignadnfile']) ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1033,16 +947,11 @@ $fileData = [
                                                     <td class="blr">
                                                         <strong>Aadhaar Card</strong><br>
 
-                                                        <?php if (!empty($docData['aadhaarfile'])): $aadhaarfilepr = getSignedUrl($docData['aadhaarfile']); ?>
-                                                            <a href="<?= $aadhaarfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['aadhaarfile'])): ?>
+                                                            <a href="<?= $docData['aadhaarfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-
-                                                            <div id="aadhaarfilepreview" class="file-preview" data-fileurl="<?= $aadhaarfile ?>">
-                                                                <?= renderFilePreview($aadhaaradnfile) ?>
-                                                            </div>
-
-
+                                                            <div id="aadhaarfilepreview" data-fileurl="<?= $docData['aadhaarfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1053,13 +962,11 @@ $fileData = [
                                                     <td>
                                                         <strong>PAN Card</strong><br>
 
-                                                        <?php if (!empty($docData['personalpanfile'])): $personalpanfileUrl = getSignedUrl($docData['personalpanfile']); ?>
-                                                            <a href="<?= $personalpanfileUrl ?>" target="_blank">
+                                                        <?php if (!empty($docData['personalpanfile'])): ?>
+                                                            <a href="<?= $docData['personalpanfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanfilepreview" data-fileurl="<?= $personalpanfileUrl ?>">
-                                                                <?= renderFilePreview($personalpanfileUrl) ?>
-                                                            </div>
+                                                            <div id="personalpanfilepreview" data-fileurl="<?= $docData['personalpanfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1070,13 +977,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Photograph</strong><br>
 
-                                                        <?php if (!empty($docData['photograph'])): $photographpr1 = getSignedUrl($docData['photograph']); ?>
-                                                            <a href="<?= $photographpr1 ?>" target="_blank">
+                                                        <?php if (!empty($docData['photograph'])): ?>
+                                                            <a href="<?= $docData['photograph'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="photographpreview" data-fileurl="<?= $photographpr1 ?>">
-                                                                <?= renderFilePreview($photographpr1) ?>
-                                                            </div>
+                                                            <div id="photographpreview" data-fileurl="<?= $docData['photograph'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1087,13 +992,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Signature</strong><br>
 
-                                                        <?php if (!empty($docData['signatorysignfile'])): $signatorysignfile = getSignedUrl($docData['signatorysignfile']); ?>
-                                                            <a href="<?= $signatorysignfile ?>" target="_blank">
+                                                        <?php if (!empty($docData['signatorysignfile'])): ?>
+                                                            <a href="<?= $docData['signatorysignfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="signatorysignfilepreview" data-fileurl="<?= $signatorysignfile ?>">
-                                                                <?= renderFilePreview($signatorysignfile) ?>
-                                                            </div>
+                                                            <div id="signatorysignfilepreview" data-fileurl="<?= $docData['signatorysignfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1103,13 +1006,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</strong><br>
 
-                                                        <?php if (!empty($docData['addressfile'])): $addressfilepr = getSignedUrl($docData['addressfile']); ?>
-                                                            <a href="<?= $addressfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['addressfile'])): ?>
+                                                            <a href="<?= $docData['addressfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="addressfilepreview" data-fileurl="<?= $daddressfilepr ?>">
-                                                                <?= renderFilePreview($addressfilepr) ?>
-                                                            </div>
+                                                            <div id="addressfilepreview" data-fileurl="<?= $docData['addressfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1119,13 +1020,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Cancelled Cheque (Authorised Signatory 1)</strong><br>
 
-                                                        <?php if (!empty($docData['cancelledchequefile'])): $cancelledchequefilepr = getSignedUrl($docData['cancelledchequefile']); ?>
-                                                            <a href="<?= $cancelledchequefilepr  ?>" target="_blank">
+                                                        <?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                            <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="cancelledchequefilepreview" data-fileurl="<?= $cancelledchequefilepr  ?>">
-                                                                <?= renderFilePreview($cancelledchequefilepr) ?>
-                                                            </div>
+                                                            <div id="cancelledchequefilepreview" data-fileurl="<?= $docData['cancelledchequefile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1140,13 +1039,11 @@ $fileData = [
                                                     <td class="blr">
                                                         <strong>Aadhaar Card</strong><br>
 
-                                                        <?php if (!empty($docData['aadhaaradnfile'])): $aadhaaradnfilepr  = getSignedUrl($docData['aadhaaradnfile']); ?>
-                                                            <a href="<?= $aadhaaradnfilepr  ?>" target="_blank">
+                                                        <?php if (!empty($docData['aadhaaradnfile'])): ?>
+                                                            <a href="<?= $docData['aadhaaradnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="aadhaaradnfilepreview" data-fileurl="<?= $aadhaaradnfilepr  ?>">
-                                                                <?= renderFilePreview($aadhaarfilepr) ?>
-                                                            </div>
+                                                            <div id="aadhaaradnfilepreview" data-fileurl="<?= $docData['aadhaaradnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1157,13 +1054,11 @@ $fileData = [
                                                     <td>
                                                         <strong>PAN Card</strong><br>
 
-                                                        <?php if (!empty($docData['personalpanadnfile'])): $personalpanadnfilepr = getSignedUrl($docData['personalpanadnfile']); ?>
-                                                            <a href="<?= $personalpanadnfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['personaladnpanfile'])): ?>
+                                                            <a href="<?= $docData['personaladnpanfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanadnfilepreview" data-fileurl="<?= $personalpanadnfilepr ?>">
-                                                                <?= renderFilePreview($personalpanadnfilepr) ?>
-                                                            </div>
+                                                            <div id="personalpanadnfilepreview" data-fileurl="<?= $docData['personalpanadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1174,13 +1069,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Photograph</strong><br>
 
-                                                        <?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr2 = getSignedUrl($docData['signatoryphotoadnfile']); ?>
-                                                            <a href="<?= $signatoryphotoadnfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['signatoryphotoadnfile'])): ?>
+                                                            <a href="<?= $docData['signatoryphotoadnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="signatoryphotoadnfilepreview" data-fileurl="<?= $signatoryphotoadnfilepr2 ?>">
-                                                                <?= renderFilePreview($signatoryphotoadnfilepr2) ?>
-                                                            </div>
+                                                            <div id="signatoryphotoadnfilepreview" data-fileurl="<?= $docData['signatoryphotoadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1191,13 +1084,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Signature</strong><br>
 
-                                                        <?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr2 = getSignedUrl($docData['signatorysignadnfile']);  ?>
-                                                            <a href="<?= $signatorysignadnfilepr2 ?>" target="_blank">
+                                                        <?php if (!empty($docData['signatorysignadnfile'])): ?>
+                                                            <a href="<?= $docData['signatorysignadnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="signatorysignadnfilepreview" data-fileurl="<?= $signatorysignadnfilepr2 ?>">
-                                                                <?= renderFilePreview($signatorysignadnfilepr2) ?>
-                                                            </div>
+                                                            <div id="signatorysignadnfilepreview" data-fileurl="<?= $docData['signatorysignadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1207,13 +1098,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Address (Aadhaar Card/ Electricity Bill / Telephonic Bill / Proof of gas connection / Water Bi/ Voter ID Card)</strong><br>
 
-                                                        <?php if (!empty($docData['addressadnfile'])): $addressadnfilepr = getSignedUrl($docData['addressadnfile']); ?>
-                                                            <a href="../<?= $addressadnfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['addressadnfile'])): ?>
+                                                            <a href="<?= $docData['addressadnfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="addressadnfilepreview" data-fileurl="<?= $addressadnfilepr ?>">
-                                                                <?= renderFilePreview($addressadnfilepr) ?>
-                                                            </div>
+                                                            <div id="addressadnfilepreview" data-fileurl="<?= $docData['addressadnfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1223,13 +1112,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Cancelled Cheque (Authorised Signatory 2)</strong><br>
 
-                                                        <?php if (!empty($docData['cancelledchequefileadn'])): $cancelledchequefileadnpr = getSignedUrl($docData['cancelledchequefileadn']); ?>
-                                                            <a href="<?= $cancelledchequefileadnpr ?>" target="_blank">
+                                                        <?php if (!empty($docData['cancelledchequefileadn'])): ?>
+                                                            <a href="<?= $docData['cancelledchequefileadn'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="cancelledchequefileadnpreview" data-fileurl="<?= $cancelledchequefileadnpr ?>">
-                                                                <?= renderFilePreview($cancelledchequefileadnpr) ?>
-                                                            </div>
+                                                            <div id="cancelledchequefileadnpreview" data-fileurl="<?= $docData['cancelledchequefileadn'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1237,17 +1124,16 @@ $fileData = [
                                                 </tr>
 
 
+
                                                 <tr>
                                                     <td>
                                                         <strong>Certificate of Incorporation (COI) / Business Registration Certificate</strong><br>
 
-                                                        <?php if (!empty($docData['coifile'])): $coifilepr = getSignedUrl($docData['coifile']);  ?>
-                                                            <a href="<?= $coifilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['coifile'])): ?>
+                                                            <a href="<?= $docData['coifile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="coifilepreview" data-fileurl="<?= $dcoifilepr ?>">
-                                                                <?= renderFilePreview($coifilepr) ?>
-                                                            </div>
+                                                            <div id="coifilepreview" data-fileurl="<?= $docData['coifile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1258,29 +1144,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Memorandum of Association (MOA)</strong><br>
 
-                                                        <?php if (!empty($docData['moafile'])): $moafilepr = getSignedUrl($docData['moafile']); ?>
-                                                            <a href="<?= $moafilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['moafile'])): ?>
+                                                            <a href="<?= $docData['moafile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="moafilepreview" data-fileurl="<?= $moafilepr ?>">
-                                                                <?= renderFilePreview($moafilepr) ?>
-                                                            </div>
-                                                        <?php else: ?>
-                                                            <p style="color: #888;">No file uploaded</p>
-                                                        <?php endif; ?>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <strong>Articles of Association (AOA)</strong><br>
-
-                                                        <?php if (!empty($docData['aoafile'])): $aoafilepr = getSignedUrl($docData['aoafile']); ?>
-                                                            <a href="<?= $aoafilepr ?>" target="_blank">
-                                                                View uploaded file
-                                                            </a>
-                                                            <div id="moafilepreview" data-fileurl="<?= $aoafilepr ?>">
-                                                                <?= renderFilePreview($aoafilepr) ?>
-                                                            </div>
+                                                            <div id="moafilepreview" data-fileurl="<?= $docData['moafile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1291,13 +1159,11 @@ $fileData = [
                                                     <td>
                                                         <strong>Board Resolution (BR) / Letter of Authorization for Signatory</strong><br>
 
-                                                        <?php if (!empty($docData['brfile'])): $brfilepr = getSignedUrl($docData['brfile']); ?>
-                                                            <a href="<?= $brfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['brfile'])): ?>
+                                                            <a href="<?= $docData['brfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="brfilepreview" data-fileurl="<?= $brfilepr ?>">
-                                                                <?= renderFilePreview($brfilepr) ?>
-                                                            </div>
+                                                            <div id="brfilepreview" data-fileurl="<?= $docData['brfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1308,13 +1174,11 @@ $fileData = [
                                                     <td>
                                                         <strong>UDYAM Registration Certificate (If Available)</strong><br>
 
-                                                        <?php if (!empty($docData['udyamfile'])): $udyamfilepr = getSignedUrl($docData['udyamfile']); ?>
-                                                            <a href="<?= $udyamfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['udyamfile'])): ?>
+                                                            <a href="<?= $docData['udyamfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="udyamfilepreview" data-fileurl="<?= $udyamfilepr ?>">
-                                                                <?= renderFilePreview($udyamfilepr) ?>
-                                                            </div>
+                                                            <div id="udyamfilepreview" data-fileurl="<?= $docData['udyamfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1325,13 +1189,11 @@ $fileData = [
                                                     <td>
                                                         <strong>GSTIN Certificate</strong><br>
 
-                                                        <?php if (!empty($docData['gstinfile'])): $gstinfilepr = getSignedUrl($docData['gstinfile']); ?>
-                                                            <a href="<?= $gstinfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['gstinfile'])): ?>
+                                                            <a href="<?= $docData['gstinfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="gstinfilepreview" data-fileurl="<?= $gstinfilepr ?>">
-                                                                <?= renderFilePreview($gstinfilepr) ?>
-                                                            </div>
+                                                            <div id="gstinfilepreview" data-fileurl="<?= $docData['gstinfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1342,13 +1204,11 @@ $fileData = [
                                                     <td>
                                                         <strong>List of Directors/Partners/Beneficial Ownership (BO)</strong><br>
 
-                                                        <?php if (!empty($docData['bofile'])): $bofilepr = getSignedUrl($docData['bofile']); ?>
-                                                            <a href="<?= $bofilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['bofile'])): ?>
+                                                            <a href="<?= $docData['bofile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="bofilepreview" data-fileurl="<?= $bofilepr ?>">
-                                                                <?= renderFilePreview($bofilepr) ?>
-                                                            </div>
+                                                            <div id="bofilepreview" data-fileurl="<?= $docData['bofile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1359,31 +1219,26 @@ $fileData = [
                                                     <td>
                                                         <strong>Cancelled Cheque</strong><br>
 
-                                                        <?php if (!empty($docData['cancelledchequefile'])): $cancelledchequefilepr = getSignedUrl($docData['cancelledchequefile']); ?>
-                                                            <a href="../<?= $cancelledchequefilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['cancelledchequefile'])): ?>
+                                                            <a href="<?= $docData['cancelledchequefile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="cancelledchequefilepreview" data-fileurl="<?= $cancelledchequefilepr ?>
-                                                            ">
-                                                                <?= renderFilePreview($cancelledchequefilepr) ?></div>
+                                                            <div id="cancelledchequefilepreview" data-fileurl="<?= $docData['cancelledchequefile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
 
-
                                                 <tr>
                                                     <td>
                                                         <strong>Rent Agreement / Lease Agreement / Property Tax Receipt (Mandatory if there is a change in address of Principal Place Of Business ) *</strong><br>
 
-                                                        <?php if (!empty($docData['rentfile'])): $rentfilepr = getSignedUrl($docData['rentfile']); ?>
-                                                            <a href="<?= $rentfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['rentfile'])): ?>
+                                                            <a href="<?= $docData['rentfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="rentfilepreview" data-fileurl="<?= $rentfilepr ?>">
-                                                                <?= renderFilePreview($rentfilepr) ?>
-                                                            </div>
+                                                            <div id="rentfilepreview" data-fileurl="<?= $docData['rentfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1394,13 +1249,11 @@ $fileData = [
                                                     <td>
                                                         <strong>ANNEXURE B Form with Signature and Stamp</strong><br>
 
-                                                        <?php if (!empty($docData['annexurebfile'])): $annexurebfilepr = getSignedUrl($docData['annexurebfile']); ?>
-                                                            <a href="<?= $annexurebfilepr ?>" target="_blank">
+                                                        <?php if (!empty($docData['annexurebfile'])): ?>
+                                                            <a href="<?= $docData['annexurebfile'] ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="annexurebfilepreview" data-fileurl="<?= $annexurebfilepr ?>">
-                                                                <?= renderFilePreview($annexurebfilepr) ?>
-                                                            </div>
+                                                            <div id="annexurebfilepreview" data-fileurl="<?= $docData['annexurebfile'] ?>"></div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
                                                         <?php endif; ?>
@@ -1434,7 +1287,7 @@ $fileData = [
                                                 <?php endif; ?>
                                             </div>
 
-                                            <!-- application status -->
+
                                             <div class="col-md-6 ">
                                                 <?php $selectedEntity3 = $appData['status'] ?? ''; ?>
                                                 <label class="form-label">Appplication Status</label>
@@ -1444,7 +1297,7 @@ $fileData = [
                                                     <option value="Verified" <?= $selectedEntity3 === 'Verified' ? 'selected' : '' ?>>Verified</option>
                                                     <option value="Cancelled" <?= $selectedEntity3 === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                                     <option value="Pending" <?= $selectedEntity3 === 'Pending' ? 'selected' : '' ?>>Pending</option>
-                                                    <option value="Documents not completed" <?= $selectedEntity3 === 'Documents not completed' ? 'selected' : '' ?>>Documents not completed</option>
+                                                    <option value="Documents not completed<">Documents not completed</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-4">
@@ -1522,8 +1375,12 @@ $fileData = [
                                                 </div>
 
                                             </div>
+                                        </div>
+
+
 
                                         </div>
+
 
                                     </div>
                                 </div>
@@ -1534,7 +1391,6 @@ $fileData = [
             </div>
     </div>
     </form>
-
 
     <!-- footer -->
 
