@@ -2,6 +2,64 @@
 
 session_start();
 
+
+$application_id = '';
+
+if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
+    // Redirect to registration page
+    header("Location: merchant_login.php");
+    exit();
+}
+// Redirect if user is not logged in
+// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
+//     header("Location: login.php");
+//     exit();
+// }
+
+// Redirect if user is not admin
+
+
+
+if (!isset($_GET['id'])) {
+    die("Invalid or missing ID.");
+}
+
+$application_id = $_GET['id'];
+
+// Validate and retrieve 'gstin'
+if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
+    die("Missing GSTIN.");
+}
+$gstin = $_GET['gstin'];
+
+// Validate and retrieve 'pan'
+if (!isset($_GET['pan']) || empty($_GET['pan'])) {
+    die("Missing PAN.");
+}
+
+
+
+
+$pan = $_GET['pan'];
+
+// Now you can use $id, $gstin, and $pan in your code
+
+// Fetch business_application data
+$appQuery = "SELECT * FROM business_applications WHERE id = '$application_id' AND gstin = '$gstin' AND pan = '$pan' ";
+$appResult = mysqli_query($mysqli, $appQuery);
+
+if (!$appResult || mysqli_num_rows($appResult) === 0) {
+    die("No record found with ID: $application_id");
+}
+
+$appData = mysqli_fetch_assoc($appResult);
+
+// Fetch business_documents data
+$docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
+$docResult = mysqli_query($mysqli, $docQuery);
+$docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
+
+
 require __DIR__ . '/../aws/aws-autoloader.php';
 
 use Aws\S3\S3Client;
@@ -60,61 +118,6 @@ function renderFilePreview($fileUrl)
     }
 }
 
-$application_id = '';
-
-if (!isset($_SESSION['merchant_info']) || !isset($_SESSION['merchant_info']['username'])) {
-    // Redirect to registration page
-    header("Location: merchant_login.php");
-    exit();
-}
-// Redirect if user is not logged in
-// if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
-//     header("Location: login.php");
-//     exit();
-// }
-
-// Redirect if user is not admin
-
-
-
-if (!isset($_GET['id'])) {
-    die("Invalid or missing ID.");
-}
-
-$application_id = $_GET['id'];
-
-// Validate and retrieve 'gstin'
-if (!isset($_GET['gstin']) || empty($_GET['gstin'])) {
-    die("Missing GSTIN.");
-}
-$gstin = $_GET['gstin'];
-
-// Validate and retrieve 'pan'
-if (!isset($_GET['pan']) || empty($_GET['pan'])) {
-    die("Missing PAN.");
-}
-
-
-
-
-$pan = $_GET['pan'];
-
-// Now you can use $id, $gstin, and $pan in your code
-
-// Fetch business_application data
-$appQuery = "SELECT * FROM business_applications WHERE id = '$application_id' AND gstin = '$gstin' AND pan = '$pan' ";
-$appResult = mysqli_query($mysqli, $appQuery);
-
-if (!$appResult || mysqli_num_rows($appResult) === 0) {
-    die("No record found with ID: $application_id");
-}
-
-$appData = mysqli_fetch_assoc($appResult);
-
-// Fetch business_documents data
-$docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
-$docResult = mysqli_query($mysqli, $docQuery);
-$docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
 $fileData = [
     // Core docs
@@ -123,16 +126,16 @@ $fileData = [
     "photograph"         => !empty($docData['photograph']) ? getSignedUrl($docData['photograph']) : null,
     "address"            => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
     "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
-     "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
-     
-      // Additional previews (adn = additional?)
+    "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
+
+    // Additional previews (adn = additional?)
     "aadhaaradn"         => !empty($docData['aadhaaradnfile']) ? getSignedUrl($docData['aadhaaradnfile']) : null,
     "personalpanadn"     => !empty($docData['personalpanadnfile']) ? getSignedUrl($docData['personalpanadnfile']) : null,
     "addressadn"         => !empty($docData['addressadnfile']) ? getSignedUrl($docData['addressadnfile']) : null,
     "signatoryphotoadn"  => !empty($docData['signatoryphotoadnfile']) ? getSignedUrl($docData['signatoryphotoadnfile']) : null,
-      "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
-      "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
-    
+    "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
+    "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
+
 
 
     "coi"                => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
@@ -144,7 +147,7 @@ $fileData = [
     "bo"                 => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
     "rent"               => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
     "annexureb"          => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
-   
+
 
 
     // Signatures/photos (single or multiple)
@@ -1827,110 +1830,124 @@ $fileData = [
         //     document.body.removeChild(link);
         // }
 
-       async function downloadKYC() {
-    console.log("Starting KYC Download...");
+        async function downloadKYC() {
+            console.log("Starting KYC Download...");
 
-    const element = document.getElementById('kycPreview');
-    const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
-    const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+            const element = document.getElementById('kycPreview');
+            const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
+            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
-    // 👇 PHP array injected into JS
-    const fileData = <?php echo json_encode($fileData); ?>;
+            // 👇 PHP array injected into JS
+            const fileData = <?php echo json_encode($fileData); ?>;
 
-    // 📄 Step 1: Generate PDF from HTML (preview content)
-    const htmlBlob = await html2pdf()
-        .set({
-            margin: 0.8,
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        })
-        .from(element)
-        .outputPdf('blob');
+            // 📄 Step 1: Generate PDF from HTML (preview content)
+            const htmlBlob = await html2pdf()
+                .set({
+                    margin: 0.8,
+                    image: {
+                        type: 'jpeg',
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    }
+                })
+                .from(element)
+                .outputPdf('blob');
 
-    const htmlBytes = await htmlBlob.arrayBuffer();
-    const finalPdf = await PDFLib.PDFDocument.create();
-    const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
-    const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
-    pages.forEach(p => finalPdf.addPage(p));
+            const htmlBytes = await htmlBlob.arrayBuffer();
+            const finalPdf = await PDFLib.PDFDocument.create();
+            const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+            const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+            pages.forEach(p => finalPdf.addPage(p));
 
-    // ➕ Step 2: Attach each uploaded file
-    for (const key in fileData) {
-        const url = fileData[key];
-        if (!url) continue;
+            // ➕ Step 2: Attach each uploaded file
+            for (const key in fileData) {
+                console.log("Injected fileData:", fileData);
+                const url = fileData[key];
+                if (!url) continue;
 
-        try {
-            console.log("Embedding file:", key, url);
+                try {
+                    console.log("Embedding file:", key, url);
 
-            const response = await fetch(url, { mode: "cors" });
-            if (!response.ok) throw new Error("Fetch failed");
+                    const response = await fetch(url, {
+                        mode: "cors"
+                    });
+                    if (!response.ok) throw new Error("Fetch failed");
 
-            const bytes = new Uint8Array(await response.arrayBuffer());
-            const mimeType = response.headers.get("Content-Type") || "";
+                    const bytes = new Uint8Array(await response.arrayBuffer());
+                    const mimeType = response.headers.get("Content-Type") || "";
 
-            if (mimeType.includes("pdf")) {
-                // ✅ Merge external PDF
-                const extDoc = await PDFLib.PDFDocument.load(bytes);
-                const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
-                extPages.forEach(p => finalPdf.addPage(p));
+                    if (mimeType.includes("pdf")) {
+                        // ✅ Merge external PDF
+                        const extDoc = await PDFLib.PDFDocument.load(bytes);
+                        const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
+                        extPages.forEach(p => finalPdf.addPage(p));
 
-            } else if (mimeType.startsWith("image/")) {
-                // ✅ Embed images (jpg/png)
-                let embedded;
-                if (mimeType.includes("png")) {
-                    embedded = await finalPdf.embedPng(bytes);
-                } else {
-                    embedded = await finalPdf.embedJpg(bytes);
+                    } else if (mimeType.startsWith("image/")) {
+                        // ✅ Embed images (jpg/png)
+                        let embedded;
+                        if (mimeType.includes("png")) {
+                            embedded = await finalPdf.embedPng(bytes);
+                        } else {
+                            embedded = await finalPdf.embedJpg(bytes);
+                        }
+
+                        const page = finalPdf.addPage();
+                        const pageWidth = page.getWidth();
+                        const pageHeight = page.getHeight();
+
+                        const margin = 40;
+                        let targetWidth = pageWidth - 2 * margin;
+                        let targetHeight = targetWidth * (embedded.height / embedded.width);
+
+                        // shrink if taller than page
+                        if (targetHeight > pageHeight - 2 * margin) {
+                            targetHeight = pageHeight - 2 * margin;
+                            targetWidth = targetHeight * (embedded.width / embedded.height);
+                        }
+
+                        page.drawImage(embedded, {
+                            x: (pageWidth - targetWidth) / 2,
+                            y: (pageHeight - targetHeight) / 2,
+                            width: targetWidth,
+                            height: targetHeight
+                        });
+
+                    } else {
+                        // ❌ Unknown type → add placeholder
+                        const page = finalPdf.addPage();
+                        const font = await finalPdf.embedFont(PDFLib.StandardFonts.Helvetica);
+                        page.drawText(`File "${key}" (${mimeType}) could not be embedded.`, {
+                            x: 50,
+                            y: page.getHeight() - 100,
+                            size: 12,
+                            font
+                        });
+                    }
+                } catch (err) {
+                    console.error("❌ Error embedding:", key, err);
                 }
-
-                const page = finalPdf.addPage();
-                const pageWidth = page.getWidth();
-                const pageHeight = page.getHeight();
-
-                const margin = 40;
-                let targetWidth = pageWidth - 2 * margin;
-                let targetHeight = targetWidth * (embedded.height / embedded.width);
-
-                // shrink if taller than page
-                if (targetHeight > pageHeight - 2 * margin) {
-                    targetHeight = pageHeight - 2 * margin;
-                    targetWidth = targetHeight * (embedded.width / embedded.height);
-                }
-
-                page.drawImage(embedded, {
-                    x: (pageWidth - targetWidth) / 2,
-                    y: (pageHeight - targetHeight) / 2,
-                    width: targetWidth,
-                    height: targetHeight
-                });
-
-            } else {
-                // ❌ Unknown type → add placeholder
-                const page = finalPdf.addPage();
-                const font = await finalPdf.embedFont(PDFLib.StandardFonts.Helvetica);
-                page.drawText(`File "${key}" (${mimeType}) could not be embedded.`, {
-                    x: 50,
-                    y: page.getHeight() - 100,
-                    size: 12,
-                    font
-                });
             }
-        } catch (err) {
-            console.error("❌ Error embedding:", key, err);
-        }
-    }
 
-    // 🔽 Step 3: Download final PDF
-    const finalBytes = await finalPdf.save();
-    const blob = new Blob([finalBytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${cleanName}-KYC-Onboarding.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+            // 🔽 Step 3: Download final PDF
+            const finalBytes = await finalPdf.save();
+            const blob = new Blob([finalBytes], {
+                type: 'application/pdf'
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${cleanName}-KYC-Onboarding.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
 
 
