@@ -1054,7 +1054,7 @@ echo "</pre>";
                                                             </a>
 
                                                             <div id="aadhaarfilepreview" class="file-preview" data-fileurl="<?= $aadhaarfile ?>">
-                                                                <?= renderFilePreview($aadhaaradnfile) ?>
+                                                                <?= renderFilePreview($aadhaarfile) ?>
                                                             </div>
 
 
