@@ -142,6 +142,11 @@ $fileData = [
     "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
     "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
 
+    // Signatures/photos (single or multiple)
+    "signphoto1"         => !empty($docData['signphoto1']) ? getSignedUrl($docData['signphoto1']) : null,
+    "signphoto2"         => !empty($docData['signphoto2']) ? getSignedUrl($docData['signphoto2']) : null,
+    "sign1"              => !empty($docData['sign1']) ? getSignedUrl($docData['sign1']) : null,
+    "sign2"              => !empty($docData['sign2']) ? getSignedUrl($docData['sign2']) : null,
 ];
 
 echo "<pre>";
