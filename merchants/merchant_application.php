@@ -1134,10 +1134,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <strong>PAN Card</strong><br>
 
                                                         <?php if (!empty($docData['personaladnpanfile'])): $personaladnpanfilepr = getSignedUrl($docData['personaladnpanfile']);?>
-                                                            <a href="<?= $personaladnpanfilepr?>" target="_blank">
+                                                            <a href="<?= $personaladnpanfilepr ?>" target="_blank">
                                                                 View uploaded file
                                                             </a>
-                                                            <div id="personalpanadnfilepreview" data-fileurl="<?= $personalpanadnfilepr ?>">
+                                                            <div id="personalpanadnfilepreview" data-fileurl="<?= $personaladnpanfilepr ?>">
                                                                 <?= renderFilePreview($personaladnpanfilepr) ?>
                                                             </div>
                                                         <?php else: ?>
