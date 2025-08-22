@@ -1792,7 +1792,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
     <!-- reflecting pdf on onload -->
 
-    <!-- <script>
+    <script>
         window.addEventListener('DOMContentLoaded', () => {
             const fileDivIds = [
                 'aadhaarpreview', 'personalpanpreview', 'photographpreview',
@@ -1827,7 +1827,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                     });
             });
         });
-    </script> -->
+    </script>
 
 
     <!-- /////////////// -->
@@ -1943,9 +1943,11 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const fileFields = [
-                'aadhaarfile', 'panfile', 'photograph', 'addressfile', 'coifile',
-                'moafile', 'aoafile', 'brfile', 'udyamfile', 'gstinfile',
-                'bofile', 'cancelledchequefile', 'rentfile', 'annexurebfile', 'aadhaaradnfile', 'personalpanadnfile', 'signatoryphotoadnfile', 'addressadnfile', 'signatorysignfile', 'signatorysignadnfile', 'signphoto1', 'signphoto2', 'sign1', 'sign2'
+                'aadhaarpreview', 'personalpanpreview', 'photographpreview',
+                'addressfilepreview', 'coifilepreview', 'moafilepreview',
+                'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+                'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+                'annexurebfilepreview', 'cancelledchequefile', 'cancelledchequefileadn', 'aadhaaradnfilepreview', 'personalpanadnfilepreview', 'signatoryphotoadnfilepreview', 'addressadnfilepreview', 'signatorysignfilepreview', 'signatorysignadnfilepreview', 'signphoto1', 'signphoto2', 'sign1', 'sign2'
             ];
 
             fileFields.forEach(field => {
