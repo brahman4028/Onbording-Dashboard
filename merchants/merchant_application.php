@@ -148,12 +148,15 @@ $fileData = [
 
 
     // Signatures/photos (single or multiple)
-
+    "signphoto1"         => !empty($docData['signphoto1']) ? getSignedUrl($docData['signphoto1']) : null,
+    "signphoto2"         => !empty($docData['signphoto2']) ? getSignedUrl($docData['signphoto2']) : null,
+    "sign1"              => !empty($docData['sign1']) ? getSignedUrl($docData['sign1']) : null,
+    "sign2"              => !empty($docData['sign2']) ? getSignedUrl($docData['sign2']) : null,
 ];
 
-// echo "<pre>";
-// print_r($fileData);
-// echo "</pre>";
+echo "<pre>";
+print_r($fileData);
+echo "</pre>";
 
 ?>
 
@@ -1054,7 +1057,7 @@ $fileData = [
                                                             </a>
 
                                                             <div id="aadhaarfilepreview" class="file-preview" data-fileurl="<?= $aadhaarfile ?>">
-                                                                <?= renderFilePreview($aadhaarfile) ?>
+                                                                <?= renderFilePreview($aadhaaradnfile) ?>
                                                             </div>
 
 
@@ -1160,7 +1163,7 @@ $fileData = [
                                                                 View uploaded file
                                                             </a>
                                                             <div id="aadhaaradnfilepreview" data-fileurl="<?= $aadhaaradnfilepr  ?>">
-                                                                <?= renderFilePreview($aadhaaradnfilepr) ?>
+                                                                <?= renderFilePreview($aadhaarfilepr) ?>
                                                             </div>
                                                         <?php else: ?>
                                                             <p style="color: #888;">No file uploaded</p>
