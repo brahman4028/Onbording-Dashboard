@@ -686,7 +686,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                                                         <td>
                                                             <div id="addressadnfilepreview"><?php if (!empty($docData['addressadnfile'])): $addressadnfile = getSignedUrl($docData['addressadnfile']);?>
                                                                     <p>
-                                                                        <a href="<?= $daddressadnfile ?>" target="_blank">
+                                                                        <a href="<?= $addressadnfile ?>" target="_blank">
                                                                             View uploaded file
                                                                         </a>
                                                                     </p>
