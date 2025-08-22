@@ -116,6 +116,22 @@ $docQuery = "SELECT * FROM business_documents WHERE application_id = '$applicati
 $docResult = mysqli_query($mysqli, $docQuery);
 $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
+$fileData = [
+    "aadhaar"       => !empty($docData['aadhaarfile']) ? getSignedUrl($docData['aadhaarfile']) : null,
+    "personalpan"   => !empty($docData['personalpanfile']) ? getSignedUrl($docData['personalpanfile']) : null,
+    "photograph"    => !empty($docData['photographfile']) ? getSignedUrl($docData['photographfile']) : null,
+    "address"       => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
+    "coi"           => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
+    "moa"           => !empty($docData['moafile']) ? getSignedUrl($docData['moafile']) : null,
+    "aoa"           => !empty($docData['aoafile']) ? getSignedUrl($docData['aoafile']) : null,
+    "br"            => !empty($docData['brfile']) ? getSignedUrl($docData['brfile']) : null,
+    "udyam"         => !empty($docData['udyamfile']) ? getSignedUrl($docData['udyamfile']) : null,
+    "gstin"         => !empty($docData['gstinfile']) ? getSignedUrl($docData['gstinfile']) : null,
+    "bo"            => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
+    "rent"          => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
+    "annexureb"     => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
+    "cancelledcheque" => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null
+];
 
 ?>
 
@@ -1770,20 +1786,16 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
         //     document.body.removeChild(link);
         // }
 
-     
-    const uploadedFiles = {
-        aadhaar: "<?= !empty($aadhaarfile) ? $aadhaarfile : '' ?>",
-        personalpan: "<?= !empty($personalpanfile) ? $personalpanfile : '' ?>"
-        // add more fields the same way...
-    };
-
-    async function downloadKYC() {
+      async function downloadKYC() {
     console.log("hellpo");
     const element = document.getElementById('kycPreview');
     const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
     const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
-    // 📄 Step 1: Generate PDF from HTML
+    // 👇 Inject PHP file data into JS
+    const fileData = <?php echo json_encode($fileData); ?>;
+
+    // 📄 Step 1: Generate PDF from HTML (table + preview content)
     const htmlBlob = await html2pdf()
         .set({
             margin: 0.8,
@@ -1800,26 +1812,28 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
     pages.forEach(p => finalPdf.addPage(p));
 
-    // ➕ Step 2: Attach uploaded files from PHP vars
-    for (const [label, fileUrl] of Object.entries(uploadedFiles)) {
-        if (!fileUrl) continue; // skip empty
+    // ➕ Step 2: Attach each uploaded file (from PHP variables)
+    for (const key in fileData) {
+        const url = fileData[key];
+        if (!url) continue; // skip if no file uploaded
 
         try {
-            const response = await fetch(fileUrl);
+            const response = await fetch(url);
             const bytes = await response.arrayBuffer();
-            const mime = response.headers.get("Content-Type") || "";
+            const mimeType = response.headers.get("Content-Type") || "";
 
-            if (mime === "application/pdf") {
+            if (mimeType.includes("pdf")) {
                 // ✅ Merge PDFs
                 const extDoc = await PDFLib.PDFDocument.load(bytes);
                 const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
                 extPages.forEach(p => finalPdf.addPage(p));
 
-            } else if (mime.startsWith("image/")) {
+            } else if (mimeType.startsWith("image/")) {
                 // ✅ Embed images
-                const embedded = mime.includes("png")
-                    ? await finalPdf.embedPng(bytes)
-                    : await finalPdf.embedJpg(bytes);
+                const imgBytes = new Uint8Array(bytes);
+                const embedded = mimeType.includes("png")
+                    ? await finalPdf.embedPng(imgBytes)
+                    : await finalPdf.embedJpg(imgBytes);
 
                 const page = finalPdf.addPage();
                 const pageWidth = page.getWidth();
@@ -1827,7 +1841,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
                 const margin = 80;
                 const availableWidth = pageWidth - 2 * margin;
-
                 const aspectRatio = embedded.height / embedded.width;
                 const targetWidth = availableWidth;
                 const targetHeight = targetWidth * aspectRatio;
@@ -1840,10 +1853,10 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 });
 
             } else {
-                // ❌ Unsupported type → add text note
+                // ❌ Unsupported file type → Just note it
                 const page = finalPdf.addPage();
                 const font = await finalPdf.embedFont(PDFLib.StandardFonts.Helvetica);
-                page.drawText(`File "${label}" (${mime}) could not be embedded.`, {
+                page.drawText(`File "${key}" (${mimeType}) could not be embedded.`, {
                     x: 50,
                     y: page.getHeight() - 100,
                     size: 12,
@@ -1851,7 +1864,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                 });
             }
         } catch (err) {
-            console.error(`Error loading ${label}:`, err);
+            console.error("Error fetching file:", key, err);
         }
     }
 
@@ -1866,8 +1879,6 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     link.click();
     document.body.removeChild(link);
 }
-
-
 
 
 
