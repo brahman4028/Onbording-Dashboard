@@ -1891,9 +1891,9 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     </script>
 
     <!-- Step 1: Pass PHP array to JavaScript -->
-    <script>
+    <!-- <script>
         const uploadedFileData = <?= json_encode($appData ?? []); ?>; // From PHP e.g. ['aadhaarfile' => 'aadhaar.pdf']
-    </script>
+    </script> -->
 
     <!-- Step 2: Show all uploaded files in their respective preview divs -->
     <script>
