@@ -61,7 +61,7 @@ function renderFilePreview($fileUrl)
 
 $photograph = getSignedUrl($docData['photograph']);
 
-echo $photograph;
+// echo $photograph;
 
 
                             if ($application_id != '' && $status != "Cancelled" && $merchant_trash != "y") {
