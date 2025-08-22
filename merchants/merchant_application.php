@@ -1939,7 +1939,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
         });
     </script>
 
-
+<!-- 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const fileFields = [
@@ -1970,7 +1970,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
         `;
             });
         });
-    </script>
+    </script> -->
 
 
 
@@ -2347,7 +2347,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
     <!-- show media preview -->
 
 
-    <script>
+    <!-- <script>
         document.querySelectorAll('.file-preview').forEach(div => {
             const fileUrl = div.dataset.fileurl;
             if (!fileUrl) return;
@@ -2377,7 +2377,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
             div.appendChild(previewElement);
         });
-    </script>
+    </script> -->
 
 
 </body>
