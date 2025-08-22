@@ -1647,128 +1647,229 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
             }
         }
 
-        async function downloadKYC() {
-            console.log("hellpo");
-            const element = document.getElementById('kycPreview');
-            const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
-            console.log(businessName);
-            const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+        // async function downloadKYC() {
+        //     console.log("hellpo");
+        //     const element = document.getElementById('kycPreview');
+        //     const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
+        //     console.log(businessName);
+        //     const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
 
-            const previewIds = [
-                'aadhaarpreview', 'personalpanpreview', 'photographpreview',
-                'addressfilepreview', 'coifilepreview', 'moafilepreview',
-                'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
-                'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
-                'annexurebfilepreview', 'cancelledchequefile', 'cancelledchequefileadn',
-                'aadhaaradnfilepreview', 'personalpanadnfilepreview',
-                'signatoryphotoadnfilepreview', 'addressadnfilepreview',
-                'signatorysignfilepreview', 'signatorysignadnfilepreview',
-                'signphoto1', 'signphoto2', 'sign1', 'sign2'
-            ];
+        //     const previewIds = [
+        //         'aadhaarpreview', 'personalpanpreview', 'photographpreview',
+        //         'addressfilepreview', 'coifilepreview', 'moafilepreview',
+        //         'aoafilepreview', 'brfilepreview', 'udyamfilepreview',
+        //         'gstinfilepreview', 'bofilepreview', 'rentfilepreview',
+        //         'annexurebfilepreview', 'cancelledchequefile', 'cancelledchequefileadn',
+        //         'aadhaaradnfilepreview', 'personalpanadnfilepreview',
+        //         'signatoryphotoadnfilepreview', 'addressadnfilepreview',
+        //         'signatorysignfilepreview', 'signatorysignadnfilepreview',
+        //         'signphoto1', 'signphoto2', 'sign1', 'sign2'
+        //     ];
 
-            // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
-            previewIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    [...el.children].forEach(child => {
-                        if (child.tagName === "IFRAME" || child.tagName === "IMG") {
-                            el.removeChild(child);
-                        }
-                    });
-                }
-            });
+        //     // 🧼 Step 1: Remove preview images/iframes (but keep names/links)
+        //     previewIds.forEach(id => {
+        //         const el = document.getElementById(id);
+        //         if (el) {
+        //             [...el.children].forEach(child => {
+        //                 if (child.tagName === "IFRAME" || child.tagName === "IMG") {
+        //                     el.removeChild(child);
+        //                 }
+        //             });
+        //         }
+        //     });
 
-            // 📄 Step 2: Generate PDF from HTML
-            const htmlBlob = await html2pdf()
-                .set({
-                    margin: 0.8,
-                    image: {
-                        type: 'jpeg',
-                        quality: 0.98
-                    },
-                    html2canvas: {
-                        scale: 2
-                    },
-                    jsPDF: {
-                        unit: 'mm',
-                        format: 'a4',
-                        orientation: 'portrait'
-                    }
-                })
-                .from(element)
-                .outputPdf('blob');
+        //     // 📄 Step 2: Generate PDF from HTML
+        //     const htmlBlob = await html2pdf()
+        //         .set({
+        //             margin: 0.8,
+        //             image: {
+        //                 type: 'jpeg',
+        //                 quality: 0.98
+        //             },
+        //             html2canvas: {
+        //                 scale: 2
+        //             },
+        //             jsPDF: {
+        //                 unit: 'mm',
+        //                 format: 'a4',
+        //                 orientation: 'portrait'
+        //             }
+        //         })
+        //         .from(element)
+        //         .outputPdf('blob');
 
-            const htmlBytes = await htmlBlob.arrayBuffer();
-            const finalPdf = await PDFLib.PDFDocument.create();
-            const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
-            const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
-            pages.forEach(p => finalPdf.addPage(p));
+        //     const htmlBytes = await htmlBlob.arrayBuffer();
+        //     const finalPdf = await PDFLib.PDFDocument.create();
+        //     const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+        //     const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+        //     pages.forEach(p => finalPdf.addPage(p));
 
-            // ➕ Step 3: Add uploaded files
-            for (const key in uploadedFiles) {
-                const file = uploadedFiles[key];
-                const bytes = await file.arrayBuffer();
+        //     // ➕ Step 3: Add uploaded files
+        //     for (const key in uploadedFiles) {
+        //         const file = uploadedFiles[key];
+        //         const bytes = await file.arrayBuffer();
 
-                if (file.type === 'application/pdf') {
-                    // ✅ Merge PDFs
-                    const extDoc = await PDFLib.PDFDocument.load(bytes);
-                    const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
-                    extPages.forEach(p => finalPdf.addPage(p));
+        //         if (file.type === 'application/pdf') {
+        //             // ✅ Merge PDFs
+        //             const extDoc = await PDFLib.PDFDocument.load(bytes);
+        //             const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
+        //             extPages.forEach(p => finalPdf.addPage(p));
 
-                } else if (file.type.startsWith('image/')) {
-                    // ✅ Embed images
-                    const imgBytes = new Uint8Array(bytes);
-                    const embedded = file.type.includes('png') ?
-                        await finalPdf.embedPng(imgBytes) :
-                        await finalPdf.embedJpg(imgBytes);
+        //         } else if (file.type.startsWith('image/')) {
+        //             // ✅ Embed images
+        //             const imgBytes = new Uint8Array(bytes);
+        //             const embedded = file.type.includes('png') ?
+        //                 await finalPdf.embedPng(imgBytes) :
+        //                 await finalPdf.embedJpg(imgBytes);
 
-                    const page = finalPdf.addPage();
-                    const pageWidth = page.getWidth();
-                    const pageHeight = page.getHeight();
+        //             const page = finalPdf.addPage();
+        //             const pageWidth = page.getWidth();
+        //             const pageHeight = page.getHeight();
 
-                    const margin = 100; // margin on both sides
-                    const availableWidth = pageWidth - 2 * margin;
+        //             const margin = 100; // margin on both sides
+        //             const availableWidth = pageWidth - 2 * margin;
 
-                    const originalWidth = embedded.width;
-                    const originalHeight = embedded.height;
-                    const aspectRatio = originalHeight / originalWidth;
+        //             const originalWidth = embedded.width;
+        //             const originalHeight = embedded.height;
+        //             const aspectRatio = originalHeight / originalWidth;
 
-                    const targetWidth = availableWidth;
-                    const targetHeight = targetWidth * aspectRatio;
+        //             const targetWidth = availableWidth;
+        //             const targetHeight = targetWidth * aspectRatio;
 
-                    page.drawImage(embedded, {
-                        x: margin,
-                        y: pageHeight - targetHeight - margin, // top margin
-                        width: targetWidth,
-                        height: targetHeight
-                    });
+        //             page.drawImage(embedded, {
+        //                 x: margin,
+        //                 y: pageHeight - targetHeight - margin, // top margin
+        //                 width: targetWidth,
+        //                 height: targetHeight
+        //             });
 
-                } else {
-                    // ❌ Unsupported file type → Add a text page
-                    const page = finalPdf.addPage();
-                    const font = await finalPdf.embedFont(PDFLib.StandardFonts.Helvetica);
-                    page.drawText(`File "${file.name}" (${file.type}) could not be embedded.`, {
-                        x: 50,
-                        y: page.getHeight() - 100,
-                        size: 12,
-                        font: font
-                    });
-                }
+        //         } else {
+        //             // ❌ Unsupported file type → Add a text page
+        //             const page = finalPdf.addPage();
+        //             const font = await finalPdf.embedFont(PDFLib.StandardFonts.Helvetica);
+        //             page.drawText(`File "${file.name}" (${file.type}) could not be embedded.`, {
+        //                 x: 50,
+        //                 y: page.getHeight() - 100,
+        //                 size: 12,
+        //                 font: font
+        //             });
+        //         }
+        //     }
+
+        //     // 🔽 Step 4: Download
+        //     const finalBytes = await finalPdf.save();
+        //     const blob = new Blob([finalBytes], {
+        //         type: 'application/pdf'
+        //     });
+        //     const url = URL.createObjectURL(blob);
+        //     const link = document.createElement('a');
+        //     link.href = url;
+        //     link.download = `${cleanName}-KYC-Onboarding.pdf`;
+        //     document.body.appendChild(link);
+        //     link.click();
+        //     document.body.removeChild(link);
+        // }
+
+     
+    const uploadedFiles = {
+        aadhaar: "<?= !empty($aadhaarfile) ? $aadhaarfile : '' ?>",
+        personalpan: "<?= !empty($personalpanfile) ? $personalpanfile : '' ?>"
+        // add more fields the same way...
+    };
+
+    async function downloadKYC() {
+    console.log("hellpo");
+    const element = document.getElementById('kycPreview');
+    const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
+    const cleanName = businessName.replace(/[^a-zA-Z0-9]/g, '_');
+
+    // 📄 Step 1: Generate PDF from HTML
+    const htmlBlob = await html2pdf()
+        .set({
+            margin: 0.8,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+        .from(element)
+        .outputPdf('blob');
+
+    const htmlBytes = await htmlBlob.arrayBuffer();
+    const finalPdf = await PDFLib.PDFDocument.create();
+    const htmlDoc = await PDFLib.PDFDocument.load(htmlBytes);
+    const pages = await finalPdf.copyPages(htmlDoc, htmlDoc.getPageIndices());
+    pages.forEach(p => finalPdf.addPage(p));
+
+    // ➕ Step 2: Attach uploaded files from PHP vars
+    for (const [label, fileUrl] of Object.entries(uploadedFiles)) {
+        if (!fileUrl) continue; // skip empty
+
+        try {
+            const response = await fetch(fileUrl);
+            const bytes = await response.arrayBuffer();
+            const mime = response.headers.get("Content-Type") || "";
+
+            if (mime === "application/pdf") {
+                // ✅ Merge PDFs
+                const extDoc = await PDFLib.PDFDocument.load(bytes);
+                const extPages = await finalPdf.copyPages(extDoc, extDoc.getPageIndices());
+                extPages.forEach(p => finalPdf.addPage(p));
+
+            } else if (mime.startsWith("image/")) {
+                // ✅ Embed images
+                const embedded = mime.includes("png")
+                    ? await finalPdf.embedPng(bytes)
+                    : await finalPdf.embedJpg(bytes);
+
+                const page = finalPdf.addPage();
+                const pageWidth = page.getWidth();
+                const pageHeight = page.getHeight();
+
+                const margin = 80;
+                const availableWidth = pageWidth - 2 * margin;
+
+                const aspectRatio = embedded.height / embedded.width;
+                const targetWidth = availableWidth;
+                const targetHeight = targetWidth * aspectRatio;
+
+                page.drawImage(embedded, {
+                    x: margin,
+                    y: pageHeight - targetHeight - margin,
+                    width: targetWidth,
+                    height: targetHeight
+                });
+
+            } else {
+                // ❌ Unsupported type → add text note
+                const page = finalPdf.addPage();
+                const font = await finalPdf.embedFont(PDFLib.StandardFonts.Helvetica);
+                page.drawText(`File "${label}" (${mime}) could not be embedded.`, {
+                    x: 50,
+                    y: page.getHeight() - 100,
+                    size: 12,
+                    font: font
+                });
             }
-
-            // 🔽 Step 4: Download
-            const finalBytes = await finalPdf.save();
-            const blob = new Blob([finalBytes], {
-                type: 'application/pdf'
-            });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `${cleanName}-KYC-Onboarding.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        } catch (err) {
+            console.error(`Error loading ${label}:`, err);
         }
+    }
+
+    // 🔽 Step 3: Download
+    const finalBytes = await finalPdf.save();
+    const blob = new Blob([finalBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${cleanName}-KYC-Onboarding.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+
+
+
 
 
         // ✅ Auto-trigger validateFile() on page load and bind blur
