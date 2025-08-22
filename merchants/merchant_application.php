@@ -122,6 +122,19 @@ $fileData = [
     "personalpan"        => !empty($docData['personalpanfile']) ? getSignedUrl($docData['personalpanfile']) : null,
     "photograph"         => !empty($docData['photograph']) ? getSignedUrl($docData['photograph']) : null,
     "address"            => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
+    "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
+     "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
+     
+      // Additional previews (adn = additional?)
+    "aadhaaradn"         => !empty($docData['aadhaaradnfile']) ? getSignedUrl($docData['aadhaaradnfile']) : null,
+    "personalpanadn"     => !empty($docData['personalpanadnfile']) ? getSignedUrl($docData['personalpanadnfile']) : null,
+    "addressadn"         => !empty($docData['addressadnfile']) ? getSignedUrl($docData['addressadnfile']) : null,
+    "signatoryphotoadn"  => !empty($docData['signatoryphotoadnfile']) ? getSignedUrl($docData['signatoryphotoadnfile']) : null,
+      "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
+      "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
+    
+
+
     "coi"                => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
     "moa"                => !empty($docData['moafile']) ? getSignedUrl($docData['moafile']) : null,
     "aoa"                => !empty($docData['aoafile']) ? getSignedUrl($docData['aoafile']) : null,
@@ -131,22 +144,11 @@ $fileData = [
     "bo"                 => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
     "rent"               => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
     "annexureb"          => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
-    "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
-    "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
+   
 
-    // Additional previews (adn = additional?)
-    "aadhaaradn"         => !empty($docData['aadhaaradnfile']) ? getSignedUrl($docData['aadhaaradnfile']) : null,
-    "personalpanadn"     => !empty($docData['personalpanadnfile']) ? getSignedUrl($docData['personalpanadnfile']) : null,
-    "signatoryphotoadn"  => !empty($docData['signatoryphotoadnfile']) ? getSignedUrl($docData['signatoryphotoadnfile']) : null,
-    "addressadn"         => !empty($docData['addressadnfile']) ? getSignedUrl($docData['addressadnfile']) : null,
-    "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
-    "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
 
     // Signatures/photos (single or multiple)
-    "signphoto1"         => !empty($docData['signphoto1']) ? getSignedUrl($docData['signphoto1']) : null,
-    "signphoto2"         => !empty($docData['signphoto2']) ? getSignedUrl($docData['signphoto2']) : null,
-    "sign1"              => !empty($docData['sign1']) ? getSignedUrl($docData['sign1']) : null,
-    "sign2"              => !empty($docData['sign2']) ? getSignedUrl($docData['sign2']) : null,
+
 ];
 
 echo "<pre>";
