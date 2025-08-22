@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $setApp[] = "$field = '$val'";
     }
 
-    $updateApp = "UPDATE business_applications SET " . implode(', ', $setApp) . " WHERE id = $application_id";
+    $updateApp = "UPDATE business_applications SET " . implode(', ', $setApp) . " WHERE id = '$application_id'";
     mysqli_query($mysqli, $updateApp);
 
 
@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!empty($updateFileParts)) {
-        $updateFilesQuery = "UPDATE business_documents SET " . implode(', ', $updateFileParts) . " WHERE application_id = $application_id";
+        $updateFilesQuery = "UPDATE business_documents SET " . implode(', ', $updateFileParts) . " WHERE application_id = '$application_id'";
         mysqli_query($mysqli, $updateFilesQuery);
     }
 
