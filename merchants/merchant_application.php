@@ -35,7 +35,7 @@ function getSignedUrl($fileKey)
             'Bucket' => $bucket,
             'Key'    => $fileKey
         ]);
-        $request = $s3->createPresignedRequest($cmd, '+1 minutes');
+        $request = $s3->createPresignedRequest($cmd, '+5 minutes');
         return (string) $request->getUri();
     } catch (Exception $e) {
         return null;
