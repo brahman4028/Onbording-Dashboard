@@ -1792,7 +1792,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
 
     <!-- reflecting pdf on onload -->
 
-    <script>
+    <!-- <script>
         window.addEventListener('DOMContentLoaded', () => {
             const fileDivIds = [
                 'aadhaarpreview', 'personalpanpreview', 'photographpreview',
@@ -1827,7 +1827,7 @@ $docData = $docResult ? mysqli_fetch_assoc($docResult) : [];
                     });
             });
         });
-    </script>
+    </script> -->
 
 
     <!-- /////////////// -->
