@@ -149,9 +149,9 @@ $fileData = [
     "sign2"              => !empty($docData['sign2']) ? getSignedUrl($docData['sign2']) : null,
 ];
 
-// echo "<pre>";
-// print_r($fileData);
-// echo "</pre>";
+echo "<pre>";
+print_r($fileData);
+echo "</pre>";
 
 ?>
 
