@@ -229,30 +229,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //     $updateFileParts[] = "$field = '$safePath'";
 
             // }
-            if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-                try {
-                    // Upload to AWS S3
-                    $s3Result = $s3->putObject([
-                        'Bucket'     => $bucket,
-                        'Key'        => "IT_STARPAY/" . $fileName,
-                        'SourceFile' => $targetPath,
-                        //'ACL'      => 'public-read',
-                    ]);
+            try {
+                // Upload directly from temp file to AWS S3
+                $s3Result = $s3->putObject([
+                    'Bucket'     => $bucket,
+                    'Key'        => "IT_STARPAY/" . $fileName,
+                    'SourceFile' => $_FILES[$field]['tmp_name'], // use temp file
+                    //'ACL'      => 'public-read',
+                ]);
 
-                    // Save S3 URL
-                    $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
-                    $updateFileParts[] = "$field = '$safePath'";
-                    $uploadedFiles[$field] = $s3Result['ObjectURL'];
-                } catch (AwsException $e) {
-                    echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+                // Save S3 URL in database
+                $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
+                $updateFileParts[] = "$field = '$safePath'";
+                $uploadedFiles[$field] = $s3Result['ObjectURL'];
+            } catch (AwsException $e) {
+                echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
 
-                    // Fallback: keep local path
-                    $safePath = $mysqli->real_escape_string($targetPath);
-                    $updateFileParts[] = "$field = '$safePath'";
-                    $uploadedFiles[$field] = $targetPath;
-                }
-            } else {
-                $uploadedFiles[$field] = '';
+                // Optional fallback: use temp file path
+                $safePath = $mysqli->real_escape_string($_FILES[$field]['tmp_name']);
+                $updateFileParts[] = "$field = '$safePath'";
+                $uploadedFiles[$field] = $_FILES[$field]['tmp_name'];
             }
         } else {
             $uploadedFiles[$field] = '';

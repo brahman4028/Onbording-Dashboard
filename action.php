@@ -38,7 +38,6 @@ do {
     // check if this ID already exists in DB
     $merQuery = "SELECT id FROM business_applications WHERE id = '$uniqueID' LIMIT 1";
     $merResult = mysqli_query($mysqli, $merQuery);
-
 } while (mysqli_num_rows($merResult) > 0);
 
 
@@ -104,9 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (
         empty($entity) || empty($doi) || empty($nob) || empty($gstin) || empty($pan) ||
-        empty($fullname) || empty($number) || empty
-        
-        ($aadhaarnumber) || empty($totalvolume)
+        empty($fullname) || empty($number) || empty($aadhaarnumber) || empty($totalvolume)
     ) {
         echo "<h4>Error: Required fields are missing. Please fill all mandatory fields.</h4>";
         exit;
@@ -140,131 +137,122 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     ];
 
-//    foreach ($fileFields as $field) {
-//     if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
-//         $originalName = basename($_FILES[$field]['name']);
+    //    foreach ($fileFields as $field) {
+    //     if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+    //         $originalName = basename($_FILES[$field]['name']);
 
-//         // 🧼 Sanitize filename (remove spaces and special characters)
-//         $cleanName = preg_replace('/[^a-zA-Z0-9.\-_]/', '_', $originalName);
+    //         // 🧼 Sanitize filename (remove spaces and special characters)
+    //         $cleanName = preg_replace('/[^a-zA-Z0-9.\-_]/', '_', $originalName);
 
-//         // 🔐 Unique name = Application ID + uniqid() + original name
-//         $fileName = $uniqueID . "_" . uniqid() . "_" . $cleanName;
-//         $targetPath = $uploadDir . $fileName;
+    //         // 🔐 Unique name = Application ID + uniqid() + original name
+    //         $fileName = $uniqueID . "_" . uniqid() . "_" . $cleanName;
+    //         $targetPath = $uploadDir . $fileName;
 
-//         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-//             $uploadedFiles[$field] = $targetPath;
-//         } else {4
-//             $uploadedFiles[$field] = '';
-//         }
-//     } else {
-//         $uploadedFiles[$field] = '';
-//     }
-// }
+    //         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+    //             $uploadedFiles[$field] = $targetPath;
+    //         } else {4
+    //             $uploadedFiles[$field] = '';
+    //         }
+    //     } else {
+    //         $uploadedFiles[$field] = '';
+    //     }
+    // }
 
-foreach ($fileFields as $field) {
-    if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
-        $originalName = basename($_FILES[$field]['name']);
+    foreach ($fileFields as $field) {
+        if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+            $originalName = basename($_FILES[$field]['name']);
 
-        // 🧼 Get file extension
-        $ext = pathinfo($originalName, PATHINFO_EXTENSION);
+            // 🧼 Get file extension
+            $ext = pathinfo($originalName, PATHINFO_EXTENSION);
 
-        // Default clean name (fallback)
-        $alias = $field;
+            // Default clean name (fallback)
+            $alias = $field;
 
-        // Map field → custom alias
-        switch ($field) {
-            case 'aadhaarfile':
-                $alias = 'aadhaar';
-                break;
-            case 'personalpanfile':
-                $alias = 'pan';
-                break;
-            case 'photograph':
-                $alias = 'photo';
-                break;
-            case 'addressfile':
-                $alias = 'address';
-                break;
-            case 'signatorysignfile':
-                $alias = 'sign';
-                break;
-            case 'coifile':
-                $alias = 'coa';
-                break;
-            case 'moafile':
-                $alias = 'moa';
-                break;
-            case 'aoafile':
-                $alias = 'aoa';
-                break;
-            case 'brfile':
-                $alias = 'br';
-                break;
-            case 'udyamfile':
-                $alias = 'udyam';
-                break;
-            case 'gstinfile':
-                $alias = 'gstin';
-                break;
-            case 'bofile':
-                $alias = 'bo';
-                break;
-            case 'rentfile':
-                $alias = 'rent';
-                break;
-            case 'annexurebfile':
-                $alias = 'annexureb';
-                break;
-            case 'cancelledchequefile':
-                $alias = 'cancelledcheque';
-                break;
-            case 'aadhaaradnfile':
-                $alias = 'aadhaar2';
-                break;
-            case 'personalpanadnfile':
-                $alias = 'pan2';
-                break;
-            case 'signatoryphotoadnfile':
-                $alias = 'photo2';
-                break;
-            case 'addressadnfile':
-                $alias = 'address2';
-                break;
-            case 'signatorysignadnfile':
-                $alias = 'sign2';
-                break;
-            
-        }
+            // Map field → custom alias
+            switch ($field) {
+                case 'aadhaarfile':
+                    $alias = 'aadhaar';
+                    break;
+                case 'personalpanfile':
+                    $alias = 'pan';
+                    break;
+                case 'photograph':
+                    $alias = 'photo';
+                    break;
+                case 'addressfile':
+                    $alias = 'address';
+                    break;
+                case 'signatorysignfile':
+                    $alias = 'sign';
+                    break;
+                case 'coifile':
+                    $alias = 'coa';
+                    break;
+                case 'moafile':
+                    $alias = 'moa';
+                    break;
+                case 'aoafile':
+                    $alias = 'aoa';
+                    break;
+                case 'brfile':
+                    $alias = 'br';
+                    break;
+                case 'udyamfile':
+                    $alias = 'udyam';
+                    break;
+                case 'gstinfile':
+                    $alias = 'gstin';
+                    break;
+                case 'bofile':
+                    $alias = 'bo';
+                    break;
+                case 'rentfile':
+                    $alias = 'rent';
+                    break;
+                case 'annexurebfile':
+                    $alias = 'annexureb';
+                    break;
+                case 'cancelledchequefile':
+                    $alias = 'cancelledcheque';
+                    break;
+                case 'aadhaaradnfile':
+                    $alias = 'aadhaar2';
+                    break;
+                case 'personalpanadnfile':
+                    $alias = 'pan2';
+                    break;
+                case 'signatoryphotoadnfile':
+                    $alias = 'photo2';
+                    break;
+                case 'addressadnfile':
+                    $alias = 'address2';
+                    break;
+                case 'signatorysignadnfile':
+                    $alias = 'sign2';
+                    break;
+            }
 
-        // 🔐 Final filename = uniqueID + alias + extension
-        // $fileName = $uniqueID . "_" . $alias;
-        $fileName = $uniqueID . "_" . $alias . "." . $ext;
-        $targetPath = $uploadDir . $fileName;
+            // 🔐 Final filename = uniqueID + alias + extension
+            // $fileName = $uniqueID . "_" . $alias;
+            $fileName = $uniqueID . "_" . $alias . "." . $ext;
+            $targetPath = $uploadDir . $fileName;
 
-        if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-            $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
-
-            // ===== Upload to AWS S3 =====
-                try {
-                    $s3Result = $s3->putObject([
-                        'Bucket'     => $bucket,
-                        'Key'        => "IT_STARPAY/" . $fileName,
-                        'SourceFile' => $targetPath,
-                        //'ACL'      => 'public-read', // optional
-                    ]);
-                    $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
-                } catch (AwsException $e) {
-                    echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
-                    $uploadedFiles[$field] = $targetPath; // fallback to local path
-                }
-                
+            try {
+                $s3Result = $s3->putObject([
+                    'Bucket'     => $bucket,
+                    'Key'        => "IT_STARPAY/" . $fileName,
+                    'SourceFile' => $_FILES[$field]['tmp_name'], // directly from temp
+                    //'ACL'      => 'public-read',
+                ]);
+                $uploadedFiles[$field] = $s3Result['ObjectURL'];
+            } catch (AwsException $e) {
+                echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+                $uploadedFiles[$field] = ''; // fallback
+            }
         } else {
             $uploadedFiles[$field] = '';
         }
-    } else {
-        $uploadedFiles[$field] = '';
     }
-}
 
     // Example output (you can replace this with DB insert logic)
     echo "<h3>Form Submitted Successfully</h3><pre>";
@@ -328,7 +316,7 @@ foreach ($fileFields as $field) {
 
     if ($dupCheck->num_rows > 0) {
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>⚠️ Duplicate data found. Please check GSTIN, PAN, Email, Aadhaar or Contact numbers.</div>";
-        
+
         exit;
     }
     $query = "INSERT INTO business_applications ( id, 
@@ -354,7 +342,7 @@ foreach ($fileFields as $field) {
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";
     }
 
-    
+
 
     $application_id = $mysqli->insert_id;
     $merchant_id = $mysqli->insert_id;
@@ -388,22 +376,21 @@ foreach ($fileFields as $field) {
 )";
 
 
-// insert application id to merchant_id 
+    // insert application id to merchant_id 
 
-$sql2 = "UPDATE merchant_info SET application_id = '$uniqueID' WHERE email = '$merchantemail'";
-$result2 = mysqli_query($mysqli, $sql2);
+    $sql2 = "UPDATE merchant_info SET application_id = '$uniqueID' WHERE email = '$merchantemail'";
+    $result2 = mysqli_query($mysqli, $sql2);
 
     $result = mysqli_query($mysqli, $sql);
 
     if ($result) {
 
-        if($result2){
-             echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
-        header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+        if ($result2) {
+            echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
+            header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+        } else {
+            echo "failed to update merchant";
         }
-       else{
-        echo "failed to update merchant";
-       }
     } else {
         // echo "❌ Error: " . mysqli_error($mysqli);
         echo "<div style='padding:12px; background:#f8d7da; color:#842029;'>❌ Error: " . mysqli_error($mysqli) . "</div>";

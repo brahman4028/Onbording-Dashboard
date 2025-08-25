@@ -140,7 +140,6 @@ foreach ($fileFields as $field) {
         // $fileName = $uniqueID . "_" . $alias;
         $fileName = $uniqueID . "_" . $alias . "." . $ext;
         $targetPath = $uploadDir . $fileName;
-
         $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
         try {
             $s3Result = $s3->putObject([
@@ -149,12 +148,12 @@ foreach ($fileFields as $field) {
                 'SourceFile' => $_FILES[$field]['tmp_name'], // directly from temp
                 //'ACL'      => 'public-read',
             ]);
-            
+            $uploadedFiles[$field] = $s3Result['ObjectURL'];
         } catch (AwsException $e) {
             echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
             $uploadedFiles[$field] = ''; // fallback
         }
-
+        
     } else {
         $uploadedFiles[$field] = '';
     }
