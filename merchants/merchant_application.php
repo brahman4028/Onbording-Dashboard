@@ -1004,7 +1004,7 @@ $fileData = [
                                                         <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']); $imageData1 = file_get_contents($signatorysignfilepr);
                                                         $imageBase641 = base64_encode($imageData1); ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $imageBase641 ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase641 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1018,7 +1018,7 @@ $fileData = [
                                                         <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']); $imageData2 = file_get_contents($signatoryphotoadnfilepr);
                                                         $imageBase642 = base64_encode($imageData2);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $imageBase642 ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase642 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1030,7 +1030,7 @@ $fileData = [
                                                         <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']); $imageData3 = file_get_contents($signatorysignadnfilepr);
                                                         $imageBase643 = base64_encode($imageData3);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $imageBase643 ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase643 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
