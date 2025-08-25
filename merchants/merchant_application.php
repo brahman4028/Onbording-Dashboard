@@ -992,7 +992,7 @@ $fileData = [
                                                         ?>
                                                                 <div style="margin-top: 10px;">
 
-                                                                    <img src="<?= $imageBase64 ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase64 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
