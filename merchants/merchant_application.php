@@ -1001,9 +1001,10 @@ $fileData = [
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']); ?>
+                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']); $imageData1 = file_get_contents($signatorysignfilepr);
+                                                        $imageBase641 = base64_encode($imageData1); ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatorysignfilepr ?>"
+                                                                    <img src="<?= $imageBase641 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1014,9 +1015,10 @@ $fileData = [
                                                     </td>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']); ?>
+                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']); $imageData2 = file_get_contents($signatoryphotoadnfilepr);
+                                                        $imageBase642 = base64_encode($imageData2);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatoryphotoadnfilepr ?>"
+                                                                    <img src="<?= $imageBase642 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1025,9 +1027,10 @@ $fileData = [
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']); ?>
+                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']); $imageData3 = file_get_contents($signatorysignadnfilepr);
+                                                        $imageBase643 = base64_encode($imageData3);?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatorysignadnfilepr ?>"
+                                                                    <img src="<?= $imageBase643 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
