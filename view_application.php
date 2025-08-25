@@ -113,16 +113,16 @@ $fileData = [
     "photograph"         => !empty($docData['photograph']) ? getSignedUrl($docData['photograph']) : null,
     "address"            => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
     "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
-     "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
-     
-      // Additional previews (adn = additional?)
+    "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
+
+    // Additional previews (adn = additional?)
     "aadhaaradn"         => !empty($docData['aadhaaradnfile']) ? getSignedUrl($docData['aadhaaradnfile']) : null,
     "personalpanadn"     => !empty($docData['personalpanadnfile']) ? getSignedUrl($docData['personalpanadnfile']) : null,
     "addressadn"         => !empty($docData['addressadnfile']) ? getSignedUrl($docData['addressadnfile']) : null,
     "signatoryphotoadn"  => !empty($docData['signatoryphotoadnfile']) ? getSignedUrl($docData['signatoryphotoadnfile']) : null,
-      "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
-      "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
-    
+    "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
+    "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
+
 
 
     "coi"                => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
@@ -134,7 +134,7 @@ $fileData = [
     "bo"                 => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
     "rent"               => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
     "annexureb"          => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
-   
+
 
 
     // Signatures/photos (single or multiple)
@@ -217,13 +217,15 @@ $fileData = [
         }
 
         .autth-img-cover-login {
-    background-image: url('./assets/images/sky.jpg');
-    background-size: 150%; /* bigger than cover to zoom in */
-    background-position: center center; /* adjust focus */
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-}
+            background-image: url('./assets/images/sky.jpg');
+            background-size: 150%;
+            /* bigger than cover to zoom in */
+            background-position: center center;
+            /* adjust focus */
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
 
         .blr {
             background-color: rgba(254, 254, 254, 0.8) !important;
@@ -250,7 +252,7 @@ $fileData = [
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                         <ul class="navbar-nav ms-auto mb- mb-lg-0" style="font-size: 16px;">
-                           
+
                             <button type="button" class="btn btn-primary  d-flex column justify-content-center align-items-center fs-7 b" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;"><i class='bx me-1'></i><span><a href="merchants-list.php" style="color:white !important;">Go to Dashboard </a></span>
                                 <div class="text-light ms-1">
                             </button>
@@ -259,7 +261,7 @@ $fileData = [
                 </div>
             </nav>
         </header>
-         <form action="update.php" method="POST" enctype="multipart/form-data">
+        <form action="update.php" method="POST" enctype="multipart/form-data">
             <!-- for passing the id field -->
             <input type="text" hidden name="businame" id="businame" value="<?= $appData['businessname'] ?>">
             <!-- ///////// -->
@@ -967,10 +969,14 @@ $fileData = [
                                                 <tr>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']); ?>
+                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']);
+                                                                                    $imageData = file_get_contents($photographpr);
+                                                                                    $imageBase64 = base64_encode($imageData);
+
+                                                                                ?>
                                                                 <div style="margin-top: 10px;">
 
-                                                                    <img src="<?= $photographpr ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase64 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -979,9 +985,11 @@ $fileData = [
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']); ?>
+                                                        <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']);
+                                                                                $imageData1 = file_get_contents($signatorysignfilepr);
+                                                                                $imageBase641 = base64_encode($imageData1); ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatorysignfilepr ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase641 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -992,9 +1000,11 @@ $fileData = [
                                                     </td>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']); ?>
+                                                        <span id="signphoto2"><?php if (!empty($docData['signatoryphotoadnfile'])): $signatoryphotoadnfilepr = getSignedUrl($docData['signatoryphotoadnfile']);
+                                                                                    $imageData2 = file_get_contents($signatoryphotoadnfilepr);
+                                                                                    $imageBase642 = base64_encode($imageData2); ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatoryphotoadnfilepr ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase642 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1003,9 +1013,11 @@ $fileData = [
                                                             <?php endif; ?>
                                                         </span><br><br>
                                                         <!-- Signature placeholder -->
-                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']); ?>
+                                                        <span id="sign2"><?php if (!empty($docData['signatorysignadnfile'])): $signatorysignadnfilepr = getSignedUrl($docData['signatorysignadnfile']);
+                                                                                $imageData3 = file_get_contents($signatorysignadnfilepr);
+                                                                                $imageBase643 = base64_encode($imageData3); ?>
                                                                 <div style="margin-top: 10px;">
-                                                                    <img src="<?= $signatorysignadnfilepr ?>"
+                                                                    <img src="data:image/jpeg;base64,<?= $imageBase643 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
@@ -1793,7 +1805,7 @@ $fileData = [
         //     document.body.removeChild(link);
         // }
 
-         async function downloadKYC() {
+        async function downloadKYC() {
             console.log("hellpo");
             const element = document.getElementById('kycPreview');
             const businessName = document.getElementById('businame')?.value.trim() || 'KYC';
