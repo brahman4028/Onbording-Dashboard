@@ -985,10 +985,13 @@ $fileData = [
                                                 <tr>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']); ?>
+                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']); 
+                                                        $imageData = file_get_contents($photographpr);
+                                                        $imageBase64 = base64_encode($imageData);
+                                                        ?>
                                                                 <div style="margin-top: 10px;">
 
-                                                                    <img src="<?= $photographpr ?>"
+                                                                    <img src="<?= $imageBase64 ?>"
                                                                         alt="Uploaded Image Preview"
                                                                         style="max-width: 150px; border: 1px solid #ccc;" />
                                                                 </div>
