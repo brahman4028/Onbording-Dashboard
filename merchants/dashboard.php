@@ -3,6 +3,64 @@
 // ini_set('display_errors', 1);
 // error_reporting(E_ALL);
 
+require __DIR__ . '/../aws/aws-autoloader.php';
+
+use Aws\S3\S3Client;
+
+function getSignedUrl($fileKey)
+{
+    if (empty($fileKey)) return null;
+
+    $bucket    = "onboarding-plus";
+    $region    = "ap-south-1";
+    $awsKey    = "AKIA5FTY6UPGU5LZHY5T";
+    $awsSecret = "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";
+
+    $s3 = new S3Client([
+        'version' => 'latest',
+        'region'  => $region,
+        'credentials' => [
+            'key'    => $awsKey,
+            'secret' => $awsSecret,
+        ],
+    ]);
+
+    try {
+        // If full URL is passed, extract only the Key
+        if (strpos($fileKey, 'https://') === 0) {
+            $parsedUrl = parse_url($fileKey);
+            $fileKey   = ltrim($parsedUrl['path'], '/');
+        }
+
+        $cmd = $s3->getCommand('GetObject', [
+            'Bucket' => $bucket,
+            'Key'    => $fileKey
+        ]);
+        $request = $s3->createPresignedRequest($cmd, '+15 minutes');
+        return (string) $request->getUri();
+    } catch (Exception $e) {
+        return null;
+    }
+}
+
+function renderFilePreview($fileUrl)
+{
+    if (!$fileUrl) return '';
+
+    $ext = strtolower(pathinfo(parse_url($fileUrl, PHP_URL_PATH), PATHINFO_EXTENSION));
+
+    if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+        // Image preview
+        return '<img src="' . htmlspecialchars($fileUrl) . '" alt="Preview" style="max-width:100%; height:auto; border:1px solid #ccc; border-radius:8px;">';
+    } elseif ($ext === 'pdf') {
+        // PDF preview
+        return '<iframe src="' . htmlspecialchars($fileUrl) . '" style="width:100%; height:400px; border:1px solid #ccc; border-radius:8px;"></iframe>';
+    } else {
+        // Fallback - unknown type
+        return '<a href="' . htmlspecialchars($fileUrl) . '" target="_blank">Download File</a>';
+    }
+}
+
 
 
 $address = "";
