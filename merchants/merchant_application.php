@@ -1845,9 +1845,9 @@ $fileData = [
                         quality: 0.98
                     },
                     html2canvas: {
-                        scale: 2,
-                        useCORS: true,   // 👈 allow cross-origin images
-            allowTaint: true // 👈 needed for signed URLs
+                        scale: 2
+                        // useCORS: true,   // 👈 allow cross-origin images
+                        // allowTaint: true // 👈 needed for signed URLs
                     },
                     jsPDF: {
                         unit: 'mm',
