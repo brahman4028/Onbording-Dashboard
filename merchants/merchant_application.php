@@ -123,16 +123,16 @@ $fileData = [
     "photograph"         => !empty($docData['photograph']) ? getSignedUrl($docData['photograph']) : null,
     "address"            => !empty($docData['addressfile']) ? getSignedUrl($docData['addressfile']) : null,
     "signatorysign"      => !empty($docData['signatorysignfile']) ? getSignedUrl($docData['signatorysignfile']) : null,
-     "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
-     
-      // Additional previews (adn = additional?)
+    "cancelledcheque"    => !empty($docData['cancelledchequefile']) ? getSignedUrl($docData['cancelledchequefile']) : null,
+
+    // Additional previews (adn = additional?)
     "aadhaaradn"         => !empty($docData['aadhaaradnfile']) ? getSignedUrl($docData['aadhaaradnfile']) : null,
     "personalpanadn"     => !empty($docData['personalpanadnfile']) ? getSignedUrl($docData['personalpanadnfile']) : null,
     "addressadn"         => !empty($docData['addressadnfile']) ? getSignedUrl($docData['addressadnfile']) : null,
     "signatoryphotoadn"  => !empty($docData['signatoryphotoadnfile']) ? getSignedUrl($docData['signatoryphotoadnfile']) : null,
-      "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
-      "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
-    
+    "signatorysignadn"   => !empty($docData['signatorysignadnfile']) ? getSignedUrl($docData['signatorysignadnfile']) : null,
+    "cancelledchequeadn" => !empty($docData['cancelledchequefileadn']) ? getSignedUrl($docData['cancelledchequefileadn']) : null,
+
 
 
     "coi"                => !empty($docData['coifile']) ? getSignedUrl($docData['coifile']) : null,
@@ -144,7 +144,7 @@ $fileData = [
     "bo"                 => !empty($docData['bofile']) ? getSignedUrl($docData['bofile']) : null,
     "rent"               => !empty($docData['rentfile']) ? getSignedUrl($docData['rentfile']) : null,
     "annexureb"          => !empty($docData['annexurebfile']) ? getSignedUrl($docData['annexurebfile']) : null,
-   
+
 
 
     // Signatures/photos (single or multiple)
@@ -985,17 +985,22 @@ $fileData = [
                                                 <tr>
                                                     <td>
                                                         <!-- Photo placeholder -->
-                                                        <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']); ?>
-                                                                <div style="margin-top: 10px;">
+                                                        <span id="signphoto1">
+                                                            <?php if (!empty($docData['photograph'])):
+                                                                $photographpr = getSignedUrl($docData['photograph']); ?>
 
-                                                                    <img src="<?= $photographpr ?>"
-                                                                        alt="Uploaded Image Preview"
-                                                                        style="max-width: 150px; border: 1px solid #ccc;" />
+                                                                <div style="margin-top: 10px;">
+                                                                    <iframe src="<?= $photographpr ?>"
+                                                                        style="width:160px; height:160px; border:1px solid #ccc;"
+                                                                        frameborder="0"></iframe>
                                                                 </div>
+
                                                             <?php else: ?>
                                                                 <p style="color: #888;">No file uploaded</p>
                                                             <?php endif; ?>
-                                                        </span><br><br>
+                                                        </span>
+                                                        <br><br>
+
                                                         <!-- Signature placeholder -->
                                                         <span id="sign1"><?php if (!empty($docData['signatorysignfile'])): $signatorysignfilepr = getSignedUrl($docData['signatorysignfile']); ?>
                                                                 <div style="margin-top: 10px;">
