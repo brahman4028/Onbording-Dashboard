@@ -74,66 +74,10 @@ foreach ($fileFields as $field) {
 
         // Map field → custom alias
         switch ($field) {
-            case 'aadhaarfile':
-                $alias = 'aadhaar';
+            case 'cancelledchequefileadn':
+                $alias = 'cancelledcheque2';
                 break;
-            case 'personalpanfile':
-                $alias = 'pan';
-                break;
-            case 'photograph':
-                $alias = 'photo';
-                break;
-            case 'addressfile':
-                $alias = 'address';
-                break;
-            case 'signatorysignfile':
-                $alias = 'sign';
-                break;
-            case 'coifile':
-                $alias = 'coa';
-                break;
-            case 'moafile':
-                $alias = 'moa';
-                break;
-            case 'aoafile':
-                $alias = 'aoa';
-                break;
-            case 'brfile':
-                $alias = 'br';
-                break;
-            case 'udyamfile':
-                $alias = 'udyam';
-                break;
-            case 'gstinfile':
-                $alias = 'gstin';
-                break;
-            case 'bofile':
-                $alias = 'bo';
-                break;
-            case 'rentfile':
-                $alias = 'rent';
-                break;
-            case 'annexurebfile':
-                $alias = 'annexureb';
-                break;
-            case 'cancelledchequefile':
-                $alias = 'cancelledcheque';
-                break;
-            case 'aadhaaradnfile':
-                $alias = 'aadhaar2';
-                break;
-            case 'personalpanadnfile':
-                $alias = 'pan2';
-                break;
-            case 'signatoryphotoadnfile':
-                $alias = 'photo2';
-                break;
-            case 'addressadnfile':
-                $alias = 'address2';
-                break;
-            case 'signatorysignadnfile':
-                $alias = 'sign2';
-                break;
+           
         }
 
         // 🔐 Final filename = uniqueID + alias + extension
