@@ -17,8 +17,8 @@ $photograph = getSignedUrl($docData['photograph']);
         <div class="col-md-8 d-flex justify-content-between align-items-start" style=" height:100%; justify-content:space-between; flex-direction:column;">
         <div >
             <div class="">
-            <h6class="mb-3 fw-bold text-dark"> Application ID : <b class="text-primary">' . $application_id . '</b></h5>
-                <h5 class="mb-1 fw-bold text-dark">' . htmlspecialchars($appData["businessname"]) . '</h5>
+            <h6 class="mb-3 fw-bold text-dark"> Application ID : <b class="text-primary">' . $application_id . '</b></h5>
+                <h5 class="mb-1 mt-3 fw-bold text-dark">' . htmlspecialchars($appData["businessname"]) . '</h5>
                 <p class="text-muted mt-1 mb-3"><strong>GSTIN:</strong> ' . htmlspecialchars($appData["gstin"]) . '</p>
             </div>
         </div>
