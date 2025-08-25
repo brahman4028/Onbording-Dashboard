@@ -988,7 +988,7 @@ $fileData = [
                                                         <span id="signphoto1"><?php if (!empty($docData['photograph'])): $photographpr = getSignedUrl($docData['photograph']); 
                                                         $imageData = file_get_contents($photographpr);
                                                         $imageBase64 = base64_encode($imageData);
-                                                        echo $imageBase64;
+                                                      
                                                         ?>
                                                                 <div style="margin-top: 10px;">
 
