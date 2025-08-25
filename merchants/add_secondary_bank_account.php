@@ -164,4 +164,9 @@ if ($mysqli->query($sql)) {
         "message" => "Failed to update profile"
     ];
 }
+
+
 echo json_encode($response);
+
+
+

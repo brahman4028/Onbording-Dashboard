@@ -30,13 +30,13 @@ $photograph = getSignedUrl($docData['photograph']);
         </div>
         <!-- Right Section: Photo -->
         <div class="col-md-4 text-end">
-            <img src="' . $photograph . '" alt="Applicant Photo" class="img-thumbnail rounded-3 border-0" style="width: 100%; height: 100px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <img src="' . $photograph . '" alt="Applicant Photo" class="img-thumbnail rounded-3 border-0" style="width: 100px;  object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
             <p class="mt-2 mb-0 text-muted small">Applicant:</p>
             <p class="fw-semibold text-dark mb-0">' . htmlspecialchars($appData["fullname"]) . '</p>
         </div>
     </div>
 </div>
-<div class="">
+<div class="mt-2">
     <a target="_blank" href="merchant_application.php?id=' . urlencode($id) . '&gstin=' . urlencode($gstin) . '&pan=' . urlencode($pan) . '" class="btn btn-primary text-center btn-back px-3 py-1" style="box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3); border-radius:30px;">
         View application <i class="bx bx-send ms-1"></i>
     </a>
