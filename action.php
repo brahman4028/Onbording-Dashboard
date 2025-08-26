@@ -248,12 +248,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $uniqueID . "_" . $alias . "." . $ext;
             $targetPath = $uploadDir . $fileName;
 
-            if(1==1){
-                 try {
+            if (!empty($_FILES[$field]['tmp_name'])) {
+                try {
                     $s3Result = $s3->putObject([
                         'Bucket'     => $bucket,
                         'Key'        => "IT_STARPAY/" . $fileName,
-                        'SourceFile' => $targetPath,
+                        'SourceFile' => $_FILES[$field]['tmp_name'], // use temp file directly
                     ]);
 
                     $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
@@ -261,11 +261,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $uploadedFiles[$field] = $s3Result['ObjectURL'];
                 } catch (Exception $e) {
                     error_log("S3 Upload Failed: " . $e->getMessage());
+                    $uploadedFiles[$field] = ''; // fallback if S3 fails
                 }
+            } else {
+                $uploadedFiles[$field] = '';
             }
-            }
-            else {
-            $uploadedFiles[$field] = '';
         }
     }
 
@@ -455,7 +455,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>';
                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-                // echo 'Email sending';
                 $mail->send();
                 echo 'Email sent';
                 header("Location: thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}");
