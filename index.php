@@ -406,6 +406,7 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
         <form action="action.php" method="POST" enctype="multipart/form-data" id="myForm">
             <!-- for passing the merchant email field -->
             <input type="hidden" name="merchantemail" value="<?= $_SESSION['merchant_info']['email'] ?>">
+            <input type="hidden" name="merchantname" value="<?= $_SESSION['merchant_info']['username'] ?>">
             <!-- ///////// -->
             <div style=" margin-bottom:0px !important; flex:1; height:100%;">
                 <div class="card" style="height: 100%; box-shadow:none !important;">

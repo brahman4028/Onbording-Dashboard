@@ -8,6 +8,8 @@ use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
 
+
+
 // $dotenv = Dotenv::createImmutable(__DIR__);
 // $dotenv->load();
 
@@ -41,6 +43,9 @@ do {
 } while (mysqli_num_rows($merResult) > 0);
 
 
+$trackingLink = "https://itstarpay.com/onboarding/merchants/dashboard.php";
+$itstaremail = "info@itstarpay.com";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Helper function to sanitize input
     function clean($data)
@@ -49,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     // merchantuseremail
     $merchantemail = clean($_POST['merchantemail']);
+    $merchantname  = clean($_POST['merchantname']);
+
     // Text fields
     $businessname = clean($_POST['businessname']);
     $applicantname = clean($_POST['applicantname']);
@@ -387,7 +394,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result2) {
             echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
-            header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+            try {
+
+                $mail->addAddress($merchantemail, $merchantname);
+                $mail->addAddress($supportemail, $businessname);
+                $mail->Subject = 'Thank You for Registering – Your Application is in Progress';
+                $mail->Body    = "
+                                Hi {$merchantemail},
+
+                                Great news! We’ve received your onboarding form, and your application is now under review.
+
+                                Here are the details you submitted:
+                                - Business Name: \"{$businessName}\"
+                                - GST Number: \"{$gstin}\"
+                                - PAN Number: \"{$pan}\"
+
+                                You can check the progress anytime using the link below:
+                                \"{$trackingLink}\"
+
+                                Need help? Reach out to us at \"{$itstaremail}\" – we’re here to help!
+
+                                Best Regards,
+                                Staar Payout Private Limited
+                                Email: info@itstarpay.com
+                                Address: A-1/2, First Floor, Shakti Nagar Extension, Ashok Vihar, North West Delhi, Delhi, India, 110052
+                                ";
+                // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                $mail->send();
+                echo 'Email sent';
+                header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
         } else {
             echo "failed to update merchant";
         }

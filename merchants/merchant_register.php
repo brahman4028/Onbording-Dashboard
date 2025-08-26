@@ -14,6 +14,23 @@ require_once '../db.php';
 ?>
 <?php include 'header.php'; ?>
 
+<?php
+
+session_start();
+
+
+
+// Generate 4-digit OTP
+// $otp = rand(1000, 9999);
+
+// // Store OTP in session
+// $_SESSION['otp'] = $otp;
+
+// echo $_SESSION['otp'];
+unset($_SESSION['otp']);
+
+?>
+
 
 <link rel="icon" href="../assets/images/starfav.png" type="image/png" />
 
@@ -81,10 +98,43 @@ require_once '../db.php';
 										</div>
 
 										<div class="col-12 mt-2 mb-2">
-											<label for="inputEmailAddress" class="form-label">Email Address</label>
-											<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" onblur="validateEmail(this, 'personalemailadn-error', 'personalemailadnvalue')" required>
-											<div id="personalemailadn-error" class="text-danger mt-1 d-none">
-												❌ Please enter a valid email address
+											<div>
+												<div class="col-12 mt-2 mb-2 d-flex align-items-end gap-2">
+													<div class="flex-grow-1">
+														<label for="inputEmailAddress" class="form-label mb-0">Email Address</label>
+														<input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="example@user.com" onblur="validateEmail(this, 'personalemailadn-error', 'personalemailadnvalue')" required>
+														<div id="personalemailadn-error" class="text-danger mt-1 d-none">
+															❌ Please enter a valid email address
+														</div>
+
+
+
+													</div>
+													<div>
+														<button type="button" class="btn btn-primary " onclick="showOTPSection()">Verify</button>
+													</div>
+												</div>
+												<div id="email-status" class="mt-1 text-success d-none"></div>
+											</div>
+
+										</div>
+
+										<!-- OTP Section: hidden by default -->
+										<div class="col-12 mt-1 d-none" id="otp-section">
+											<label class="form-label">Enter OTP</label>
+											<div class="d-flex gap-2 mb-2">
+												<input type="text" maxlength="1" class="form-control otp-input text-center" id="otp1" oninput="moveFocus(this, 'otp2')" >
+												<input type="text" maxlength="1" class="form-control otp-input text-center" id="otp2" oninput="moveFocus(this, 'otp3')" >
+												<input type="text" maxlength="1" class="form-control otp-input text-center" id="otp3" oninput="moveFocus(this, 'otp4')" >
+												<input type="text" maxlength="1" class="form-control otp-input text-center" id="otp4" >
+											</div>
+											<button type="button" id="verify-btn" class="btn btn-success btn-sm" onclick="verifyOTP()">Verify</button>
+
+											<div id="otp-error" class="text-danger mt-2 d-none">
+												❌ Please enter the correct OTP
+											</div>
+											<div id="otp-success" class="text-success mt-2 d-none">
+												✅ OTP verified successfully
 											</div>
 										</div>
 										<div class="col-12 mt-2 mb-2">
@@ -114,6 +164,8 @@ require_once '../db.php';
 											</ul>
 
 										</div>
+
+
 
 										<div class="col-12 mt-3 mb-2">
 											<div class="d-grid ">
@@ -231,6 +283,112 @@ require_once '../db.php';
 			if (errorEl) errorEl.classList.add('d-none');
 		}
 	}
+
+	function showOTPSection() {
+		const emailInput = document.getElementById('inputEmailAddress').value;
+		// const otp = document.getElementById('otp').value;
+		const emailError = document.getElementById('personalemailadn-error');
+		const emailStatus = document.getElementById('email-status');
+		const verifyBtn = document.getElementById('verify-btn');
+
+		const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (emailPattern.test(emailInput)) {
+			// Hide error
+			emailError.classList.add('d-none');
+
+			// Show sending status
+			emailStatus.classList.remove('d-none');
+			emailStatus.innerHTML = `<span class="text-primary">Sending... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>`;
+			verifyBtn.disabled = true; // disable button while sending
+
+			// Send OTP
+			fetch('merchant_otp.php', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: 'email=' + encodeURIComponent(emailInput)
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.status === 'success') {
+						emailStatus.innerHTML = `<span class="text-success">OTP Sent!</span>`;
+						document.getElementById('otp-section').classList.remove('d-none');
+					} else {
+						emailStatus.innerHTML = `<span class="text-danger">❌ Error: ${data.message}</span>`;
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					emailStatus.innerHTML = `<span class="text-danger">❌ Something went wrong.</span>`;
+				})
+				.finally(() => {
+					verifyBtn.disabled = false; // re-enable button
+				});
+
+		} else {
+			emailError.classList.remove('d-none');
+			emailStatus.classList.add('d-none');
+		}
+	}
+
+
+
+	// Function to move focus to next OTP field
+	function moveFocus(current, nextFieldID) {
+		if (current.value.length >= 1) {
+			const next = document.getElementById(nextFieldID);
+			if (next) next.focus();
+		}
+	}
+
+	let isOTPVerified = false;
+
+	// OTP verification (replace with backend logic)
+	function verifyOTP() {
+
+
+		const emailStatus = document.getElementById('email-status');
+		const verifyBtn = document.getElementById('verify-btn');
+		const enteredOTP =
+			document.getElementById('otp1').value +
+			document.getElementById('otp2').value +
+			document.getElementById('otp3').value +
+			document.getElementById('otp4').value;
+
+		// const correctOTP = "1234"; // Replace with real OTP from backend
+
+		const emailInput = document.getElementById('inputEmailAddress').value;
+
+		fetch('verify_otp.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'email=' + encodeURIComponent(emailInput) + '&otp=' + encodeURIComponent(enteredOTP)
+			})
+			.then(res => res.json())
+			.then(data => {
+				if (data.status === 'success') {
+					isOTPVerified = true;
+					document.getElementById('otp-success').classList.remove('d-none');
+					document.getElementById('otp-error').classList.add('d-none');
+					document.getElementById('otp-section').classList.add('d-none');
+					emailStatus.innerHTML = `<span class="text-success">Email Verified !</span>`;
+				} else {
+					isOTPVerified = false; // OTP invalid
+					document.getElementById('otp-error').classList.remove('d-none');
+					document.getElementById('otp-success').classList.add('d-none');
+				}
+			}).catch(err => {
+				console.error('Error verifying OTP:', err);
+				isOTPVerified = false;
+			});
+
+	}
+
+	
 </script>
 
 <!-- password syrength -->
@@ -341,11 +499,23 @@ require_once '../db.php';
 		const password = document.getElementById("inputChoosePassword").value;
 		const isStrong = checkPasswordStrength(password).valid;
 
+		if (!isOTPVerified) {
+        e.preventDefault(); // block submission
+        alert('Please verify your email first with the OTP.');
+    }
+	else{
+		
 		if (!isStrong) {
 			e.preventDefault();
 			alert("Password is too weak. Please make sure it meets all the strength requirements.");
 		}
+	}
+
+
 	});
+
+	
+	 
 </script>
 
 
