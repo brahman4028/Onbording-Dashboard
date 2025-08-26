@@ -2,6 +2,8 @@
 
 include 'db.php';
 
+include 'phpmailer.php';
+
 require __DIR__ . '/aws/aws-autoloader.php';
 
 use Aws\S3\S3Client;
