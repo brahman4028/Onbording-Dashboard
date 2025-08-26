@@ -396,6 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result2) {
             echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
+             header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
             try {
 
                 $mail->addAddress($merchantemail, $merchantname);
