@@ -260,6 +260,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         //'ACL'      => 'public-read', // optional
                     ]);
                     $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
+
+                    // ✅ Delete local file after successful upload
+        if (file_exists($targetPath)) {
+            unlink($targetPath);
+        }
+        
                 } catch (AwsException $e) {
                     echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
                     $uploadedFiles[$field] = $targetPath; // fallback to local path
