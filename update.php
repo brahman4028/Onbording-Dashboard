@@ -229,31 +229,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //     $updateFileParts[] = "$field = '$safePath'";
 
             // }
-            try {
-                // Upload directly from temp file to AWS S3
-                $s3Result = $s3->putObject([
-                    'Bucket'     => $bucket,
-                    'Key'        => "IT_STARPAY/" . $fileName,
-                    'SourceFile' => $_FILES[$field]['tmp_name'], // use temp file
-                    //'ACL'      => 'public-read',
-                ]);
+         if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+            $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
 
-                // Save S3 URL in database
-                $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
-                $updateFileParts[] = "$field = '$safePath'";
-                $uploadedFiles[$field] = $s3Result['ObjectURL'];
-            } catch (AwsException $e) {
-                echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+            // ===== Upload to AWS S3 =====
+                try {
+                    $s3Result = $s3->putObject([
+                        'Bucket'     => $bucket,
+                        'Key'        => "IT_STARPAY/" . $fileName,
+                        'SourceFile' => $targetPath,
+                        //'ACL'      => 'public-read', // optional
+                    ]);
+                    $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
+                } catch (AwsException $e) {
+                    echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+                    $uploadedFiles[$field] = $targetPath; // fallback to local path
+                }
 
-                // Optional fallback: use temp file path
-                $safePath = $mysqli->real_escape_string($_FILES[$field]['tmp_name']);
-                $updateFileParts[] = "$field = '$safePath'";
-                $uploadedFiles[$field] = $_FILES[$field]['tmp_name'];
-            }
         } else {
             $uploadedFiles[$field] = '';
         }
+    } else {
+        $uploadedFiles[$field] = '';
     }
+}
 
     if (!empty($updateFileParts)) {
         $updateFilesQuery = "UPDATE business_documents SET " . implode(', ', $updateFileParts) . " WHERE application_id = '$application_id'";
