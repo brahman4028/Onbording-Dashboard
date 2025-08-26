@@ -388,9 +388,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // insert application id to merchant_id 
 
     $sql2 = "UPDATE merchant_info SET application_id = '$uniqueID' WHERE email = '$merchantemail'";
+    $result = mysqli_query($mysqli, $sql);
     $result2 = mysqli_query($mysqli, $sql2);
 
-    $result = mysqli_query($mysqli, $sql);
 
     if ($result) {
 
