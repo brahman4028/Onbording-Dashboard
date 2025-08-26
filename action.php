@@ -399,6 +399,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
             try {
 
+                 $mail->isHTML(true);
                 $mail->addAddress($merchantemail, $merchantname);
                 $mail->addAddress($supportemail, $businessname);
                 $mail->Subject = 'Thank You for Registering – Your Application is in Progress';
