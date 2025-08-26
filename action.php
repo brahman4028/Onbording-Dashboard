@@ -455,6 +455,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>';
                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
+                echo 'Email sending';
                 $mail->send();
                 echo 'Email sent';
                 header("Location: thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}");
