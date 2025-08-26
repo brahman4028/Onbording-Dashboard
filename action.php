@@ -116,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+     $logoPath = 'assets/images/logo-img.png';
+
     // File Uploads
     $uploadDir = 'uploads/';
     $uploadedFiles = [];
@@ -414,6 +416,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                 Need help? Reach out to us at \"{$itstaremail}\" – we’re here to help!
 
+                                $logopath
                                 Best Regards,
                                 Staar Payout Private Limited
                                 Email: info@itstarpay.com
