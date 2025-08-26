@@ -423,7 +423,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- Details card -->
   <div style="background:#f8fafc; border:1px solid #e6e6e6; border-radius:8px; padding:14px 16px; margin:16px 0;">
     <div style="font-size:14px; color:#111; margin-bottom:8px;"><strong>Your submitted details</strong></div>
-    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>Business Name:</strong> '.$businessName.'</div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>Business Name:</strong> '.$businessname.'</div>
     <div style="font-size:14px; color:#333; margin:4px 0;"><strong>GST Number:</strong> '.$gstin.'</div>
     <div style="font-size:14px; color:#333; margin:4px 0;"><strong>PAN Number:</strong> '.$pan.'</div>
   </div>
@@ -454,6 +454,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->send();
                 echo 'Email sent';
                 header("Location: thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}");
+                echo "<script>window.location.href='thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}';</script>";
                 exit;
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
