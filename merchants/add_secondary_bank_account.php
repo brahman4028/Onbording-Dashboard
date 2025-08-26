@@ -85,19 +85,32 @@ foreach ($fileFields as $field) {
         $fileName = $uniqueID . "_" . $alias . "." . $ext;
         $targetPath = $uploadDir . $fileName;
         $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
-        try {
-            $s3Result = $s3->putObject([
-                'Bucket'     => $bucket,
-                'Key'        => "IT_STARPAY/" . $fileName,
-                'SourceFile' => $_FILES[$field]['tmp_name'], // directly from temp
-                //'ACL'      => 'public-read',
-            ]);
-            $uploadedFiles[$field] = $s3Result['ObjectURL'];
-        } catch (AwsException $e) {
-            echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
-            $uploadedFiles[$field] = ''; // fallback
+     if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+            $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
+
+            // ===== Upload to AWS S3 =====
+                try {
+                    $s3Result = $s3->putObject([
+                        'Bucket'     => $bucket,
+                        'Key'        => "IT_STARPAY/" . $fileName,
+                        'SourceFile' => $targetPath,
+                        //'ACL'      => 'public-read', // optional
+                    ]);
+                    $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
+
+                    // ✅ Delete local file after successful upload
+        if (file_exists($targetPath)) {
+            unlink($targetPath);
         }
         
+                } catch (AwsException $e) {
+                    echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+                    $uploadedFiles[$field] = $targetPath; // fallback to local path
+                }
+
+        } else {
+            $uploadedFiles[$field] = '';
+        }
     } else {
         $uploadedFiles[$field] = '';
     }

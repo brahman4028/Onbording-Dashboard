@@ -248,10 +248,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $uniqueID . "_" . $alias . "." . $ext;
             $targetPath = $uploadDir . $fileName;
 
-           if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
-            $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
+            if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+                $uploadedFiles[$field] = 'uploads/' . $fileName; // save only filename
 
-            // ===== Upload to AWS S3 =====
+                // ===== Upload to AWS S3 =====
                 try {
                     $s3Result = $s3->putObject([
                         'Bucket'     => $bucket,
@@ -262,22 +262,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
 
                     // ✅ Delete local file after successful upload
-        if (file_exists($targetPath)) {
-            unlink($targetPath);
-        }
-        
+                    if (file_exists($targetPath)) {
+                        unlink($targetPath);
+                    }
                 } catch (AwsException $e) {
                     echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
                     $uploadedFiles[$field] = $targetPath; // fallback to local path
                 }
-
+            } else {
+                $uploadedFiles[$field] = '';
+            }
         } else {
             $uploadedFiles[$field] = '';
         }
-    } else {
-        $uploadedFiles[$field] = '';
     }
-}
 
     // Example output (you can replace this with DB insert logic)
     echo "<h3>Form Submitted Successfully</h3><pre>";
