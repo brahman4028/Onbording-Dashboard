@@ -398,39 +398,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result2) {
             echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
-             header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+             
             try {
 
                  $mail->isHTML(true);
                 $mail->addAddress($merchantemail, $merchantname);
                 $mail->addAddress($supportemail, $businessname);
                 $mail->Subject = 'Thank You for Registering – Your Application is in Progress';
-                $mail->Body    = "
-                                Hi {$merchantemail},
+                $mail->Body    = '
+<div style="font-family:Arial,Helvetica,sans-serif; color:#222; line-height:1.6; max-width:620px; margin:0 auto; padding:24px; border:1px solid #eee; border-radius:10px; background:#fff;">
+  <!-- Logo -->
+  <div style="text-align:center; margin-bottom:16px;">
+    <img src="'.$logopath.'" alt="Staar Payout Private Limited" style="max-height:56px; display:inline-block;">
+  </div>
 
-                                Great news! We’ve received your onboarding form, and your application is now under review.
+  <!-- Title -->
+  <h2 style="margin:0 0 8px; font-size:20px; color:#111; text-align:center;">Thanks for registering, '.$merchantemail.'!</h2>
+  <p style="margin:0 0 16px; text-align:center; color:#555;">
+    Great news — we’ve received your onboarding form and your application is under review.
+  </p>
 
-                                Here are the details you submitted:
-                                - Business Name: \"{$businessName}\"
-                                - GST Number: \"{$gstin}\"
-                                - PAN Number: \"{$pan}\"
+  <!-- Details card -->
+  <div style="background:#f8fafc; border:1px solid #e6e6e6; border-radius:8px; padding:14px 16px; margin:16px 0;">
+    <div style="font-size:14px; color:#111; margin-bottom:8px;"><strong>Your submitted details</strong></div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>Business Name:</strong> '.$businessName.'</div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>GST Number:</strong> '.$gstin.'</div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>PAN Number:</strong> '.$pan.'</div>
+  </div>
 
-                                You can check the progress anytime using the link below:
-                                \"{$trackingLink}\"
+  <!-- CTA -->
+  <div style="text-align:center; margin:18px 0 6px;">
+    <a href="'.$trackingLink.'" style="background:#0d6efd; color:#fff; text-decoration:none; padding:10px 18px; border-radius:6px; display:inline-block; font-size:14px;">
+      Track Your Application
+    </a>
+  </div>
 
-                                Need help? Reach out to us at \"{$itstaremail}\" – we’re here to help!
+  <p style="font-size:14px; color:#555; margin:16px 0;">
+    Need help? Reach us at <a href="mailto:'.$itstaremail.'" style="color:#0d6efd; text-decoration:none;">'.$itstaremail.'</a> — we’re here to help.
+  </p>
 
-                                $logopath
-                                Best Regards,
-                                Staar Payout Private Limited
-                                Email: info@itstarpay.com
-                                Address: A-1/2, First Floor, Shakti Nagar Extension, Ashok Vihar, North West Delhi, Delhi, India, 110052
-                                ";
+  <hr style="border:none; border-top:1px solid #eee; margin:18px 0;">
+
+  <!-- Signature -->
+  <div style="font-size:13px; color:#666;">
+    <div style="margin:0 0 2px;"><strong>Best Regards,</strong></div>
+    <div style="margin:0 0 6px;"><strong>Staar Payout Private Limited</strong></div>
+    <div style="margin:0 0 2px;">Email: <a href="mailto:info@itstarpay.com" style="color:#0d6efd; text-decoration:none;">info@itstarpay.com</a></div>
+    <div style="margin:0;">Address: A-1/2, First Floor, Shakti Nagar Extension, Ashok Vihar, North West Delhi, Delhi, India, 110052</div>
+  </div>
+</div>';
                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
                 $mail->send();
                 echo 'Email sent';
-                header("Location: thankyou.php?id=$uniqueID&gstin={$gstin}&pan={$pan}");
+                header("Location: thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}");
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
