@@ -402,6 +402,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
 
                  $mail->isHTML(true);
+                 $mail->AddEmbeddedImage('assets/images/logo-img.png', 'logo_cid');
+
                 $mail->addAddress($merchantemail, $merchantname);
                 $mail->addAddress($supportemail, $businessname);
                 $mail->Subject = 'Thank You for Registering – Your Application is in Progress';
@@ -409,7 +411,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div style="font-family:Arial,Helvetica,sans-serif; color:#222; line-height:1.6; max-width:620px; margin:0 auto; padding:24px; border:1px solid #eee; border-radius:10px; background:#fff;">
   <!-- Logo -->
   <div style="text-align:center; margin-bottom:16px;">
-    <img src="'.$logopath.'" alt="Staar Payout Private Limited" style="max-height:56px; display:inline-block;">
+    <img src="cid:logo_cid" alt="Staar Payout Private Limited" style="max-height:56px; display:inline-block;">
   </div>
 
   <!-- Title -->
@@ -452,6 +454,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->send();
                 echo 'Email sent';
                 header("Location: thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}");
+                exit;
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
