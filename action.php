@@ -248,19 +248,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $uniqueID . "_" . $alias . "." . $ext;
             $targetPath = $uploadDir . $fileName;
 
-            try {
-                $s3Result = $s3->putObject([
-                    'Bucket'     => $bucket,
-                    'Key'        => "IT_STARPAY/" . $fileName,
-                    'SourceFile' => $targetPath,
-                ]);
+            if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+                try {
+                    $s3Result = $s3->putObject([
+                        'Bucket'     => $bucket,
+                        'Key'        => "IT_STARPAY/" . $fileName,
+                        'SourceFile' => $targetPath,
+                    ]);
 
-                $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
-                $updateFileParts[] = "$field = '$safePath'";
-                $uploadedFiles[$field] = $s3Result['ObjectURL'];
-            } catch (AwsException $e) {
-                echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
-                $uploadedFiles[$field] = ''; // fallback
+                    $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
+                    $updateFileParts[] = "$field = '$safePath'";
+                    $uploadedFiles[$field] = $s3Result['ObjectURL'];
+                } catch (Exception $e) {
+                    error_log("S3 Upload Failed: " . $e->getMessage());
+                }
             }
         } else {
             $uploadedFiles[$field] = '';
