@@ -248,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $uniqueID . "_" . $alias . "." . $ext;
             $targetPath = $uploadDir . $fileName;
 
-           if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) {
+           if ($targetPath) {
             $uploadedFiles[$field] = 'uploads/'.$fileName; // save only filename
 
             // ===== Upload to AWS S3 =====
@@ -256,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $s3Result = $s3->putObject([
                         'Bucket'     => $bucket,
                         'Key'        => "IT_STARPAY/" . $fileName,
-                        'SourceFile' => $targetPath,
+                        'SourceFile' => $_FILES[$field]['tmp_name'], // directly from temp
                         //'ACL'      => 'public-read', // optional
                     ]);
                     $uploadedFiles[$field] = $s3Result['ObjectURL']; // store S3 URL instead of local path
