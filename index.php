@@ -2412,7 +2412,7 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
     </script>
 
     <!-- preventing form before submission -->
-    <script>
+    <!-- <script>
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Stop form from submitting
 
@@ -2502,7 +2502,7 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
                 this.submit(); // ✅ All fields filled — submit form
             }
         });
-    </script>
+    </script> -->
 
 
     <!-- hide download kyc button -->
