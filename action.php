@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-     $logoPath = 'assets/images/logo-img.png';
+    $logoPath = 'assets/images/logo-img.png';
 
     // File Uploads
     $uploadDir = 'uploads/';
@@ -252,9 +252,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $s3Result = $s3->putObject([
                     'Bucket'     => $bucket,
                     'Key'        => "IT_STARPAY/" . $fileName,
-                    'SourceFile' => $_FILES[$field]['tmp_name'], // directly from temp
-                    //'ACL'      => 'public-read',
+                    'SourceFile' => $targetPath,
                 ]);
+
+                $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']);
+                $updateFileParts[] = "$field = '$safePath'";
                 $uploadedFiles[$field] = $s3Result['ObjectURL'];
             } catch (AwsException $e) {
                 echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
@@ -398,11 +400,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result2) {
             echo "<div style='padding:12px; background:#d1e7dd; color:#0f5132;'>✅ Business documents saved successfully!</div>";
-             
+
             try {
 
-                 $mail->isHTML(true);
-                 $mail->AddEmbeddedImage('assets/images/logo-img.png', 'logo_cid');
+                $mail->isHTML(true);
+                $mail->AddEmbeddedImage('assets/images/logo-img.png', 'logo_cid');
 
                 $mail->addAddress($merchantemail, $merchantname);
                 $mail->addAddress($supportemail, $businessname);
@@ -415,7 +417,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 
   <!-- Title -->
-  <h2 style="margin:0 0 8px; font-size:20px; color:#111; text-align:center;">Thanks for registering, '.$merchantemail.'!</h2>
+  <h2 style="margin:0 0 8px; font-size:20px; color:#111; text-align:center;">Thanks for registering, ' . $merchantemail . '!</h2>
   <p style="margin:0 0 16px; text-align:center; color:#555;">
     Great news — we’ve received your onboarding form and your application is under review.
   </p>
@@ -423,20 +425,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- Details card -->
   <div style="background:#f8fafc; border:1px solid #e6e6e6; border-radius:8px; padding:14px 16px; margin:16px 0;">
     <div style="font-size:14px; color:#111; margin-bottom:8px;"><strong>Your submitted details</strong></div>
-    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>Business Name:</strong> '.$businessname.'</div>
-    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>GST Number:</strong> '.$gstin.'</div>
-    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>PAN Number:</strong> '.$pan.'</div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>Business Name:</strong> ' . $businessname . '</div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>GST Number:</strong> ' . $gstin . '</div>
+    <div style="font-size:14px; color:#333; margin:4px 0;"><strong>PAN Number:</strong> ' . $pan . '</div>
   </div>
 
   <!-- CTA -->
   <div style="text-align:center; margin:18px 0 6px;">
-    <a href="'.$trackingLink.'" style="background:#0d6efd; color:#fff; text-decoration:none; padding:10px 18px; border-radius:6px; display:inline-block; font-size:14px;">
+    <a href="' . $trackingLink . '" style="background:#0d6efd; color:#fff; text-decoration:none; padding:10px 18px; border-radius:6px; display:inline-block; font-size:14px;">
       Track Your Application
     </a>
   </div>
 
   <p style="font-size:14px; color:#555; margin:16px 0;">
-    Need help? Reach us at <a href="mailto:'.$itstaremail.'" style="color:#0d6efd; text-decoration:none;">'.$itstaremail.'</a> — we’re here to help.
+    Need help? Reach us at <a href="mailto:' . $itstaremail . '" style="color:#0d6efd; text-decoration:none;">' . $itstaremail . '</a> — we’re here to help.
   </p>
 
   <hr style="border:none; border-top:1px solid #eee; margin:18px 0;">

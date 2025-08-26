@@ -76,3 +76,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     <input type="file" name="fileToUpload" required>
     <button type="submit">Upload</button>
 </form>
+
+
+
+<script>
+if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath)) { try { // Upload to AWS S3 $s3Result = $s3->putObject([ 'Bucket' => $bucket, 'Key' => "IT_STARPAY/" . $fileName, 'SourceFile' => $targetPath, //'ACL' => 'public-read', ]); // Save S3 URL $safePath = $mysqli->real_escape_string($s3Result['ObjectURL']); $updateFileParts[] = "$field = '$safePath'"; $uploadedFiles[$field] = $s3Result['ObjectURL']; } catch (AwsException $e) { echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>"; // Fallback: keep local path $safePath = $mysqli->real_escape_string($targetPath); $updateFileParts[] = "$field = '$safePath'"; $uploadedFiles[$field] = $targetPath; } }
+
+
+
+try {
+                $s3Result = $s3->putObject([
+                    'Bucket'     => $bucket,
+                    'Key'        => "IT_STARPAY/" . $fileName,
+                    'SourceFile' => $_FILES[$field]['tmp_name'], // directly from temp
+                    //'ACL'      => 'public-read',
+                ]);
+                $uploadedFiles[$field] = $s3Result['ObjectURL'];
+            } catch (AwsException $e) {
+                echo "<p style='color:red;'>❌ S3 upload failed for {$field}: " . $e->getMessage() . "</p>";
+                $uploadedFiles[$field] = ''; // fallback
+            }
+
+
+</script>
