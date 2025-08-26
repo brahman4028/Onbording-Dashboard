@@ -248,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $uniqueID . "_" . $alias . "." . $ext;
             $targetPath = $uploadDir . $fileName;
 
-            if (!empty($_FILES[$field]['tmp_name'])) {
+            if ($targetPath) {
                 $uploadedFiles[$field] = 'uploads/' . $fileName; // save only filename
 
                 // ===== Upload to AWS S3 =====
