@@ -4,7 +4,7 @@
 session_start();
 
 
-// error_reporting(0);
+error_reporting(0);
 $adminname = '';
 $rolevalue = '';
 $username = '';
@@ -329,7 +329,7 @@ $merchant_trash = $appData['merchant_trash'] ?? 0;
         }
 
         .autth-img-cover-login {
-            background-image: url('./assets/images/sales6.jpg');
+            background-image: url('./assets/images/sales22.jpg');
             background-size: cover;
             background-position: left center;
             background-repeat: no-repeat;
