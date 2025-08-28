@@ -34,10 +34,10 @@
 						</a>
 						<ul>
 							<li>
-							<li><a href="login.php" target="_blank"><i class='bx bx-radio-circle'></i>Login</a></li>
+							<li><a href="admin_login.php" target="_blank"><i class='bx bx-radio-circle'></i>Login</a></li>
 
 							<li>
-								<a href="register.php" target="_blank">
+								<a href="admin_register.php" target="_blank">
 									<i class='bx bx-radio-circle'></i> Add New User
 								</a>
 							</li>

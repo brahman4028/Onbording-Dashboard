@@ -89,6 +89,10 @@ if (!isset($_GET['pan']) || empty($_GET['pan'])) {
 }
 $pan = $_GET['pan'];
 
+
+
+
+
 // Now you can use $id, $gstin, and $pan in your code
 
 // Fetch business_application data
@@ -100,6 +104,17 @@ if (!$appResult || mysqli_num_rows($appResult) === 0) {
 }
 
 $appData = mysqli_fetch_assoc($appResult);
+
+
+// $merchantuseremail = $appData['id'];
+
+$merQuery = "SELECT * FROM merchant_info WHERE application_id = '$application_id'";
+$merResult = mysqli_query($mysqli, $merQuery);
+$merData = $merResult ? mysqli_fetch_assoc($merResult) : [];
+
+$merchantname = $merData['username'];
+$merchant_id = $merData['merchant_id'];
+$merchant_phone = $merData['phone'];
 
 // Fetch business_documents data
 $docQuery = "SELECT * FROM business_documents WHERE application_id = '$application_id'";
@@ -272,18 +287,40 @@ $fileData = [
                             <div style="height: 100%; display:flex; flex-direction:column; justify-content:space-between;" class="blr">
                                 <!-- route line -->
                                 <div class="bs-stepper-header" role="tablist">
-                                    <div class="step" data-target="#test-vl-1">
-                                        <div class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-vl-1">
-                                            <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
-                                            <div>
-                                                <h5 class=" mt-4 text-center" style="color:rgba(15, 15, 15, 1)">
+                                    <div class="step w-100" data-target="#test-vl-1">
+                                        <div class="step-trigger d-flex flex-column align-items-center" role="tab"
+                                            id="stepper3trigger1" aria-controls="test-vl-1">
+
+                                            <!-- Application Info -->
+                                            <div class="text-center mt-2">
+                                                <h5 class="fw-bold mb-1" style="color:#0f0f0f;">
                                                     <?= htmlspecialchars($appData['businessname']) ?>'s Application
                                                 </h5>
-                                                <p class="mb-0 steper-sub-title">Just a file Preview</p>
+                                                <p class="mb-3 steper-sub-title text-muted small">Just a file Preview</p>
                                             </div>
+
+                                            <!-- User Info Card -->
+                                            <div class="card border-0 shadow-sm p-3 rounded-3" style="max-width: 350px; background:#ffffff;">
+                                                <div class="d-flex flex-column align-items-start">
+                                                    <p class="mb-2">
+                                                        <i class="bx bx-user-circle text-primary me-1"></i>
+                                                        <strong>Merchant:</strong> <?= htmlspecialchars($merchantname) ?>
+                                                    </p>
+                                                    <p class="mb-2">
+                                                        <i class="bx bx-envelope text-success me-1"></i>
+                                                        <strong>Email:</strong> <?= htmlspecialchars($merData['email']) ?>
+                                                    </p>
+                                                    <p class="mb-0">
+                                                        <i class="bx bx-phone text-info me-1"></i>
+                                                        <strong>Phone:</strong> <?= htmlspecialchars($merData['phone']) ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="position-relative autth-img-cover-login" style="width: 100% ; height:100%;">
 
