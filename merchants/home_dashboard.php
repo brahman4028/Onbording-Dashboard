@@ -3,28 +3,28 @@
 
   <!-- Row 1: Stats Cards -->
   <div class="row gx-4 gy-4 mb-4">
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="card shadow-sm border-0 p-3">
         <div class="fw-semibold text-muted mb-1">Total Revenue</div>
         <div class="h5 text-success">$40,109</div>
         <div class="small text-secondary">+12.5% this week</div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="card shadow-sm border-0 p-3">
         <div class="fw-semibold text-muted mb-1">Products Sold</div>
         <div class="h5 text-primary">1,951</div>
         <div class="small text-secondary">+3.2% increase</div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="card shadow-sm border-0 p-3">
         <div class="fw-semibold text-muted mb-1">New Customers</div>
         <div class="h5 text-warning">4,514</div>
         <div class="small text-secondary">+5.8% growth</div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="card shadow-sm border-0 p-3">
         <div class="fw-semibold text-muted mb-1">New Customers</div>
         <div class="h5 text-warning">4,514</div>
