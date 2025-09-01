@@ -241,6 +241,9 @@ if ($application_id != '') {
             position: fixed;
             bottom: 10px;
             left: 20px;
+            background-color: white;
+            /* box-shadow: 2px 12px 12px gray; */
+            /* width: 100%; */
         }
 
         body.dark-mode {
@@ -467,6 +470,9 @@ if ($application_id != '') {
             font-size: 12px;
             color: #6c757d;
         }
+        .phone-img{
+            display: none;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -491,6 +497,14 @@ if ($application_id != '') {
                 font-size: 1.5rem;
                 cursor: pointer;
             }
+
+            .phone-img{
+                display: block;
+            }
+
+            .main-body {
+            padding: 5px;
+        }
         }
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
@@ -505,6 +519,7 @@ if ($application_id != '') {
                     <img src="../assets/images/itstarlogo.png" alt="Logo" class="img-fluid" width="150px">
                     <span class="d-md-none hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></span>
                 </h4>
+
                 <ul class="nav flex-column">
                     <!-- <li class="nav-item"><a class="nav-link" href="#" onclick="openPanel('sd')">dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="openPanel('Domains')">Domains</a></li>
@@ -529,9 +544,14 @@ if ($application_id != '') {
             </nav>
             <main class="col-md-10 offset-md-2 main-content">
                 <div class="main-header d-flex justify-content-between align-items-center">
-                    <h4 id="mainHeaderTitle">Welcome</h4>
-                    <div>
-                        <div class="dropdown">
+                    <!-- <h4 id="mainHeaderTitle">Welcome</h4> -->
+                     <div>
+                        <img src="../assets/images/itstarlogo.png" alt="Logo" class="img-fluid phone-img" width="100px" >
+                     </div>
+                    
+               
+                    <div class="d-flex justify-content-end" style="align-items: center; justify-content:end;">
+                        <div class="dropdown d-flex" style="align-items: center; justify-content:center;">
                             <button class="btn btn-light border rounded-pill d-flex align-items-center gap-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bx bx-user-circle fs-5"></i>
                                 <span class="fw-semibold">Hello, <?php echo $username; ?></span>
@@ -546,7 +566,7 @@ if ($application_id != '') {
                                 <li><a class="dropdown-item text-danger" href="merchant_logout.php"><i class='bx bx-log-out me-2'></i> Logout</a></li>
                             </ul>
                         </div>
-                        <span class="d-md-none hamburger" onclick="toggleSidebar()">&#9776;</span>
+                        <span class="d-md-none hamburger ms-2" onclick="toggleSidebar()"> &#9776;</span>
                     </div>
 
                 </div>
