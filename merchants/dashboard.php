@@ -241,7 +241,7 @@ if ($application_id != '') {
             position: fixed;
             bottom: 10px;
             left: 20px;
-            background-color: white;
+            /* background-color: white; */
             /* box-shadow: 2px 12px 12px gray; */
             /* width: 100%; */
         }
@@ -307,6 +307,11 @@ if ($application_id != '') {
             background: #2a2a2a;
             border-color: #444;
         }
+
+        body.dark-mode .logo-img {
+             filter: brightness(0) saturate(100%) invert(77%) sepia(34%) saturate(1%) hue-rotate(314deg) brightness(105%) contrast(101%);
+        }
+
 
         .logout-btn {
             background-color: #ffe5e5;
@@ -516,7 +521,7 @@ if ($application_id != '') {
         <div class="row">
             <nav class="col-md-2 sidebar d-flex flex-column" id="sidebar">
                 <h4 class="mb-4 d-flex justify-content-between align-items-center">
-                    <img src="../assets/images/itstarlogo.png" alt="Logo" class="img-fluid" width="150px">
+                    <img src="../assets/images/itstarlogo.png" alt="Logo" class="img-fluid logo-img" width="150px">
                     <span class="d-md-none hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></span>
                 </h4>
 
@@ -546,7 +551,7 @@ if ($application_id != '') {
                 <div class="main-header d-flex justify-content-between align-items-center">
                     <!-- <h4 id="mainHeaderTitle">Welcome</h4> -->
                      <div>
-                        <img src="../assets/images/itstarlogo.png" alt="Logo" class="img-fluid phone-img" width="100px" >
+                        <img src="../assets/images/itstarlogo.png" alt="Logo" class="img-fluid logo-img phone-img" width="100px" >
                      </div>
                     
                
