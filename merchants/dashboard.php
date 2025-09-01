@@ -550,7 +550,7 @@ if ($application_id != '') {
                      </div>
                     
                
-                    <div class="d-flex justify-content-end" style="align-items: center; justify-content:end;">
+                    <div class="d-flex ">
                         <div class="dropdown d-flex" style="align-items: center; justify-content:center;">
                             <button class="btn btn-light border rounded-pill d-flex align-items-center gap-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bx bx-user-circle fs-5"></i>
@@ -781,7 +781,7 @@ if ($application_id != '') {
             const sections = document.querySelectorAll('.section');
             sections.forEach(sec => sec.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-            document.getElementById('mainHeaderTitle').textContent = sectionId;
+            // document.getElementById('mainHeaderTitle').textContent = sectionId;
             toggleSidebar();
         }
 
