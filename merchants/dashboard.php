@@ -508,7 +508,7 @@ if ($application_id != '') {
             }
 
             .main-body {
-            padding: 5px;
+            padding: 0px;
         }
         }
     </style>
