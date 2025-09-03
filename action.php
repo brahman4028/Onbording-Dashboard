@@ -1,3 +1,5 @@
+
+
 <?php
 
 include 'db.php';
@@ -418,7 +420,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $mail->addAddress($merchantemail, $merchantname);
                 $mail->addAddress($supportemail, $businessname);
-                $mail->Subject = 'Thank You for Registering – Your Application is in Progress';
+                $mail->Subject = 'Thank You for Registering – Your Application is in Review';
                 $mail->Body    = '
 <div style="font-family:Arial,Helvetica,sans-serif; color:#222; line-height:1.6; max-width:620px; margin:0 auto; padding:24px; border:1px solid #eee; border-radius:10px; background:#fff;">
   <!-- Logo -->
@@ -464,18 +466,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
                 $mail->send();
-                echo 'Email sent';
+                // echo 'Email sent';
                 // header("Location: thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}");
-                echo "<div id='loadingOverlay'>
-                <div class='loader'></div>
-                <p>Submitting your application... 💙</p>
-              </div>
-              <script>
-                document.getElementById('loadingOverlay').style.display = 'flex';
-                setTimeout(function(){
-                  window.location.href='thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}';
-                }, 2500); // 2.5 sec delay
-              </script>";
+               echo "<div id='loadingOverlay' style='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.9);display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;font-family:Arial,sans-serif;'><div class='loader' style='border:6px solid #eee;border-top:6px solid #0d6efd;border-radius:50%;width:60px;height:60px;animation:spin 1s linear infinite;margin-bottom:15px;'></div><p style='font-size:16px;color:#333;'>Submitting your application... 💙</p></div><style>@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}</style><script>setTimeout(function(){window.location.href='thankyou.php?id={$uniqueID}&gstin={$gstin}&pan={$pan}';},2500);</script>";
+
                 exit;
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -494,47 +488,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-
-
-<html>
-    <style>
-#loadingOverlay {
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(255,255,255,0.95);
-  display:none;
-  justify-content:center; align-items:center;
-  flex-direction:column; z-index:9999;
-}
-.loader {
-  border:6px solid #f3f3f3;
-  border-top:6px solid #0d6efd;
-  border-radius:50%;
-  width:60px; height:60px;
-  animation: spin 1s linear infinite;
-  margin-bottom:15px;
-}
-@keyframes spin {
-  0% {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
-}
-#loadingOverlay p {
-  font-size:16px; color:#333;
-  font-family: Arial, sans-serif;
-}
-</style>
-    <body>
-        
-
-    <!-- JS yahan lagana hai (body ke end me) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      let form = document.querySelector("form"); 
-      form.addEventListener("submit", function () {
-        document.getElementById("loadingOverlay").style.display = "flex";
-      });
-    });
-  </script>
-    </body>
-</html>
-<!-- Loader CSS -->
