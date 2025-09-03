@@ -16,7 +16,8 @@ require 'PHPMailer/PHPMailer.php';
 $mail = new PHPMailer(true);
 
  //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->SMTPDebug = 0;    
     $mail->isSMTP();   
                                          //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
